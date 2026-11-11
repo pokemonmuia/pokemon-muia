@@ -75,6 +75,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 
 - **08102026** Novo repository pokemon_muia.v1. Zontà i 8 capipalestra de Muia (Roccia, Erba, Acqua, Elettricità, Veleno, Fuoco, Psico, Ghiaccio) con le squadre in PBS/trainers.txt e grafica provvisoria. Ordine e livei in PLOT.md.
 - **08102026** Zogo in italian (dettagli nella sezion [Traduzion](#traduzion)).
+- **11112026** Repository rinominà da pokemon_muia.v1 a pokemon-muia; el vecio repository pokemon_muia xe sta cancelà. Zontà die-lab come collaboradori.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
