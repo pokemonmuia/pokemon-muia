@@ -16,7 +16,7 @@
 <script>
 (function () {
   var box = document.getElementById('guestbook');
-  var url = (box.dataset.url || '').replace(/\/$/, ''), key = box.dataset.key || '';
+  var url = (box.dataset.url || '').replace(/\/+$/, '').replace(/\/rest\/v1$/, ''), key = box.dataset.key || '';
   var en = document.documentElement.lang === 'en';
   var list = document.getElementById('gb-list'), status = document.getElementById('gb-status');
   var form = document.getElementById('gb-form');
@@ -24,7 +24,7 @@
     ? { off: 'The log is not active yet.', err: 'Could not reach the log, try again later.', wait: 'Easy, wait a few seconds.', sent: 'Saved.', empty: 'Nobody has written yet. Be the first.' }
     : { off: 'Il log non è ancora attivo.', err: 'Non riesco a raggiungere il log, riprova più tardi.', wait: 'Calma, aspetta qualche secondo.', sent: 'Salvato.', empty: 'Nessuno ha ancora scritto. Sii il primo.' };
   if (!url || !key) { form.style.display = 'none'; status.textContent = T.off; return; }
-  var H = { apikey: key, Authorization: 'Bearer ' + key };
+  var H = { apikey: key };
 
   function render(rows) {
     list.textContent = '';
