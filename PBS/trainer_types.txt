@@ -402,58 +402,96 @@ VictoryBGM = Battle victory leader
 #-------------------------------
 # Capipalestra de Muia (in ordine de palestra)
 #-------------------------------
-[LEADER_ROCCIA]
+[LEADER_BORA]
 Name = Paron della Palestra
 Gender = Male
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_ERBA]
+[LEADER_BELLEZZE]
 Name = Parona della Palestra
 Gender = Female
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_ACQUA]
+[LEADER_LAMPO]
 Name = Parona della Palestra
 Gender = Female
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_ELETTRO]
+[LEADER_BRIVIDO]
 Name = Paron della Palestra
 Gender = Male
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_VELENO]
+[LEADER_MANDRIOI]
 Name = Paron della Palestra
 Gender = Male
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_FUOCO]
+[LEADER_ONGIA]
 Name = Paron della Palestra
 Gender = Male
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_PSICO]
+[LEADER_TROTTOLA]
 Name = Parona della Palestra
 Gender = Female
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
 #-------------------------------
-[LEADER_GHIACCIO]
+[LEADER_BULLI]
 Name = Parona della Palestra
 Gender = Female
 BaseMoney = 100
 BattleBGM = Battle Gym Leader
 VictoryBGM = Battle victory leader
+#-------------------------------
+# Personaggi della storia (sprite de lota in Graphics/Trainers)
+#-------------------------------
+[SINDACO]
+Name = Sindaco
+Gender = Male
+BaseMoney = 200
+BattleBGM = Battle Champion
+#-------------------------------
+[SINDACO_CARNEVAL]
+Name = Sindaco
+Gender = Male
+BaseMoney = 200
+BattleBGM = Battle Champion
+#-------------------------------
+[CINGHIO]
+Name = Capo banda
+Gender = Male
+BaseMoney = 80
+BattleBGM = Battle trainer
+#-------------------------------
+[HENRY]
+Name = Capo banda
+Gender = Male
+BaseMoney = 80
+BattleBGM = Battle trainer
+#-------------------------------
+[GIANNA]
+Name = Muiesana
+Gender = Female
+BaseMoney = 60
+BattleBGM = Battle trainer
+#-------------------------------
+[SANDRA_OMO]
+Name = Muiesana
+Gender = Female
+BaseMoney = 60
+BattleBGM = Battle trainer
