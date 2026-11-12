@@ -1,6 +1,7 @@
 ---
 title: "Gym 2 – Grass"
 lang: en
+ref: gym-grass
 weight: 2
 permalink: /en/gyms/grass/
 ---

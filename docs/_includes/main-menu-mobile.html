@@ -1,10 +1,11 @@
 <div id="main-menu-mobile" class="main-menu-mobile">
-  {% assign mk = 'main' %}{% if page.lang == 'en' %}{% assign mk = 'main_en' %}{% endif %}{% assign mainmenu = site.data.menus[mk] | sort: 'weight' %}
+  {% assign mainmenu = site.data.menus.main[page.lang] | sort: 'weight' %}
   <ul>
     {% for item in mainmenu %}
-    <li class="{% if item.url == page.url or item.url == page.permalink %}active{% endif %}">
-      <a href="{% if item.url contains "://" %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}">{{ item.name }}</a>
+    <li class="{% if item.url == page.url %}active{% endif %}">
+      <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
     </li>
     {% endfor %}
+    {% include lang-switch.html %}
   </ul>
 </div>

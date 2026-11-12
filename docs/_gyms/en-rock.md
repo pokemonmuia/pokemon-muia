@@ -1,6 +1,7 @@
 ---
 title: "Gym 1 – Rock"
 lang: en
+ref: gym-rock
 weight: 1
 permalink: /en/gyms/rock/
 ---

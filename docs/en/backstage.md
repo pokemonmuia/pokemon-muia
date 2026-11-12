@@ -2,6 +2,7 @@
 title: Backstage
 layout: secret
 lang: en
+ref: backstage
 permalink: /en/backstage/
 slug: backstage
 noindex: true

@@ -1,8 +1,8 @@
-{% assign en = false %}{% if page.lang == 'en' %}{% assign en = true %}{% endif %}
+{% assign t = site.data.i18n[page.lang] %}
 <div class="gallery">
   <figure class="gallery-crest">
-    <img src="{{ '/images/crest.png' | relative_url }}" alt="{% if en %}Muia coat of arms{% else %}Stemma di Muia{% endif %}" width="512" height="384" loading="lazy" />
-    <figcaption>{% if en %}The Muia crest from the splash screen{% else %}Lo stemma di Muia dalla schermata iniziale{% endif %}</figcaption>
+    <img src="{{ '/images/crest.png' | relative_url }}" alt="{{ t.crest_alt }}" width="512" height="384" loading="lazy" />
+    <figcaption>{{ t.crest_caption }}</figcaption>
   </figure>
   <figure><img class="pixel" src="{{ '/images/introPolidori.png' | relative_url }}" alt="Polidori" width="69" height="172" loading="lazy" /><figcaption>Polidori</figcaption></figure>
   <figure><img class="pixel" src="{{ '/images/ritratto_CINGHIO.png' | relative_url }}" alt="Cinghio" width="94" height="200" loading="lazy" /><figcaption>Cinghio</figcaption></figure>

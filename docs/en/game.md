@@ -2,6 +2,7 @@
 title: The game
 layout: page
 lang: en
+ref: game
 permalink: /en/game/
 description: Story and setting of Pokémon Muia.
 ---

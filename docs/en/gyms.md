@@ -2,6 +2,7 @@
 title: Gyms
 layout: services
 lang: en
+ref: gyms
 permalink: /en/gyms/
 description: The eight gyms of Muia.
 ---

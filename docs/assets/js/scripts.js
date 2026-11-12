@@ -24,8 +24,8 @@ menuTrigger.onclick = function() {
     if (now - lastClick < 400) {
       lastClick = 0;
       setTheme(!isDark()); // annulla il cambio del primo click
-      var en = document.documentElement.lang === 'en';
-      window.location.href = btn.getAttribute(en ? 'data-secret-en' : 'data-secret-it');
+
+      window.location.href = btn.getAttribute('data-secret');
       return;
     }
     lastClick = now;

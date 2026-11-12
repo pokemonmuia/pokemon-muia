@@ -2,7 +2,7 @@ url: 'https://pokemonmuia.github.io'
 baseurl: '/pokemon-muia'
 permalink: pretty
 title: 'Pokémon Muia'
-lang: it
+lang: vec
 
 collections:
   gyms:

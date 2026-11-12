@@ -1,6 +1,7 @@
 ---
 title: "Gym 5 – Poison"
 lang: en
+ref: gym-poison
 weight: 5
 permalink: /en/gyms/poison/
 ---

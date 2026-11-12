@@ -1,6 +1,7 @@
 ---
 title: "Gym 8 – Ice"
 lang: en
+ref: gym-ice
 weight: 8
 permalink: /en/gyms/ice/
 ---
