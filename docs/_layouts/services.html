@@ -2,7 +2,7 @@
 layout: default
 bodyClass: "page-services"
 ---
-{% assign L = page.lang | default: 'it' %}
+{% assign L = page.lang %}
 {% assign gyms = site.gyms | where: "lang", L | sort: "weight" %}
 <div class="intro">
   <div class="container">

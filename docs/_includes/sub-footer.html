@@ -6,7 +6,7 @@
           {% if site.data.social %}
             {% include social.html %}
           {% endif %}
-          {% assign cr = site.data.seo.copyright_text %}{% if page.lang == 'en' %}{% assign cr = site.data.seo.copyright_text_en %}{% endif %}{% if cr %}
+          {% assign cr = site.data.seo.copyright_text[page.lang] %}{% if cr %}
           <div class="copyright">{{ cr }}</div>
           {% endif %}
         </div>

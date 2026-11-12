@@ -1,6 +1,7 @@
 ---
 title: "Gym 3 – Water"
 lang: en
+ref: gym-water
 weight: 3
 permalink: /en/gyms/water/
 ---

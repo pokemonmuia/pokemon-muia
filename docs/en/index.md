@@ -2,6 +2,7 @@
 title: Pokémon Muia
 layout: home
 lang: en
+ref: home
 permalink: /en/
 description: The first Pokémon fan game set in Muia.
 gyms_url: /en/gyms/

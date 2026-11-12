@@ -1,6 +1,7 @@
 ---
 title: "Gym 4 – Electric"
 lang: en
+ref: gym-electric
 weight: 4
 permalink: /en/gyms/electric/
 ---

@@ -1,0 +1,8 @@
+{% assign cands = site.pages | concat: site.gyms | where: "ref", page.ref %}
+{% assign langs = "vec,it,en" | split: "," %}
+{% for l in langs %}
+  {% assign li = site.data.i18n[l] %}
+  {% assign target = cands | where: "lang", l | first %}
+  {% if target %}{% assign href = target.url %}{% else %}{% assign href = li.home %}{% endif %}
+  <li class="lang-item{% if l == page.lang %} active{% endif %}"><a href="{{ href | relative_url }}" hreflang="{{ l }}" lang="{{ l }}" title="{{ li.lang_name }}">{{ li.lang_code }}</a></li>
+{% endfor %}

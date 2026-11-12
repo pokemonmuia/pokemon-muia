@@ -1,21 +1,23 @@
 ---
-title: Contribuisci
+title: Dà na man
 layout: page
-lang: it
-description: Come collaborare al progetto.
+lang: vec
+ref: contribute
+permalink: /contribuisci/
+description: Come colaborar al progeto.
 ---
 
-Il progetto vive su GitHub: [pokemonmuia/pokemon-muia](https://github.com/pokemonmuia/pokemon-muia).
+El progeto vive su GitHub: [pokemonmuia/pokemon-muia](https://github.com/pokemonmuia/pokemon-muia).
 
-1. Installa [GitHub Desktop](https://desktop.github.com/download/) e clona il repository.
-2. Prima di iniziare: **Fetch origin**, poi **Pull origin**.
-3. Lavora nel gioco e salva con Ctrl+S.
-4. Scrivi il **Summary**, fai **Commit** e poi **Push origin**.
+1. Instala [GitHub Desktop](https://desktop.github.com/download/) e clona el repository.
+2. Prima de scominziar: **Fetch origin**, dopo **Pull origin**.
+3. Lavora nel zogo e salva con Ctrl+S.
+4. Scrivi el **Summary**, fa **Commit** e dopo **Push origin**.
 
-> **Attenzione:** se due persone modificano la **stessa mappa** nello stesso momento, una delle due modifiche va persa. Accordatevi prima su chi lavora su cosa.
+> **Ocio:** se do persone cambia la **stesa mapa** nel stesso momento, una de le do modifiche se perde. Meteve d'acordo prima su chi lavora su cossa.
 
-Se cambi qualcosa nella cartella `PBS` (Pokémon, allenatori, strumenti...), avvia il gioco da RPG Maker con **F12** per ricompilare i dati, poi fai commit anche dei file `.dat` in `Data`.
+Se te cambi qualcossa nela cartela `PBS` (Pokémon, allenatori, strumenti...), fa partir el zogo da RPG Maker con **F12** per ricompilar i dati, dopo fa commit anche dei file `.dat` in `Data`.
 
-## Contatti
+## Contati
 
-Scrivici a [thepokemonmuia@gmail.com](mailto:thepokemonmuia@gmail.com).
+Scrivine a [thepokemonmuia@gmail.com](mailto:thepokemonmuia@gmail.com).

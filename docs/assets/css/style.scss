@@ -166,3 +166,9 @@ html[data-theme="dark"] {
   .header { border-bottom-color: #2c2f3a; }
   .service-title a { color: #f0836c; }
 }
+
+// Selettore lingua (IS / IT / EN)
+.main-menu li.lang-item a { font-weight: 700; letter-spacing: .03em; }
+.main-menu li.lang-item:first-of-type { margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(128,128,128,.4); }
+.main-menu-mobile li.lang-item { display: inline-block !important; }
+.main-menu-mobile li.lang-item.active a { text-decoration: underline; }

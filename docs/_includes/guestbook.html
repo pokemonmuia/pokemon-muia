@@ -1,28 +1,26 @@
-{% assign en = false %}{% if page.lang == 'en' %}{% assign en = true %}{% endif %}
+{% assign t = site.data.i18n[page.lang] %}
 <section id="guestbook" data-url="{{ site.data.guestbook.url }}" data-key="{{ site.data.guestbook.anon_key }}">
   <ul id="gb-list" class="gb-list" aria-live="polite"></ul>
   <p id="gb-status" class="dim"></p>
   <form id="gb-form" class="gb-form" autocomplete="off">
-    <label>{% if en %}name{% else %}nome{% endif %}
+    <label>{{ t.gb.name }}
       <input id="gb-name" name="name" maxlength="40" required />
     </label>
-    <label>{% if en %}message{% else %}messaggio{% endif %}
+    <label>{{ t.gb.message }}
       <textarea id="gb-message" name="message" rows="4" maxlength="500" required></textarea>
     </label>
     <input id="gb-website" name="website" tabindex="-1" autocomplete="off" class="gb-hp" aria-hidden="true" />
-    <button type="submit">{% if en %}leave it in the log{% else %}lascia nel log{% endif %}</button>
+    <button type="submit">{{ t.gb.send }}</button>
   </form>
 </section>
 <script>
 (function () {
   var box = document.getElementById('guestbook');
   var url = (box.dataset.url || '').replace(/\/+$/, '').replace(/\/rest\/v1$/, ''), key = box.dataset.key || '';
-  var en = document.documentElement.lang === 'en';
   var list = document.getElementById('gb-list'), status = document.getElementById('gb-status');
   var form = document.getElementById('gb-form');
-  var T = en
-    ? { off: 'The log is not active yet.', err: 'Could not reach the log, try again later.', wait: 'Easy, wait a few seconds.', sent: 'Saved.', empty: 'Nobody has written yet. Be the first.' }
-    : { off: 'Il log non è ancora attivo.', err: 'Non riesco a raggiungere il log, riprova più tardi.', wait: 'Calma, aspetta qualche secondo.', sent: 'Salvato.', empty: 'Nessuno ha ancora scritto. Sii il primo.' };
+  var T = {{ t.gb | jsonify }};
+  var LOCALE = {{ t.locale | jsonify }};
   if (!url || !key) { form.style.display = 'none'; status.textContent = T.off; return; }
   var H = { apikey: key };
 
@@ -35,7 +33,7 @@
       var head = document.createElement('div'); head.className = 'gb-head';
       var who = document.createElement('strong'); who.textContent = r.name;
       var when = document.createElement('span'); when.className = 'dim';
-      when.textContent = ' · ' + new Date(r.created_at).toLocaleString(en ? 'en-GB' : 'it-IT', { dateStyle: 'short', timeStyle: 'short' });
+      when.textContent = ' · ' + new Date(r.created_at).toLocaleString(LOCALE, { dateStyle: 'short', timeStyle: 'short' });
       head.appendChild(who); head.appendChild(when);
       var body = document.createElement('div'); body.className = 'gb-body'; body.textContent = r.message;
       li.appendChild(head); li.appendChild(body); list.appendChild(li);

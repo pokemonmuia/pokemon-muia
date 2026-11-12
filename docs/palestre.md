@@ -1,10 +1,12 @@
 ---
 title: Palestre
 layout: services
-lang: it
-description: Le otto palestre di Muia.
+lang: vec
+ref: gyms
+permalink: /palestre/
+description: Le oto palestre de Muia.
 ---
 
-# Le otto palestre
+# Le oto palestre
 
-Le palestre si affrontano in quest'ordine. Nomi e livelli sono provvisori; le squadre si trovano in `PBS/trainers.txt`.
+Le palestre se afronta in sto ordine. Nomi e livei xe provisori; le squadre le xe in `PBS/trainers.txt`.

@@ -2,6 +2,7 @@
 title: Contribute
 layout: page
 lang: en
+ref: contribute
 permalink: /en/contribute/
 description: How to collaborate on the project.
 ---

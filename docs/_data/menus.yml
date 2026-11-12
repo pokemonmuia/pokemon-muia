@@ -1,16 +1,23 @@
 main:
-  - {name: "Il gioco", url: "/gioco/", weight: 1}
-  - {name: "Palestre", url: "/palestre/", weight: 2}
-  - {name: "Contribuisci", url: "/contribuisci/", weight: 3}
-  - {name: "EN", url: "/en/", weight: 4}
-main_en:
-  - {name: "The game", url: "/en/game/", weight: 1}
-  - {name: "Gyms", url: "/en/gyms/", weight: 2}
-  - {name: "Contribute", url: "/en/contribute/", weight: 3}
-  - {name: "IT", url: "/", weight: 4}
+  vec:
+    - {name: "El zogo", url: "/gioco/", weight: 1}
+    - {name: "Palestre", url: "/palestre/", weight: 2}
+    - {name: "Dà na man", url: "/contribuisci/", weight: 3}
+  it:
+    - {name: "Il gioco", url: "/it/gioco/", weight: 1}
+    - {name: "Palestre", url: "/it/palestre/", weight: 2}
+    - {name: "Contribuisci", url: "/it/contribuisci/", weight: 3}
+  en:
+    - {name: "The game", url: "/en/game/", weight: 1}
+    - {name: "Gyms", url: "/en/gyms/", weight: 2}
+    - {name: "Contribute", url: "/en/contribute/", weight: 3}
 footer:
-  - {name: "Home", url: "/", weight: 1}
-  - {name: "Repository", url: "https://github.com/pokemonmuia/pokemon-muia", weight: 2}
-footer_en:
-  - {name: "Home", url: "/en/", weight: 1}
-  - {name: "Repository", url: "https://github.com/pokemonmuia/pokemon-muia", weight: 2}
+  vec:
+    - {name: "Home", url: "/", weight: 1}
+    - {name: "Repository", url: "https://github.com/pokemonmuia/pokemon-muia", weight: 2}
+  it:
+    - {name: "Home", url: "/it/", weight: 1}
+    - {name: "Repository", url: "https://github.com/pokemonmuia/pokemon-muia", weight: 2}
+  en:
+    - {name: "Home", url: "/en/", weight: 1}
+    - {name: "Repository", url: "https://github.com/pokemonmuia/pokemon-muia", weight: 2}

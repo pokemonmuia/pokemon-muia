@@ -1,7 +1,8 @@
 ---
-title: Dietro le quinte
+title: Dedrio le quinte
 layout: secret
-lang: it
+lang: vec
+ref: backstage
 permalink: /dietro-le-quinte/
 slug: dietro-le-quinte
 noindex: true
@@ -15,30 +16,30 @@ Bravo Man, contavo che te la rivassi a trovar. Per adesso te son l'unico che xe 
 
 {% include guestbook.html %}
 
-Hai trovato la pagina nascosta. Complimenti, curioso.
+Te ga trovà la pagina scondùa. Complimenti, curioso.
 
-## cosa c'è sotto il cofano
+## cossa ghe xe soto el cofano
 
-- Motore: **Pokémon Essentials v21.1** su **RPG Maker XP**.
-- Testi del gioco interamente in italiano (menu, lotte, Pokédex, strumenti, mosse).
-- Le mosse di esplorazione sono rimaste in dialetto: **Tajo**, **Svolo**, **Sburton**, **Onda Granda**.
-- Otto capipalestra, squadre in `PBS/trainers.txt`, livelli da 12 a 50.
+- Motor: **Pokémon Essentials v21.1** su **RPG Maker XP**.
+- Testi del zogo tuti in italian (menu, lote, Pokédex, strumenti, mosse).
+- Le mosse de esplorazion le xe restade in dialeto: **Tajo**, **Svolo**, **Sburton**, **Onda Granda**.
+- Oto capipalestra, squadre in `PBS/trainers.txt`, livei da 12 a 50.
 
-## diario di lavorazione
+## diario de lavorazion
 
-- **08/10/2026** – Nasce il repository. Aggiunti gli 8 capipalestra con grafica provvisoria.
-- **08/10/2026** – Il gioco passa in italiano.
-- **11/11/2026** – Il repository diventa `pokemon-muia` e arriva un nuovo collaboratore.
-- **12/11/2026** – Nasce questo sito.
+- **08/10/2026** – Nasse el repository. Zontà i 8 capipalestra con grafica provisoria.
+- **08/10/2026** – El zogo passa in italian.
+- **11/11/2026** – El repository deventa `pokemon-muia` e riva un novo colaboradori.
+- **12/11/2026** – Nasse sto sito.
 
-## idee nel cassetto
+## idee nel cassetin
 
-- La centrale elettrica di Grignan con **Zapdos** dentro.
-- Le scene dalla 4 in poi sono ancora da scrivere.
+- La centrale elettrica de Grignan con **Zapdos** drento.
+- Le scene dala 4 in avanti xe ancora da scriver.
 
 ## curiosità
 
-- Il delfino verde che ti porta a Muia non è un errore di colore.
-- Dejan spiega le regole del gioco. Cinghio e HarryDeLuca preferirebbero che non le ascoltassi.
+- El delfin verde che te porta a Muia no xe un eror de colori.
+- Dejan spiega le regole del zogo. Cinghio e HarryDeLuca preferiria che no te le scoltassi.
 
-<span class="dim">Per tornare indietro: il link qui sotto, oppure il pulsante indietro del browser.</span>
+<span class="dim">Per tornar indrio: el link qua soto, o el boton indrio del browser.</span>

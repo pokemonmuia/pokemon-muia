@@ -1,22 +1,24 @@
 ---
-title: Il gioco
+title: El zogo
 layout: page
-lang: it
-description: Trama e ambientazione di Pokémon Muia.
+lang: vec
+ref: game
+permalink: /gioco/
+description: Trama e ambientazion de Pokémon Muia.
 ---
 
 ![Pokémon Muia – Caput Mundi]({{ '/images/title.png' | relative_url }})
 
-**Pokémon Muia** è un fangame ambientato interamente a Muia, con i suoi luoghi, i suoi personaggi e il suo dialetto.
+**Pokémon Muia** xe un fangame ambientà tuto a Muia, coi so posti, i so personagi e el so dialeto.
 
 ## La trama
 
-1. **Molo dell'Illusion.** Sei appena arrivato a Muia con il delfino verde. Un tizio strano ti dà qualche indicazione e ti manda da Polidori.
-2. **Anagrafe.** Polidori ti spiega un paio di cose e ti fa scegliere il tuo primo Pokémon.
-3. **Per le vie di Muia.** Puoi parlare con Dejan, che ti spiega le regole del gioco, oppure unirti alla banda di Cinghio o a quella di HarryDeLuca. Chi scegli determina i vantaggi che ottieni.
+1. **Molo dell'Illusion.** Te son pena rivà a Muia col delfin verde. Un tizio strano te dà qualche indicazion e el te manda da Polidori.
+2. **Anagrafe.** Polidori te spiega un per de robe e el te fa sciegler el to primo Pokémon.
+3. **Per le calli de Muia.** Te pol parlar con Dejan, che el te spiega le regole del zogo, o unirte ala banda de Cinghio o a quela de HarryDeLuca. Chi che te sciegli decide che vantagi te ga.
 
-La trama è ancora in lavorazione: le scene successive sono da scrivere.
+La trama xe ancora in lavorazion: le scene dopo xe da scriver.
 
-## Come provarlo
+## Come proarlo
 
-Il gioco non ha ancora una versione scaricabile: per ora si lavora direttamente dal [repository](https://github.com/pokemonmuia/pokemon-muia). Chi ha accesso al progetto può aprire `Game.exe` per giocare, o `Game.rxproj` con RPG Maker XP per modificare mappe ed eventi.
+El zogo no ga ancora una version da scarigar: per ora se lavora diretamente dal [repository](https://github.com/pokemonmuia/pokemon-muia). Chi ga acesso al progeto pol verzer `Game.exe` per zogar, o `Game.rxproj` con RPG Maker XP per cambiar mape e eventi.
