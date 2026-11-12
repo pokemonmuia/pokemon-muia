@@ -1,0 +1,12 @@
+{
+  "it": [
+    {"title": "Ambientato a Muia", "description": "Il primo fangame Pokémon ambientato a Muia: calli, molo e dialetto compresi.", "image": {"url": "images/features/noun_branding_1885335.svg", "width": 80, "height": 80}},
+    {"title": "Otto palestre", "description": "Otto capipalestra da sfidare, dalla Roccia al Ghiaccio, con squadre dal Lv 12 al Lv 50.", "image": {"url": "images/features/noun_The Process_1885341.svg", "width": 80, "height": 80}},
+    {"title": "Pokémon Essentials", "description": "Realizzato con Pokémon Essentials v21.1 e RPG Maker XP, con testi in italiano.", "image": {"url": "images/features/noun_3d modeling_1885342.svg", "width": 80, "height": 80}}
+  ],
+  "en": [
+    {"title": "Set in Muia", "description": "The first Pokémon fan game set in Muia: streets, harbour and local dialect included.", "image": {"url": "images/features/noun_branding_1885335.svg", "width": 80, "height": 80}},
+    {"title": "Eight gyms", "description": "Eight gym leaders to challenge, from Rock to Ice, with teams from Lv 12 to Lv 50.", "image": {"url": "images/features/noun_The Process_1885341.svg", "width": 80, "height": 80}},
+    {"title": "Pokémon Essentials", "description": "Built with Pokémon Essentials v21.1 and RPG Maker XP, with Italian text.", "image": {"url": "images/features/noun_3d modeling_1885342.svg", "width": 80, "height": 80}}
+  ]
+}

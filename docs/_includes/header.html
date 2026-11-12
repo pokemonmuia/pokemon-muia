@@ -1,0 +1,9 @@
+<div class='header'>
+  <div class="container">
+    {% assign home = '/' %}{% if page.lang == 'en' %}{% assign home = '/en/' %}{% endif %}
+    <div class="logo site-title"><a href="{{ home | relative_url }}">{{ site.title }}</a></div>
+    <div class="logo-mobile site-title"><a href="{{ home | relative_url }}">{{ site.title }}</a></div>
+    {% include main-menu.html %}
+    {% include hamburger.html %}
+  </div>
+</div>

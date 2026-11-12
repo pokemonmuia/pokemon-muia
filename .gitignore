@@ -14,3 +14,8 @@ desktop.ini
 # Salvataggi messi nella cartella del gioco (per sicurezza)
 Game.rxdata
 Save*.rxdata
+
+# Jekyll (docs/)
+docs/_site/
+docs/.jekyll-cache/
+docs/.bundle/
