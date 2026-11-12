@@ -1,0 +1,27 @@
+---
+layout: default
+bodyClass: "page-services"
+---
+{% assign L = page.lang | default: 'it' %}
+{% assign gyms = site.gyms | where: "lang", L | sort: "weight" %}
+<div class="intro">
+  <div class="container">
+    <div class="row justify-content-start">
+      <div class="col-12 col-md-8">{{ content }}</div>
+    </div>
+  </div>
+</div>
+<div class="container pt-6 pb-6">
+  <div class="row">
+    {% for gym in gyms %}
+    <div class="col-12 col-md-6 mb-3">
+      <div class="service service-summary">
+        <div class="service-content">
+          <h2 class="service-title"><a href="{{ gym.url | relative_url }}">{{ gym.title }}</a></h2>
+          <p>{{ gym.excerpt | markdownify | strip_html | truncate: 100 }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

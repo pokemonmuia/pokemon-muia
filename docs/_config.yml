@@ -1,0 +1,24 @@
+url: 'https://pokemonmuia.github.io'
+baseurl: '/pokemon-muia'
+permalink: pretty
+title: 'Pokémon Muia'
+lang: it
+
+collections:
+  gyms:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "gyms"
+    values:
+      layout: "service"
+
+sass:
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
