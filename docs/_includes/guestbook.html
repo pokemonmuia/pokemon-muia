@@ -1,0 +1,70 @@
+{% assign en = false %}{% if page.lang == 'en' %}{% assign en = true %}{% endif %}
+<section id="guestbook" data-url="{{ site.data.guestbook.url }}" data-key="{{ site.data.guestbook.anon_key }}">
+  <ul id="gb-list" class="gb-list" aria-live="polite"></ul>
+  <p id="gb-status" class="dim"></p>
+  <form id="gb-form" class="gb-form" autocomplete="off">
+    <label>{% if en %}name{% else %}nome{% endif %}
+      <input id="gb-name" name="name" maxlength="40" required />
+    </label>
+    <label>{% if en %}message{% else %}messaggio{% endif %}
+      <textarea id="gb-message" name="message" rows="4" maxlength="500" required></textarea>
+    </label>
+    <input id="gb-website" name="website" tabindex="-1" autocomplete="off" class="gb-hp" aria-hidden="true" />
+    <button type="submit">{% if en %}leave it in the log{% else %}lascia nel log{% endif %}</button>
+  </form>
+</section>
+<script>
+(function () {
+  var box = document.getElementById('guestbook');
+  var url = (box.dataset.url || '').replace(/\/$/, ''), key = box.dataset.key || '';
+  var en = document.documentElement.lang === 'en';
+  var list = document.getElementById('gb-list'), status = document.getElementById('gb-status');
+  var form = document.getElementById('gb-form');
+  var T = en
+    ? { off: 'The log is not active yet.', err: 'Could not reach the log, try again later.', wait: 'Easy, wait a few seconds.', sent: 'Saved.', empty: 'Nobody has written yet. Be the first.' }
+    : { off: 'Il log non è ancora attivo.', err: 'Non riesco a raggiungere il log, riprova più tardi.', wait: 'Calma, aspetta qualche secondo.', sent: 'Salvato.', empty: 'Nessuno ha ancora scritto. Sii il primo.' };
+  if (!url || !key) { form.style.display = 'none'; status.textContent = T.off; return; }
+  var H = { apikey: key, Authorization: 'Bearer ' + key };
+
+  function render(rows) {
+    list.textContent = '';
+    if (!rows.length) { status.textContent = T.empty; return; }
+    status.textContent = '';
+    rows.forEach(function (r) {
+      var li = document.createElement('li');
+      var head = document.createElement('div'); head.className = 'gb-head';
+      var who = document.createElement('strong'); who.textContent = r.name;
+      var when = document.createElement('span'); when.className = 'dim';
+      when.textContent = ' · ' + new Date(r.created_at).toLocaleString(en ? 'en-GB' : 'it-IT', { dateStyle: 'short', timeStyle: 'short' });
+      head.appendChild(who); head.appendChild(when);
+      var body = document.createElement('div'); body.className = 'gb-body'; body.textContent = r.message;
+      li.appendChild(head); li.appendChild(body); list.appendChild(li);
+    });
+  }
+  function load() {
+    fetch(url + '/rest/v1/guestbook?select=name,message,created_at&order=created_at.asc&limit=500', { headers: H })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(render).catch(function () { status.textContent = T.err; });
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (document.getElementById('gb-website').value) return; // honeypot anti-bot
+    var last = 0; try { last = +localStorage.getItem('gb-last') || 0; } catch (x) {}
+    if (Date.now() - last < 20000) { status.textContent = T.wait; return; }
+    var name = document.getElementById('gb-name').value.trim().slice(0, 40);
+    var message = document.getElementById('gb-message').value.trim().slice(0, 500);
+    if (!name || !message) return;
+    fetch(url + '/rest/v1/guestbook', {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json', Prefer: 'return=minimal' }, H),
+      body: JSON.stringify({ name: name, message: message })
+    }).then(function (r) {
+      if (!r.ok) throw 0;
+      try { localStorage.setItem('gb-last', String(Date.now())); } catch (x) {}
+      document.getElementById('gb-message').value = '';
+      status.textContent = T.sent; load();
+    }).catch(function () { status.textContent = T.err; });
+  });
+  load(); setInterval(load, 30000);
+})();
+</script>

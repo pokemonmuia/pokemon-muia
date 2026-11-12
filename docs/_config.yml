@@ -19,6 +19,7 @@ sass:
   style: compressed
 
 exclude:
+  - SUPABASE.md
   - Gemfile
   - Gemfile.lock
   - LICENSE

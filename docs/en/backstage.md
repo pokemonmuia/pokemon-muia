@@ -9,6 +9,14 @@ back: /en/
 back_label: Back to the site
 ---
 
+<div class="msg" markdown="1">
+Bravo Man, contavo che te la rivassi a trovar. Per adesso te son l'unico che xe rivado fin qua... te pol inserir nel box qua sotto commenti che poi resta nel log, per sempre mulo, ocio.
+
+<span class="dim">(Local dialect. Roughly: "Well done, pal, I was counting on you finding it. So far you are the only one who made it here... you can leave comments in the box below and they stay in the log, forever, mate, careful.")</span>
+</div>
+
+{% include guestbook.html %}
+
 You found the hidden page. Well done, curious one.
 
 ## under the hood
