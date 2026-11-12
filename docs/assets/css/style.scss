@@ -153,3 +153,9 @@ html[data-theme="dark"] {
   .gallery figcaption { color: #b5b0a6; }
   .button-primary { color: #fff; }
 }
+
+// Il menu a schermo intero esiste solo su mobile: su desktop non deve mai coprire la pagina
+@include media-breakpoint-up(md) {
+  .main-menu-mobile { display: none !important; }
+  .lock-scroll { overflow: auto; }
+}

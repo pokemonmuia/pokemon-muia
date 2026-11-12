@@ -32,3 +32,18 @@ menuTrigger.onclick = function() {
     setTheme(!isDark());
   });
 })();
+
+// Chiude il menu mobile se la finestra viene allargata, con Esc o dopo un click su una voce
+(function () {
+  var menu = document.getElementById('main-menu-mobile');
+  var trigger = document.getElementById('toggle-main-menu-mobile');
+  if (!menu || !trigger) return;
+  function closeMenu() {
+    menu.classList.remove('open');
+    trigger.classList.remove('is-active');
+    document.body.classList.remove('lock-scroll');
+  }
+  window.matchMedia('(min-width: 768px)').addEventListener('change', function (e) { if (e.matches) closeMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+  menu.addEventListener('click', closeMenu);
+})();
