@@ -126,20 +126,20 @@ Pokemon = BULBASAUR,10
 # CAPIPALESTRA DE MUIA
 # I nomi (Bepi, Nives, ...) xe provvisori: cambieli quando decidè i personaggi.
 #-------------------------------
-# 1. ROCCIA - Lv 12-14
-[LEADER_ROCCIA,Bepi]
+# 1. VOLANTE - La Bora - Lv 12-14
+[LEADER_BORA,Bepi]
 Items = POTION
-LoseText = Orpo! Duro come un scoio, ma te me ga spacà lo stesso!
-Pokemon = GEODUDE,12
-    Moves = TACKLE,DEFENSECURL,ROCKTHROW,MUDSPORT
-Pokemon = ROCKRUFF,12
-    Moves = TACKLE,SANDATTACK,ROCKTHROW,BITE
-Pokemon = ONIX,14
-    Moves = ROCKTOMB,BIND,SMACKDOWN,HARDEN
+LoseText = Orpo! Gnanca la bora me ga mai butà zo cussì!
+Pokemon = PIDGEY,12
+    Moves = GUST,QUICKATTACK,SANDATTACK,TACKLE
+Pokemon = ROOKIDEE,12
+    Moves = PECK,LEER,FURYATTACK,HONECLAWS
+Pokemon = PIDGEOTTO,14
+    Moves = GUST,QUICKATTACK,TWISTER,SANDATTACK
     Item = ORANBERRY
 #-------------------------------
-# 2. ERBA - Lv 17-19
-[LEADER_ERBA,Nives]
+# 2. ERBA - Bellezze Naturali - Lv 17-19
+[LEADER_BELLEZZE,Nives]
 Items = SUPERPOTION
 LoseText = Ma varda ti... le mie piantine ga perso tute le foie!
 Pokemon = ODDISH,17
@@ -150,48 +150,48 @@ Pokemon = BAYLEEF,19
     Moves = RAZORLEAF,REFLECT,POISONPOWDER,SYNTHESIS
     Item = SITRUSBERRY
 #-------------------------------
-# 3. ACQUA - Lv 22-24
-[LEADER_ACQUA,Marieta]
+# 3. ELETTRO - Lampo - Lv 22-24
+[LEADER_LAMPO,Marieta]
 Items = SUPERPOTION,SUPERPOTION
-LoseText = Te me ga fato andar a fondo come un sasso in Mandracchio!
-Pokemon = CHINCHOU,22
-    Moves = BUBBLEBEAM,SPARK,CONFUSERAY,SUPERSONIC
-Pokemon = MARILL,22
-    Moves = BUBBLEBEAM,ROLLOUT,DEFENSECURL,CHARM
-Pokemon = FLOATZEL,24
-    Moves = AQUAJET,BITE,SWIFT,WATERPULSE
-    Item = MYSTICWATER
-#-------------------------------
-# 4. ELETTRO - Lv 27-29
-[LEADER_ELETTRO,Nane]
-Items = HYPERPOTION,HYPERPOTION
-LoseText = Me xe saltà la corrente... e anca i nervi!
-Pokemon = MAGNETON,27
-    Moves = THUNDERWAVE,SPARK,MAGNETBOMB,SUPERSONIC
-Pokemon = EMOLGA,27
-    Moves = SPARK,ACROBATICS,QUICKATTACK,DOUBLETEAM
-Pokemon = ELECTABUZZ,27
-    Moves = THUNDERPUNCH,QUICKATTACK,LOWKICK,LIGHTSCREEN
-Pokemon = LUXIO,29
-    Moves = THUNDERFANG,BITE,ROAR,CHARGE
+LoseText = In un lampo... e xe za finida per mi!
+Pokemon = MAGNEMITE,22
+    Moves = THUNDERSHOCK,THUNDERWAVE,SUPERSONIC,MAGNETBOMB
+Pokemon = FLAAFFY,22
+    Moves = THUNDERSHOCK,COTTONSPORE,TAKEDOWN,THUNDERWAVE
+Pokemon = PIKACHU,24
+    Moves = ELECTROBALL,QUICKATTACK,DOUBLETEAM,FEINT
     Item = MAGNET
 #-------------------------------
-# 5. VELENO - Lv 32-34
-[LEADER_VELENO,Gigi]
+# 4. GHIACCIO - Brivido - Lv 27-29
+[LEADER_BRIVIDO,Nane]
 Items = HYPERPOTION,HYPERPOTION
-LoseText = Velen o no velen, te me ga fato restar de stucco.
-Pokemon = WEEZING,32
-    Moves = SLUDGE,SMOKESCREEN,TOXIC,SELFDESTRUCT
-Pokemon = MUK,32
-    Moves = POISONJAB,MINIMIZE,BODYSLAM,ACIDARMOR
-Pokemon = TOXICROAK,33
-    Moves = POISONJAB,SUCKERPUNCH,REVENGE,SWAGGER
-Pokemon = SALAZZLE,34
-    Moves = VENOSHOCK,FLAMETHROWER,TOXIC,NASTYPLOT
-    Item = BLACKSLUDGE
+LoseText = Brr... me xe vegnù i brividi, e no xe gnanca el fredo!
+Pokemon = SNEASEL,27
+    Moves = ICESHARD,QUICKATTACK,METALCLAW,HONECLAWS
+Pokemon = PILOSWINE,27
+    Moves = ICESHARD,MUDSHOT,TAKEDOWN,POWDERSNOW
+Pokemon = DEWGONG,27
+    Moves = AURORABEAM,HEADBUTT,ICESHARD,REST
+Pokemon = VANILLISH,29
+    Moves = AURORABEAM,ACIDARMOR,MIRRORSHOT,ICICLESPEAR
+    Item = NEVERMELTICE
 #-------------------------------
-# 6. FUOCO - Lv 37-39
-[LEADER_FUOCO,Toni]
+# 5. SPETTRO - Mandrioi - Lv 32-34
+[LEADER_MANDRIOI,Gigi]
+Items = HYPERPOTION,HYPERPOTION
+LoseText = Te me ga fato sparir come un fantasma in Caliterna...
+Pokemon = HAUNTER,32
+    Moves = SHADOWPUNCH,HYPNOSIS,CURSE,SUCKERPUNCH
+Pokemon = MISDREAVUS,32
+    Moves = SHADOWBALL,PSYBEAM,CONFUSERAY,ASTONISH
+Pokemon = BANETTE,33
+    Moves = SHADOWSNEAK,WILLOWISP,KNOCKOFF,CURSE
+Pokemon = DUSCLOPS,34
+    Moves = SHADOWPUNCH,CONFUSERAY,WILLOWISP,PROTECT
+    Item = SPELLTAG
+#-------------------------------
+# 6. FUOCO - Ongia - Lv 37-39
+[LEADER_ONGIA,Toni]
 Items = HYPERPOTION,FULLRESTORE
 LoseText = Te me ga studà come una cicca in tel mar!
 Pokemon = TORKOAL,37
@@ -206,8 +206,8 @@ Pokemon = CHARIZARD,39
     Moves = FLAMETHROWER,AIRSLASH,DRAGONCLAW,SLASH
     Item = CHARCOAL
 #-------------------------------
-# 7. PSICO - Lv 42-44
-[LEADER_PSICO,Licia]
+# 7. PSICO - Trottola - Lv 42-44
+[LEADER_TROTTOLA,Licia]
 Items = FULLRESTORE,FULLRESTORE
 LoseText = Questo no lo gavevo previsto... e mi prevedo tuto!
 Pokemon = HYPNO,42
@@ -222,22 +222,20 @@ Pokemon = ALAKAZAM,44
     Moves = PSYCHIC,SHADOWBALL,ENERGYBALL,CALMMIND
     Item = TWISTEDSPOON
 #-------------------------------
-# 8. GHIACCIO - Lv 47-50
-[LEADER_GHIACCIO,Pina]
+# 8. LOTTA - Bulli e Pupe - Lv 47-50
+[LEADER_BULLI,Pina]
 Items = FULLRESTORE,FULLRESTORE
-LoseText = Brr... nianca la bora me ga mai fato sto efeto.
-Pokemon = CLOYSTER,47
-    Moves = ICICLESPEAR,ROCKBLAST,SPIKES,PROTECT
-Pokemon = LAPRAS,47
-    Moves = ICEBEAM,SURF,THUNDERBOLT,CONFUSERAY
-Pokemon = WEAVILE,47
-    Moves = ICESHARD,NIGHTSLASH,ICEPUNCH,FAKEOUT
-Pokemon = FROSLASS,48
-    Moves = ICEBEAM,SHADOWBALL,WILLOWISP,DESTINYBOND
-Pokemon = MAMOSWINE,48
-    Moves = EARTHQUAKE,ICICLECRASH,ICESHARD,ROCKSLIDE
-Pokemon = NINETALES,50
-    Form = 1
-    Ability = SNOWWARNING
-    Moves = BLIZZARD,MOONBLAST,AURORAVEIL,FREEZEDRY
-    Item = NEVERMELTICE
+LoseText = Pugni, calci e Carneval... ma stavolta te ga vinto ti!
+Pokemon = HITMONLEE,47
+    Moves = HIGHJUMPKICK,BLAZEKICK,FAKEOUT,MEGAKICK
+Pokemon = HITMONCHAN,47
+    Moves = DRAINPUNCH,THUNDERPUNCH,ICEPUNCH,MACHPUNCH
+Pokemon = HERACROSS,47
+    Moves = CLOSECOMBAT,MEGAHORN,ROCKSLIDE,REVERSAL
+Pokemon = LUCARIO,48
+    Moves = AURASPHERE,FLASHCANNON,DRAGONPULSE,EXTREMESPEED
+Pokemon = BRELOOM,48
+    Moves = MACHPUNCH,SEEDBOMB,SPORE,ROCKTOMB
+Pokemon = MACHAMP,50
+    Moves = DYNAMICPUNCH,STONEEDGE,KNOCKOFF,BULKUP
+    Item = BLACKBELT

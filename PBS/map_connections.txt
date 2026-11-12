@@ -394,3 +394,9 @@
 102,North,30,101,South,0
 # Piazzale Foschiatti (102) - Via Mazzarei_2 (105)
 102,East,0,105,West,50
+#-------------------------------
+# Calle Parini (Bassa) (90) - Piazza Santa Lucia (113)
+90,East,0,113,West,0
+#-------------------------------
+# Piazza Marconi (42) - Piazza Santa Lucia (113)
+42,East,0,113,West,15
