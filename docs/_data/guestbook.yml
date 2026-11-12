@@ -1,0 +1,4 @@
+# Supabase: compila questi due valori dopo aver creato il progetto (vedi docs/SUPABASE.md).
+# La "anon key" è pensata per essere pubblica: la sicurezza è nelle regole del database.
+url: ""
+anon_key: ""

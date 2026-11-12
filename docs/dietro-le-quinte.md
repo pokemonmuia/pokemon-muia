@@ -9,6 +9,12 @@ back: /
 back_label: Torna al sito
 ---
 
+<div class="msg" markdown="1">
+Bravo Man, contavo che te la rivassi a trovar. Per adesso te son l'unico che xe rivado fin qua... te pol inserir nel box qua sotto commenti che poi resta nel log, per sempre mulo, ocio.
+</div>
+
+{% include guestbook.html %}
+
 Hai trovato la pagina nascosta. Complimenti, curioso.
 
 ## cosa c'è sotto il cofano
