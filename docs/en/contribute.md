@@ -16,3 +16,7 @@ The project lives on GitHub: [pokemonmuia/pokemon-muia](https://github.com/pokem
 > **Heads up:** if two people edit the **same map** at the same time, one of the changes is lost. Agree beforehand on who works on what.
 
 If you change anything in the `PBS` folder (Pokémon, trainers, items...), start the game from RPG Maker with **F12** to recompile the data, then commit the changed `.dat` files in `Data` too.
+
+## Contact
+
+Write to us at [thepokemonmuia@gmail.com](mailto:thepokemonmuia@gmail.com).

@@ -15,3 +15,7 @@ Il progetto vive su GitHub: [pokemonmuia/pokemon-muia](https://github.com/pokemo
 > **Attenzione:** se due persone modificano la **stessa mappa** nello stesso momento, una delle due modifiche va persa. Accordatevi prima su chi lavora su cosa.
 
 Se cambi qualcosa nella cartella `PBS` (Pokémon, allenatori, strumenti...), avvia il gioco da RPG Maker con **F12** per ricompilare i dati, poi fai commit anche dei file `.dat` in `Data`.
+
+## Contatti
+
+Scrivici a [thepokemonmuia@gmail.com](mailto:thepokemonmuia@gmail.com).

@@ -121,3 +121,11 @@ body {
 .logo, .logo-mobile { width: auto !important; }
 .home-cover { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
 .content img { max-width: 100%; height: auto; }
+
+.gallery { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-end; justify-content: center; }
+.gallery figure { margin: 0; text-align: center; }
+.gallery figcaption { font-size: .9rem; color: $steel; margin-top: .4rem; }
+.gallery .gallery-crest { flex: 1 1 100%; max-width: 360px; background: #000; padding: 0 0 .4rem; border-radius: 8px; }
+.gallery .gallery-crest img { width: 100%; height: auto; border-radius: 8px 8px 0 0; }
+.gallery .gallery-crest figcaption { color: #ddd; }
+.gallery img.pixel { height: 200px; width: auto; image-rendering: pixelated; }
