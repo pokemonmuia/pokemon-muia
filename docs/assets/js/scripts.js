@@ -6,10 +6,10 @@ menuTrigger.onclick = function() {
     menuContainer.classList.toggle('open');
     menuTrigger.classList.toggle('is-active')
     body.classList.toggle('lock-scroll')
-}
+};
 
 // Tema scuro + doppio click sul bottone = pagina "dietro le quinte"
-(function () {
+;(function () {
   var btn = document.getElementById('theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
@@ -34,7 +34,7 @@ menuTrigger.onclick = function() {
 })();
 
 // Chiude il menu mobile se la finestra viene allargata, con Esc o dopo un click su una voce
-(function () {
+;(function () {
   var menu = document.getElementById('main-menu-mobile');
   var trigger = document.getElementById('toggle-main-menu-mobile');
   if (!menu || !trigger) return;

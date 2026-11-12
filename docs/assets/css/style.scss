@@ -159,3 +159,10 @@ html[data-theme="dark"] {
   .main-menu-mobile { display: none !important; }
   .lock-scroll { overflow: auto; }
 }
+
+// Tema scuro: testo più leggibile
+html[data-theme="dark"] {
+  p, li, td, th, .intro, .intro p, .feature-content, .service-content, .service-content p, .content, .content p, strong, b { color: #d9d5ce; }
+  .header { border-bottom-color: #2c2f3a; }
+  .service-title a { color: #f0836c; }
+}
