@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  {% if page.noindex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
   <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon-32x32.svg' | relative_url }}">
   <!-- Google Fonts CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

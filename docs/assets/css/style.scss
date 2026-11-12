@@ -129,3 +129,27 @@ body {
 .gallery .gallery-crest img { width: 100%; height: auto; border-radius: 8px 8px 0 0; }
 .gallery .gallery-crest figcaption { color: #ddd; }
 .gallery img.pixel { height: 200px; width: auto; image-rendering: pixelated; }
+
+// Bottone tema
+.theme-toggle { background: none; border: 1px solid currentColor; color: $black; border-radius: 50%; width: 2.2rem; height: 2.2rem; cursor: pointer; margin: 0 .75rem; padding: 0; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.theme-toggle .theme-icon::before { content: "\263E"; font-size: 1.1rem; line-height: 1; }
+html[data-theme="dark"] .theme-toggle .theme-icon::before { content: "\2600"; }
+
+// Tema scuro
+html[data-theme="dark"] {
+  color-scheme: dark;
+  body, .strip, .header, .wrapper { background: #16171d; color: #e8e6e3; }
+  .strip-grey { background: #1e2028; }
+  h1, h2, h3, h4, h5, h6, .site-title a, .theme-toggle { color: #f2efe9; }
+  a { color: #f0836c; }
+  .main-menu a { color: #e8e6e3; }
+  .main-menu li.active a, .main-menu a:hover { color: #f0836c; }
+  .feature-title, .service-title a { color: #f2efe9; }
+  .service-summary, .service { color: #e8e6e3; }
+  .service-summary { background: #1e2028; box-shadow: none; border: 1px solid #2c2f3a; }
+  blockquote { color: #cfcac2; border-color: #f0836c; }
+  table, th, td { color: #e8e6e3; border-color: #2c2f3a; }
+  code { background: #23252f; color: #f0c96a; }
+  .gallery figcaption { color: #b5b0a6; }
+  .button-primary { color: #fff; }
+}

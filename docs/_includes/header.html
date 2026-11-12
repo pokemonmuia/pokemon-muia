@@ -4,6 +4,7 @@
     <div class="logo site-title"><a href="{{ home | relative_url }}">{{ site.title }}</a></div>
     <div class="logo-mobile site-title"><a href="{{ home | relative_url }}">{{ site.title }}</a></div>
     {% include main-menu.html %}
+    <button type="button" id="theme-toggle" class="theme-toggle" data-secret-it="{{ '/dietro-le-quinte/' | relative_url }}" data-secret-en="{{ '/en/backstage/' | relative_url }}" aria-label="{% if page.lang == 'en' %}Toggle dark theme{% else %}Attiva/disattiva tema scuro{% endif %}" title="{% if page.lang == 'en' %}Dark theme{% else %}Tema scuro{% endif %}"><span aria-hidden="true" class="theme-icon"></span></button>
     {% include hamburger.html %}
   </div>
 </div>
