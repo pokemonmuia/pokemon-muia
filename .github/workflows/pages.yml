@@ -1,9 +1,11 @@
 name: Sito GitHub Pages
 
+# Pubblica il sito (cartella docs/) e la versione del gioco giocabile nel
+# browser, che finisce in /gioca/ e si aggiorna a ogni push su main.
+
 on:
   push:
     branches: [main]
-    paths: ['docs/**', '.github/workflows/pages.yml']
   pull_request:
     paths: ['docs/**', '.github/workflows/pages.yml']
   workflow_dispatch:
@@ -17,8 +19,72 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  # Player web di mkxp-z (lo stesso motore di Game.exe, compilato per browser).
+  PLAYER_REPO: white-axe/mkxp-z-libretro-emscripten
+  PLAYER_REF: 0b0a95277171dfdb2a261c8e50888bf48691ad6e
+  CORE_URL: https://white-axe.github.io/mkxp-z-libretro-emscripten/nostalgist-knight-blade-howling-of-kerberos
+
 jobs:
+  # Impacchetta il gioco e costruisce la pagina /gioca/.
+  # Se questo job fallisce il sito viene pubblicato lo stesso, senza il gioco.
+  gioco:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il gioco
+        uses: actions/checkout@v4
+        with:
+          path: gioco
+
+      - name: Scarica il player web
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PLAYER_REPO }}
+          ref: ${{ env.PLAYER_REF }}
+          path: player
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Impacchetta i file del gioco
+        run: |
+          pip3 install rpzip
+          cd gioco
+          rpzip -r ../player/nostalgist/public/pokemon-muia.mkxpz \
+            Game.ini mkxp.json soundfont.sf2 \
+            Data Graphics Audio Fonts Plugins Movies
+          ls -lh ../player/nostalgist/public/pokemon-muia.mkxpz
+
+      - name: Scarica il motore
+        run: |
+          cd player/nostalgist/public
+          curl -fL --retry 3 -o mkxp-z_libretro.js "$CORE_URL/mkxp-z_libretro.js"
+          curl -fL --retry 3 -o mkxp-z_libretro.wasm "$CORE_URL/mkxp-z_libretro.wasm"
+          ls -lh
+
+      - name: Costruisce la pagina
+        run: |
+          cd player/nostalgist
+          {
+            echo "VITE_CORE_JS_PATH=./mkxp-z_libretro.js"
+            echo "VITE_CORE_WASM_PATH=./mkxp-z_libretro.wasm"
+            echo "VITE_GAME_NAME=Pokémon Muia"
+            echo "VITE_GAME_PATH=./pokemon-muia.mkxpz"
+            echo "VITE_XP_CONTROLS=true"
+          } >> .env
+          npm install
+          npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gioca
+          path: player/nostalgist/dist
+          retention-days: 3
+
   build:
+    needs: gioco
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,12 +103,18 @@ jobs:
       - run: bundle exec jekyll build --destination _site
         env:
           JEKYLL_ENV: production
+      - name: Aggiunge il gioco in /gioca/
+        if: needs.gioco.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: gioca
+          path: docs/_site/gioca
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/_site
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: ${{ !cancelled() && needs.build.result == 'success' && github.event_name != 'pull_request' }}
     needs: build
     runs-on: ubuntu-latest
     environment:
