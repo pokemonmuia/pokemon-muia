@@ -51,6 +51,18 @@ jobs:
         run: |
           pip3 install rpzip
           cd gioco
+          # mkxp.json per il browser: niente commenti/virgole finali e titolo
+          # senza accenti (con "é" il motore web si blocca all'avvio).
+          python3 - <<'PY'
+          import json, re
+          s = open("mkxp.json", encoding="utf-8").read()
+          s = re.sub(r'(?m)^\s*//.*$', '', s)
+          s = re.sub(r',(\s*[}\]])', r'\1', s)
+          conf = json.loads(s)
+          conf["windowTitle"] = "Pokemon Muia"
+          json.dump(conf, open("mkxp.json", "w", encoding="utf-8"), indent=2)
+          print(open("mkxp.json").read())
+          PY
           rpzip -r ../player/nostalgist/public/pokemon-muia.mkxpz \
             Game.ini mkxp.json soundfont.sf2 \
             Data Graphics Audio Fonts Plugins Movies
