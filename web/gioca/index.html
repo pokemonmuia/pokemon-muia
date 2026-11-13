@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="it" style="height: 100%">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="theme-color" content="#000000" />
+    <title>Pokémon Muia</title>
+    <link rel="stylesheet" href="/node_modules/spin.js/spin.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+        color: #fff;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: none;
+        overscroll-behavior: none;
+      }
+      .center {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #loading {
+        z-index: 2;
+        pointer-events: none;
+      }
+      #progressbar-target {
+        display: none;
+        width: 70px;
+        height: 70px;
+      }
+      #status {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 12%;
+        text-align: center;
+        font-size: 15px;
+        opacity: 0.85;
+        z-index: 3;
+        pointer-events: none;
+      }
+      #start-button {
+        display: none;
+        z-index: 4;
+        background: transparent;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        font: inherit;
+      }
+      #start-button .title {
+        font-size: clamp(26px, 6vw, 44px);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+      #start-button .play {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #e3350d;
+        border-radius: 999px;
+        padding: 14px 32px;
+        font-size: 20px;
+        font-weight: 700;
+        box-shadow: 0 6px 0 #9c2408;
+      }
+      #start-button .play:active {
+        transform: translateY(3px);
+        box-shadow: 0 3px 0 #9c2408;
+      }
+      #start-button .hint {
+        font-size: 13px;
+        opacity: 0.7;
+        max-width: 420px;
+        line-height: 1.5;
+      }
+      body:not(.touch) .only-touch,
+      body.touch .only-desktop {
+        display: none;
+      }
+
+      /* Invito a girare il telefono */
+      #rotate {
+        display: none;
+        z-index: 10;
+        background: #000;
+      }
+      #rotate .phone {
+        width: 44px;
+        height: 76px;
+        border: 4px solid #fff;
+        border-radius: 10px;
+        animation: turn 2s ease-in-out infinite;
+      }
+      @keyframes turn {
+        0%,
+        20% {
+          transform: rotate(0deg);
+        }
+        60%,
+        100% {
+          transform: rotate(-90deg);
+        }
+      }
+      @media (orientation: portrait) {
+        body.touch #rotate {
+          display: flex;
+        }
+      }
+
+      /* Tasti a schermo */
+      #controls {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+      }
+      #controls > * {
+        pointer-events: auto;
+        touch-action: none;
+      }
+      #dpad {
+        position: absolute;
+        left: calc(18px + env(safe-area-inset-left));
+        bottom: 18px;
+        width: min(150px, 34vh);
+        height: min(150px, 34vh);
+      }
+      #dpad .arm {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      #dpad .arm.pressed {
+        background: rgba(255, 255, 255, 0.45);
+      }
+      #dpad [data-dir="up"] {
+        left: 33.3%;
+        top: 0;
+        width: 33.4%;
+        height: 36%;
+        border-radius: 8px 8px 0 0;
+        border-bottom: 0;
+      }
+      #dpad [data-dir="down"] {
+        left: 33.3%;
+        bottom: 0;
+        width: 33.4%;
+        height: 36%;
+        border-radius: 0 0 8px 8px;
+        border-top: 0;
+      }
+      #dpad [data-dir="left"] {
+        top: 33.3%;
+        left: 0;
+        height: 33.4%;
+        width: 36%;
+        border-radius: 8px 0 0 8px;
+        border-right: 0;
+      }
+      #dpad [data-dir="right"] {
+        top: 33.3%;
+        right: 0;
+        height: 33.4%;
+        width: 36%;
+        border-radius: 0 8px 8px 0;
+        border-left: 0;
+      }
+      #dpad .hub {
+        position: absolute;
+        left: 33.3%;
+        top: 33.3%;
+        width: 33.4%;
+        height: 33.4%;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .round {
+        position: absolute;
+        width: min(64px, 15vh);
+        height: min(64px, 15vh);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.85);
+        box-sizing: border-box;
+      }
+      .round.pressed,
+      .pill.pressed {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      #btn-a {
+        right: calc(18px + env(safe-area-inset-right));
+        bottom: calc(18px + min(64px, 15vh) * 0.7);
+      }
+      #btn-b {
+        right: calc(18px + env(safe-area-inset-right) + min(64px, 15vh) * 1.15);
+        bottom: 12px;
+      }
+      .pill {
+        position: absolute;
+        bottom: 10px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      #btn-select {
+        right: calc(50% + 8px);
+      }
+      #btn-start {
+        left: calc(50% + 8px);
+      }
+    </style>
+  </head>
+  <body>
+    <script src="./coi-serviceworker.min.js"></script>
+    <script>
+      // Tiene sveglio coi-serviceworker.js mentre scarica file grandi (Firefox)
+      if (navigator.serviceWorker && navigator.serviceWorker.controller !== null) {
+        setInterval(() => {
+          navigator.serviceWorker.controller.postMessage({ type: "heartbeat" });
+        }, 5000);
+      }
+    </script>
+
+    <canvas
+      id="nostalgist-canvas"
+      style="position: fixed; left: 0; top: 0; width: 100%; height: 100%"
+    ></canvas>
+
+    <div id="loading" class="center">
+      <div id="spinner-target" style="position: relative; width: 70px; height: 70px">
+        <div id="progressbar-target"></div>
+      </div>
+    </div>
+    <div id="status">Scarico il gioco… (solo la prima volta, poi resta salvato)</div>
+
+    <button id="start-button" class="center" type="button">
+      <span class="title">Pokémon Muia</span>
+      <span class="play">▶ Gioca</span>
+      <span class="hint only-desktop">
+        Frecce per muoverti · Z o Invio conferma · X annulla e corri · Shift menu · D menu rapido
+      </span>
+      <span class="hint only-touch">Gioca col telefono in orizzontale</span>
+    </button>
+
+    <div id="rotate" class="center">
+      <div class="phone"></div>
+      <div>Gira il telefono in orizzontale per giocare</div>
+    </div>
+
+    <div id="controls">
+      <div id="dpad">
+        <div class="arm" data-dir="up">▲</div>
+        <div class="arm" data-dir="left">◀</div>
+        <div class="hub"></div>
+        <div class="arm" data-dir="right">▶</div>
+        <div class="arm" data-dir="down">▼</div>
+      </div>
+      <div id="btn-b" class="round" data-button="b">B</div>
+      <div id="btn-a" class="round" data-button="a">A</div>
+      <div id="btn-select" class="pill" data-button="r3">SELECT</div>
+      <div id="btn-start" class="pill" data-button="x">START</div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -7,7 +7,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    paths: ['docs/**', '.github/workflows/pages.yml']
+    paths: ['docs/**', 'web/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -83,13 +83,15 @@ jobs:
             echo "VITE_CORE_WASM_PATH=./mkxp-z_libretro.wasm"
             echo "VITE_GAME_NAME=Pokémon Muia"
             echo "VITE_GAME_PATH=./pokemon-muia.mkxpz"
-            echo "VITE_XP_CONTROLS=true"
           } >> .env
-          # Log completi nella console del browser, per capire perché si blocca
-          sed -i 's/import.meta.env.DEV ? 0 : 1/0/g' src/main.ts
-          grep -n "log_level" src/main.ts
+          # Pagina e script nostri (web/gioca): caricamento in memoria,
+          # schermata di avvio, tasti touch e invito a girare il telefono.
+          cp ../../gioco/web/gioca/index.html index.html
+          cp ../../gioco/web/gioca/main.ts src/main.ts
           npm install
-          npm run build
+          node update-env.ts
+          npx vite build
+          cp node_modules/coi-serviceworker/coi-serviceworker.min.js dist/
 
       - uses: actions/upload-artifact@v4
         with:
