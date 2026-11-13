@@ -73,6 +73,9 @@ jobs:
             echo "VITE_GAME_PATH=./pokemon-muia.mkxpz"
             echo "VITE_XP_CONTROLS=true"
           } >> .env
+          # Log completi nella console del browser, per capire perché si blocca
+          sed -i 's/import.meta.env.DEV ? 0 : 1/0/g' src/main.ts
+          grep -n "log_level" src/main.ts
           npm install
           npm run build
 
