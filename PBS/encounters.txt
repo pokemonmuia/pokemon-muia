@@ -310,16 +310,445 @@ Land,21
     10,SANDSHREW_1,11,14
     10,VULPIX_1,11,14
 #-------------------------------
+# ===== MUIA =====
+# I livelli qui sotto sono solo segnaposto: il plugin "Muia Livelli Selvatici"
+# li sostituisce con livelli legati alla squadra del giocatore.
+# Frequenza in erba: 5 = zone di passaggio, 12 = zone medie, 25 = calli e vie secondarie.
+#-------------------------------
+[022] # Molo dei Bersaglieri
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[042] # Piazza Marconi
+Land,5
+    40,RATTATA,3,6
+    30,PIDGEY,3,6
+    20,MEOWTH,3,6
+    10,WINGULL,3,6
+#-------------------------------
+[043] # Mandracchio_2
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[048] # Solo_Molo
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[076] # Mandracchio
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[077] # Circolo della Vela
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[078] # Punta Molo C.Colombo
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[079] # Circolo della Vela_2
+Land,12
+    35,WINGULL,3,6
+    25,KRABBY,3,6
+    20,RATTATA,3,6
+    20,PIDGEY,3,6
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
 [081] # Caliterna
-Land,21
-    40,BULBASAUR,11,14
-    40,CHARMANDER,14
-    40,IVYSAUR,11,13
-    30,LUGIA,35,55
-LandNight,21
-    39,RATTATA,10,14
-    30,HOOTHOOT,10,13
-    20,SPINARAK,8,12
-    9,HOOTHOOT,10,14
-    1,HOOTHOOT,14
-    1,RATTATA,15
+Land,12
+    35,WINGULL,3,6
+    25,KRABBY,3,6
+    20,RATTATA,3,6
+    20,PIDGEY,3,6
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[082] # Caliterna (P)
+Water,2
+    60,TENTACOOL,3,6
+    30,WINGULL,3,6
+    10,KRABBY,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    40,MAGIKARP,3,6
+    30,KRABBY,3,6
+    20,SHELLDER,3,6
+    10,HORSEA,3,6
+#-------------------------------
+[083] # Vecchio Squero
+Land,12
+    35,WINGULL,3,6
+    25,KRABBY,3,6
+    20,RATTATA,3,6
+    20,PIDGEY,3,6
+#-------------------------------
+[085] # Piazza Della Repubblica
+Land,5
+    40,RATTATA,3,6
+    30,PIDGEY,3,6
+    20,MEOWTH,3,6
+    10,WINGULL,3,6
+#-------------------------------
+[086] # Via Roma
+Land,5
+    40,RATTATA,3,6
+    30,PIDGEY,3,6
+    20,MEOWTH,3,6
+    10,WINGULL,3,6
+#-------------------------------
+[087] # Cul de Nave
+Land,12
+    35,WINGULL,3,6
+    25,KRABBY,3,6
+    20,RATTATA,3,6
+    20,PIDGEY,3,6
+#-------------------------------
+[089] # Calli: Bernardis / Parini
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[091] # Calle Parini (Alta)
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[092] # Via Roma_2
+Land,5
+    40,RATTATA,3,6
+    30,PIDGEY,3,6
+    20,MEOWTH,3,6
+    10,WINGULL,3,6
+#-------------------------------
+[093] # Salita delle Mura / Via della Torre
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[095] # Via G. Mazzini / Parco giochi
+Land,12
+    30,CATERPIE,3,6
+    20,WEEDLE,3,6
+    20,ODDISH,3,6
+    15,PIDGEY,3,6
+    10,HOPPIP,3,6
+    5,SUNKERN,3,6
+LandNight,12
+    40,HOOTHOOT,3,6
+    30,SPINARAK,3,6
+    30,ODDISH,3,6
+#-------------------------------
+[096] # Giardinetti D'Europa
+Land,12
+    30,CATERPIE,3,6
+    20,WEEDLE,3,6
+    20,ODDISH,3,6
+    15,PIDGEY,3,6
+    10,HOPPIP,3,6
+    5,SUNKERN,3,6
+LandNight,12
+    40,HOOTHOOT,3,6
+    30,SPINARAK,3,6
+    30,ODDISH,3,6
+#-------------------------------
+[097] # Via Gabriele D'Annunzio
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[098] # Via S. Giovanni
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[099] # Via S. Giovanni_2
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[101] # Via S. Giovanni_3
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[103] # Piazzale Curriel
+Land,12
+    30,CATERPIE,3,6
+    20,WEEDLE,3,6
+    20,ODDISH,3,6
+    15,PIDGEY,3,6
+    10,HOPPIP,3,6
+    5,SUNKERN,3,6
+LandNight,12
+    40,HOOTHOOT,3,6
+    30,SPINARAK,3,6
+    30,ODDISH,3,6
+#-------------------------------
+[104] # Via Mazzarei
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[105] # Via Mazzarei_2
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[106] # Viale XXV Aprile_1
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[107] # Via S. Giovanni_4
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[108] # Via Bembo
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[109] # Via Borgolauro
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[110] # Via Gabriele D'annunzio
+Land,25
+    30,RATTATA,3,6
+    20,MEOWTH,3,6
+    20,SPEAROW,3,6
+    15,POOCHYENA,3,6
+    10,ZIGZAGOON,3,6
+    5,GRIMER,3,6
+LandNight,25
+    35,ZUBAT,3,6
+    25,HOOTHOOT,3,6
+    20,MURKROW,3,6
+    15,RATTATA,3,6
+    5,GASTLY,3,6
+#-------------------------------
+[114] # Castel de Muia
+Land,12
+    40,ZUBAT,3,6
+    30,RATTATA,3,6
+    20,SPEAROW,3,6
+    10,GASTLY,3,6
+LandNight,12
+    50,GASTLY,3,6
+    50,ZUBAT,3,6
+#-------------------------------
