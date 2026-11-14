@@ -63,6 +63,10 @@ jobs:
           json.dump(conf, open("mkxp.json", "w", encoding="utf-8"), indent=2)
           print(open("mkxp.json").read())
           PY
+          # Versione web più leggera: via sprite, icone, impronte e versi
+          # delle specie che il gioco non usa (vedi web/gioca/specie_usate.rb)
+          ruby web/gioca/specie_usate.rb > /tmp/escludi.txt
+          xargs -d '\n' rm -f < /tmp/escludi.txt
           rpzip -r ../player/nostalgist/public/pokemon-muia.mkxpz \
             Game.ini mkxp.json soundfont.sf2 \
             Data Graphics Audio Fonts Plugins Movies

@@ -11,7 +11,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="theme-color" content="#000000" />
     <title>Pokémon Muia</title>
-    <link rel="stylesheet" href="/node_modules/spin.js/spin.css" />
     <style>
       html,
       body {
@@ -44,10 +43,39 @@
         z-index: 2;
         pointer-events: none;
       }
-      #progressbar-target {
+      #bar {
         display: none;
-        width: 70px;
-        height: 70px;
+        position: fixed;
+        left: 50%;
+        bottom: 14%;
+        transform: translateX(-50%);
+        width: min(360px, 70vw);
+        z-index: 3;
+        pointer-events: none;
+        text-align: center;
+      }
+      #bar-track {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+      }
+      #bar-fill {
+        height: 100%;
+        width: 0;
+        border-radius: 999px;
+        background: #e3350d;
+        transition: width 0.2s linear;
+      }
+      #bar-label {
+        margin-top: 10px;
+        font-size: 14px;
+        opacity: 0.85;
+        font-variant-numeric: tabular-nums;
+      }
+      #status.error {
+        color: #ff8a73;
+        padding: 0 20px;
       }
       #status {
         position: fixed;
@@ -231,7 +259,7 @@
       }
       .pill {
         position: absolute;
-        bottom: 10px;
+        top: calc(12px + env(safe-area-inset-top));
         padding: 6px 14px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.18);
@@ -242,10 +270,10 @@
         color: rgba(255, 255, 255, 0.8);
       }
       #btn-select {
-        right: calc(50% + 8px);
+        left: calc(18px + env(safe-area-inset-left));
       }
       #btn-start {
-        left: calc(50% + 8px);
+        right: calc(18px + env(safe-area-inset-right));
       }
     </style>
   </head>
@@ -265,12 +293,11 @@
       style="position: fixed; left: 0; top: 0; width: 100%; height: 100%"
     ></canvas>
 
-    <div id="loading" class="center">
-      <div id="spinner-target" style="position: relative; width: 70px; height: 70px">
-        <div id="progressbar-target"></div>
-      </div>
+    <div id="bar">
+      <div id="bar-track"><div id="bar-fill"></div></div>
+      <div id="bar-label">Preparazione…</div>
     </div>
-    <div id="status">Scarico il gioco… (solo la prima volta, poi resta salvato)</div>
+    <div id="status" style="display: none"></div>
 
     <button id="start-button" class="center" type="button">
       <span class="title">Pokémon Muia</span>
