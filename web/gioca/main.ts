@@ -3,8 +3,6 @@ import { Dexie, type EntityTable } from "dexie";
 import fetchProgress from "fetch-progress";
 import { toBase64 } from "js-base64";
 import { Nostalgist } from "nostalgist";
-import ProgressBar from "progressbar.js";
-import { Spinner } from "spin.js";
 
 const CORE_NAME = "mkxp-z";
 
@@ -88,34 +86,47 @@ if (GAME_NAME !== null) {
   document.title = GAME_NAME;
 }
 
-const spinner = new Spinner({
-  color: "#fff",
-});
-const spinnerTarget = document.getElementById("spinner-target");
-if (spinnerTarget !== null) {
-  spinner.spin(spinnerTarget);
-}
-
-const progressbarTarget = document.getElementById("progressbar-target");
-const bar = new ProgressBar.Circle(progressbarTarget, {
-  color: "#fff",
-  strokeWidth: 6.0,
-  step: (_, bar) => {
-    const text = Math.round(bar.value() * 100) + "%";
-    // @ts-expect-error The type of `bar` is set incorrectly by @types/progressbar.js
-    bar.setText(text);
-  },
-});
-bar.text!.style.fontSize = "20px";
+// Barra di avanzamento (scaricamento e poi avvio del gioco)
+const barEl = document.getElementById("bar");
+const barFill = document.getElementById("bar-fill");
+const barLabel = document.getElementById("bar-label");
+const setBar = (fraction: number, label: string) => {
+  const f = Math.max(0, Math.min(1, fraction));
+  if (barEl !== null) {
+    barEl.style.display = "block";
+  }
+  if (barFill !== null) {
+    barFill.style.width = (f * 100).toFixed(1) + "%";
+  }
+  if (barLabel !== null) {
+    barLabel.textContent = label;
+  }
+};
+const hideBar = () => {
+  if (barEl !== null) {
+    barEl.style.display = "none";
+  }
+};
+setBar(0, "Preparazione…");
 
 let currentBytes = 0;
 let totalBytes = 0;
 
 const updateBar = () => {
-  bar.set(
+  const f =
     isNaN(totalBytes) || !isFinite(totalBytes) || totalBytes === 0
       ? 0
-      : currentBytes / totalBytes,
+      : currentBytes / totalBytes;
+  const mb = (n: number) => Math.round(n / 1048576);
+  setBar(
+    f,
+    "Carico il gioco… " +
+      Math.round(f * 100) +
+      "% (" +
+      mb(currentBytes) +
+      " / " +
+      mb(totalBytes) +
+      " MB)",
   );
 };
 
@@ -248,10 +259,6 @@ const fetchWithCache = async (
             currentBytes += progress.transferred - fetchedBytes;
             fetchedBytes = progress.transferred;
             updateBar();
-            if (progressbarTarget !== null) {
-              spinner.stop();
-              progressbarTarget.style.display = "initial";
-            }
           },
         }),
       );
@@ -461,8 +468,7 @@ if (opfs !== null) {
   }
 }
 
-bar.destroy();
-spinner.stop();
+hideBar();
 
 // ---------------------------------------------------------------------------
 // Pokémon Muia: schermata di avvio, controlli touch e orientamento
@@ -535,32 +541,128 @@ if (isTouch) {
   }
 }
 
-setStatus("Avvio del gioco…");
+// ---------------------------------------------------------------------------
+// Barra di avvio: il motore non dice quanto manca, quindi stimo
+// l'avanzamento dalle tappe che scrive nel log e dai tempi dell'ultimo avvio
+// su questo dispositivo (la prima volta uso tempi prudenti).
+// ---------------------------------------------------------------------------
+const STAGES = [
+  // [testo nel log, frazione della barra raggiunta, nome della fase]
+  ["Mounted game save directory", 0.05, "Apro i file del gioco…"],
+  ["Loading path cache", 0.08, "Indicizzo i file del gioco…"],
+  ["Path cache completed", 0.8, "Avvio il motore…"],
+  ["[mkxp-z stdout] ruby", 0.86, "Carico la musica…"],
+  ["Using threaded audio driver", 0.9, "Carico gli script del gioco…"],
+] as const;
+const DEFAULT_DURATIONS = [3, 2, 40, 3, 3, 8]; // secondi, una per fase
+let durations = DEFAULT_DURATIONS;
+try {
+  const saved = JSON.parse(localStorage.getItem("muia-avvio") ?? "null");
+  if (Array.isArray(saved) && saved.length === DEFAULT_DURATIONS.length) {
+    durations = saved.map((x: number) => Math.max(0.5, x * 1.1));
+  }
+} catch {
+  // localStorage non disponibile: tempi predefiniti
+}
+let stage = 0; // numero di tappe raggiunte
+let stageStart = performance.now();
+const measured: number[] = [];
+let stageLabel = "Avvio del gioco…";
+const fractionAt = (i: number) => (i === 0 ? 0 : STAGES[i - 1][1]);
+const nextFraction = (i: number) => (i < STAGES.length ? STAGES[i][1] : 1);
 
-// Nasconde "Avvio del gioco…" quando gli script del gioco partono
 let booted = false;
-const markBooted = () => {
-  if (!booted) {
-    booted = true;
-    setTimeout(() => setStatus(null), 1500);
+const bootTimer = setInterval(() => {
+  if (booted) {
+    return;
+  }
+  const t = (performance.now() - stageStart) / 1000;
+  const d = durations[stage] ?? 5;
+  // avanza verso la tappa successiva senza mai raggiungerla da sola
+  const progress = 1 - Math.exp((-1.6 * t) / d);
+  const f = fractionAt(stage) + (nextFraction(stage) - fractionAt(stage)) * progress * 0.97;
+  setBar(f, stageLabel + " " + Math.floor(f * 100) + "%");
+}, 200);
+setBar(0, stageLabel + " 0%");
+
+const reachStage = (i: number) => {
+  if (i < stage) {
+    return;
+  }
+  const now = performance.now();
+  // le fasi saltate contano zero
+  while (stage <= i) {
+    measured[stage] = stage === i ? (now - stageStart) / 1000 : 0;
+    stage++;
+  }
+  stageStart = now;
+  stageLabel = STAGES[i][2];
+};
+
+const showError = (text: string) => {
+  booted = true;
+  clearInterval(bootTimer);
+  hideBar();
+  setStatus("Errore: " + text + " — prova a ricaricare la pagina.");
+  if (statusEl !== null) {
+    statusEl.classList.add("error");
   }
 };
+
+const markBooted = () => {
+  if (booted) {
+    return;
+  }
+  booted = true;
+  clearInterval(bootTimer);
+  measured[stage] = (performance.now() - stageStart) / 1000;
+  while (measured.length < DEFAULT_DURATIONS.length) {
+    measured.push(0);
+  }
+  try {
+    localStorage.setItem("muia-avvio", JSON.stringify(measured));
+  } catch {
+    // niente
+  }
+  setBar(1, "Pronto! 100%");
+  setTimeout(hideBar, 1200);
+};
+
 for (const method of ["log", "info", "warn", "error"] as const) {
   const original = console[method].bind(console);
   console[method] = (...args: unknown[]) => {
     if (!booted) {
       const text = args.map((a) => String(a)).join(" ");
+      STAGES.forEach(([needle], i) => {
+        if (text.includes(needle)) {
+          reachStage(i);
+        }
+      });
       if (text.includes("[mkxp-z stdout]") && !text.includes("ruby ")) {
         markBooted();
-      } else if (text.includes("Game threw an exception")) {
-        booted = true;
-        setStatus("Il gioco si è fermato per un errore. Ricarica la pagina.");
+      } else if (/Game threw an exception|RuntimeError|Aborted\(|out of memory/i.test(text)) {
+        showError(text.replace(/^.*\] ?/, "").slice(0, 160));
       }
     }
     original(...args);
   };
 }
-setTimeout(markBooted, 90000);
+window.addEventListener("error", (ev) => {
+  if (!booted && !String(ev.message).includes("ResizeObserver")) {
+    showError(String(ev.message || ev.error));
+  }
+});
+window.addEventListener("unhandledrejection", (ev) => {
+  if (!booted) {
+    showError(String(ev.reason));
+  }
+});
+// Se dopo 4 minuti non è arrivato nulla, lo dico invece di lasciare il nero
+setTimeout(() => {
+  if (!booted) {
+    showError("l'avvio sta impiegando troppo (più di 4 minuti)");
+  }
+}, 240000);
 
 // ---------------------------------------------------------------------------
 // Tasti a schermo: croce direzionale, A, B, START, SELECT
