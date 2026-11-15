@@ -410,10 +410,6 @@ const nostalgist = await Nostalgist.prepare({
   },
   retroarchCoreConfig: {
     "mkxp-z_saveStateSize": "256",
-    // Tastiera da PC: Z/Spazio/Invio = A (conferma), X = B (indrio),
-    // frecce = movimento (predefiniti); Esc apre e chiude il menu del gioco
-    // (Input::A in Essentials) invece di fare da "indietro".
-    "mkxp-z_scancode-41": "button-11",
   },
 });
 
@@ -766,5 +762,69 @@ if (isTouch) {
     dpad.addEventListener("contextmenu", (ev) => ev.preventDefault());
   }
 }
+
+// ---------------------------------------------------------------------------
+// Tastiera da PC: la tastiera non arriva al gioco direttamente, quindi la
+// traduco io negli stessi tasti virtuali usati dai pulsanti a schermo.
+//   Z / Spazio / Invio -> A (conferma)     X -> B (indietro e corsa)
+//   Esc -> menu (START)                     D -> menu rapido (SELECT)
+//   Frecce -> movimento (già gestite dal player)
+// ---------------------------------------------------------------------------
+const KEYMAP: Record<string, PadButton> = {
+  z: "a",
+  " ": "a",
+  Enter: "a",
+  x: "b",
+  Escape: "x",
+  d: "r3",
+};
+const keyHeld = new Set<string>();
+const keyOf = (ev: KeyboardEvent) =>
+  ev.key.length === 1 ? ev.key.toLowerCase() : ev.key;
+document.addEventListener(
+  "keydown",
+  (ev) => {
+    if (!ev.isTrusted || ev.ctrlKey || ev.metaKey || ev.altKey) {
+      return;
+    }
+    const k = keyOf(ev);
+    const button = KEYMAP[k];
+    if (button === undefined) {
+      return;
+    }
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    if (!keyHeld.has(k)) {
+      keyHeld.add(k);
+      press(button);
+    }
+  },
+  true,
+);
+document.addEventListener(
+  "keyup",
+  (ev) => {
+    if (!ev.isTrusted) {
+      return;
+    }
+    const k = keyOf(ev);
+    const button = KEYMAP[k];
+    if (button === undefined) {
+      return;
+    }
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    if (keyHeld.delete(k)) {
+      release(button);
+    }
+  },
+  true,
+);
+window.addEventListener("blur", () => {
+  for (const k of keyHeld) {
+    release(KEYMAP[k]);
+  }
+  keyHeld.clear();
+});
 
 await nostalgist.start();
