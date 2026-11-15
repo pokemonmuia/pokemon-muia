@@ -1899,15 +1899,15 @@ Gli effetti di {1} impediscono a {2} di usare alcune mosse!
 What will<<n>>{1} do?
 Cosa deve fare<<n>>{1}?
 Fight
-Lotta
+Biava
 Bag
-Borsa
+Saccoccia
 Pokémon
 Pokémon
 Call
 Richiama
 Run
-Fuga
+Scampa
 Choose a Pokémon.
 Scegli un Pokémon.
 Send which Pokémon to Boxes?
