@@ -56,7 +56,7 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 - **Se aggiorna da solo:** a ogni push su `main` GitHub rifà el pacchetto e lo ripubblica in 2-3 minuti (se vedi nella scheda *Actions* del repo, "Sito GitHub Pages"). Se el browser mostra ancora la version vecia, ricarica forzando (Cmd/Ctrl+Shift+R) o speta 10 minuti.
 - La prima volta el scariga el zogo (circa 70 MB) e lo tien salvà nel browser; dopo se scariga de novo solo quando el zogo cambia. Dopo aver premù **Gioca** ghe vol circa 30 secondi per partir: la bara rossa te disi a che punto el xe.
 - **I salvataggi** resta nel browser de quel computer/telefono (no i se passa da un dispositivo all'altro). Se te cancelli i dati del sito, te perdi anca quei.
-- **Tasti sul computer:** frecie per caminar, Z o Invio conferma, X o Esc indrio e corer, Shift menu, D menu rapido.
+- **Tasti sul computer:** frecie per caminar, Z o Spazio (o Invio) = A (conferma), X = B (indrio e corer), Esc verzi e sera el menu, D menu rapido.
 - **Sul telefono:** te disi de girarlo in orizontal; a sinistra la crose, a destra A (conferma) e B (indrio/corer), in alto SELECT (menu rapido) e START (menu).
 - El multiplayer online no va nel browser.
 - Per la version online i Pokémon che el zogo no dopra (no xe in incontri, allenatori, mape, eventi o plugin, gnanca come evoluzion) resta fora, cussì el se carga prima. La lista se rifà da sola a ogni push; se un Pokémon manca per sbaglio, compar el "?" ma el zogo no se ferma.

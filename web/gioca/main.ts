@@ -384,6 +384,7 @@ const nostalgist = await Nostalgist.prepare({
     input_toggle_slowmotion: "nul",
     input_hold_slowmotion: "nul",
     input_menu_toggle: "nul",
+    input_menu_toggle_gamepad_combo: "0",
     input_save_state: "nul",
     input_load_state: "nul",
     input_state_slot_decrease: "nul",
@@ -409,6 +410,10 @@ const nostalgist = await Nostalgist.prepare({
   },
   retroarchCoreConfig: {
     "mkxp-z_saveStateSize": "256",
+    // Tastiera da PC: Z/Spazio/Invio = A (conferma), X = B (indrio),
+    // frecce = movimento (predefiniti); Esc apre e chiude il menu del gioco
+    // (Input::A in Essentials) invece di fare da "indietro".
+    "mkxp-z_scancode-41": "button-11",
   },
 });
 
