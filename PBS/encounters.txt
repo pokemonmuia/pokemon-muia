@@ -426,7 +426,7 @@ GoodRod
     10,HORSEA,3,6
 #-------------------------------
 [081] # Caliterna
-Land,12
+Land,30
     35,WINGULL,3,6
     25,KRABBY,3,6
     20,RATTATA,3,6
