@@ -1,10 +1,14 @@
 # pokemon_muia
 Fan game Pokémon ambientà a Muia, fatto con Pokémon Essentials v21.1 e RPG Maker XP.
 
+> 🎮 **Zoga online (computer e telefono):** https://pokemonmuia.github.io/pokemon-muia/gioca/
+> Se aggiorna da solo a ogni push su `main`. Dettagli in [Zogar online](#zogar-online).
+
 - [Te spiego](#te-spiego)
   - [La prima volta](#la-prima-volta)
   - [Ogni volta che te lavori](#ogni-volta-che-te-lavori)
   - [Come provar el zogo](#come-provar-el-zogo)
+  - [Zogar online](#zogar-online)
 - [Cosa ghe xe in sta cartela](#cosa-ghe-xe-in-sta-cartela)
 - [Traduzion](#traduzion)
 - [AGGIORNAMENTI](#aggiornamenti)
@@ -41,8 +45,22 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 
 ### Come provar el zogo
 - Per zogar basta verzer `Game.exe`, no serve instalar gnente.
+- Senza Windows (Mac, telefono) se zoga online dal link qua sotto.
 - Per modificar mape ed eventi se verzi `Game.rxproj` (RPG Maker XP).
 - Se se ga cambià qualcossa nella cartela `PBS` (Pokémon, allenatori, strumenti...), bisogna far partir el zogo da RPG Maker con **F12** (Playtest): cussì el zogo ricompila i dati. Dopo far commit e push anca dei file `.dat` cambiai nella cartela `Data`.
+
+### Zogar online
+**Link:** https://pokemonmuia.github.io/pokemon-muia/gioca/
+
+- Va su Chrome, Firefox e sul telefono (provà su Android, iPhone ancora de provar). No serve instalar gnente.
+- **Se aggiorna da solo:** a ogni push su `main` GitHub rifà el pacchetto e lo ripubblica in 2-3 minuti (se vedi nella scheda *Actions* del repo, "Sito GitHub Pages"). Se el browser mostra ancora la version vecia, ricarica forzando (Cmd/Ctrl+Shift+R) o speta 10 minuti.
+- La prima volta el scariga el zogo (circa 70 MB) e lo tien salvà nel browser; dopo se scariga de novo solo quando el zogo cambia. Dopo aver premù **Gioca** ghe vol circa 30 secondi per partir: la bara rossa te disi a che punto el xe.
+- **I salvataggi** resta nel browser de quel computer/telefono (no i se passa da un dispositivo all'altro). Se te cancelli i dati del sito, te perdi anca quei.
+- **Tasti sul computer:** frecie per caminar, Z o Invio conferma, X o Esc indrio e corer, Shift menu, D menu rapido.
+- **Sul telefono:** te disi de girarlo in orizontal; a sinistra la crose, a destra A (conferma) e B (indrio/corer), in alto SELECT (menu rapido) e START (menu).
+- El multiplayer online no va nel browser.
+- Per la version online i Pokémon che el zogo no dopra (no xe in incontri, allenatori, mape, eventi o plugin, gnanca come evoluzion) resta fora, cussì el se carga prima. La lista se rifà da sola a ogni push; se un Pokémon manca per sbaglio, compar el "?" ma el zogo no se ferma.
+- La pagina xe in `web/gioca/` e el lavoro de GitHub in `.github/workflows/pages.yml`. Se se verzi el link con `?debug` in fondo, nella console del browser se vedi tuti i messaggi del motor.
 
 ---
 
@@ -55,6 +73,7 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 | `Plugins/` | Plugin (multiplayer, rainefallUtils) |
 | `Text_italiano_core/` | Traduzion italiana dei menu e dei messaggi del motor |
 | `Strumenti/` | Script de aiuto (per esempio per compilar la traduzion) |
+| `web/gioca/` | La pagina per zogar online (vedi [Zogar online](#zogar-online)) |
 | `PLOT.md` | Trama, scene e palestre |
 
 ---
@@ -88,6 +107,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **20102026** **Sprite dei personaggi**: Polidori (anca versione de Carneval), Sandra Omo, Cinghio, Gianna e Henry. Sprite de lota in `Graphics/Trainers` (SINDACO, SINDACO_CARNEVAL, CINGHIO, HENRY, GIANNA, SANDRA_OMO, con i tipi de allenador in PBS/trainer_types.txt) e ritrati grandi in `Graphics/Pictures/ritratto_*.png`. Nel'intro Polidori xe al posto del professor Oak e el se presenta; el so ritrato compar quando el parla nel Comun, e quel de Cinghio al Mandracchio.
 - **11112026** Repository rinominà da pokemon_muia.v1 a pokemon-muia; el vecio repository pokemon_muia xe sta cancelà. Zontà die-lab come collaboradori.
 - **12112026** **Video de intro** al posto dela vecia schermata del titolo: dopo le do schermate col stema del Comun parti `Movies/intro.ogv` (dal mondo fin a Muia, col logo) con soto la musica del titolo. Co finissi de comparir el logo vien fora "Daghe, fraca spazio!" che lampeggia; a la fine del video resta l'ultimo fotogramma (`Graphics/Titles/intro_end.png`) col "Daghe, fraca spazio!" vero, e premendo se va nel zogo. Se pol saltar el video con Invio o Esc (se va drito a la fine). El video xe 512x384 con le bande nere sora e soto (l'original xe 3:2); el codice xe in `UI_SplashesAndTitleScreen`. Se el video no parti, resta la schermata del titolo vecia (`title.png`). In Debug (F12 da RPG Maker) no se lo vedi, perché là le schermate de avvio vien saltade.
+- **15112026** **El zogo se zoga online** dal link https://pokemonmuia.github.io/pokemon-muia/gioca/ (computer e telefono, coi tasti a schermo), e el se aggiorna da solo a ogni push su `main`. Tuto spiegà in [Zogar online](#zogar-online).
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
