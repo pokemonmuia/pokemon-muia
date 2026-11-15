@@ -56,7 +56,7 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 - **Se aggiorna da solo:** a ogni push su `main` GitHub rifà el pacchetto e lo ripubblica in 2-3 minuti (se vedi nella scheda *Actions* del repo, "Sito GitHub Pages"). Se el browser mostra ancora la version vecia, ricarica forzando (Cmd/Ctrl+Shift+R) o speta 10 minuti.
 - La prima volta el scariga el zogo (circa 70 MB) e lo tien salvà nel browser; dopo se scariga de novo solo quando el zogo cambia. Dopo aver premù **Gioca** ghe vol circa 30 secondi per partir: la bara rossa te disi a che punto el xe.
 - **I salvataggi** resta nel browser de quel computer/telefono (no i se passa da un dispositivo all'altro). Se te cancelli i dati del sito, te perdi anca quei.
-- **Tasti sul computer:** frecie per caminar, Z o Spazio (o Invio) = A (conferma), X = B (indrio e corer), Esc verzi e sera el menu, D menu rapido.
+- **Tasti sul computer** (uguai anca su `Game.exe`, grazie al plugin *Muia Tasti*): frecie per caminar, Z o Spazio (o Invio) = A (conferma), X = B (indrio e corer), Esc verzi e sera el menu, D menu rapido.
 - **Sul telefono:** te disi de girarlo in orizontal; a sinistra la crose, a destra A (conferma) e B (indrio/corer), in alto SELECT (menu rapido) e START (menu).
 - El multiplayer online no va nel browser.
 - Per la version online i Pokémon che el zogo no dopra (no xe in incontri, allenatori, mape, eventi o plugin, gnanca come evoluzion) resta fora, cussì el se carga prima. La lista se rifà da sola a ogni push; se un Pokémon manca per sbaglio, compar el "?" ma el zogo no se ferma.
@@ -70,7 +70,7 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 | `Data/` | Mape, eventi e dati compilai del zogo (no se verzi a man) |
 | `PBS/` | Dati de testo: Pokémon, mosse, strumenti, allenatori, incontri |
 | `Graphics/`, `Audio/`, `Fonts/` | Grafica, musiche e caratteri |
-| `Plugins/` | Plugin (multiplayer, rainefallUtils) |
+| `Plugins/` | Plugin (multiplayer, rainefallUtils, Muia Livelli Selvatici, Muia Tasti) |
 | `Text_italiano_core/` | Traduzion italiana dei menu e dei messaggi del motor |
 | `Strumenti/` | Script de aiuto (per esempio per compilar la traduzion) |
 | `web/gioca/` | La pagina per zogar online (vedi [Zogar online](#zogar-online)) |
@@ -107,6 +107,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **20102026** **Sprite dei personaggi**: Polidori (anca versione de Carneval), Sandra Omo, Cinghio, Gianna e Henry. Sprite de lota in `Graphics/Trainers` (SINDACO, SINDACO_CARNEVAL, CINGHIO, HENRY, GIANNA, SANDRA_OMO, con i tipi de allenador in PBS/trainer_types.txt) e ritrati grandi in `Graphics/Pictures/ritratto_*.png`. Nel'intro Polidori xe al posto del professor Oak e el se presenta; el so ritrato compar quando el parla nel Comun, e quel de Cinghio al Mandracchio.
 - **11112026** Repository rinominà da pokemon_muia.v1 a pokemon-muia; el vecio repository pokemon_muia xe sta cancelà. Zontà die-lab come collaboradori.
 - **12112026** **Video de intro** al posto dela vecia schermata del titolo: dopo le do schermate col stema del Comun parti `Movies/intro.ogv` (dal mondo fin a Muia, col logo) con soto la musica del titolo. Co finissi de comparir el logo vien fora "Daghe, fraca spazio!" che lampeggia; a la fine del video resta l'ultimo fotogramma (`Graphics/Titles/intro_end.png`) col "Daghe, fraca spazio!" vero, e premendo se va nel zogo. Se pol saltar el video con Invio o Esc (se va drito a la fine). El video xe 512x384 con le bande nere sora e soto (l'original xe 3:2); el codice xe in `UI_SplashesAndTitleScreen`. Se el video no parti, resta la schermata del titolo vecia (`title.png`). In Debug (F12 da RPG Maker) no se lo vedi, perché là le schermate de avvio vien saltade.
+- **15112026** **Casa del zogador pulida** (Map003): via i eventi de la demo (anca quel che ativava el debug e dava tute le medaie), resta solo la mama e de sora el PC, che la prima volta ga dentro 10 Poké Ball. El **Pokédex** desso lo dà el sindaco nel laboratorio (Map004) subito dopo che te ga scelto el pokemon. Plugin novo **Muia Tasti**: stessi tasti sul computer sia online che su `Game.exe`. ⚠️ Prima de verzer RPG Maker fe *Pull origin*, se no se perdi ste modifiche a Map003 e Map004.
 - **15112026** **El zogo se zoga online** dal link https://pokemonmuia.github.io/pokemon-muia/gioca/ (computer e telefono, coi tasti a schermo), e el se aggiorna da solo a ogni push su `main`. Tuto spiegà in [Zogar online](#zogar-online).
 
 # IDEE
