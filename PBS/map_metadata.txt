@@ -647,8 +647,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
-[115]   # Palestra 1 - La Bora
-Name = Palestra La Bora
+[115]   # Palestra Pacco
+Name = Palestra del Pacco
 BattleBack = indoor3
 Environment = Rock
 Flags = DisableBoxLink
