@@ -120,6 +120,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **17112026** **Prova rete 2**: la "Prova rete" desso verifica anca un ponte tra el zogo e la pagina (el browser no gà socket). Versione 1.06.
 - **17112026** **Prova rete 3**: la "Prova rete" desso scrive più dettagli su dove el zogo pol scriver file nel browser. Versione 1.07.
 - **17112026** **Prova rete 4**: la "Prova rete" desso prova el ponte tra zogo e pagina dentro la cartela dei salvataggi, con messaggi più curti. Versione 1.08.
+- **17112026** **Prova rete 5**: el ponte tra zogo e pagina desso dopra un nome novo par ogni messagio e la prova mostra cossa vedi nella cartela. Versione 1.09.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

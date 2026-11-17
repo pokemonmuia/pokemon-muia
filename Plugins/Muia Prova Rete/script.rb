@@ -21,15 +21,21 @@ module MuiaProvaRete
     return corto("#{nome}: #{esito}") + " " + corto("(#{((Time.now - t0) * 1000).round} ms)")
   end
 
+  def self.vedo(cartela)
+    nomi = Dir.entries(cartela).select { |n| n.start_with?("muia_") }
+    return corto("vedo: " + (nomi.empty? ? "gnente" : nomi.join(" ")), 60)
+  rescue Exception => e
+    return corto("vedo: " + e.class.to_s)
+  end
+
   def self.eco(cartela, numero)
-    entra = File.join(cartela, "muia_in.txt")
-    esce = File.join(cartela, "muia_out.txt")
-    File.delete(entra) if File.exist?(entra)
-    File.write(esce, "ciao#{numero}")
+    sigla = "#{(Time.now.to_f * 1000).to_i}_#{numero}"
+    entra = File.join(cartela, "muia_in_#{sigla}.txt")
+    File.write(File.join(cartela, "muia_out_#{sigla}.txt"), "ciao#{numero}")
     t0 = Time.now
     while Time.now - t0 < 3
       Graphics.update
-      if File.exist?(entra)
+      if Dir.entries(cartela).include?("muia_in_#{sigla}.txt")
         testo = File.read(entra)
         return "risposta" if testo.end_with?("#fine")
       end
@@ -43,7 +49,9 @@ module MuiaProvaRete
     righe << corto("cartela: " + cartela.to_s, 60)
     righe << prova("scrivo in cartela") { File.write(File.join(cartela, "muia_prova.tmp"), "x").to_s }
     3.times do |i|
-      righe << prova("ponte eco #{i + 1}") { eco(cartela, i) }
+      riga = prova("ponte eco #{i + 1}") { eco(cartela, i) }
+      righe << riga
+      righe << vedo(cartela) if riga.include?("ERORE")
     end
     righe.each_slice(2) { |g| pbMessage(g.join("\n")) }
     pbMessage("Test finì. Scrivi a Claude cossa te vedi.")

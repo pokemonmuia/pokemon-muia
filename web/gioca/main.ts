@@ -1066,14 +1066,14 @@ window.addEventListener("blur", () => {
 // Ponte de rete (PROVA): el motor del browser no gà socket e la memoria
 // temporanea (/tmp) no se pol scriver da dentro el zogo. L'unico posto dove el
 // zogo scrive xe la cartela dei salvataggi (OPFS), che anca la pagina la vede.
-// Par ora solo un "eco": se el zogo scrive muia_out.txt la pagina risponde in
-// muia_in.txt (con "#fine" in fondo). Serve a misurar se funziona e quanto
-// ghe mete.
+// Par ora solo un "eco": se el zogo scrive muia_out_<n>.txt la pagina risponde
+// in muia_in_<n>.txt (con "#fine" in fondo). Ogni messagio ga un nome novo,
+// cussì el motor no se confonde coi file ricreai col stesso nome.
 // ---------------------------------------------------------------------------
 {
   let cartellaPonte: CartellaOpfs | null = null;
   let occupato = false;
-  console.log("ponte: pagina con ponte 1.08");
+  console.log("ponte: pagina con ponte 1.09");
   setInterval(async () => {
     if (occupato || opfs === null || opfs === undefined) {
       return;
@@ -1089,27 +1089,41 @@ window.addEventListener("blur", () => {
           }
         }
         for (const c of candidate) {
-          try {
-            await c.getFileHandle("muia_out.txt");
-            cartellaPonte = c;
+          for await (const [nome] of c.entries()) {
+            if (/^muia_out_/.test(nome)) {
+              cartellaPonte = c;
+              break;
+            }
+          }
+          if (cartellaPonte !== null) {
             break;
-          } catch (err) {
-            // non qua
           }
         }
       }
       if (cartellaPonte !== null) {
-        try {
-          const fh = await cartellaPonte.getFileHandle("muia_out.txt");
-          const testo: string = await (await fh.getFile()).text();
-          await cartellaPonte.removeEntry("muia_out.txt");
-          const w = await (
-            await cartellaPonte.getFileHandle("muia_in.txt", { create: true })
-          ).createWritable();
-          await w.write("eco|" + testo + "|" + Date.now() + "|#fine");
-          await w.close();
-        } catch (err) {
-          // niente da fare per ora (file non ancora scrito, o in uso)
+        const nomi: string[] = [];
+        for await (const [nome] of cartellaPonte.entries()) {
+          nomi.push(nome);
+        }
+        for (const nome of nomi) {
+          const m = /^muia_out_(.+)\.txt$/.exec(nome);
+          if (m === null) {
+            continue;
+          }
+          try {
+            const fh = await cartellaPonte.getFileHandle(nome);
+            const testo: string = await (await fh.getFile()).text();
+            await cartellaPonte.removeEntry(nome);
+            const w = await (
+              await cartellaPonte.getFileHandle("muia_in_" + m[1] + ".txt", {
+                create: true,
+              })
+            ).createWritable();
+            await w.write("eco|" + testo + "|" + Date.now() + "|#fine");
+            await w.close();
+          } catch (err) {
+            // file non ancora finì de scriver, o in uso: se riprova
+          }
         }
       }
     } catch (err) {
