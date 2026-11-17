@@ -3,6 +3,7 @@ import { Dexie, type EntityTable } from "dexie";
 import fetchProgress from "fetch-progress";
 import { toBase64 } from "js-base64";
 import { Nostalgist } from "nostalgist";
+import { avviaPonte } from "./ponte";
 
 const CORE_NAME = "mkxp-z";
 
@@ -1063,75 +1064,23 @@ window.addEventListener("blur", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Ponte de rete (PROVA): el motor del browser no gà socket e la memoria
-// temporanea (/tmp) no se pol scriver da dentro el zogo. L'unico posto dove el
-// zogo scrive xe la cartela dei salvataggi (OPFS), che anca la pagina la vede.
-// Par ora solo un "eco": se el zogo scrive muia_out_<n>.txt la pagina risponde
-// in muia_in_<n>.txt (con "#fine" in fondo). Ogni messagio ga un nome novo,
-// cussì el motor no se confonde coi file ricreai col stesso nome.
+// Multiplayer online: el zogo (che nel browser no gà socket) parla col server
+// tramite file nella cartela dei salvataggi; la pagina li inoltra via WebSocket.
+// Vedi ponte.ts. Se la pagina xe verta da localhost se pol dar un server de
+// prova con ?server=localhost:8088 (senza https).
 // ---------------------------------------------------------------------------
-{
-  let cartellaPonte: CartellaOpfs | null = null;
-  let occupato = false;
-  console.log("ponte: pagina con ponte 1.09");
-  setInterval(async () => {
-    if (occupato || opfs === null || opfs === undefined) {
-      return;
-    }
-    occupato = true;
-    try {
-      if (cartellaPonte === null) {
-        const saves = await trovaCartellaSaves();
-        const candidate: CartellaOpfs[] = [saves];
-        for await (const [, handle] of saves.entries()) {
-          if (handle.kind === "directory") {
-            candidate.push(handle);
-          }
-        }
-        for (const c of candidate) {
-          for await (const [nome] of c.entries()) {
-            if (/^muia_out_/.test(nome)) {
-              cartellaPonte = c;
-              break;
-            }
-          }
-          if (cartellaPonte !== null) {
-            break;
-          }
-        }
-      }
-      if (cartellaPonte !== null) {
-        const nomi: string[] = [];
-        for await (const [nome] of cartellaPonte.entries()) {
-          nomi.push(nome);
-        }
-        for (const nome of nomi) {
-          const m = /^muia_out_(.+)\.txt$/.exec(nome);
-          if (m === null) {
-            continue;
-          }
-          try {
-            const fh = await cartellaPonte.getFileHandle(nome);
-            const testo: string = await (await fh.getFile()).text();
-            await cartellaPonte.removeEntry(nome);
-            const w = await (
-              await cartellaPonte.getFileHandle("muia_in_" + m[1] + ".txt", {
-                create: true,
-              })
-            ).createWritable();
-            await w.write("eco|" + testo + "|" + Date.now() + "|#fine");
-            await w.close();
-          } catch (err) {
-            // file non ancora finì de scriver, o in uso: se riprova
-          }
-        }
-      }
-    } catch (err) {
-      console.error("ponte:", err);
-    } finally {
-      occupato = false;
-    }
-  }, 50);
+const SERVER_MULTIPLAYER = "pokemon-muia-server.onrender.com";
+if (opfs !== null && opfs !== undefined) {
+  const locale = ["localhost", "127.0.0.1"].includes(location.hostname);
+  const prova = locale ? new URLSearchParams(location.search).get("server") : null;
+  const host = prova ?? SERVER_MULTIPLAYER;
+  const sicuro = prova === null;
+  avviaPonte({
+    trovaCartella: trovaCartellaSaves,
+    urlWebSocket: (sicuro ? "wss://" : "ws://") + host + "/ws",
+    urlSveglia: (sicuro ? "https://" : "http://") + host + "/",
+    log: (...args) => console.log(...args),
+  });
 }
 
 await nostalgist.start();

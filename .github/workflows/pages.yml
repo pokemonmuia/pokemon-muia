@@ -151,6 +151,7 @@ jobs:
           # schermata di avvio, tasti touch e invito a girare il telefono.
           cp ../../gioco/web/gioca/index.html index.html
           cp ../../gioco/web/gioca/main.ts src/main.ts
+          cp ../../gioco/web/gioca/ponte.ts src/ponte.ts
           npm install
           node update-env.ts
           # File dell'app installabile (programma in background, manifest, icone)

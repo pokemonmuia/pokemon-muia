@@ -1,5 +1,0 @@
-Name         = Muia Prova Rete
-Version      = 1.0
-Essentials   = 21.1
-Requires     = Voltseon's Multiplayer Solution
-Credits      = Pokemon Muia

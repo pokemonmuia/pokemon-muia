@@ -1,0 +1,14 @@
+# Render: server multiplayer de Pokémon Muia (piano gratuito).
+# Istruzioni in server/LEGGIMI.md
+services:
+  - type: web
+    name: pokemon-muia-server
+    runtime: docker
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "10000"

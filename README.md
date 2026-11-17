@@ -60,7 +60,7 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 - **I salvataggi** resta nel browser de quel computer/telefono (no i se passa da un dispositivo all'altro). Se te cancelli i dati del sito, te perdi anca quei. Per questo ghe xe, nella schermata col botón **Gioca** (prima de premerlo), i botoni **Salva una copia dei salvataggi** (scarica un file `.json`) e **Carica una copia** (lo rimeti nel browser, anca su un altro telefono o computer). Se ghe xe za dei salvataggi, quei con lo stesso nome vien sostituii e ghe resta una copia vecia `.prima.bak`. Su iPhone no xe ancora provà.
 - **Tasti sul computer** (uguai anca su `Game.exe`, grazie al plugin *Muia Tasti*): frecie per caminar, Z o Spazio (o Invio) = A (conferma), X = B (indrio e corer), Esc verzi e sera el menu, D menu rapido.
 - **Sul telefono:** te disi de girarlo in orizontal; a sinistra la crose, a destra A (conferma) e B (indrio/corer), in alto SELECT (menu rapido) e START (menu).
-- El multiplayer online no va nel browser.
+- **Multiplayer nel browser e sul telefono:** dal menù de pausa *Zogo insieme → Zogo online*. Passa da un server su Render (vedi `server/LEGGIMI.md`); se el dorme, ghe vol circa un minuto a svejarse. Su `Game.exe` resta anca el zogo in locale.
 - Per la version online i Pokémon che el zogo no dopra (no xe in incontri, allenatori, mape, eventi o plugin, gnanca come evoluzion) resta fora, cussì el se carga prima. La lista se rifà da sola a ogni push; se un Pokémon manca per sbaglio, compar el "?" ma el zogo no se ferma.
 - La pagina xe in `web/gioca/` e el lavoro de GitHub in `.github/workflows/pages.yml`. Se se verzi el link con `?debug` in fondo, nella console del browser se vedi tuti i messaggi del motor.
 
@@ -121,6 +121,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **17112026** **Prova rete 3**: la "Prova rete" desso scrive più dettagli su dove el zogo pol scriver file nel browser. Versione 1.07.
 - **17112026** **Prova rete 4**: la "Prova rete" desso prova el ponte tra zogo e pagina dentro la cartela dei salvataggi, con messaggi più curti. Versione 1.08.
 - **17112026** **Prova rete 5**: el ponte tra zogo e pagina desso dopra un nome novo par ogni messagio e la prova mostra cossa vedi nella cartela. Versione 1.09.
+- **17112026** **Multiplayer nel browser**: el zogo online ora funziona anca dal browser e dal telefono, tramite un server (cartela `server/`) e un ponte tra zogo e pagina. Tolta la "Prova rete". Nel menù *Zogo insieme* dal browser ghe xe solo *Zogo online*. Versione 1.10.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

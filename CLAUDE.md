@@ -31,3 +31,7 @@ I file `.rxdata` non si possono unire. Prima di toccare una mappa, chiedi chi ci
 ## README
 
 Ogni modifica che si vede nel gioco va aggiunta in fondo a `# AGGIORNAMENTI` nel README, in dialetto, con la data (formato `ggmmaaaa`).
+
+## Server multiplayer
+
+La cartella `server/` fa girare il server del plugin *Voltseon's Multiplayer Solution* (file `001_Base/001_VMS_Config.rb` e `006_Integrated_Server/001_VMS_Integrated_Server.rb`) fuori dal gioco, per la versione web (vedi `server/LEGGIMI.md`). Se modifichi quei due file, tieni conto che il server li carica da solo con un piccolo adattamento (`server/muia_server.rb`). Il lato browser sta in `web/gioca/ponte.ts` e `Plugins/Voltseon's Multiplayer Solution/001_Base/004_VMS_Web_Bridge.rb`: il protocollo dei file è descritto in testa a entrambi e va tenuto uguale.

@@ -17,7 +17,11 @@ module VMS
     port = $game_temp.vms[:using_external_server] ? VMS::EXTERNALPORT : VMS::PORT
     # Create socket
     begin
-      if VMS::USE_TCP
+      if VMS.web?
+        # Nel browser no ghe xe socket: se passa dalla pagina (vedi 004_VMS_Web_Bridge.rb)
+        socket = VMS::WebBridge.new
+        socket = nil if !socket.connetti
+      elsif VMS::USE_TCP
         socket = TCPSocket.new(host, port)
       else
         socket = UDPSocket.new

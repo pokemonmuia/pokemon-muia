@@ -472,7 +472,8 @@ MenuHandlers.add(:pause_menu, :vms, {
     if VMS::USE_EXTERNAL_SERVER
       # When external server is enabled, show Local Play / Online Play choice
       mode_choices = ["Zogo in locale", "Zogo online", "Anula"]
-      mode_choice = VMS.message(_INTL("Siegli come zogar:"), mode_choices)
+      # Nel browser el zogo in locale no ghe xe (serve un server su 'sto dispositivo)
+      mode_choice = VMS.web? ? 1 : VMS.message(_INTL("Siegli come zogar:"), mode_choices)
 
       case mode_choice
       when 0 # Local Play (Integrated Server)
@@ -504,10 +505,11 @@ MenuHandlers.add(:pause_menu, :vms, {
       when 1 # Online Play (External Server)
         $game_temp.vms[:using_external_server] = true
         choices = ["Crea un grupo", "Varda i grupi", "Anula"]
-        choice = VMS.message(VMS::MENU_CHOICES_MESSAGE, choices)
+        # Nel browser se va sempre nel grupo 0 (el server ga un grupo solo)
+        choice = VMS.web? ? 0 : VMS.message(VMS::MENU_CHOICES_MESSAGE, choices)
         case choice
         when 0 # Create cluster
-          VMS.join(rand(10000...99999))
+          VMS.join(VMS.web? ? 0 : rand(10000...99999))
         when 1 # Browse clusters
           # Get cluster list from server
           clusters = VMS.get_cluster_list

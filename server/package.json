@@ -1,0 +1,9 @@
+{
+  "name": "muia-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ponte WebSocket <-> UDP davanti al server multiplayer de Pokémon Muia",
+  "main": "ponte.js",
+  "scripts": { "start": "node ponte.js" },
+  "dependencies": { "ws": "^8.18.0" }
+}
