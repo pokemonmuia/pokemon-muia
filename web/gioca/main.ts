@@ -1063,40 +1063,59 @@ window.addEventListener("blur", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Ponte de rete (PROVA): el motor del browser no gà socket, quindi el zogo e la
-// pagina se parla tramite file nella cartela temporanea de la memoria del motor
-// (/tmp/muia). Qua, par ora, solo un "eco": se el zogo scrive /tmp/muia/out.txt
-// la pagina risponde in /tmp/muia/in.txt. Serve a misurar se funziona e quanto
+// Ponte de rete (PROVA): el motor del browser no gà socket e la memoria
+// temporanea (/tmp) no se pol scriver da dentro el zogo. L'unico posto dove el
+// zogo scrive xe la cartela dei salvataggi (OPFS), che anca la pagina la vede.
+// Par ora solo un "eco": se el zogo scrive muia_out.txt la pagina risponde in
+// muia_in.txt (con "#fine" in fondo). Serve a misurar se funziona e quanto
 // ghe mete.
 // ---------------------------------------------------------------------------
 {
-  const PONTE = "/tmp/muia";
-  const fsPonte: any = nostalgist.getEmscriptenFS();
-  const preparaCartela = () => {
-    if (!fsPonte.analyzePath(PONTE).exists) {
-      fsPonte.mkdirTree(PONTE);
+  let cartellaPonte: CartellaOpfs | null = null;
+  let occupato = false;
+  console.log("ponte: pagina con ponte 1.08");
+  setInterval(async () => {
+    if (occupato || opfs === null || opfs === undefined) {
+      return;
     }
-    if (!fsPonte.analyzePath(PONTE + "/pagina.txt").exists) {
-      fsPonte.writeFile(PONTE + "/pagina.txt", "ponte-1.07");
-    }
-  };
-  console.log("ponte: pagina con ponte 1.07");
-  setInterval(() => {
+    occupato = true;
     try {
-      preparaCartela();
-      if (!fsPonte.analyzePath(PONTE + "/out.txt").exists) {
-        return;
+      if (cartellaPonte === null) {
+        const saves = await trovaCartellaSaves();
+        const candidate: CartellaOpfs[] = [saves];
+        for await (const [, handle] of saves.entries()) {
+          if (handle.kind === "directory") {
+            candidate.push(handle);
+          }
+        }
+        for (const c of candidate) {
+          try {
+            await c.getFileHandle("muia_out.txt");
+            cartellaPonte = c;
+            break;
+          } catch (err) {
+            // non qua
+          }
+        }
       }
-      const testo: string = fsPonte.readFile(PONTE + "/out.txt", {
-        encoding: "utf8",
-      });
-      fsPonte.unlink(PONTE + "/out.txt");
-      fsPonte.writeFile(
-        PONTE + "/in.txt",
-        "eco|" + testo + "|" + Date.now(),
-      );
+      if (cartellaPonte !== null) {
+        try {
+          const fh = await cartellaPonte.getFileHandle("muia_out.txt");
+          const testo: string = await (await fh.getFile()).text();
+          await cartellaPonte.removeEntry("muia_out.txt");
+          const w = await (
+            await cartellaPonte.getFileHandle("muia_in.txt", { create: true })
+          ).createWritable();
+          await w.write("eco|" + testo + "|" + Date.now() + "|#fine");
+          await w.close();
+        } catch (err) {
+          // niente da fare per ora (file non ancora scrito, o in uso)
+        }
+      }
     } catch (err) {
       console.error("ponte:", err);
+    } finally {
+      occupato = false;
     }
   }, 50);
 }
