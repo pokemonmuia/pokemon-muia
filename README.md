@@ -114,6 +114,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **15112026** **El zogo se zoga online** dal link https://pokemonmuia.github.io/pokemon-muia/gioca/ (computer e telefono, coi tasti a schermo), e el se aggiorna da solo a ogni push su `main`. Tuto spiegà in [Zogar online](#zogar-online).
 - **17112026** **Versioni e salvataggi**: el zogo desso ga un numero de versione (`version.txt`, se parti dalla **1.01**) che se vedi nel titolo e che cressi de 0.01 a ogni push. I salvataggi fati con una versione vecia se verzi ancora: prima de cambiarli el zogo ghe fa una copia (`Game.rxdata.v<versione>.bak`) e, se servi, el li sistema con le "conversioni" del plugin novo **Muia Aggiornamenti**. Per ricompilar i plugin senza RPG Maker: `ruby Strumenti/compila_plugin.rb`.
 - **17112026** **Copia dei salvataggi nel browser**: nella schermata de **Gioca** (versione web) ghe xe i botoni *Salva una copia dei salvataggi* e *Carica una copia*. Cussì se pol far un backup, o portar i salvataggi su un altro telefono o computer, anca se se cancela i dati del sito. Versione 1.02.
+- **17112026** **App sul telefono**: la pagina de **Gioca** desso se pol instalar come app (su Chrome: menù ⋮ → *Installa app* / *Aggiungi a schermata Home*) e se verzi anca senza connession. Co ghe xe la rete se ciapa sempre la versione più nova, senza dover svodar la cache; senza rete se usa l'ultima copia. El zogo e i salvataggi i resta dove i iera. Versione 1.03.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

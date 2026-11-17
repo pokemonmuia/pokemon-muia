@@ -153,6 +153,10 @@ jobs:
           cp ../../gioco/web/gioca/main.ts src/main.ts
           npm install
           node update-env.ts
+          # File dell'app installabile (programma in background, manifest, icone)
+          for f in sw.js manifest.webmanifest icon-192.png icon-512.png icon-maskable-512.png apple-touch-icon.png; do
+            cp ../../gioco/web/gioca/$f public/$f
+          done
           npx vite build
           cp node_modules/coi-serviceworker/coi-serviceworker.min.js dist/
 

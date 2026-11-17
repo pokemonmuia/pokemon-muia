@@ -10,6 +10,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-title" content="Pokémon Muia" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>Pokémon Muia</title>
     <style>
       html,
@@ -326,9 +329,65 @@
     </style>
   </head>
   <body>
-    <script src="./coi-serviceworker.min.js"></script>
     <script>
-      // Tiene sveglio coi-serviceworker.js mentre scarica file grandi (Firefox)
+      // Programma in background (sw.js): dà al motore le intestazioni COOP/COEP
+      // che gli servono e tiene una copia della pagina per l'uso senza rete.
+      (() => {
+        const n = navigator;
+        if (!n.serviceWorker || !window.isSecureContext) {
+          return;
+        }
+        if (n.serviceWorker.controller) {
+          n.serviceWorker.controller.postMessage({
+            type: "coepCredentialless",
+            value: !(window.chrome || window.netscape),
+          });
+        }
+        n.serviceWorker.register("./sw.js").then(
+          async (registration) => {
+            // Alla prima apertura la pagina non è ancora "isolata": serve
+            // ricaricarla una volta, ma solo quando il programma è attivo
+            // (se si ricarica prima, la pagina arriva ancora senza di lui).
+            if (window.crossOriginIsolated !== false) {
+              return;
+            }
+            let ricariche = 0;
+            try {
+              ricariche = Number(sessionStorage.getItem("muia-sw-ricariche") || 0);
+            } catch (err) {
+              // sessionStorage non disponibile: si va avanti senza contare
+            }
+            if (ricariche >= 3) {
+              return; // non girare all'infinito se qualcosa non va
+            }
+            const sw = registration.installing || registration.waiting || registration.active;
+            if (sw && sw.state !== "activated") {
+              const attivo = await new Promise((resolve) => {
+                sw.addEventListener("statechange", () => {
+                  if (sw.state === "activated") {
+                    resolve(true);
+                  } else if (sw.state === "redundant") {
+                    resolve(false);
+                  }
+                });
+              });
+              if (!attivo) {
+                return;
+              }
+            }
+            try {
+              sessionStorage.setItem("muia-sw-ricariche", String(ricariche + 1));
+            } catch (err) {
+              // vedi sopra
+            }
+            location.reload();
+          },
+          (err) => console.error("sw.js non registrato:", err),
+        );
+      })();
+    </script>
+    <script>
+      // Tiene sveglio sw.js mentre scarica file grandi (Firefox)
       if (navigator.serviceWorker && navigator.serviceWorker.controller !== null) {
         setInterval(() => {
           navigator.serviceWorker.controller.postMessage({ type: "heartbeat" });
