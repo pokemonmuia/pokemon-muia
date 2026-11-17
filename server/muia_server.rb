@@ -10,7 +10,12 @@ require "zlib"
 require "time"
 
 RADICE = File.expand_path("..", __dir__)
-PLUGIN = File.join(RADICE, "Plugins", "Voltseon's Multiplayer Solution")
+# Nel repo i file xe nel plugin; nel container Docker i xe copiai in ./plugin
+PLUGIN = [
+  File.join(RADICE, "Plugins", "Voltseon's Multiplayer Solution"),
+  File.join(RADICE, "plugin")
+].find { |cartela| File.exist?(File.join(cartela, "001_Base", "001_VMS_Config.rb")) }
+abort("Non trovo i file del plugin") if PLUGIN.nil?
 
 # Piccole cose de Essentials che el plugin dopra solo per scriver nella console
 def echoln(testo)
