@@ -45,7 +45,13 @@ module MuiaProvaRete
       s.close
       "mandai #{n} byte"
     end
-    righe << prova("cartela /tmp/muia") { Dir.exist?("/tmp/muia").inspect }
+    righe << prova("cartela corente") { Dir.pwd }
+    righe << prova("/tmp esiste") { Dir.exist?("/tmp").inspect }
+    righe << prova("/tmp/muia esiste") { Dir.exist?("/tmp/muia").inspect }
+    righe << prova("/tmp/muia/pagina.txt") { File.read("/tmp/muia/pagina.txt") }
+    righe << prova("creo /tmp/muia") { Dir.mkdir("/tmp") unless Dir.exist?("/tmp"); Dir.mkdir("/tmp/muia") unless Dir.exist?("/tmp/muia"); "ok" }
+    righe << prova("scrivo /tmp/prova.txt") { File.write("/tmp/prova.txt", "x").to_s }
+    righe << prova("scrivo cartela dei salvataggi") { File.write(System.data_directory + "/prova_rete.tmp", "x").to_s }
     3.times do |i|
       righe << prova("ponte eco #{i + 1}") do
         File.delete("/tmp/muia/in.txt") if File.exist?("/tmp/muia/in.txt")

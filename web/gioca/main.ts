@@ -1072,13 +1072,18 @@ window.addEventListener("blur", () => {
 {
   const PONTE = "/tmp/muia";
   const fsPonte: any = nostalgist.getEmscriptenFS();
-  try {
-    fsPonte.mkdirTree(PONTE);
-  } catch (err) {
-    console.error("ponte: cartela non creada", err);
-  }
+  const preparaCartela = () => {
+    if (!fsPonte.analyzePath(PONTE).exists) {
+      fsPonte.mkdirTree(PONTE);
+    }
+    if (!fsPonte.analyzePath(PONTE + "/pagina.txt").exists) {
+      fsPonte.writeFile(PONTE + "/pagina.txt", "ponte-1.07");
+    }
+  };
+  console.log("ponte: pagina con ponte 1.07");
   setInterval(() => {
     try {
+      preparaCartela();
       if (!fsPonte.analyzePath(PONTE + "/out.txt").exists) {
         return;
       }
