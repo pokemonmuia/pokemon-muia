@@ -44,7 +44,8 @@ VMS::IntegratedServer::Server.class_eval do
     @host = ENV["VMS_HOST"] || "127.0.0.1"
     @clusters = {}
     @clients = {}
-    @tick_rate = VMS::TICK_RATE
+    # el browser manda e riceve meno spesso (vedi TICK_RATE_WEB): cussì el zogo no se intasa
+    @tick_rate = (ENV["VMS_TICK_RATE"] || VMS::TICK_RATE_WEB).to_i
     @heartbeat_timeout = VMS::HEARTBEAT_TIMEOUT
     @use_tcp = false
     @socket = UDPSocket.new

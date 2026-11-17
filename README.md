@@ -122,6 +122,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **17112026** **Prova rete 4**: la "Prova rete" desso prova el ponte tra zogo e pagina dentro la cartela dei salvataggi, con messaggi più curti. Versione 1.08.
 - **17112026** **Prova rete 5**: el ponte tra zogo e pagina desso dopra un nome novo par ogni messagio e la prova mostra cossa vedi nella cartela. Versione 1.09.
 - **17112026** **Multiplayer nel browser**: el zogo online ora funziona anca dal browser e dal telefono, tramite un server (cartela `server/`) e un ponte tra zogo e pagina. Tolta la "Prova rete". Nel menù *Zogo insieme* dal browser ghe xe solo *Zogo online*. Versione 1.10.
+- **17112026** **Multiplayer nel browser più leggero**: el zogo online dal browser manda e riceve meno spesso (10 volte al secondo) e legge la cartela dei file con meno fatica, cussì el va meno a scatti. Versione 1.12.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

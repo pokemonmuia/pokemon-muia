@@ -39,6 +39,8 @@ module VMS
   # ===========
   # How many times per second to send packets. (can't be higher than the server's tick rate) (set to 0 to disable)
   TICK_RATE = 30
+  # Nel browser el zogo xe più lento: se manda meno spesso (anca el server de Render el risponde a questo ritmo)
+  TICK_RATE_WEB = 10
   # Whether or not to handle more packets. If this is set to false you will only receive the latest packet, being faster but more snappy.
   HANDLE_MORE_PACKETS = true
   # This is the delay where packet recency bias will be offset. Meaning if HANDLE_MORE_PACKETS is false, you will receive the latest packet that was sent within this delay. (in seconds)

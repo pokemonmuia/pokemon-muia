@@ -37,6 +37,7 @@ module VMS
     CODA_MAX = 4        # messagi in attesa de partir: oltre, i se perde (come in UDP)
     ARRETRATI_MAX = 8   # messagi ricevui in ritardo: oltre, se tien solo i ultimi
     ATTESA_MAX = 150    # secondi par conetarse (el server gratuito se svegia in ~1 minuto)
+    POLL_FRAME = 3      # ogni quanti fotogrammi se controla la cartela (leggerla costa)
 
     def initialize(cartela = nil)
       @dir = cartela || System.data_directory
@@ -48,6 +49,8 @@ module VMS
       @generazion = 0
       @pendenti = {}
       @chiuso = false
+      @frame = 0
+      @coda = []          # messagi ricevui e ancora da consegnar al plugin
     end
 
     # ---- come un socket ---------------------------------------------------
@@ -63,21 +66,30 @@ module VMS
     end
 
     def read_nonblock(_massimo = 65536, exception: true)
-      aggiorna_elenco
-      # Se la pagina dise che la conession xe cascà, avisemo el plugin
-      # (che se spetta un messagio compresso)
-      if !@chiuso && stato =~ /\A(chiuso|erore)/
-        return Zlib::Deflate.deflate(Marshal.dump(:disconnect), Zlib::BEST_SPEED)
+      @frame += 1
+      # La cartela se controla solo ogni POLL_FRAME fotogrammi: nel browser
+      # leggere la cartela e i file xe la roba che pesa de più.
+      if @frame % POLL_FRAME == 0
+        aggiorna_elenco
+        # Se la pagina dise che la conession xe cascà, avisemo el plugin
+        # (che se spetta un messagio compresso)
+        if !@chiuso && !@avisato && stato =~ /\A(chiuso|erore)/
+          @avisato = true
+          @coda.unshift(Zlib::Deflate.deflate(Marshal.dump(:disconnect), Zlib::BEST_SPEED))
+        end
+        ricevui = @elenco.select { |n| n.start_with?("muia_in_#{@sigla}_") }.sort
+        ricevui = ricevui.select { |n| numero(n) > @ultimo_in }
+        ricevui = ricevui.last(2) if ricevui.size > ARRETRATI_MAX
+        ricevui.each do |nome|
+          dati = File.binread(File.join(@dir, nome))
+          break unless dati.end_with?(FINE)   # ancora in scritura: al prossimo giro
+          @ultimo_in = numero(nome)
+          @coda << dati[0...-FINE.bytesize]
+        end
+        @coda = @coda.last(2) if @coda.size > ARRETRATI_MAX
       end
-      ricevui = @elenco.select { |n| n.start_with?("muia_in_#{@sigla}_") }.sort
-      ricevui = ricevui.select { |n| numero(n) > @ultimo_in }
-      return :wait_readable if ricevui.empty?
-      ricevui = ricevui.last(2) if ricevui.size > ARRETRATI_MAX
-      nome = ricevui.first
-      dati = File.binread(File.join(@dir, nome))
-      return :wait_readable unless dati.end_with?(FINE)   # ancora in scritura
-      @ultimo_in = numero(nome)
-      return dati[0...-FINE.bytesize]
+      return :wait_readable if @coda.empty?
+      return @coda.shift
     end
 
     def close

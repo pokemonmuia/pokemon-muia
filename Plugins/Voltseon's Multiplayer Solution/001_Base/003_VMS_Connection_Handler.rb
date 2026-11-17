@@ -85,7 +85,8 @@ module VMS
     # Actually communicate with the server
     begin
       # Send update message
-      if VMS::TICK_RATE == 0 || Graphics.frame_count % (60 / VMS::TICK_RATE) == 0
+      tick = VMS.web? ? VMS::TICK_RATE_WEB : VMS::TICK_RATE
+      if tick == 0 || Graphics.frame_count % (60 / tick) == 0
         send_data = VMS.generate_player_data
         own_player = VMS.get_self
         update_data = own_player.nil? ? send_data : send_data.reject do |key, value|
