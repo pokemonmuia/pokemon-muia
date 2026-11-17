@@ -1062,4 +1062,38 @@ window.addEventListener("blur", () => {
   keyHeld.clear();
 });
 
+// ---------------------------------------------------------------------------
+// Ponte de rete (PROVA): el motor del browser no gà socket, quindi el zogo e la
+// pagina se parla tramite file nella cartela temporanea de la memoria del motor
+// (/tmp/muia). Qua, par ora, solo un "eco": se el zogo scrive /tmp/muia/out.txt
+// la pagina risponde in /tmp/muia/in.txt. Serve a misurar se funziona e quanto
+// ghe mete.
+// ---------------------------------------------------------------------------
+{
+  const PONTE = "/tmp/muia";
+  const fsPonte: any = nostalgist.getEmscriptenFS();
+  try {
+    fsPonte.mkdirTree(PONTE);
+  } catch (err) {
+    console.error("ponte: cartela non creada", err);
+  }
+  setInterval(() => {
+    try {
+      if (!fsPonte.analyzePath(PONTE + "/out.txt").exists) {
+        return;
+      }
+      const testo: string = fsPonte.readFile(PONTE + "/out.txt", {
+        encoding: "utf8",
+      });
+      fsPonte.unlink(PONTE + "/out.txt");
+      fsPonte.writeFile(
+        PONTE + "/in.txt",
+        "eco|" + testo + "|" + Date.now(),
+      );
+    } catch (err) {
+      console.error("ponte:", err);
+    }
+  }, 50);
+}
+
 await nostalgist.start();

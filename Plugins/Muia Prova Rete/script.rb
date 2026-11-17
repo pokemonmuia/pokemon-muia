@@ -45,12 +45,25 @@ module MuiaProvaRete
       s.close
       "mandai #{n} byte"
     end
-    mostra(righe)
-    if pbConfirmMessage("Provo anca el TCP. Se el zogo se bloca, ricarica la pagina. Vao avanti?")
-      righe << prova("TCP a 127.0.0.1:9") { TCPSocket.new("127.0.0.1", 9).close; "conetù" }
-      righe << prova("TCP a #{VMS::EXTERNALHOST}") { TCPSocket.new(VMS::EXTERNALHOST, VMS::EXTERNALPORT).close; "conetù" }
-      mostra(righe.last(2))
+    righe << prova("cartela /tmp/muia") { Dir.exist?("/tmp/muia").inspect }
+    3.times do |i|
+      righe << prova("ponte eco #{i + 1}") do
+        File.delete("/tmp/muia/in.txt") if File.exist?("/tmp/muia/in.txt")
+        File.write("/tmp/muia/out.txt", "ciao#{i}")
+        t0 = Time.now
+        risposta = nil
+        while Time.now - t0 < 5
+          Graphics.update
+          if File.exist?("/tmp/muia/in.txt")
+            risposta = File.read("/tmp/muia/in.txt")
+            break
+          end
+        end
+        raise "nissuna risposta in 5 secondi" if risposta.nil?
+        risposta
+      end
     end
+    mostra(righe)
     salva(righe)
     pbMessage("Test finì. Scrivi a Claude cossa te vedi.")
   end
