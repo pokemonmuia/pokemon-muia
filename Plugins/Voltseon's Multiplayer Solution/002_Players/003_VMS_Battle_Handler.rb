@@ -42,7 +42,7 @@ module VMS
 
       # Sync selection - send the party array directly (no serialization)
       $game_temp.vms[:state] = [:battle_selection, player.id, new_party]
-      if !VMS.await_player_state(player, :battle_selection, _INTL("Waiting for {1} to select Pokémon...", player.name), true, true)
+      if !VMS.await_player_state(player, :battle_selection, _INTL("Speto che {1} el sielgi i Pokémon...", player.name), true, true)
         $game_temp.vms[:state] = [:idle, nil]
         return
       end
@@ -51,7 +51,7 @@ module VMS
 
       # Validate opponent party
       if filtered_opponent_party.nil? || !filtered_opponent_party.is_a?(Array) || filtered_opponent_party.empty?
-        VMS.message(_INTL("Unable to start battle - opponent has no valid Pokémon."))
+        VMS.message(_INTL("No se pol scominsiar la lota: l'avversario no ga Pokémon validi."))
         $game_temp.vms[:state] = [:idle, nil]
         return
       end
@@ -74,7 +74,7 @@ module VMS
       $game_temp.vms[:state] = [:idle, nil]
       VMS.sync_seed
     rescue StandardError => e
-      VMS.message(_INTL("An error has occurred: {1}", e.message))
+      VMS.message(_INTL("Xe sucedù un eror: {1}", e.message))
       $player.party = old_party if old_party
       $game_temp.vms[:state] = [:idle, nil]
     end
@@ -237,14 +237,14 @@ class Battle
       loop do
         player = VMS.get_player($game_temp.vms[:state][1])
         if player.nil?
-          @battle.pbDisplayPaused(_INTL("{1} has disconnected...", player_name))
+          @battle.pbDisplayPaused(_INTL("{1} el se ga desconetù...", player_name))
           @battle.decision = 1
           msgwindow.visible = false
           msgwindow.setText("")
           return -1
         end
         if !VMS.is_connected?
-          @battle.pbDisplayPaused(_INTL("You have disconnected..."))
+          @battle.pbDisplayPaused(_INTL("Te te son desconetù..."))
           @battle.decision = 2
           msgwindow.visible = false
           msgwindow.setText("")
@@ -262,7 +262,7 @@ class Battle
         if msgwindow.text == ""
           @battle.scene.pbShowWindow(Battle::Scene::MESSAGE_BOX)
           msgwindow.visible = true
-          msgwindow.setText(_INTL("Waiting for {1} to select a new Pokémon...", player.name))
+          msgwindow.setText(_INTL("Speto che {1} el sielgi un Pokémon novo...", player.name))
           while msgwindow.busy?
             @battle.scene.pbUpdate(msgwindow)
           end
@@ -281,14 +281,14 @@ class Battle
       loop do
         player = VMS.get_player(player_info.id)
         if player.nil?
-          @battle.pbDisplayPaused(_INTL("{1} has disconnected...", player_name))
+          @battle.pbDisplayPaused(_INTL("{1} el se ga desconetù...", player_name))
           @battle.decision = 1
           msgwindow.visible = false
           msgwindow.setText("")
           return
         end
         if !VMS.is_connected?
-          @battle.pbDisplayPaused(_INTL("You have disconnected..."))
+          @battle.pbDisplayPaused(_INTL("Te te son desconetù..."))
           @battle.decision = 2
           msgwindow.visible = false
           msgwindow.setText("")
@@ -297,7 +297,7 @@ class Battle
         if player.state&.length >= 1 && player.state[0] == :idle
           msgwindow.visible = false
           msgwindow.setText("")
-          @battle.pbDisplayPaused(_INTL("{1} has forfeited.", player_name))
+          @battle.pbDisplayPaused(_INTL("{1} el se ga arso.", player_name))
           @battle.decision = 1
           return
         end
@@ -376,7 +376,7 @@ class Battle
         if msgwindow.text == ""
           @battle.scene.pbShowWindow(Battle::Scene::MESSAGE_BOX)
           msgwindow.visible = true
-          msgwindow.setText(_INTL("Waiting for {1} to select a move...", player_name))
+          msgwindow.setText(_INTL("Speto che {1} el sielgi una mossa...", player_name))
           while msgwindow.busy?
             @battle.scene.pbUpdate(msgwindow)
           end

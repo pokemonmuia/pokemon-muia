@@ -51,7 +51,7 @@ module VMS
         return
       end
       trade_pokemon = party[trade_pokemon_index]
-      choices = [_INTL("Confirm Trade"), _INTL("Check my Pokémon"), _INTL("Check {1}'s Pokémon", player.name), _INTL("Cancel")]
+      choices = [_INTL("Conferma lo scambio"), _INTL("Varda i mii Pokémon"), _INTL("Varda i Pokémon de {1}", player.name), _INTL("Anula")]
       loop do
         choice = VMS.message(_INTL(VMS::TRADE_CONFIRMATION_MESSAGE, pokemon_name, trade_pokemon_name), choices, -1)
         case choice
@@ -88,9 +88,9 @@ module VMS
       $game_temp.vms[:state] = [:idle, nil]
 
       if Game.save
-        VMS.message("\\se[]" + _INTL("{1} saved the game.", $player.name) + "\\me[GUI save game]\\wtnp[30]")
+        VMS.message("\\se[]" + _INTL("{1} el ga salvà el zogo.", $player.name) + "\\me[GUI save game]\\wtnp[30]")
       else
-        VMS.message("\\se[]" + _INTL("Save failed.") + "\\wtnp[30]")
+        VMS.message("\\se[]" + _INTL("Salvataggio fallì.") + "\\wtnp[30]")
       end
     end
   rescue StandardError => e

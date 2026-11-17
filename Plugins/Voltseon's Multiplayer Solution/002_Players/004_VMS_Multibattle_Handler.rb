@@ -49,10 +49,10 @@ module VMS
   }
 
   MB_SLOT_LABELS = {
-    [0,0] => "Team 0 (Slot A)",
-    [0,1] => "Team 0 (Slot B)",
-    [1,0] => "Team 1 (Slot A)",
-    [1,1] => "Team 1 (Slot B)"
+    [0,0] => "Scuadra 0 (Posto A)",
+    [0,1] => "Scuadra 0 (Posto B)",
+    [1,0] => "Scuadra 1 (Posto A)",
+    [1,1] => "Scuadra 1 (Posto B)"
   }
 
   # -------------------------------------------------------------------------
@@ -223,7 +223,7 @@ module VMS
       filled = lb[:slots].values.count { |s| !s.nil? }
       "Lobby #{lb[:lobby_id]} (#{filled}/4)"
     end
-    choices << VMS::MB_CREATE_LOBBY_OPTION << _INTL("Cancel")
+    choices << VMS::MB_CREATE_LOBBY_OPTION << _INTL("Anula")
     choice = VMS.message(VMS::MB_MENU_TITLE, choices)
     return if choice.nil? || choice == choices.length - 1
     if choice < lobbies.length
@@ -236,7 +236,7 @@ module VMS
   # Create a new lobby. The creator picks their team and always takes slot 0.
   def self.create_multibattle_lobby
     lobby_id = rand(10000...99999)
-    team_choices = [VMS::MB_TEAM_0_SLOT_0, VMS::MB_TEAM_1_SLOT_0, _INTL("Cancel")]
+    team_choices = [VMS::MB_TEAM_0_SLOT_0, VMS::MB_TEAM_1_SLOT_0, _INTL("Anula")]
     choice = VMS.message(VMS::MB_SELECT_TEAM_MESSAGE, team_choices)
     return if choice.nil? || choice == 2
     team_idx = choice   # 0 → Team 0, 1 → Team 1
@@ -258,7 +258,7 @@ module VMS
     end
     open_slots = [[0,0],[0,1],[1,0],[1,1]].select { |pair| lobby_data[:slots][pair].nil? }
     slot_choices = open_slots.map { |t,s| VMS::MB_SLOT_LABELS[[t,s]] || "Team #{t} Slot #{s}" }
-    slot_choices << _INTL("Cancel")
+    slot_choices << _INTL("Anula")
     choice = VMS.message(VMS::MB_SELECT_TEAM_MESSAGE, slot_choices)
     return if choice.nil? || choice == open_slots.length
     team_idx, slot_idx = open_slots[choice]
@@ -292,7 +292,7 @@ module VMS
           lines << "#{slot_label}: <empty>"
         end
       end
-      lines << "" << "Press BACK to leave"
+      lines << "" << "Struca B par ndar fora"
       msgwindow.setText(lines.join("\n"))
       msgwindow.update
       # Cancel
@@ -600,14 +600,14 @@ class Battle
 
         # Disconnect / forfeit detection
         if remote_player.nil? || remote_player.state[0] == :idle
-          @battle.pbDisplayPaused(_INTL("{1} has disconnected.", remote_name))
+          @battle.pbDisplayPaused(_INTL("{1} el se ga desconetù.", remote_name))
           @battle.decision = 1
           msgwindow.visible = false
           msgwindow.setText("")
           return
         end
         unless VMS.is_connected?
-          @battle.pbDisplayPaused(_INTL("You have disconnected..."))
+          @battle.pbDisplayPaused(_INTL("Te te son desconetù..."))
           @battle.decision = 2
           msgwindow.visible = false
           msgwindow.setText("")
@@ -626,7 +626,7 @@ class Battle
         if msgwindow.text.to_s == ""
           @battle.scene.pbShowWindow(Battle::Scene::MESSAGE_BOX)
           msgwindow.visible = true
-          msgwindow.setText(_INTL("Waiting for {1}...", remote_name))
+          msgwindow.setText(_INTL("Speto {1}...", remote_name))
           while msgwindow.busy?
             @battle.scene.pbUpdate(msgwindow)
           end
@@ -650,14 +650,14 @@ class Battle
         remote_player = VMS.mb_get_player_for_global_battler(global_idx)
 
         if remote_player.nil? || remote_player.state[0] == :idle
-          @battle.pbDisplayPaused(_INTL("{1} has disconnected.", remote_name))
+          @battle.pbDisplayPaused(_INTL("{1} el se ga desconetù.", remote_name))
           @battle.decision = 1
           msgwindow.visible = false
           msgwindow.setText("")
           return -1
         end
         unless VMS.is_connected?
-          @battle.pbDisplayPaused(_INTL("You have disconnected..."))
+          @battle.pbDisplayPaused(_INTL("Te te son desconetù..."))
           @battle.decision = 2
           msgwindow.visible = false
           msgwindow.setText("")
@@ -682,7 +682,7 @@ class Battle
         if msgwindow.text.to_s == ""
           @battle.scene.pbShowWindow(Battle::Scene::MESSAGE_BOX)
           msgwindow.visible = true
-          msgwindow.setText(_INTL("Waiting for {1} to pick a Pokémon...", remote_name))
+          msgwindow.setText(_INTL("Speto che {1} el sielgi un Pokémon...", remote_name))
           while msgwindow.busy?
             @battle.scene.pbUpdate(msgwindow)
           end

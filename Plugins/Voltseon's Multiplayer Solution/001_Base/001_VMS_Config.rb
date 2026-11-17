@@ -3,11 +3,11 @@ module VMS
   # Debug
   # ===========
 
-  # If true, the menu will show "Local Play" and "Online Play" options.
+  # If true, the menu will show "Zogo in locale" and "Zogo online" options.
   # If false, only integrated server (local play) options will be available.
   USE_EXTERNAL_SERVER = true
 
-  # External server connection settings (used when "Online Play" is selected)
+  # External server connection settings (used when "Zogo online" is selected)
   EXTERNALHOST = "functions-explorer.gl.at.ply.gg"
   
   #EXTERNALHOST = "127.0.0.1"
@@ -77,7 +77,7 @@ module VMS
   # Whether or not VMS is accessible. (set to 'proc { next true }' to always be accessible) (only used if ACCESSIBLE_FROM_PAUSE_MENU is true)
   ACCESSIBLE_PROC = proc { next true }
   # The name of the VMS option in the pause menu. (only used if ACCESSIBLE_FROM_PAUSE_MENU is true)
-  MENU_NAME = "Link Play"
+  MENU_NAME = "Zogo insieme"
   # Whether or not to show the cluster ID in the pause menu.
   SHOW_CLUSTER_ID_IN_PAUSE_MENU = true
   
@@ -104,7 +104,7 @@ module VMS
   # Maximum seconds to wait for all players to ready up once 4 slots are filled.
   MB_READY_TIMEOUT = 60
   # The name of the Multi Battle option in the pause menu.
-  MB_MENU_NAME = "Multi Battle"
+  MB_MENU_NAME = "Lota a quatro"
 
   # ===========
   # Methods

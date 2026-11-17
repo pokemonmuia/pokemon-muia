@@ -158,7 +158,7 @@ module VMS
     end
     # What do we do now?
     loop do
-      choice = VMS.message(VMS::INTERACTION_CHOICE, ["Swap", "Trade", "Battle", "Cancel"])
+      choice = VMS.message(VMS::INTERACTION_CHOICE, ["Swap", "Trade", "Battle", "Anula"])
       case choice
       when 0 # Swap
         # Set state to interact with player
@@ -207,15 +207,15 @@ module VMS
           next
         end
         # Select battle type
-        battle_type_choice = VMS.message(VMS::SELECT_BATTLE_TYPE_MESSAGE, [VMS::BATTLE_TYPE_SINGLE, VMS::BATTLE_TYPE_DOUBLE, _INTL("Cancel")])
+        battle_type_choice = VMS.message(VMS::SELECT_BATTLE_TYPE_MESSAGE, [VMS::BATTLE_TYPE_SINGLE, VMS::BATTLE_TYPE_DOUBLE, _INTL("Anula")])
         case battle_type_choice
         when 0 then type = :single
         when 1 then type = :double
         else next
         end
         # Select party size
-        size_choices = (type == :single) ? [VMS::PARTY_SIZE_3, VMS::PARTY_SIZE_6, _INTL("No Limit")] : [VMS::PARTY_SIZE_4, VMS::PARTY_SIZE_6, _INTL("No Limit")]
-        size_choice = VMS.message(VMS::SELECT_PARTY_SIZE_MESSAGE, size_choices + [_INTL("Cancel")])
+        size_choices = (type == :single) ? [VMS::PARTY_SIZE_3, VMS::PARTY_SIZE_6, _INTL("Sensa limite")] : [VMS::PARTY_SIZE_4, VMS::PARTY_SIZE_6, _INTL("Sensa limite")]
+        size_choice = VMS.message(VMS::SELECT_PARTY_SIZE_MESSAGE, size_choices + [_INTL("Anula")])
         if size_choice == size_choices.length
           next
         end

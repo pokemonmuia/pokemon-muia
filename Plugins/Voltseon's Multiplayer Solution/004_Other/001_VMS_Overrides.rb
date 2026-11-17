@@ -386,7 +386,7 @@ class PokemonPauseMenu
   def pbShowInfo
     vms_pbShowInfo
     if VMS.is_connected? && VMS::SHOW_CLUSTER_ID_IN_PAUSE_MENU
-      @scene.pbShowInfo(_INTL("Cluster ID: {1}", VMS.get_cluster_id))
+      @scene.pbShowInfo(_INTL("Grupo: {1}", VMS.get_cluster_id))
     end
   end
 end
@@ -471,13 +471,13 @@ MenuHandlers.add(:pause_menu, :vms, {
 
     if VMS::USE_EXTERNAL_SERVER
       # When external server is enabled, show Local Play / Online Play choice
-      mode_choices = ["Local Play", "Online Play", "Cancel"]
-      mode_choice = VMS.message(_INTL("Choose a play mode:"), mode_choices)
+      mode_choices = ["Zogo in locale", "Zogo online", "Anula"]
+      mode_choice = VMS.message(_INTL("Siegli come zogar:"), mode_choices)
 
       case mode_choice
       when 0 # Local Play (Integrated Server)
         $game_temp.vms[:using_external_server] = false
-        choices = ["Host Game", "Join Server", "Cancel"]
+        choices = ["Crea la partìa", "Entra in una partìa", "Anula"]
         choice = VMS.message(VMS::MENU_CHOICES_MESSAGE, choices)
         case choice
         when 0 # Host Game
@@ -486,7 +486,7 @@ MenuHandlers.add(:pause_menu, :vms, {
           VMS.join(0)
         when 1 # Join Server
           VMS.target_host = "127.0.0.1"
-          ip = pbEnterBoxName(_INTL("Enter Server IPv4"), 0, 15, VMS.target_host)
+          ip = pbEnterBoxName(_INTL("Scrivi l'IPv4 del server"), 0, 15, VMS.target_host)
           if !ip.nil? && ip != ""
             VMS.target_host = ip
             VMS.join(0)
@@ -503,7 +503,7 @@ MenuHandlers.add(:pause_menu, :vms, {
 
       when 1 # Online Play (External Server)
         $game_temp.vms[:using_external_server] = true
-        choices = ["Create cluster", "Browse clusters", "Cancel"]
+        choices = ["Crea un grupo", "Varda i grupi", "Anula"]
         choice = VMS.message(VMS::MENU_CHOICES_MESSAGE, choices)
         case choice
         when 0 # Create cluster
@@ -525,9 +525,9 @@ MenuHandlers.add(:pause_menu, :vms, {
             # Build choice list with cluster info
             cluster_choices = []
             clusters.each do |cluster|
-              cluster_choices.push("Cluster #{cluster[:id]} (#{cluster[:player_count]}/4 players)")
+              cluster_choices.push("Grupo #{cluster[:id]} (#{cluster[:player_count]}/4 zogadori)")
             end
-            cluster_choices.push("Cancel")
+            cluster_choices.push("Anula")
 
             # Show cluster selection
             cluster_choice = VMS.message(VMS::SELECT_CLUSTER_MESSAGE, cluster_choices)
@@ -557,7 +557,7 @@ MenuHandlers.add(:pause_menu, :vms, {
     else
       # External server disabled - only show Integrated Server options
       $game_temp.vms[:using_external_server] = false
-      choices = ["Host Game", "Join Server", "Cancel"]
+      choices = ["Crea la partìa", "Entra in una partìa", "Anula"]
       choice = VMS.message(VMS::MENU_CHOICES_MESSAGE, choices)
       case choice
       when 0 # Host Game
@@ -566,7 +566,7 @@ MenuHandlers.add(:pause_menu, :vms, {
         VMS.join(0)
       when 1 # Join Server
         VMS.target_host = "127.0.0.1"
-        ip = pbEnterBoxName(_INTL("Enter Server IPv4"), 0, 15, VMS.target_host)
+        ip = pbEnterBoxName(_INTL("Scrivi l'IPv4 del server"), 0, 15, VMS.target_host)
         if !ip.nil? && ip != ""
           VMS.target_host = ip
           VMS.join(0)
@@ -588,7 +588,7 @@ MenuHandlers.add(:pause_menu, :vms, {
 })
 
 MenuHandlers.add(:pause_menu, :vms_disconnect, {
-  "name"      => "Disconnect",
+  "name"      => "Desconeti",
   "order"     => 45,
   "condition" => proc { VMS::ACCESSIBLE_PROC.call && VMS::ACCESSIBLE_FROM_PAUSE_MENU && VMS.is_connected? },
   "effect"    => proc { |menu|
