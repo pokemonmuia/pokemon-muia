@@ -116,6 +116,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **17112026** **Copia dei salvataggi nel browser**: nella schermata de **Gioca** (versione web) ghe xe i botoni *Salva una copia dei salvataggi* e *Carica una copia*. Cussì se pol far un backup, o portar i salvataggi su un altro telefono o computer, anca se se cancela i dati del sito. Versione 1.02.
 - **17112026** **App sul telefono**: la pagina de **Gioca** desso se pol instalar come app (su Chrome: menù ⋮ → *Installa app* / *Aggiungi a schermata Home*) e se verzi anca senza connession. Co ghe xe la rete se ciapa sempre la versione più nova, senza dover svodar la cache; senza rete se usa l'ultima copia. El zogo e i salvataggi i resta dove i iera. Versione 1.03.
 - **17112026** **Zogo insieme (Link Play) in dialeto**: tuti i testi del menù e dei messaggi del multiplayer (zogo in locale/online, scambi, lote, lota a quatro) desso xe in dialeto. Versione 1.04.
+- **17112026** **Prova rete (temporanea)**: nel menù de pausa ghe xe "Prova rete", che serve solo a capir se el multiplayer pol andar nel browser. Dopo el test la se toia. Versione 1.05.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
