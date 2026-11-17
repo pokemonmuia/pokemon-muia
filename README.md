@@ -41,6 +41,8 @@ Quando te le ga finide inveze te ga 1. de far ctrl+s sul zogo, ma questo za te s
 | Prima de iniziar | **Fetch origin**, dopo **Pull origin** |
 | Dopo ver finì | Ctrl+S sul zogo → scriver el **Summary** → **Commit to main** → **Push origin** |
 
+> **Versione del zogo:** el numero xe in `version.txt` (1.01, 1.02, ...) e el compar in basso a destra nel titolo. Ogni push lo alza de 0.01: se te lavori con Claude Code lo fa lu (regola in `CLAUDE.md`), se te fa push da GitHub Desktop lo alza GitHub da solo poco dopo. Per questo, **prima de lavorar fe sempre Pull origin**. No cambiar mai i numeri (ID) de mape, switch, variabili, ogeti o pokemon za esistenti: zontè quei novi in fondo, cussì i salvataggi veci funziona ancora.
+
 > **Ocio:** se lavoremo tuti e due sulla **stessa mapa** nello stesso momento, una delle due modifiche se perdi (i file delle mape no se pol unir). Disemose prima chi lavora su cosa, anca quando se crea mape nove.
 
 ### Come provar el zogo
@@ -110,6 +112,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **15112026** **Pokédex dal sindaco con la scena**: dopo la scelta del pokemon el sindaco te ciama davanti a lu, el ciol el Pokédex de drio de lu e el te lo dà; desso el Pokédex compar anca nel menu (Pokédex nazional, coi pokemon che te ga za). Lote: **Biava / Saccoccia / Pokémon / Scampa** (Saccoccia anca nel menu). Tradote le ultime frasi in inglese (la batuda de la nona resta in inglese apposta): laboratorio (cartei e balle), telefonada del sindaco (prima "Professor Oak"), meteoriti de Deoxys a Molo T, autista del Mandracchio.
 - **15112026** **Casa del zogador pulida** (Map003): via i eventi de la demo (anca quel che ativava el debug e dava tute le medaie), resta solo la mama e de sora el PC, che la prima volta ga dentro 10 Poké Ball. El **Pokédex** desso lo dà el sindaco nel laboratorio (Map004) subito dopo che te ga scelto el pokemon. Plugin novo **Muia Tasti**: stessi tasti sul computer sia online che su `Game.exe`. ⚠️ Prima de verzer RPG Maker fe *Pull origin*, se no se perdi ste modifiche a Map003 e Map004.
 - **15112026** **El zogo se zoga online** dal link https://pokemonmuia.github.io/pokemon-muia/gioca/ (computer e telefono, coi tasti a schermo), e el se aggiorna da solo a ogni push su `main`. Tuto spiegà in [Zogar online](#zogar-online).
+- **17112026** **Versioni e salvataggi**: el zogo desso ga un numero de versione (`version.txt`, se parti dalla **1.01**) che se vedi nel titolo e che cressi de 0.01 a ogni push. I salvataggi fati con una versione vecia se verzi ancora: prima de cambiarli el zogo ghe fa una copia (`Game.rxdata.v<versione>.bak`) e, se servi, el li sistema con le "conversioni" del plugin novo **Muia Aggiornamenti**. Per ricompilar i plugin senza RPG Maker: `ruby Strumenti/compila_plugin.rb`.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

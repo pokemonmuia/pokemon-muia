@@ -26,14 +26,73 @@ env:
   CORE_URL: https://white-axe.github.io/mkxp-z-libretro-emscripten/nostalgist-knight-blade-howling-of-kerberos
 
 jobs:
+  # Ogni push su main alza la versione del gioco (version.txt) di 0.01, se chi
+  # ha fatto il push non l'ha già alzata (regola in CLAUDE.md). Il commit
+  # automatico non fa ripartire questo workflow: il gioco viene impacchettato
+  # subito dopo, già con il numero nuovo.
+  versione:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.alza.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: version.txt
+          sparse-checkout-cone-mode: false
+
+      - name: Alza la versione se serve
+        id: alza
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PRIMA: ${{ github.event.before }}
+        run: |
+          adesso=$(cat version.txt 2>/dev/null || true)
+          prima=""
+          if [ -n "$PRIMA" ] && [ "$PRIMA" != "0000000000000000000000000000000000000000" ]; then
+            prima=$(gh api -H "Accept: application/vnd.github.raw" \
+              "repos/${{ github.repository }}/contents/version.txt?ref=$PRIMA" 2>/dev/null || true)
+          fi
+          nuova=$(python3 - "$prima" "$adesso" <<'EOF'
+          import re, sys
+          def leggi(t):
+              m = re.fullmatch(r"v?(\d+)\.(\d\d)", t.strip())
+              return (int(m[1]), int(m[2])) if m else None
+          prima, adesso = leggi(sys.argv[1]), leggi(sys.argv[2])
+          if adesso and (prima is None or adesso > prima):
+              print("")   # già alzata da chi ha fatto il push
+          else:
+              a, b = max(v for v in (prima, adesso, (1, 0)) if v)
+              a, b = (a + 1, 0) if b == 99 else (a, b + 1)
+              print(f"{a}.{b:02d}")
+          EOF
+          )
+          if [ -z "$nuova" ]; then
+            echo "Versione già alzata: $adesso"
+            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Versione alzata in automatico: ${prima:-?} -> $nuova"
+          echo "$nuova" > version.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Versione $nuova (automatica)" -- version.txt
+          git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
   # Impacchetta il gioco e costruisce la pagina /gioca/.
   # Se questo job fallisce il sito viene pubblicato lo stesso, senza il gioco.
   gioco:
+    needs: versione
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - name: Scarica il gioco
         uses: actions/checkout@v4
         with:
+          ref: ${{ needs.versione.outputs.sha || github.sha }}
           path: gioco
 
       - name: Scarica il player web
@@ -68,7 +127,7 @@ jobs:
           ruby web/gioca/specie_usate.rb > /tmp/escludi.txt
           xargs -d '\n' rm -f < /tmp/escludi.txt
           rpzip -r ../player/nostalgist/public/pokemon-muia.mkxpz \
-            Game.ini mkxp.json soundfont.sf2 \
+            Game.ini mkxp.json soundfont.sf2 version.txt \
             Data Graphics Audio Fonts Plugins Movies
           ls -lh ../player/nostalgist/public/pokemon-muia.mkxpz
 
