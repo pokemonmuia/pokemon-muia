@@ -123,6 +123,54 @@
         max-width: 420px;
         line-height: 1.5;
       }
+      /* Copia dei salvataggi (solo nella schermata "Gioca") */
+      #save-tools {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: max(14px, env(safe-area-inset-bottom));
+        z-index: 5;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 0 16px;
+        font-size: 13px;
+        text-align: center;
+      }
+      #save-tools .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      #save-tools button {
+        font: inherit;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 999px;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+      #save-tools button:active {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      #save-tools button:disabled {
+        opacity: 0.5;
+      }
+      #save-tools .note {
+        max-width: 460px;
+        line-height: 1.45;
+        opacity: 0.6;
+      }
+      #save-msg {
+        min-height: 1.4em;
+        opacity: 0.95;
+      }
+      #save-msg.error {
+        color: #ff8a73;
+      }
       body:not(.touch) .only-touch,
       body.touch .only-desktop {
         display: none;
@@ -307,6 +355,19 @@
       </span>
       <span class="hint only-touch">Gioca col telefono in orizzontale</span>
     </button>
+
+    <div id="save-tools">
+      <div id="save-msg" role="status"></div>
+      <div class="row">
+        <button id="save-export" type="button">Salva una copia dei salvataggi</button>
+        <button id="save-import" type="button">Carica una copia</button>
+      </div>
+      <div class="note">
+        I salvataggi resta in sto browser. Fa una copia ogni tanto: te serve se
+        te cancelli i dati del sito o se te cambi telefono o computer.
+      </div>
+      <input id="save-file" type="file" accept=".json,application/json" hidden />
+    </div>
 
     <div id="rotate" class="center">
       <div class="phone"></div>

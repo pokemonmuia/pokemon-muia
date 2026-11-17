@@ -496,11 +496,239 @@ const setStatus = (text: string | null) => {
   }
 };
 
+// ---------------------------------------------------------------------------
+// Copia dei salvataggi: scarica un file coi salvataggi e li ricarica da quel
+// file. Si fa dalla schermata "Gioca", prima che parta il motore, così nessun
+// file è in uso. I salvataggi stanno in OPFS: saves/mkxp-z/.../Saves/<gioco>/
+// ---------------------------------------------------------------------------
+const SALVATAGGI_RADICE = "saves";
+// Dove il motore mette i salvataggi (usato solo se la cartella non c'è ancora)
+const SALVATAGGI_PERCORSO = ["mkxp-z", "mkxp-z", "mkxp-z", "Saves"];
+const COPIA_FORMATO = "pokemon-muia-salvataggi";
+const COPIA_MAX_BYTE = 200 * 1024 * 1024;
+const COPIA_ESTENSIONE_VECCHIO = ".prima.bak";
+
+type CartellaOpfs = any; // FileSystemDirectoryHandle (tipi non sempre presenti)
+
+const saveToolsEl = document.getElementById("save-tools");
+const saveMsgEl = document.getElementById("save-msg");
+const saveMsg = (testo: string, errore = false) => {
+  if (saveMsgEl !== null) {
+    saveMsgEl.textContent = testo;
+    saveMsgEl.classList.toggle("error", errore);
+  }
+};
+
+const bytesInB64 = (bytes: Uint8Array) => {
+  let s = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    s += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  }
+  return btoa(s);
+};
+const b64InBytes = (b64: string) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+
+// Tutti i file dentro una cartella "Saves": percorso relativo a "Saves"
+const elencaSalvataggi = async () => {
+  const trovati: { percorso: string; handle: any }[] = [];
+  if (opfs === null) {
+    return trovati;
+  }
+  let radice: CartellaOpfs;
+  try {
+    radice = await opfs.getDirectoryHandle(SALVATAGGI_RADICE);
+  } catch (err) {
+    return trovati; // ancora nessun salvataggio
+  }
+  const visita = async (dir: CartellaOpfs, parti: string[]) => {
+    for await (const [nome, handle] of dir.entries()) {
+      if (handle.kind === "directory") {
+        await visita(handle, [...parti, nome]);
+      } else {
+        const i = parti.indexOf("Saves");
+        if (i >= 0 && !nome.endsWith(COPIA_ESTENSIONE_VECCHIO)) {
+          trovati.push({ percorso: [...parti.slice(i + 1), nome].join("/"), handle });
+        }
+      }
+    }
+  };
+  await visita(radice, []);
+  return trovati;
+};
+
+const trovaCartellaSaves = async (): Promise<CartellaOpfs> => {
+  const radice: CartellaOpfs = await opfs!.getDirectoryHandle(SALVATAGGI_RADICE, {
+    create: true,
+  });
+  const cerca = async (dir: CartellaOpfs, livello: number): Promise<CartellaOpfs | null> => {
+    for await (const [nome, handle] of dir.entries()) {
+      if (handle.kind !== "directory") {
+        continue;
+      }
+      if (nome === "Saves") {
+        return handle;
+      }
+      if (livello < 6) {
+        const trovata = await cerca(handle, livello + 1);
+        if (trovata !== null) {
+          return trovata;
+        }
+      }
+    }
+    return null;
+  };
+  const esistente = await cerca(radice, 0);
+  if (esistente !== null) {
+    return esistente;
+  }
+  let dir = radice;
+  for (const nome of SALVATAGGI_PERCORSO) {
+    dir = await dir.getDirectoryHandle(nome, { create: true });
+  }
+  return dir;
+};
+
+const scriviFile = async (dir: CartellaOpfs, nome: string, dati: Uint8Array) => {
+  const handle = await dir.getFileHandle(nome, { create: true });
+  if (typeof handle.createWritable !== "function") {
+    throw new Error("Sto browser no lassa scriver i salvataggi");
+  }
+  const w = await handle.createWritable();
+  await w.write(dati);
+  await w.close();
+};
+
+const esportaSalvataggi = async () => {
+  const files = await elencaSalvataggi();
+  if (files.length === 0) {
+    saveMsg("In sto browser no ghe xe ancora nissun salvataggio.", true);
+    return;
+  }
+  const voci: { percorso: string; dati: string }[] = [];
+  for (const f of files) {
+    const file: File = await f.handle.getFile();
+    voci.push({
+      percorso: f.percorso,
+      dati: bytesInB64(new Uint8Array(await file.arrayBuffer())),
+    });
+  }
+  const contenuto = JSON.stringify({
+    formato: COPIA_FORMATO,
+    versione: 1,
+    creato: new Date().toISOString(),
+    file: voci,
+  });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(new Blob([contenuto], { type: "application/json" }));
+  link.download = "pokemon-muia-salvataggi-" + new Date().toISOString().slice(0, 10) + ".json";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(link.href), 60_000);
+  saveMsg(
+    "Copia fata (" + files.length + (files.length === 1 ? " file" : " file") +
+      "). La trovi nei file scaricai.",
+  );
+};
+
+const percorsoValido = (p: unknown): p is string =>
+  typeof p === "string" &&
+  p.length > 0 &&
+  !p.includes("\\") &&
+  !p.includes("\0") &&
+  p.split("/").every((x) => x.length > 0 && x !== "." && x !== "..");
+
+const importaSalvataggi = async (file: File) => {
+  if (file.size > COPIA_MAX_BYTE) {
+    saveMsg("Sto file xe massa grando per esser una copia de salvataggi.", true);
+    return;
+  }
+  let dati: any;
+  try {
+    dati = JSON.parse(await file.text());
+  } catch (err) {
+    dati = null;
+  }
+  if (
+    dati === null ||
+    dati.formato !== COPIA_FORMATO ||
+    !Array.isArray(dati.file) ||
+    dati.file.length === 0 ||
+    !dati.file.every((v: any) => percorsoValido(v?.percorso) && typeof v?.dati === "string")
+  ) {
+    saveMsg("Sto file no xe una copia de salvataggi de Pokémon Muia.", true);
+    return;
+  }
+  const esistenti = await elencaSalvataggi();
+  if (
+    esistenti.length > 0 &&
+    !confirm(
+      "In sto browser ghe xe za dei salvataggi. Se continuo, quei con lo stesso nome " +
+        "vien sostituii (ghe resta una copia vecia con " + COPIA_ESTENSIONE_VECCHIO +
+        "). Continuo?",
+    )
+  ) {
+    saveMsg("Gnente cambià.");
+    return;
+  }
+  const saves = await trovaCartellaSaves();
+  for (const voce of dati.file as { percorso: string; dati: string }[]) {
+    const parti = voce.percorso.split("/");
+    let dir = saves;
+    for (const parte of parti.slice(0, -1)) {
+      dir = await dir.getDirectoryHandle(parte, { create: true });
+    }
+    const nome = parti[parti.length - 1];
+    try {
+      const vecchio: File = await (await dir.getFileHandle(nome)).getFile();
+      await scriviFile(dir, nome + COPIA_ESTENSIONE_VECCHIO, new Uint8Array(await vecchio.arrayBuffer()));
+    } catch (err) {
+      if ((err as DOMException)?.name !== "NotFoundError") {
+        throw err;
+      }
+    }
+    await scriviFile(dir, nome, b64InBytes(voce.dati));
+  }
+  saveMsg("Salvataggi caricai (" + dati.file.length + " file). Adesso premi Gioca.");
+};
+
+if (saveToolsEl !== null) {
+  const btnExport = document.getElementById("save-export") as HTMLButtonElement;
+  const btnImport = document.getElementById("save-import") as HTMLButtonElement;
+  const inputFile = document.getElementById("save-file") as HTMLInputElement;
+  const protetto = async (azione: () => Promise<void>) => {
+    btnExport.disabled = btnImport.disabled = true;
+    try {
+      await azione();
+    } catch (err) {
+      console.error(err);
+      saveMsg("No son riussì: " + ((err as Error)?.message ?? err), true);
+    } finally {
+      btnExport.disabled = btnImport.disabled = false;
+    }
+  };
+  btnExport.addEventListener("click", () => protetto(esportaSalvataggi));
+  btnImport.addEventListener("click", () => inputFile.click());
+  inputFile.addEventListener("change", () => {
+    const file = inputFile.files?.[0];
+    inputFile.value = "";
+    if (file !== undefined) {
+      void protetto(() => importaSalvataggi(file));
+    }
+  });
+  if (opfs === null) {
+    saveToolsEl.querySelector(".row")?.setAttribute("hidden", "");
+  }
+}
+
 // Schermata "Gioca": serve un tocco/clic per l'audio e per lo schermo intero
 const startButton = document.getElementById("start-button");
 setStatus(null);
 if (startButton !== null) {
   startButton.style.display = "flex";
+  if (saveToolsEl !== null) {
+    saveToolsEl.style.display = "flex";
+  }
   await new Promise<void>((resolve) => {
     const go = (ev: Event) => {
       ev.preventDefault();
@@ -509,6 +737,10 @@ if (startButton !== null) {
       resolve();
     };
     const onKey = (ev: KeyboardEvent) => {
+      // Invio/Spazio su un bottone delle copie non deve far partire il gioco
+      if ((ev.target as HTMLElement | null)?.closest?.("#save-tools")) {
+        return;
+      }
       if (ev.key === "Enter" || ev.key === " " || ev.key === "c") {
         go(ev);
       }
@@ -517,6 +749,9 @@ if (startButton !== null) {
     document.addEventListener("keydown", onKey);
   });
   startButton.style.display = "none";
+  if (saveToolsEl !== null) {
+    saveToolsEl.style.display = "none";
+  }
 }
 
 // Sul telefono: schermo intero e, dove si può, blocco in orizzontale
