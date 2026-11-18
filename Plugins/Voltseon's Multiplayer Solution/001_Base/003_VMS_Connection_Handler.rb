@@ -82,6 +82,8 @@ module VMS
       cluster_str = cluster_id && cluster_id >= 0 ? " [Cluster #{cluster_id}]" : ""
       System.set_window_title(System.game_title + (ping != -1 ? " (#{ping}ms)" : "") + cluster_str)
     end
+    # Muia: movimento fluido dei altri zogadori, a ogni fotogramma
+    VMS.smooth_players
     # Actually communicate with the server
     begin
       # Send update message
@@ -213,6 +215,9 @@ module VMS
         # Update player
         player.update(pl)
         player.is_new = new_packet
+        # Muia: el server manda solo i dati cambiai; fin che no riva el primo
+        # invio completo de un zogador novo, no se sa dove el xe
+        next if player.map_id.nil?
       # Don't create event if player is self and SHOW_SELF is false
       next unless VMS::SHOW_SELF if is_self
       # Create event if necessary

@@ -52,7 +52,11 @@ module VMS
         while VMS::IntegratedServer.running
           # IO Selection
           sockets = [@socket] + @clients.values
-          ready = IO.select(sockets, nil, nil, 0.1)
+          # Muia: se speta solo fin al prossimo invio (prima sempre 0.1 s: el
+          # server mandava al ritmo dei messagi in arrivo, no al so tick rate)
+          attesa = tick_interval - (Time.now - last_tick)
+          attesa = 0.001 if attesa < 0.001
+          ready = IO.select(sockets, nil, nil, attesa)
 
           if ready
             ready[0].each do |s|
@@ -85,7 +89,8 @@ module VMS
           # Tick processing
           if (Time.now - last_tick) >= tick_interval
             @clusters.each_value(&:update_players)
-            last_tick = Time.now
+            last_tick += tick_interval
+            last_tick = Time.now if Time.now - last_tick > tick_interval   # restà indrio: se riparte
           end
         end
       ensure
@@ -235,12 +240,14 @@ module VMS
         @players = {}
         @online_variables = {}
         @variables_dirty = true
+        @last_full = Time.at(0)
       end
 
       def add_player(player)
         @players[player.id] = player
         @players.each_value { |p| p.dirty = true }
         @variables_dirty = true
+        @last_full = Time.at(0)   # Muia: chi riva novo ga bisogno de tuto
       end
 
       def remove_player(id)
@@ -271,14 +278,19 @@ module VMS
         end
         return if @players.empty?
 
+        # Muia: se manda solo quel che xe cambià (prima ogni volta tuti i dati,
+        # squadra compresa, che el zogo doveva ricostruir); ogni 2 secondi tuto,
+        # nel caso che un messagio se gabi perso.
+        full = Time.now - @last_full >= 2
+        @last_full = Time.now if full
         data = []
-        data.push([:online_variables, @online_variables]) if @variables_dirty
-        @players.each_value { |p| data.push(p.to_hash(p.dirty)) }
+        data.push([:online_variables, @online_variables]) if @variables_dirty || full
+        @players.each_value { |p| data.push(p.to_hash(p.dirty, full)) }
         
         binary = Zlib::Deflate.deflate(Marshal.dump(data), Zlib::BEST_COMPRESSION)
         @players.each_value { |p| @server.send_binary(binary, p.address, p.port, p.socket) }
         
-        @players.each_value { |p| p.dirty = false }
+        @players.each_value { |p| p.dirty = false; p.changed.clear }
         @variables_dirty = false
       end
     end
@@ -286,6 +298,7 @@ module VMS
     class Player
       attr_reader :id, :address, :port, :heartbeat, :last_seen
       attr_accessor :socket, :dirty, :name
+      attr_reader :changed
 
       def initialize(id, address, port)
         @id = id
@@ -295,6 +308,7 @@ module VMS
         @last_seen = Time.now    # ora del server dell'ultimo messagio
         @dirty = true
         @data = {}
+        @changed = {}
       end
 
       def update(data)
@@ -311,16 +325,20 @@ module VMS
 
         data.each do |k, v|
           next if k == hb_key
+          @changed[k] = true if !@data.key?(k) || @data[k] != v
           @data[k] = v
         end
         @name = data[VMS::PACKET_KEYS[:name]] if data[VMS::PACKET_KEYS[:name]]
         @dirty = true
       end
 
-      def to_hash(full = true)
+      def to_hash(dirty = true, full = true)
         hash = { VMS::PACKET_KEYS[:id] => @id, VMS::PACKET_KEYS[:heartbeat] => (@heartbeat || @last_seen) }
-        return hash unless full
-        hash.merge!(@data)
+        if full
+          hash.merge!(@data)
+        elsif dirty
+          @changed.each_key { |k| hash[k] = @data[k] }
+        end
         hash
       end
     end

@@ -40,7 +40,8 @@ module VMS
   # How many times per second to send packets. (can't be higher than the server's tick rate) (set to 0 to disable)
   TICK_RATE = 30
   # Nel browser el zogo xe più lento: se manda meno spesso (anca el server de Render el risponde a questo ritmo)
-  TICK_RATE_WEB = 10
+  # Muia: 15 (prima 10) = meno ritardo; el ponte e el server i tien el passo.
+  TICK_RATE_WEB = 15
   # Whether or not to handle more packets. If this is set to false you will only receive the latest packet, being faster but more snappy.
   HANDLE_MORE_PACKETS = true
   # Muia: quanti messagi del server se lexe al massimo in un VMS.update (prima: 1)
@@ -57,7 +58,9 @@ module VMS
   # Events
   # ===========
   # Whether other players can be walked through.
-  THROUGH = false
+  # Muia: true = se passa attraverso i altri zogadori (prima se restava blocai).
+  # Par parlarghe basta star davanti e schiciar A, come prima.
+  THROUGH = true
   # What happens when interacting with another player. (set to 'proc { }' to disable) (yields: player_id #<Integer>, player #<VMS::Player>, event #<Game_Event>)
   INTERACTION_PROC = proc { |player_id, player, event| VMS.interact_with_player(player_id) }
   # How long to wait for another player to check for interactions. (in seconds) (set to 0 to instead wait until confirmed or denied)
@@ -70,6 +73,13 @@ module VMS
   SMOOTH_MOVEMENT = true
   # How accurate the movement should be. (closer to 0 means smoother, closer to 1 means more accurate) (only used if SMOOTH_MOVEMENT is true)
   SMOOTH_MOVEMENT_ACCURACY = 0.5
+  # Muia: el smussamento adesso se fa a ogni fotogramma (prima solo quando rivava
+  # un messagio, e l'omino se moveva a scati). Quanta strada recuperar par
+  # fotogramma: 0.25 = el 90% in circa 8 fotogrammi.
+  SMOOTH_PER_FRAME = 0.25
+  # Muia: par quanti secondi al massimo se indovina dove va un zogador (verso
+  # la casela dove el sta caminando) prima che rivi el prossimo messagio.
+  MAX_PREDICTION = 0.15
   # How far away a player has to move before they are teleported to the server's position. (in pixels) (only used if SMOOTH_MOVEMENT is true)
   SNAP_DISTANCE = 192
 

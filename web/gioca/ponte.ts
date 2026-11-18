@@ -21,7 +21,7 @@ export interface OpzioniPonte {
   urlWebSocket: string;
   /** Indirizzo HTTP del server, par "svejarlo" se el dorme */
   urlSveglia: string;
-  /** Ogni quanti ms controlar i file (default 50) */
+  /** Ogni quanti ms controlar i file (default 25) */
   intervalloMs?: number;
   /** Secondi massimi par conetarse (default 150) */
   attesaMaxS?: number;
@@ -60,7 +60,7 @@ interface Sessione {
 
 export const avviaPonte = (opz: OpzioniPonte) => {
   const log = opz.log ?? (() => {});
-  const intervallo = opz.intervalloMs ?? 50;
+  const intervallo = opz.intervalloMs ?? 25;
   const attesaMax = (opz.attesaMaxS ?? 150) * 1000;
   let cartella: CartellaOpfs | null = null;
   let sessione: Sessione | null = null;
@@ -320,7 +320,7 @@ export const avviaPonte = (opz: OpzioniPonte) => {
   };
 
   // A riposo (nissuna partìa online) se controla ogni mezo secondo, par no
-  // consumar batteria; durante la partìa ogni "intervallo" (50 ms).
+  // consumar batteria; durante la partìa ogni "intervallo" (25 ms).
   const RIPOSO_MS = 500;
   let ultimoGiro = 0;
   const timer = setInterval(async () => {

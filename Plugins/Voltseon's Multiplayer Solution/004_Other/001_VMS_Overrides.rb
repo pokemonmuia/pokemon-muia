@@ -82,6 +82,17 @@ module VMS
   end
 end
 
+# Muia: i zogadori se pol attraversar (THROUGH), ma par parlarghe se ghe sta
+# davanti e se schicia A: un evento "through" normalmente se ativa solo
+# stando sulla stessa casela, qua invece come un evento normal.
+class Game_Event
+  alias muia_vms_over_trigger? over_trigger? unless method_defined?(:muia_vms_over_trigger?)
+  def over_trigger?
+    return false if name.is_a?(String) && name.start_with?("vms_player")
+    return muia_vms_over_trigger?
+  end
+end
+
 alias vms_pbEventCanReachPlayer? pbEventCanReachPlayer?
 def pbEventCanReachPlayer?(event, player, distance)
   VMS.set_all_vms_events_through(true)

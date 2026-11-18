@@ -37,7 +37,7 @@ module VMS
     CODA_MAX = 4        # messagi in attesa de partir: oltre, i se perde (come in UDP)
     ARRETRATI_MAX = 8   # messagi ricevui in ritardo: oltre, se tien solo i ultimi
     ATTESA_MAX = 150    # secondi par conetarse (el server gratuito se svegia in ~1 minuto)
-    POLL_FRAME = 3      # ogni quanti fotogrammi se controla la cartela (leggerla costa)
+    POLL_FRAME = 2      # ogni quanti fotogrammi se controla la cartela (leggerla costa)
 
     def initialize(cartela = nil)
       @dir = cartela || System.data_directory

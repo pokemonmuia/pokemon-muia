@@ -381,6 +381,63 @@ module VMS
     end
   end
 
+  # Muia: a ogni fotogramma avicina i altri zogadori alla so ultima posizion
+  # ricevuda. Prima se faceva solo quando rivava un messagio (10-30 volte al
+  # secondo): l'omino feva mezza strada, se fermava e ripartiva.
+  def self.smooth_players
+    return unless VMS::SMOOTH_MOVEMENT
+    frame = Graphics.frame_count
+    return if $game_temp.vms[:last_smooth_frame] == frame
+    $game_temp.vms[:last_smooth_frame] = frame
+    adesso = System.uptime
+    moti = ($game_temp.vms[:muia_moti] ||= {})
+    # Quanto recuperar in questo fotogramma, uguale anca se el zogo va a meno fps
+    delta = [[Graphics.delta.to_f, 0.0].max, 0.25].min
+    k = 1.0 - ((1.0 - VMS::SMOOTH_PER_FRAME) ** (delta * 60))
+    VMS.get_players.each do |player|
+      next if player.rf_event.nil? || player.real_x.nil? || player.real_y.nil?
+      event = player.rf_event[:event]
+      next if event.nil? || event.erased?
+      # Velocità stimada dai ultimi do messagi
+      moto = (moti[player.id] ||= { rx: player.real_x, ry: player.real_y, t: adesso, vx: 0.0, vy: 0.0 })
+      if moto[:rx] != player.real_x || moto[:ry] != player.real_y
+        dt = adesso - moto[:t]
+        if dt > 0.01 && dt < 0.5
+          moto[:vx] = (player.real_x - moto[:rx]) / dt
+          moto[:vy] = (player.real_y - moto[:ry]) / dt
+        end
+        moto[:rx] = player.real_x
+        moto[:ry] = player.real_y
+        moto[:t] = adesso
+      end
+      # Previsione: se el xe drio caminar verso una casela, el continua verso
+      # quela (mai oltre) intanto che riva el prossimo messagio
+      dest_x = player.x * Game_Map::REAL_RES_X
+      dest_y = player.y * Game_Map::REAL_RES_Y
+      avanti = [adesso - moto[:t], VMS::MAX_PREDICTION].min
+      target_x = VMS.muia_verso(player.real_x, dest_x, moto[:vx] * avanti)
+      target_y = VMS.muia_verso(player.real_y, dest_y, moto[:vy] * avanti)
+      dx = target_x - event.real_x
+      dy = target_y - event.real_y
+      if dx.abs <= 2 && dy.abs <= 2
+        event.real_x = target_x
+        event.real_y = target_y
+      else
+        event.real_x += dx * k
+        event.real_y += dy * k
+      end
+    end
+  rescue
+    nil
+  end
+
+  # Muia: da "da" se va de "passo" verso "a", senza mai superarlo
+  def self.muia_verso(da, a, passo)
+    return da if a == da || passo == 0
+    return da if (a - da) * passo < 0   # passo nella direzion sbagliada
+    return (a - da).abs < passo.abs ? a : da + passo
+  end
+
   # Usage: VMS.handle_player(player #<VMS::Player>) (handles the specified player)
   def self.handle_player(player)
     # Update party
@@ -403,10 +460,9 @@ module VMS
     player.rf_event[:event].y_offset = player.offset_y - player.jump_offset
     # Smooth the event's movement
     real_distance = Math.sqrt((player.rf_event[:event].real_x - player.real_x) ** 2 + (player.rf_event[:event].real_y - player.real_y) ** 2)
-    if VMS::SMOOTH_MOVEMENT && real_distance < VMS::SNAP_DISTANCE
-      player.rf_event[:event].real_x = Math.lerp(player.rf_event[:event].real_x, player.real_x, VMS::SMOOTH_MOVEMENT_ACCURACY)
-      player.rf_event[:event].real_y = Math.lerp(player.rf_event[:event].real_y, player.real_y, VMS::SMOOTH_MOVEMENT_ACCURACY)
-    else
+    # Muia: el smussamento vero el fa VMS.smooth_players a ogni fotogramma;
+    # qua se salta solo quando el xe massa lontan (o senza smussamento).
+    if !VMS::SMOOTH_MOVEMENT || real_distance >= VMS::SNAP_DISTANCE
       player.rf_event[:event].real_x = player.real_x
       player.rf_event[:event].real_y = player.real_y
     end
