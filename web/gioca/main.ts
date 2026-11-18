@@ -3,7 +3,7 @@ import { Dexie, type EntityTable } from "dexie";
 import fetchProgress from "fetch-progress";
 import { toBase64 } from "js-base64";
 import { Nostalgist } from "nostalgist";
-import { avviaPonte } from "./ponte";
+import { avviaPonte, bottonePerTasto, nomeTasto } from "./ponte";
 
 const CORE_NAME = "mkxp-z";
 
@@ -890,7 +890,9 @@ window.addEventListener("error", (ev) => {
   }
 });
 window.addEventListener("unhandledrejection", (ev) => {
-  if (!booted) {
+  // Il motore chiede di tenere acceso lo schermo (Wake Lock): se il browser
+  // dice di no non è un errore del gioco, quindi non lo mostro.
+  if (!booted && !/wake ?lock/i.test(String(ev.reason))) {
     showError(String(ev.reason));
   }
 });
@@ -1002,36 +1004,30 @@ if (isTouch) {
 // ---------------------------------------------------------------------------
 // Tastiera da PC: la tastiera non arriva al gioco direttamente, quindi la
 // traduco io negli stessi tasti virtuali usati dai pulsanti a schermo.
-//   Z / Spazio / Invio -> A (conferma)     X -> B (indietro e corsa)
-//   Esc -> menu (START)                     D -> menu rapido (SELECT)
-//   Frecce -> movimento (già gestite dal player)
+// Di base: Z / Spazio / Invio -> A (conferma)   X / Backspace -> B (indietro, corsa)
+//   Esc -> menu sulla mappa, indietro nei menu  Shift -> funzione (menu, ordina...)
+//   D -> menu rapido (SELECT)                   Frecce -> movimento (le gestisce il player)
 // ---------------------------------------------------------------------------
-const KEYMAP: Record<string, PadButton> = {
-  z: "a",
-  " ": "a",
-  Enter: "a",
-  x: "b",
-  Escape: "x",
-  d: "r3",
-};
-const keyHeld = new Set<string>();
-const keyOf = (ev: KeyboardEvent) =>
-  ev.key.length === 1 ? ev.key.toLowerCase() : ev.key;
+// I tasti se pol cambiar dal zogo ("Conza el zogo" → "Tasti"): la tabella
+// la tien ponte.ts (bottonePerTasto). Se ricorda quale boton ga fato partir
+// ogni tasto, cussì quando el se mola se mola el boton giusto.
+const keyHeld = new Map<string, PadButton>();
 document.addEventListener(
   "keydown",
   (ev) => {
     if (!ev.isTrusted || ev.ctrlKey || ev.metaKey || ev.altKey) {
       return;
     }
-    const k = keyOf(ev);
-    const button = KEYMAP[k];
+    const k = nomeTasto(ev);
+    const held = keyHeld.get(k);
+    const button = held ?? bottonePerTasto(k);
     if (button === undefined) {
       return;
     }
     ev.preventDefault();
     ev.stopImmediatePropagation();
-    if (!keyHeld.has(k)) {
-      keyHeld.add(k);
+    if (held === undefined) {
+      keyHeld.set(k, button);
       press(button);
     }
   },
@@ -1043,22 +1039,21 @@ document.addEventListener(
     if (!ev.isTrusted) {
       return;
     }
-    const k = keyOf(ev);
-    const button = KEYMAP[k];
+    const k = nomeTasto(ev);
+    const button = keyHeld.get(k);
     if (button === undefined) {
       return;
     }
     ev.preventDefault();
     ev.stopImmediatePropagation();
-    if (keyHeld.delete(k)) {
-      release(button);
-    }
+    keyHeld.delete(k);
+    release(button);
   },
   true,
 );
 window.addEventListener("blur", () => {
-  for (const k of keyHeld) {
-    release(KEYMAP[k]);
+  for (const button of keyHeld.values()) {
+    release(button);
   }
   keyHeld.clear();
 });

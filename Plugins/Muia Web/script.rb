@@ -19,6 +19,10 @@
 #   muia_txt_<sigla>_1.bin     zogo -> pagina : min \n max \n testo iniziale \n domanda
 #   muia_txtris_<sigla>_1.bin  pagina -> zogo : "ok\n<testo>" o "anula"
 #   muia_esci_<sigla>_1.bin    zogo -> pagina : "esci"
+#   muia_tasti_<sigla>_1.bin   zogo -> pagina : "apri" (finestra par cambiar i tasti)
+#   muia_tastiris_<sigla>_1.bin pagina -> zogo : "ok" o "telefono"
+#   muia_mappa_<sigla>_<n>.bin zogo -> pagina : "1" libero sulla mapa (Esc = menu),
+#                                               "0" no (Esc = indrio)
 # La pagina toe el file "txt" appena la mostra la casela: cussì el zogo sa
 # che la pagina ghe xe.
 #===============================================================================
@@ -81,6 +85,52 @@ module MuiaWeb
       return testo.sub(/\Aok\n/, "") if testo.start_with?("ok\n")
       return ""
     end
+  end
+
+  # Finestra della pagina par cambiar i tasti (solo browser)
+  def self.apri_tasti
+    sigla = nova_sigla
+    richiesta = scrivi("tasti", sigla, "apri")
+    risposta = "muia_tastiris_#{sigla}_00000001.bin"
+    t0 = Time.now
+    frame = 0
+    loop do
+      Graphics.update
+      Input.update
+      frame += 1
+      next unless frame % 4 == 0
+      if File.exist?(File.join(cartela, richiesta))
+        if Time.now - t0 > ATTESA_PAGINA
+          File.delete(File.join(cartela, richiesta)) rescue nil
+          pbMessage(_INTL("La pagina no risponde: ricarica la pagina del zogo."))
+          return
+        end
+        next
+      end
+      testo = leggi(risposta)
+      next if testo.nil?
+      if testo == "telefono"
+        pbMessage(_INTL("Sul telefono se dopra i tasti a schermo."))
+      end
+      Input.update
+      return
+    end
+  end
+
+  # Ghe dise alla pagina se el zogador xe libero sulla mapa (par Esc)
+  def self.aggiorna_mappa
+    return unless web?
+    @frame_mappa = (@frame_mappa || 0) + 1
+    return unless @frame_mappa % 6 == 0
+    libera = defined?(MuiaTasti) ? MuiaTasti.mappa_libera? : true
+    return if libera == @ultima_mappa
+    @ultima_mappa = libera
+    @sigla_mappa ||= nova_sigla
+    @n_mappa = (@n_mappa || 0) + 1
+    File.binwrite(File.join(cartela, "muia_mappa_#{@sigla_mappa}_#{'%08d' % @n_mappa}.bin"),
+                  (libera ? "1" : "0").b + FINE)
+  rescue StandardError
+    nil
   end
 
   # Domanda se uscir; torna false se no. Nel browser, se sì, no torna mai.
@@ -160,3 +210,17 @@ MenuHandlers.add(:pause_menu, :quit_game, {
     next false
   }
 })
+
+#-------------------------------------------------------------------------------
+# A ogni fotogramma (solo browser): stato "libero sulla mapa" par la pagina
+#-------------------------------------------------------------------------------
+module Graphics
+  class << self
+    alias muia_web_update update unless method_defined?(:muia_web_update)
+
+    def update(*args)
+      muia_web_update(*args)
+      MuiaWeb.aggiorna_mappa
+    end
+  end
+end
