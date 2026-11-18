@@ -126,6 +126,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **17112026** **Misure del multiplayer (temporanee)**: el zogo scrive nella console del browser (con `?debug`) quanto ghe mete ogni fase e come cambia el stato dei zogadori, par capir cossa xe lento. Versione 1.13.
 - **18112026** **Multiplayer senza ritardi**: el zogo desso lexe tuti i messagi del server in una volta (prima uno par fotogramma, e dopo un menù o una lota i altri zogadori se vedeva in ritardo), manda i so dati una volta sola par fotogramma, e el server no se confonde più se l'orologio del PC xe indrio o avanti. Versione 1.14.
 - **18112026** **Multiplayer più fluido**: i altri zogadori se move liscio a ogni fotogramma (prima i feva mezza strada e i se fermava), el zogo indovina dove i va intanto che riva el prossimo messagio, el server manda solo quel che xe cambià e 15 volte al secondo anca dal browser. Desso se passa *attraverso* i altri zogadori (par parlarghe se ghe sta davanti e se schicia A, come prima). Versione 1.15.
+- **18112026** **Messagi tra zogadori più svelti**: inviti, risposte, scambi e lote online parte subito (prima i spetava el giro de invio del zogo e po' quel del server, a ogni passo). Versione 1.16.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

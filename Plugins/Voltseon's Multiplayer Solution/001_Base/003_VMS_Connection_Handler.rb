@@ -92,8 +92,13 @@ module VMS
       # stesso fotogramma: prima el stesso messagio partiva più volte.
       tick = VMS.web? ? VMS::TICK_RATE_WEB : VMS::TICK_RATE
       frame = Graphics.frame_count
-      if (tick == 0 || frame % (60 / tick) == 0) && $game_temp.vms[:last_send_frame] != frame
+      # Muia: se el stato (invito, risposta, scambio, lota...) xe cambià, se
+      # manda subito senza spetar el giro: ogni passo tra do zogadori ghe
+      # meteva un giro de invio in più.
+      stato_cambia = $game_temp.vms[:last_sent_state] != $game_temp.vms[:state]
+      if (tick == 0 || frame % (60 / tick) == 0 || stato_cambia) && $game_temp.vms[:last_send_frame] != frame
         $game_temp.vms[:last_send_frame] = frame
+        $game_temp.vms[:last_sent_state] = $game_temp.vms[:state].dup rescue $game_temp.vms[:state]
         send_data = VMS.generate_player_data
         own_player = VMS.get_self
         update_data = own_player.nil? ? send_data : send_data.reject do |key, value|

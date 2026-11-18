@@ -398,6 +398,7 @@ module VMS
       next if player.rf_event.nil? || player.real_x.nil? || player.real_y.nil?
       event = player.rf_event[:event]
       next if event.nil? || event.erased?
+      event.through = VMS::THROUGH if event.through != VMS::THROUGH && !pbMapInterpreterRunning?
       # Velocità stimada dai ultimi do messagi
       moto = (moti[player.id] ||= { rx: player.real_x, ry: player.real_y, t: adesso, vx: 0.0, vy: 0.0 })
       if moto[:rx] != player.real_x || moto[:ry] != player.real_y

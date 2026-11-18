@@ -194,8 +194,14 @@ module VMS
               cluster.variables_dirty = true
             end
           end
-          cluster.players[data[VMS::PACKET_KEYS[:id]]].update(data)
-          cluster.players[data[VMS::PACKET_KEYS[:id]]].socket = socket if socket
+          giocatore = cluster.players[data[VMS::PACKET_KEYS[:id]]]
+          return if giocatore.nil?
+          stato_prima = giocatore.stato
+          giocatore.update(data)
+          giocatore.socket = socket if socket
+          # Muia: un cambio de stato (invito, risposta, scambio, lota) se
+          # inoltra subito, senza spetar el prossimo tick
+          cluster.update_players if giocatore.stato != stato_prima
         end
       end
 
@@ -299,6 +305,11 @@ module VMS
       attr_reader :id, :address, :port, :heartbeat, :last_seen
       attr_accessor :socket, :dirty, :name
       attr_reader :changed
+
+      # Muia: stato del zogador (idle, interact_send, trade, battle...)
+      def stato
+        return @data[VMS::PACKET_KEYS[:state]]
+      end
 
       def initialize(id, address, port)
         @id = id
