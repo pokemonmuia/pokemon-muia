@@ -439,12 +439,15 @@ const nostalgist = await Nostalgist.prepare({
     input_reset: "nul",
     input_toggle_fullscreen: "nul",
     input_fps_toggle: "nul",
-    // Frecce: le traduce la pagina (ponte.ts) come gli altri tasti, così
-    // funzionano anche quando il gioco non ha il focus e si possono cambiare.
-    input_player1_up: "nul",
-    input_player1_down: "nul",
-    input_player1_left: "nul",
-    input_player1_right: "nul",
+    // ATTENZIONE: nostalgist.pressDown() non preme il pulsante direttamente,
+    // simula il tasto associato qui. Ogni pulsante usato dalla pagina (a, b,
+    // x, r3, frecce) DEVE avere un tasto, altrimenti non fa niente (1.19:
+    // frecce a "nul" = frecce e croce del telefono morte). Le frecce restano
+    // quelle di base: la pagina le traduce (ponte.ts) e le preme da qui.
+    input_player1_up: "up",
+    input_player1_down: "down",
+    input_player1_left: "left",
+    input_player1_right: "right",
     input_player1_a: "k",
     input_player1_b: "j",
     input_player1_x: "i",
@@ -1098,6 +1101,11 @@ document.addEventListener(
     const held = keyHeld.get(k);
     const button = held ?? bottonePerTasto(k);
     if (button === undefined) {
+      // Una freccia tolta dalla tabella dei tasti non deve muovere lo stesso
+      if (k.startsWith("Arrow")) {
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
+      }
       return;
     }
     ev.preventDefault();
