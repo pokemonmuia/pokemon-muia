@@ -10,7 +10,7 @@
 #   Funzion               Shift                Input::ACTION (nei menu: scambia,
 #                                              ordina, verso, cerca...)
 #   Menu rapido (SELECT)  D                    Input::SPECIAL
-#   Frecie                caminar (fisse)
+#   Su / Zo / Sinistra / Destra   Frecie       Input::UP/DOWN/LEFT/RIGHT, dir4, dir8
 #
 # Game.exe: qua se lexe la tastiera vera (metodi "ex" de mkxp-z) e se toe i
 # tasti che mkxp-z ghe meteria de base. I gamepad no i cambia.
@@ -21,6 +21,10 @@
 #===============================================================================
 module MuiaTasti
   AZIONI = [
+    [:su,       "Su"],
+    [:zo,       "Zo"],
+    [:sinistra, "Sinistra"],
+    [:destra,   "Destra"],
     [:conferma, "Conferma (A)"],
     [:indietro, "Indrio / Corer (B)"],
     [:menu,     "Menu / Esci"],
@@ -28,6 +32,10 @@ module MuiaTasti
     [:rapido,   "Menu rapido"]
   ]
   PREDEFINITI = {
+    su:       [:UP, nil],
+    zo:       [:DOWN, nil],
+    sinistra: [:LEFT, nil],
+    destra:   [:RIGHT, nil],
     conferma: [:Z, :SPACE],
     indietro: [:X, :BACKSPACE],
     menu:     [:ESCAPE, nil],
@@ -36,13 +44,15 @@ module MuiaTasti
   }
   # Tasti che se pol sceglier
   CATTURABILI = (("A".."Z").map(&:to_sym) +
-                 [:SPACE, :RETURN, :ESCAPE, :BACKSPACE, :TAB, :LSHIFT, :RSHIFT,
+                 [:UP, :DOWN, :LEFT, :RIGHT, :SPACE, :RETURN, :ESCAPE, :BACKSPACE, :TAB, :LSHIFT, :RSHIFT,
                   :LCTRL, :RCTRL, :LALT, :RALT])
   NOMI = {
     SPACE: "Spazio", RETURN: "Invio", ESCAPE: "Esc", BACKSPACE: "Back",
     TAB: "Tab", LSHIFT: "Shift", RSHIFT: "Shift dx", LCTRL: "Ctrl",
-    RCTRL: "Ctrl dx", LALT: "Alt", RALT: "Alt dx"
+    RCTRL: "Ctrl dx", LALT: "Alt", RALT: "Alt dx",
+    UP: "Frecia su", DOWN: "Frecia zo", LEFT: "Frecia sx", RIGHT: "Frecia dx"
   }
+  DIREZIONI = { su: 8, zo: 2, sinistra: 4, destra: 6 }
   # Quel che mkxp-z mete de base sulla tastiera par ogni boton (vien tolto)
   BASE_MKXP = {
     Input::C => [:SPACE, :RETURN, :C, :KP_ENTER],
@@ -52,8 +62,14 @@ module MuiaTasti
     Input::X => [:A],
     Input::Y => [:S],
     Input::L => [:Q],
-    Input::R => [:W]
+    Input::R => [:W],
+    Input::UP => [:UP],
+    Input::DOWN => [:DOWN],
+    Input::LEFT => [:LEFT],
+    Input::RIGHT => [:RIGHT]
   }
+  GESTITI = [Input::USE, Input::BACK, Input::ACTION, Input::SPECIAL,
+             Input::UP, Input::DOWN, Input::LEFT, Input::RIGHT]
   FILE = "muia_tasti.txt"
 
   def self.nome_tasto(k)
@@ -140,6 +156,10 @@ module MuiaTasti
     when Input::BACK   then return mappa_libera? ? c[:indietro] : c[:indietro] + c[:menu]
     when Input::ACTION then return mappa_libera? ? c[:funzione] + c[:menu] : c[:funzione]
     when Input::SPECIAL then return c[:rapido]
+    when Input::UP     then return c[:su]
+    when Input::DOWN   then return c[:zo]
+    when Input::LEFT   then return c[:sinistra]
+    when Input::RIGHT  then return c[:destra]
     end
     return []
   end
@@ -157,7 +177,7 @@ module Input
         next risultato unless MuiaTasti.attivo?
         begin
           base = MuiaTasti::BASE_MKXP[boton]
-          gestito = [Input::USE, Input::BACK, Input::ACTION, Input::SPECIAL].include?(boton)
+          gestito = MuiaTasti::GESTITI.include?(boton)
           if risultato && base
             # Se el boton xe scatà par un tasto de base de mkxp-z, no conta
             # (i tasti giusti xe quei scelti); par i altri boton se toe solo
@@ -174,6 +194,46 @@ module Input
         risultato
       end
     end
+  end
+end
+
+module Input
+  class << self
+    # Direzion par caminar: se xe schicià un tasto scelto, quel; se no quel
+    # che dise el motore (gamepad), ma no se vien da una frecia de base che
+    # el zogador ga tolto o messo su un'altra azion.
+    [:dir4, :dir8].each do |metodo|
+      originale = :"muia_tasti_#{metodo}"
+      next if method_defined?(originale) || !method_defined?(metodo)
+      alias_method originale, metodo
+      define_method(metodo) do
+        risultato = send(originale)
+        next risultato unless MuiaTasti.attivo?
+        begin
+          scelta = MuiaTasti.direzion_premuda
+          next scelta if scelta != 0
+          if risultato != 0
+            frecie = { 8 => :UP, 2 => :DOWN, 4 => :LEFT, 6 => :RIGHT }
+            premude = frecie.select { |_, k| pressex?(k) }
+            next 0 if !premude.empty? &&
+                      premude.all? { |d, k| !MuiaTasti.config[MuiaTasti::DIREZIONI.key(d)].include?(k) }
+          end
+        rescue StandardError
+          # come el motore
+        end
+        risultato
+      end
+    end
+  end
+end
+
+module MuiaTasti
+  # 8/2/4/6 se xe schicià un tasto scelto par una direzion, se no 0
+  def self.direzion_premuda
+    DIREZIONI.each do |azion, dir|
+      return dir if config[azion].compact.any? { |k| Input.pressex?(k) }
+    end
+    return 0
   end
 end
 
@@ -216,6 +276,7 @@ module MuiaTasti
       next if posto < 0 || posto == 3
       if posto == 2
         config[azion][1] = nil
+        sistema_vuoti
         salva
         next
       end
@@ -224,8 +285,21 @@ module MuiaTasti
       # el stesso tasto no pol far do robe: se toe da dove el iera
       config.each_value { |lista| lista.map! { |k| k == tasto ? nil : k } }
       config[azion][posto] = tasto
-      config[:conferma][0] ||= :Z   # Conferma ga sempre almeno un tasto
+      sistema_vuoti
       salva
+    end
+  end
+
+  # Conferma e le quatro direzion no pol restar senza tasti: se rimete quel de base
+  def self.sistema_vuoti
+    # do giri: rimeter un tasto pol svodar un'altra azion
+    2.times do
+      [:conferma, :su, :zo, :sinistra, :destra].each do |azion|
+        next unless config[azion].compact.empty?
+        k = PREDEFINITI[azion][0]
+        config.each_value { |lista| lista.map! { |x| x == k ? nil : x } }
+        config[azion][0] = k
+      end
     end
   end
 

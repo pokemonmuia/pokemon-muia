@@ -85,6 +85,7 @@ const mettiStile = () => {
   display: flex; align-items: center; justify-content: center; padding: 16px;
   touch-action: manipulation; }
 .muia-box { width: 100%; max-width: 440px; box-sizing: border-box;
+  max-height: 100%; overflow-y: auto;
   background: #5c5c6c; border: 4px solid #3c3434; border-radius: 14px; padding: 6px;
   box-shadow: inset 0 0 0 3px #f8d050, inset 0 -5px 0 3px #e8a030, 0 6px 0 rgba(0,0,0,.35); }
 .muia-panel { background: #f8f8f8; border-radius: 8px; padding: 12px 14px 14px;
@@ -106,7 +107,8 @@ const mettiStile = () => {
 .muia-btn:disabled::before { content: none; }
 .muia-tasti { width: 100%; border-collapse: collapse; font-size: 22px; }
 .muia-tasti td { padding: 3px 2px; }
-.muia-tasti .muia-btn { width: 100%; font-size: 22px; padding: 1px 4px; }
+.muia-tasti .muia-btn { width: 100%; font-size: 21px; padding: 1px 4px; white-space: nowrap; }
+.muia-box.muia-larga { max-width: 500px; }
 .muia-nota { font-size: 18px; margin: 8px 0 0; }
 `;
   document.head.appendChild(st);
@@ -240,12 +242,20 @@ const mostraCasella = (r: RichiestaTesto): Promise<string | null> =>
   });
 
 // ---- tasti della tastiera (browser sul PC) ------------------------------
-// Do tasti par ogni azion, salvai nel browser. Invio conferma sempre; le
-// frecie le gestisse el motore. "Menu / Esci" verzi el menu se el zogador xe
+// Do tasti par ogni azion, salvai nel browser. Invio conferma sempre. Anca
+// le frecie passa da qua (prima le gestiva el motore, che le perdeva quando
+// el zogo no gaveva el "focus", per esempio dopo la casela del nome). "Menu / Esci" verzi el menu se el zogador xe
 // libero sulla mapa, se no torna indrio (el zogo lo dise coi file muia_mappa).
-export type BotonPad = "a" | "b" | "x" | "r3";
-type Azion = "conferma" | "indietro" | "menu" | "funzione" | "rapido";
+export type BotonPad =
+  | "a" | "b" | "x" | "r3" | "up" | "down" | "left" | "right";
+type Azion =
+  | "su" | "zo" | "sinistra" | "destra"
+  | "conferma" | "indietro" | "menu" | "funzione" | "rapido";
 const AZIONI: [Azion, string][] = [
+  ["su", "Su"],
+  ["zo", "Zo"],
+  ["sinistra", "Sinistra"],
+  ["destra", "Destra"],
   ["conferma", "Conferma (A)"],
   ["indietro", "Indrio / Corer (B)"],
   ["menu", "Menu / Esci"],
@@ -253,6 +263,10 @@ const AZIONI: [Azion, string][] = [
   ["rapido", "Menu rapido"],
 ];
 const PREDEFINITI: Record<Azion, (string | null)[]> = {
+  su: ["ArrowUp", null],
+  zo: ["ArrowDown", null],
+  sinistra: ["ArrowLeft", null],
+  destra: ["ArrowRight", null],
   conferma: ["z", " "],
   indietro: ["x", "Backspace"],
   menu: ["Escape", null],
@@ -261,7 +275,7 @@ const PREDEFINITI: Record<Azion, (string | null)[]> = {
 };
 const CHIAVE_TASTI = "muia-tasti-v1";
 const NON_SCEGLIBILI = new Set([
-  "Enter", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
+  "Enter",
   "Control", "Alt", "Meta", "AltGraph", "CapsLock", "Dead", "Unidentified",
 ]);
 
@@ -294,6 +308,24 @@ const caricaTasti = (): Record<Azion, (string | null)[]> => {
 let tasti = caricaTasti();
 let mappaLibera = true;
 
+// Conferma e le quatro direzion no pol restar senza tasti (se resteria
+// bloccai): se le xe vode, se ghe rimete el tasto de base.
+const sistemaVuoti = () => {
+  // do giri: rimeter un tasto pol svodar un'altra azion
+  for (const a of [
+    "conferma", "su", "zo", "sinistra", "destra",
+    "conferma", "su", "zo", "sinistra", "destra",
+  ] as Azion[]) {
+    if (tasti[a].every((x) => x === null)) {
+      const k = PREDEFINITI[a][0] as string;
+      for (const [b] of AZIONI) {
+        tasti[b] = tasti[b].map((x) => (x === k ? null : x));
+      }
+      tasti[a][0] = k;
+    }
+  }
+};
+
 const salvaTasti = () => {
   try {
     localStorage.setItem(CHIAVE_TASTI, JSON.stringify(tasti));
@@ -314,6 +346,8 @@ const mostraTasto = (k: string | null) => {
     " ": "Spazio", Escape: "Esc", Backspace: "Back", Shift: "Shift",
     Tab: "Tab", Delete: "Canc", Insert: "Ins", Home: "Home", End: "Fine",
     PageUp: "Pag su", PageDown: "Pag giù",
+    ArrowUp: "Frecia su", ArrowDown: "Frecia zo",
+    ArrowLeft: "Frecia sx", ArrowRight: "Frecia dx",
   };
   return nomi[k] ?? (k.length === 1 ? k.toUpperCase() : k);
 };
@@ -328,6 +362,14 @@ export const bottonePerTasto = (k: string): BotonPad | undefined => {
       continue;
     }
     switch (a) {
+      case "su":
+        return "up";
+      case "zo":
+        return "down";
+      case "sinistra":
+        return "left";
+      case "destra":
+        return "right";
       case "conferma":
         return "a";
       case "indietro":
@@ -355,6 +397,7 @@ const mostraTasti = (): Promise<string> =>
     }
     finestraAperta = true;
     const { fondo, panel } = creaFinestra("Tasti (do par azion)");
+    fondo.firstElementChild?.classList.add("muia-larga");
     const tabella = document.createElement("table");
     tabella.className = "muia-tasti";
     let attesa: { a: Azion; i: number; b: HTMLButtonElement } | null = null;
@@ -378,7 +421,7 @@ const mostraTasti = (): Promise<string> =>
       const riga: HTMLButtonElement[] = [];
       for (let i = 0; i < 2; i++) {
         const cella = document.createElement("td");
-        cella.style.width = "26%";
+        cella.style.width = "30%";
         const b = bottone("");
         b.addEventListener("click", () => {
           attesa = { a, i, b };
@@ -394,7 +437,7 @@ const mostraTasti = (): Promise<string> =>
     const nota = document.createElement("p");
     nota.className = "muia-nota";
     nota.textContent =
-      "Clicca un tasto e schicia quel novo. Canc su un tasto lo toe. Invio conferma sempre, le frecie le move.";
+      "Clicca un tasto e schicia quel novo. Canc lo toe. Invio conferma sempre.";
     const righe = document.createElement("div");
     righe.className = "muia-righe";
     const rimeti = bottone("Rimeti come prima");
@@ -426,9 +469,7 @@ const mostraTasti = (): Promise<string> =>
         }
         tasti[a][i] = k;
       }
-      if (tasti.conferma.every((x) => x === null)) {
-        tasti.conferma[0] = "z";
-      }
+      sistemaVuoti();
       attesa.b.focus();
       attesa = null;
       salvaTasti();

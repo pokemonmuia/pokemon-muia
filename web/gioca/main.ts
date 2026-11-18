@@ -190,6 +190,45 @@ const opfs = !HAVE_OPFS
       }
     })();
 
+// Una copia salvata nel browser (IndexedDB/OPFS) può risultare rovinata, per
+// esempio sul telefono quando il browser libera spazio: il motore allora dice
+// "Failed to initialize the mkxp-z game engine: unsupported". Prima di usarla
+// controllo che abbia la dimensione giusta e che inizio e fine si leggano.
+const copiaSana = async (blob: Blob, size: number): Promise<boolean> => {
+  try {
+    if (blob.size !== size || size === 0) {
+      return false;
+    }
+    const inizio = new Uint8Array(await blob.slice(0, 4).arrayBuffer());
+    const fine = new Uint8Array(await blob.slice(Math.max(0, size - 4)).arrayBuffer());
+    return inizio.length === Math.min(4, size) && fine.length === Math.min(4, size);
+  } catch (err) {
+    console.error("copia rovinata", err);
+    return false;
+  }
+};
+
+// Cancella le copie del gioco salvate nel browser (non i salvataggi)
+const cancellaCopie = async () => {
+  try {
+    await Dexie.delete("nostalgist cache for " + CORE_NAME);
+  } catch (err) {
+    console.error(err);
+  }
+  if (opfs !== null && RTP_OPFS_PATH !== null) {
+    try {
+      let directory = opfs;
+      const elements = RTP_OPFS_PATH.split("/").filter((e) => e.length !== 0);
+      for (const element of elements.slice(0, -1)) {
+        directory = await directory.getDirectoryHandle(element);
+      }
+      await directory.removeEntry(elements.slice(-1)[0]);
+    } catch (err) {
+      // non c'era
+    }
+  }
+};
+
 const fetchWithCache = async (
   size: number,
   hash: string,
@@ -248,6 +287,10 @@ const fetchWithCache = async (
       }
     } catch (err) {
       console.error(err);
+    }
+    if (blob !== undefined && !(await copiaSana(blob, size))) {
+      blob = undefined; // copia rovinata: la riscarico
+      blobSource = "fetch";
     }
 
     // If the blob is not cached, fetch it instead
@@ -396,6 +439,12 @@ const nostalgist = await Nostalgist.prepare({
     input_reset: "nul",
     input_toggle_fullscreen: "nul",
     input_fps_toggle: "nul",
+    // Frecce: le traduce la pagina (ponte.ts) come gli altri tasti, così
+    // funzionano anche quando il gioco non ha il focus e si possono cambiare.
+    input_player1_up: "nul",
+    input_player1_down: "nul",
+    input_player1_left: "nul",
+    input_player1_right: "nul",
     input_player1_a: "k",
     input_player1_b: "j",
     input_player1_x: "i",
@@ -858,6 +907,7 @@ const markBooted = () => {
   }
   try {
     localStorage.setItem("muia-avvio", JSON.stringify(measured));
+    sessionStorage.removeItem("muia-riparo");
   } catch {
     // niente
   }
@@ -877,6 +927,8 @@ for (const method of ["log", "info", "warn", "error"] as const) {
       });
       if (text.includes("[mkxp-z stdout]") && !text.includes("ruby ")) {
         markBooted();
+      } else if (/Failed to initialize the mkxp-z game engine|Failed to load content/i.test(text)) {
+        void riparaAvvio(text);
       } else if (/Game threw an exception|RuntimeError|Aborted\(|out of memory/i.test(text)) {
         showError(text.replace(/^.*\] ?/, "").slice(0, 160));
       }
@@ -884,6 +936,30 @@ for (const method of ["log", "info", "warn", "error"] as const) {
     original(...args);
   };
 }
+// Il motore non riesce ad aprire il gioco (di solito per una copia salvata
+// rovinata): cancello le copie e ricarico la pagina, una volta sola.
+let riparando = false;
+const riparaAvvio = async (testo: string) => {
+  if (riparando) {
+    return;
+  }
+  riparando = true;
+  let giaProvato = false;
+  try {
+    giaProvato = sessionStorage.getItem("muia-riparo") === "1";
+    sessionStorage.setItem("muia-riparo", "1");
+  } catch {
+    // niente
+  }
+  if (giaProvato) {
+    showError("il gioco non si apre (" + testo.replace(/^.*\] ?/, "").slice(0, 80) + ")");
+    return;
+  }
+  setBar(0, "Riparo la copia del gioco e la riscarico…");
+  await cancellaCopie();
+  location.reload();
+};
+
 window.addEventListener("error", (ev) => {
   if (!booted && !String(ev.message).includes("ResizeObserver")) {
     showError(String(ev.message || ev.error));
@@ -1006,7 +1082,7 @@ if (isTouch) {
 // traduco io negli stessi tasti virtuali usati dai pulsanti a schermo.
 // Di base: Z / Spazio / Invio -> A (conferma)   X / Backspace -> B (indietro, corsa)
 //   Esc -> menu sulla mappa, indietro nei menu  Shift -> funzione (menu, ordina...)
-//   D -> menu rapido (SELECT)                   Frecce -> movimento (le gestisce il player)
+//   D -> menu rapido (SELECT)                   Frecce -> movimento
 // ---------------------------------------------------------------------------
 // I tasti se pol cambiar dal zogo ("Conza el zogo" → "Tasti"): la tabella
 // la tien ponte.ts (bottonePerTasto). Se ricorda quale boton ga fato partir
