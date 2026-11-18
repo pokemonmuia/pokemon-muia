@@ -15,4 +15,4 @@ El primo fangame Pokémon ambientà a Muia. Te rivi al Molo dell'Illusion col de
 
 Fato con Pokémon Essentials v21.1 e RPG Maker XP dala **Cypress Hill Crew**.
 
-<a class="button button-primary" href="https://github.com/pokemonmuia/pokemon-muia">Varda el progeto su GitHub</a>
+<a class="button button-primary" href="{{ '/gioca/' | relative_url }}">Zoga el zogo</a>

@@ -15,4 +15,4 @@ The first Pokémon fan game set in Muia. You land at the Molo dell'Illusion on t
 
 Built with Pokémon Essentials v21.1 and RPG Maker XP by the **Cypress Hill Crew**. The game text is in Italian; an English translation is planned.
 
-<a class="button button-primary" href="https://github.com/pokemonmuia/pokemon-muia">See the project on GitHub</a>
+<a class="button button-primary" href="{{ '/gioca/' | relative_url }}">Play the game</a>

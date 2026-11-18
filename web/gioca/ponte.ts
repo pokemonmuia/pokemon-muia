@@ -11,6 +11,12 @@
 //   muia_stato_<sigla>_<n>.bin  pagina -> zogo : svejo / conetendo / connesso /
 //                                                 chiuso / erore: ...
 // Ogni file finisse con "MUIA". Se el zogo no scrive, qua no se fa gnente.
+//
+// Anca (plugin "Muia Web"):
+//   muia_txt_<sigla>_<n>.bin    zogo -> pagina : el zogo vol un testo (nome...):
+//                                                 min \n max \n iniziale \n domanda
+//   muia_txtris_<sigla>_<n>.bin pagina -> zogo : "ok\n<testo>" o "anula"
+//   muia_esci_<sigla>_<n>.bin   zogo -> pagina : el zogador xe uscì dal zogo
 
 type CartellaOpfs = any; // FileSystemDirectoryHandle (tipi non sempre presenti)
 
@@ -57,6 +63,138 @@ interface Sessione {
   codaIn: Uint8Array[];
   scrivendo: boolean;
 }
+
+// ---- casela de testo vera (tastiera del PC o del telefono) -------------
+interface RichiestaTesto {
+  minimo: number;
+  massimo: number;
+  iniziale: string;
+  domanda: string;
+}
+
+let casellaAperta = false;
+
+const mostraCasella = (r: RichiestaTesto): Promise<string | null> =>
+  new Promise((resolve) => {
+    casellaAperta = true;
+    const fondo = document.createElement("div");
+    fondo.style.cssText =
+      "position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.55);" +
+      "display:flex;align-items:center;justify-content:center;padding:16px;" +
+      "touch-action:manipulation;";
+    const box = document.createElement("form");
+    box.style.cssText =
+      "background:#fff;color:#111;border-radius:12px;padding:16px;width:100%;" +
+      "max-width:360px;font:16px system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.4);";
+    const titolo = document.createElement("label");
+    titolo.textContent = r.domanda || "Scrivi";
+    titolo.style.cssText = "display:block;margin-bottom:10px;font-weight:600;";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = r.iniziale;
+    if (r.massimo > 0) {
+      input.maxLength = r.massimo;
+    }
+    input.autocomplete = "off";
+    input.setAttribute("autocapitalize", "words");
+    input.setAttribute("enterkeyhint", "done");
+    input.spellcheck = false;
+    // 16px: cussì el telefono no ingrandisse la pagina
+    input.style.cssText =
+      "width:100%;box-sizing:border-box;font-size:16px;padding:10px;" +
+      "border:2px solid #888;border-radius:8px;" +
+      // la pagina blocca la selezion del testo dapertuto: qua serve (iPhone)
+      "-webkit-user-select:text;user-select:text;touch-action:manipulation;";
+    const righe = document.createElement("div");
+    righe.style.cssText = "display:flex;gap:8px;margin-top:12px;justify-content:flex-end;";
+    const ok = document.createElement("button");
+    ok.type = "submit";
+    ok.textContent = "Va ben";
+    ok.style.cssText =
+      "font-size:16px;padding:8px 16px;border-radius:8px;border:0;background:#2a7;color:#fff;";
+    const anula = document.createElement("button");
+    anula.type = "button";
+    anula.textContent = "Anula";
+    anula.style.cssText =
+      "font-size:16px;padding:8px 16px;border-radius:8px;border:0;background:#ccc;color:#111;";
+    if (r.minimo <= 0) {
+      righe.appendChild(anula);
+    }
+    righe.appendChild(ok);
+    box.append(titolo, input, righe);
+    fondo.appendChild(box);
+    document.body.appendChild(fondo);
+
+    const valido = () => {
+      const n = input.value.trim().length;
+      return n >= Math.max(r.minimo, 0) && (r.massimo <= 0 || n <= r.massimo);
+    };
+    const aggiornaOk = () => {
+      ok.disabled = !valido();
+      ok.style.opacity = ok.disabled ? "0.5" : "1";
+    };
+    aggiornaOk();
+    input.addEventListener("input", aggiornaOk);
+
+    // Mentre la casela xe verta, i tasti va solo a ela (no al zogo):
+    // se ferma i eventi prima che li veda la pagina o el motore.
+    const tasto = (ev: KeyboardEvent) => {
+      ev.stopImmediatePropagation();
+      if (ev.type !== "keydown") {
+        return;
+      }
+      if (document.activeElement !== input) {
+        input.focus();
+      }
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        conferma();
+      } else if (ev.key === "Escape" && r.minimo <= 0) {
+        ev.preventDefault();
+        fine(null);
+      }
+    };
+    window.addEventListener("keydown", tasto, true);
+    window.addEventListener("keypress", tasto, true);
+
+    const fine = (testo: string | null) => {
+      window.removeEventListener("keydown", tasto, true);
+      window.removeEventListener("keypress", tasto, true);
+      input.blur();
+      fondo.remove();
+      casellaAperta = false;
+      resolve(testo);
+    };
+    const conferma = () => {
+      if (valido()) {
+        fine(input.value.trim());
+      }
+    };
+    box.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      conferma();
+    });
+    anula.addEventListener("click", () => fine(null));
+    // Sul PC el cursor xe subito drento; sul telefono (iPhone) la tastiera
+    // vien fora quando se toca la casela.
+    setTimeout(() => {
+      input.focus();
+      input.select();
+    }, 50);
+  });
+
+// El zogador xe uscì dal zogo: se prova a serar la pagina, se no (el browser
+// no lo permette se la pagina no xe stada verta da un script) se torna al sito.
+const esciDalGioco = () => {
+  try {
+    window.close();
+  } catch (err) {
+    // gnente
+  }
+  setTimeout(() => {
+    location.href = new URL("../", location.href).href;
+  }, 300);
+};
 
 export const avviaPonte = (opz: OpzioniPonte) => {
   const log = opz.log ?? (() => {});
@@ -209,7 +347,7 @@ export const avviaPonte = (opz: OpzioniPonte) => {
     }
     for (const c of candidate) {
       for await (const [nome] of c.entries()) {
-        if (nome.startsWith(PREFISSO + "ctl_")) {
+        if (/^muia_(ctl|txt|esci)_/.test(nome)) {
           return c;
         }
       }
@@ -245,11 +383,54 @@ export const avviaPonte = (opz: OpzioniPonte) => {
     nomi.sort();
     const adesso = Date.now();
     for (const nome of nomi) {
-      const m = /^muia_(ctl|out|in|stato)_([^_]+)_(\d+)\.bin$/.exec(nome);
+      const m = /^muia_(ctl|out|in|stato|txt|txtris|esci)_([^_]+)_(\d+)\.bin$/.exec(nome);
       if (m === null) {
         continue;
       }
-      const [, tipo, sigla] = m;
+      const [, tipo, sigla, numero] = m;
+      if (tipo === "esci") {
+        await cartella.removeEntry(nome).catch(() => {});
+        log("ponte: el zogador xe uscì");
+        esciDalGioco();
+        continue;
+      }
+      if (tipo === "txt") {
+        if (casellaAperta) {
+          continue;
+        }
+        const dati = await leggi(nome);
+        if (dati === null) {
+          continue;
+        }
+        await cartella.removeEntry(nome).catch(() => {});
+        const [minimo, massimo, iniziale, ...domanda] = new TextDecoder()
+          .decode(dati)
+          .split("\n");
+        const dir = cartella;
+        void mostraCasella({
+          minimo: Number(minimo) || 0,
+          massimo: Number(massimo) || 0,
+          iniziale: iniziale ?? "",
+          domanda: domanda.join(" "),
+        }).then(async (testo) => {
+          const risposta = testo === null ? "anula" : "ok\n" + testo;
+          const nomeRis = `${PREFISSO}txtris_${sigla}_${numero}.bin`;
+          try {
+            const fh = await dir.getFileHandle(nomeRis, { create: true });
+            const w = await fh.createWritable();
+            const corpo = new TextEncoder().encode(risposta);
+            const tutto = new Uint8Array(corpo.length + FINE.length);
+            tutto.set(corpo, 0);
+            tutto.set(FINE, corpo.length);
+            await w.write(tutto);
+            await w.close();
+            ricordaCreato(nomeRis);
+          } catch (err) {
+            log("ponte: risposta del testo non scrita", err);
+          }
+        });
+        continue;
+      }
       if (tipo === "ctl") {
         const dati = await leggi(nome);
         if (dati === null) {

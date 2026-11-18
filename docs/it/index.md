@@ -15,4 +15,4 @@ Il primo fangame Pokémon ambientato a Muia. Arrivi al Molo dell'Illusion col de
 
 Realizzato con Pokémon Essentials v21.1 e RPG Maker XP dalla **Cypress Hill Crew**.
 
-<a class="button button-primary" href="https://github.com/pokemonmuia/pokemon-muia">Vedi il progetto su GitHub</a>
+<a class="button button-primary" href="{{ '/gioca/' | relative_url }}">Gioca il gioco</a>
