@@ -85,8 +85,13 @@ module VMS
     # Actually communicate with the server
     begin
       # Send update message
+      # Muia: un invio al massimo par fotogramma. VMS.update vien ciamà anca da
+      # PBDebug.log e dalle transizioni, che in lota capita tante volte nel
+      # stesso fotogramma: prima el stesso messagio partiva più volte.
       tick = VMS.web? ? VMS::TICK_RATE_WEB : VMS::TICK_RATE
-      if tick == 0 || Graphics.frame_count % (60 / tick) == 0
+      frame = Graphics.frame_count
+      if (tick == 0 || frame % (60 / tick) == 0) && $game_temp.vms[:last_send_frame] != frame
+        $game_temp.vms[:last_send_frame] = frame
         send_data = VMS.generate_player_data
         own_player = VMS.get_self
         update_data = own_player.nil? ? send_data : send_data.reject do |key, value|
@@ -98,48 +103,26 @@ module VMS
         VMS.send_message(["update", update_data])
       end
       # Receive data
-      data = $game_temp.vms[:socket].read_nonblock(65536, exception: false)
+      # Muia: se lexe TUTI i messagi arivai, no uno solo par fotogramma. Prima,
+      # dopo un menu, una lota o un caricamento (quando VMS.update no gira) i
+      # messagi se ingrumava e el zogo li smaltiva uno a la volta: i altri
+      # zogadori se vedeva in ritardo de secondi.
+      ricevui = []
+      VMS::MAX_PACKETS_PER_UPDATE.times do
+        data = $game_temp.vms[:socket].read_nonblock(65536, exception: false)
+        break if data == :wait_readable || data == :wait_writable || data.nil?
+        ricevui << data
+      end
       # No data received
-      if data == :wait_readable || data == :wait_writable || data.nil?
+      if ricevui.empty?
         $game_temp.vms[:time_since_last_message] += Graphics.delta
         VMS.leave if $game_temp.vms[:time_since_last_message] > VMS::TIMEOUT_SECONDS
         return
       end
-      # Process data
       $game_temp.vms[:time_since_last_message] = 0
-      data = Marshal.load(Zlib::Inflate.inflate(data))
-      # Disconnect data
-      if data.is_a?(Symbol)
-        if [:disconnect, :disconnect_full].include?(data)
-          suffix = data == :disconnect_full ? " (server full)" : ""
-          VMS.log("Disconnected from server#{suffix}")
-          VMS.leave(false)
-          VMS.message(data == :disconnect_full ? VMS::CLUSTER_FULL_MESSAGE : VMS::SERVER_DISCONNECT_MESSAGE) if !(VMS::DISCONNECTED_MESSAGE.nil? || VMS::DISCONNECTED_MESSAGE == "")
-          return
-        elsif data == :disconnect_wrong_game
-          VMS.log("Disconnected from server (wrong game)", true)
-          VMS.leave(false)
-          VMS.message(VMS::DIFFERENT_GAME_MESSAGE) if !(VMS::DISCONNECTED_MESSAGE.nil? || VMS::DISCONNECTED_MESSAGE == "")
-          return
-        elsif data == :disconnect_wrong_version
-          VMS.log("Disconnected from server (wrong version)", true)
-          VMS.leave(false)
-          VMS.message(VMS::DIFFERENT_VERSION_MESSAGE) if !(VMS::DISCONNECTED_MESSAGE.nil? || VMS::DISCONNECTED_MESSAGE == "")
-          return
-        end
+      ricevui.each do |raw|
+        return unless VMS.handle_server_message(Marshal.load(Zlib::Inflate.inflate(raw)))
       end
-      # Check if a player has disconnected
-      if data[0] == :disconnect_player
-        id = data[1]
-        player = VMS.get_player(id)
-        return if player.nil?
-        VMS.log("Player #{player.name} (#{id}) has disconnected from the server")
-        Rf.delete_event(player.rf_event) if VMS.event_deletion_possible?(player)
-        $game_temp.vms[:players].delete(id)
-        return
-      end
-      # Actually use the data
-      VMS.process(data)
     rescue Errno::ECONNREFUSED, Errno::ECONNRESET
       # Server is not active
       VMS.log("Server is not active", true)
@@ -158,6 +141,46 @@ module VMS
       VMS.check_timeout(player)
       VMS.check_interaction(player) if $game_temp.vms[:state][0] == :idle && VMS.interaction_possible?
     end
+  end
+
+  # Muia: gestisse un messagio del server. Torna false se la conession xe finia.
+  def self.handle_server_message(data)
+    # Disconnect data
+    if data.is_a?(Symbol)
+      if [:disconnect, :disconnect_full].include?(data)
+        suffix = data == :disconnect_full ? " (server full)" : ""
+        VMS.log("Disconnected from server#{suffix}")
+        VMS.leave(false)
+        VMS.message(data == :disconnect_full ? VMS::CLUSTER_FULL_MESSAGE : VMS::SERVER_DISCONNECT_MESSAGE) if !(VMS::DISCONNECTED_MESSAGE.nil? || VMS::DISCONNECTED_MESSAGE == "")
+        return false
+      elsif data == :disconnect_wrong_game
+        VMS.log("Disconnected from server (wrong game)", true)
+        VMS.leave(false)
+        VMS.message(VMS::DIFFERENT_GAME_MESSAGE) if !(VMS::DISCONNECTED_MESSAGE.nil? || VMS::DISCONNECTED_MESSAGE == "")
+        return false
+      elsif data == :disconnect_wrong_version
+        VMS.log("Disconnected from server (wrong version)", true)
+        VMS.leave(false)
+        VMS.message(VMS::DIFFERENT_VERSION_MESSAGE) if !(VMS::DISCONNECTED_MESSAGE.nil? || VMS::DISCONNECTED_MESSAGE == "")
+        return false
+      end
+      return true
+    end
+    return true unless data.is_a?(Array)
+    # Check if a player has disconnected
+    if data[0] == :disconnect_player
+      id = data[1]
+      player = VMS.get_player(id)
+      return true if player.nil?
+      VMS.log("Player #{player.name} (#{id}) has disconnected from the server")
+      Rf.delete_event(player.rf_event) if VMS.event_deletion_possible?(player)
+      $game_temp.vms[:players].delete(id)
+      return true
+    end
+    return true if data[0] == :cluster_list
+    # Actually use the data
+    VMS.process(data)
+    return !$game_temp.vms[:socket].nil?
   end
 
   # Usage: VMS.process(data #<Hash>) (processes data received from the server)

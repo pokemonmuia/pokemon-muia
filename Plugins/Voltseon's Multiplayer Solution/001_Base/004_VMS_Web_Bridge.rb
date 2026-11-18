@@ -49,7 +49,7 @@ module VMS
       @generazion = 0
       @pendenti = {}
       @chiuso = false
-      @frame = 0
+      @frame = -1
       @coda = []          # messagi ricevui e ancora da consegnar al plugin
     end
 
@@ -70,10 +70,12 @@ module VMS
     end
 
     def read_nonblock(_massimo = 65536, exception: true)
-      @frame += 1
       # La cartela se controla solo ogni POLL_FRAME fotogrammi: nel browser
-      # leggere la cartela e i file xe la roba che pesa de più.
-      if @frame % POLL_FRAME == 0
+      # leggere la cartela e i file xe la roba che pesa de più. Se conta i
+      # fotogrammi veri (el plugin adesso ciama più volte par fotogramma).
+      frame = Graphics.frame_count
+      if frame != @frame && frame % POLL_FRAME == 0
+        @frame = frame
         VMS::Perf.misura(:poll) { controlla }
       end
       return :wait_readable if @coda.empty?

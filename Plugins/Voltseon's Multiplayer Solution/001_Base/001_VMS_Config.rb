@@ -43,6 +43,8 @@ module VMS
   TICK_RATE_WEB = 10
   # Whether or not to handle more packets. If this is set to false you will only receive the latest packet, being faster but more snappy.
   HANDLE_MORE_PACKETS = true
+  # Muia: quanti messagi del server se lexe al massimo in un VMS.update (prima: 1)
+  MAX_PACKETS_PER_UPDATE = 32
   # This is the delay where packet recency bias will be offset. Meaning if HANDLE_MORE_PACKETS is false, you will receive the latest packet that was sent within this delay. (in seconds)
   ADDED_DELAY = 0.09
   # The timeout in seconds. If the server does not respond within this time, the client will disconnect.

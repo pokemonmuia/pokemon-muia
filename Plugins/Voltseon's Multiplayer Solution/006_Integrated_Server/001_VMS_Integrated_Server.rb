@@ -264,7 +264,8 @@ module VMS
 
       def update_players
         @players.each_value do |player|
-          if Time.now - player.heartbeat > 30
+          # Muia: se dopra l'orologio del server, no quel del zogador (vedi Player#update)
+          if Time.now - player.last_seen > 30
             remove_player(player.id)
           end
         end
@@ -283,24 +284,30 @@ module VMS
     end
 
     class Player
-      attr_reader :id, :address, :port, :heartbeat
+      attr_reader :id, :address, :port, :heartbeat, :last_seen
       attr_accessor :socket, :dirty, :name
 
       def initialize(id, address, port)
         @id = id
         @address = address
         @port = port
-        @heartbeat = Time.now
+        @heartbeat = nil         # ora del zogador (torna indrio par calcolar el ping)
+        @last_seen = Time.now    # ora del server dell'ultimo messagio
         @dirty = true
         @data = {}
       end
 
       def update(data)
         hb_key = VMS::PACKET_KEYS[:heartbeat]
+        # Muia: prima se confrontava l'ora del zogador con quela del server; se
+        # l'orologio del PC iera indrio anca de pochi secondi, el server butava
+        # via tuti i messagi (e dopo 30 secondi cazava fora el zogador).
+        # Adesso se confronta solo con el messagio precedente del stesso zogador.
         if data[hb_key]
-          return if data[hb_key] < @heartbeat
+          return if @heartbeat && data[hb_key] < @heartbeat
           @heartbeat = data[hb_key]
         end
+        @last_seen = Time.now
 
         data.each do |k, v|
           next if k == hb_key
@@ -311,7 +318,7 @@ module VMS
       end
 
       def to_hash(full = true)
-        hash = { VMS::PACKET_KEYS[:id] => @id, VMS::PACKET_KEYS[:heartbeat] => @heartbeat }
+        hash = { VMS::PACKET_KEYS[:id] => @id, VMS::PACKET_KEYS[:heartbeat] => (@heartbeat || @last_seen) }
         return hash unless full
         hash.merge!(@data)
         hash

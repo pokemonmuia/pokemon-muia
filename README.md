@@ -124,6 +124,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **17112026** **Multiplayer nel browser**: el zogo online ora funziona anca dal browser e dal telefono, tramite un server (cartela `server/`) e un ponte tra zogo e pagina. Tolta la "Prova rete". Nel menù *Zogo insieme* dal browser ghe xe solo *Zogo online*. Versione 1.10.
 - **17112026** **Multiplayer nel browser più leggero**: el zogo online dal browser manda e riceve meno spesso (10 volte al secondo) e legge la cartela dei file con meno fatica, cussì el va meno a scatti. Versione 1.12.
 - **17112026** **Misure del multiplayer (temporanee)**: el zogo scrive nella console del browser (con `?debug`) quanto ghe mete ogni fase e come cambia el stato dei zogadori, par capir cossa xe lento. Versione 1.13.
+- **18112026** **Multiplayer senza ritardi**: el zogo desso lexe tuti i messagi del server in una volta (prima uno par fotogramma, e dopo un menù o una lota i altri zogadori se vedeva in ritardo), manda i so dati una volta sola par fotogramma, e el server no se confonde più se l'orologio del PC xe indrio o avanti. Versione 1.14.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
