@@ -132,6 +132,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **18112026** **Frecie**: sul PC le frecie torna a funzionar sempre nel browser (prima dopo la casela del nome no le andava più) e desso anca le se pol cambiar in *Conza el zogo* → *Tasti* (Su, Zo, Sinistra, Destra, do tasti par ognidun). **Telefono**: se el zogo no se verzi (schermata nera de RetroArch con "Failed to initialize"), la pagina buta via la copia del zogo salvada nel browser, la riscarica e riprova da sola; i salvataggi no se toca. Versione 1.19.
 - **18112026** **Frecie sistemade**: nella 1.19 le frecie del PC e la crose del telefono no le andava. Desso le funziona subito, come prima, e se pol sempre cambiarle in *Conza el zogo* → *Tasti*. Versione 1.20.
 - **21112026** **Server più vicin**: el server del multiplayer desso xe a Francoforte invece che in America, cussì i messagi tra zogadori riva circa 150 millisecondi prima (i altri zogadori se move più liscio, inviti, scambi e lote parte prima). Versione 1.23.
+- **21112026** **Multiplayer nel browser senza ingorghi**: el zogo no lexe più tuta la cartela dei messagi ogni do fotogrammi (nel browser questo bloca el zogo, e più el rallentava più i altri zogadori rivava in ritardo): adesso el va a colpo sicuro sul prossimo messagio, e i messagi vecchi vien tolti prima. Nella console (con `?debug`) desso se vedi anca el *ping*. Versione 1.25.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

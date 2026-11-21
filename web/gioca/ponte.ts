@@ -7,7 +7,7 @@
 //
 //   muia_ctl_<sigla>_<n>.bin    zogo -> pagina : "open" o "close"
 //   muia_out_<sigla>_<n>.bin    zogo -> pagina : un messagio par el server
-//   muia_in_<sigla>_<n>.bin     pagina -> zogo : un messagio dal server
+//   muia_in_<sigla>_<n>.bin     pagina -> zogo : un messagio dal server (n = 1, 2, 3... senza buchi)
 //   muia_stato_<sigla>_<n>.bin  pagina -> zogo : svejo / conetendo / connesso /
 //                                                 chiuso / erore: ...
 // Ogni file finisse con "MUIA". Se el zogo no scrive, qua no se fa gnente.
@@ -40,7 +40,10 @@ export interface OpzioniPonte {
 const FINE = new TextEncoder().encode("MUIA");
 const PREFISSO = "muia_";
 const IN_MAX_CODA = 40; // messagi dal server in attesa de scritura: oltre, i vecchi se perde
-const VITA_FILE_IN_MS = 6000; // dopo, el file ricevù dal zogo xe tolto
+// Dopo, el file ricevù dal zogo xe tolto. El zogo lo lexe entro un fotogramma
+// o do; più i resta, più la cartela xe granda e più el zogo fadiga a lexerla
+// (1.25: prima 6000, con 15 messagi al secondo i iera un centinaio).
+const VITA_FILE_IN_MS = 2000;
 
 const finisceConFine = (dati: Uint8Array): boolean => {
   if (dati.length < FINE.length) {
@@ -565,11 +568,13 @@ export const avviaPonte = (opz: OpzioniPonte) => {
     }
     s.scrivendo = true;
     try {
+      // El zogo cerca i "in" uno drio l'altro (1, 2, 3...): el numero se consuma
+      // solo se el file xe sta scrito, cussì no resta buchi.
       while (s.codaIn.length > 0 && !s.chiusa) {
         const dati = s.codaIn.shift() as Uint8Array;
-        s.nIn++;
         try {
-          await scrivi(`${PREFISSO}in_${s.sigla}_${numero8(s.nIn)}.bin`, dati);
+          await scrivi(`${PREFISSO}in_${s.sigla}_${numero8(s.nIn + 1)}.bin`, dati);
+          s.nIn++;
         } catch (err) {
           log("ponte: messagio non scrito", err);
         }

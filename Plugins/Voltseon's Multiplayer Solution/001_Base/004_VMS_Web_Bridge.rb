@@ -11,7 +11,7 @@
 # i vien mai ricreai col stesso nome: el motore se confonde, l'ò provà):
 #   muia_ctl_<sigla>_<n>.bin    zogo -> pagina : "open" o "close"
 #   muia_out_<sigla>_<n>.bin    zogo -> pagina : un messagio par el server
-#   muia_in_<sigla>_<n>.bin     pagina -> zogo : un messagio dal server
+#   muia_in_<sigla>_<n>.bin     pagina -> zogo : un messagio dal server (n = 1, 2, 3... senza buchi)
 #   muia_stato_<sigla>_<n>.bin  pagina -> zogo : "svejo", "conetendo",
 #                                "connesso", "chiuso" o "erore: ..."
 # Ogni file finisse con "MUIA", cussì no se lexe mai un file scrito a metà.
@@ -34,17 +34,26 @@ module VMS
 
   class WebBridge
     FINE = "MUIA".b
-    CODA_MAX = 4        # messagi in attesa de partir: oltre, i se perde (come in UDP)
+    CODA_MAX = 16       # messagi in attesa de partir: oltre, i se perde (come in UDP)
     ARRETRATI_MAX = 8   # messagi ricevui in ritardo: oltre, se tien solo i ultimi
     ATTESA_MAX = 150    # secondi par conetarse (el server gratuito se svegia in ~1 minuto)
-    POLL_FRAME = 2      # ogni quanti fotogrammi se controla la cartela (leggerla costa)
+    # Muia 1.25: nel browser lexer l'elenco della cartela bloca el zogo (passa
+    # par el disco del browser e ghe xe un centinaio de file): prima se lo feva
+    # ogni 2 fotogrammi e el zogo rallentava, e con lu tuto el multiplayer.
+    # Adesso a ogni fotogramma se prova solo el PROSSIMO file "in" (el numero
+    # se sa za), e l'elenco intiero se lo lexe solo ogni ELENCO_FRAME
+    # fotogrammi: par saver se la conession xe cascà, quali "out" la pagina ga
+    # za mandà, e par ripartir se un file "in" xe andà perso.
+    POLL_FRAME = 1      # ogni quanti fotogrammi se cerca el prossimo messagio
+    ELENCO_FRAME = 20   # ogni quanti fotogrammi se lexe l'elenco intiero
 
     def initialize(cartela = nil)
       @dir = cartela || System.data_directory
       @sigla = (Time.now.to_f * 1000).to_i.to_s(36)
       @n_out = 0
       @n_ctl = 0
-      @ultimo_in = -1
+      @ultimo_in = 0      # la pagina numera i "in" da 1
+      @n_poll = 0
       @elenco = []
       @generazion = 0
       @pendenti = {}
@@ -84,6 +93,21 @@ module VMS
     end
 
     def controlla
+      @n_poll += 1
+      controlla_elenco if @n_poll % ELENCO_FRAME == 1
+      # El prossimo messagio ga un nome che se sa za: se lo prova diretamente,
+      # senza lexer tuta la cartela (costa poco anca se no el xe ancora rivà)
+      ARRETRATI_MAX.times do
+        dati = leggi_in(nome_file("in", @ultimo_in + 1))
+        break if dati.nil?
+        @ultimo_in += 1
+        @coda << dati
+      end
+      @coda = @coda.last(2) if @coda.size > ARRETRATI_MAX
+    end
+
+    # Ogni tanto: l'elenco intiero (stato della conession e "in" saltai)
+    def controlla_elenco
       aggiorna_elenco
       # Se la pagina dise che la conession xe cascà, avisemo el plugin
       # (che se spetta un messagio compresso)
@@ -95,12 +119,22 @@ module VMS
       ricevui = ricevui.select { |n| numero(n) > @ultimo_in }
       ricevui = ricevui.last(2) if ricevui.size > ARRETRATI_MAX
       ricevui.each do |nome|
-        dati = File.binread(File.join(@dir, nome))
-        break unless dati.end_with?(FINE)   # ancora in scritura: al prossimo giro
+        dati = leggi_in(nome)
+        break if dati.nil?   # ancora in scritura: al prossimo giro
         @ultimo_in = numero(nome)
-        @coda << dati[0...-FINE.bytesize]
+        @coda << dati
       end
-      @coda = @coda.last(2) if @coda.size > ARRETRATI_MAX
+    end
+
+    # Contenuto de un file "in" finio, o nil (no ghe xe, o xe ancora in scritura)
+    def leggi_in(nome)
+      percorso = File.join(@dir, nome)
+      return nil unless File.exist?(percorso)
+      dati = File.binread(percorso)
+      return nil unless dati.end_with?(FINE)
+      return dati[0...-FINE.bytesize]
+    rescue Exception
+      return nil   # la pagina lo ga apena tolto
     end
 
     def close
