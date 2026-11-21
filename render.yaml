@@ -2,7 +2,7 @@
 # Istruzioni in server/LEGGIMI.md
 services:
   - type: web
-    name: pokemon-muia-server
+    name: pokemon-muia-server-eu
     runtime: docker
     region: frankfurt
     dockerfilePath: ./server/Dockerfile
