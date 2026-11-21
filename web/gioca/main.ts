@@ -1148,7 +1148,7 @@ window.addEventListener("blur", () => {
 // Vedi ponte.ts. Se la pagina xe verta da localhost se pol dar un server de
 // prova con ?server=localhost:8088 (senza https).
 // ---------------------------------------------------------------------------
-const SERVER_MULTIPLAYER = "pokemon-muia-server.onrender.com";
+const SERVER_MULTIPLAYER = "pokemon-muia-server-eu.onrender.com";
 if (opfs !== null && opfs !== undefined) {
   const locale = ["localhost", "127.0.0.1"].includes(location.hostname);
   const prova = locale ? new URLSearchParams(location.search).get("server") : null;
