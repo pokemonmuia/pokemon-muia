@@ -4,6 +4,7 @@ services:
   - type: web
     name: pokemon-muia-server
     runtime: docker
+    region: frankfurt
     dockerfilePath: ./server/Dockerfile
     dockerContext: .
     plan: free
