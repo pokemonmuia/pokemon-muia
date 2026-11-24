@@ -45,3 +45,7 @@ La grafica del mastio e dele mura xe in fondo a `Outside_V7.png` (9 righe nove, 
 
 ### CASA DEL ZOGADOR
 La casa (Map003, dove se torna quando i pokemon va KO) xe in Cul de Nave (Map087), porta in (7,9).
+
+### LEGA E FINAL (plugin Muia Mondo)
+Dopo l'otava medaja (switch 64) al Castel de Muia (Map114) davanti al portòn ghe xe i Super 4 (Nerina, Marco, Nona Gigia, Capitan Ugo, livei 52-57) e el Sindaco (58-60). Se bati uno ala volta, in ordine; se te perdi no se ricomincia da capo. Batù el Sindaco: Sala d'Onore e fine.
+Vecie che cura, market, alenadori de strada e Banditor no xe nele mape .rxdata: i xe in `Plugins/Muia Mondo/script.rb` (liste con ID, mapa, x, y).
