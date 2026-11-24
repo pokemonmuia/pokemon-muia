@@ -15,8 +15,7 @@
 #     Maker e questo no vien zontà.
 #===============================================================================
 module MuiaMondo
-  GRAFICA_VECIA = "trainer_VECIA"
-  GRAFICA_MARKET = "NPC 16"
+  GRAFICA_VECIA = "NPC 14"   # signora coi cavei grisi, uguale per tute
 
   # [ID, mapa, x, y, nome per i messagi]
   VECIE = [
@@ -30,9 +29,9 @@ module MuiaMondo
 
   # [ID, mapa, x, y, tipo, grafica, direzion]
   MARKET = [
-    [921,  42, 27,  5, :tabachin, "NPC 16", 2],   # Tabachin de fronte al Comun
-    [922, 105, 10, 20, :botega,   "NPC 16", 2],   # Botega de Via Mazzarei
-    [923, 100, 16,  9, :grande,   "NPC 16", 2]    # Magazin Grande de Via Singolo
+    [921,  42, 27,  5, :tabachin, "NPC 15", 2],   # Tabachin de fronte al Comun
+    [922, 105, 10, 20, :botega,   "NPC 15", 2],   # Botega de Via Mazzarei
+    [923, 100, 16,  9, :grande,   "NPC 15", 2]    # Magazin Grande de Via Singolo
   ]
 
   # [ID, mapa, x, y, tipo, nome, squadra [[specie, livel]...], frase prima, frase dopo]
@@ -102,7 +101,7 @@ module MuiaMondo
     "No ghe credo... Muja ga un novo sindaco!"]
 
   # Banditor in Piazza Marconi: el te disi dove andar in base ale medaje
-  BANDITOR = [966, 42, 29, 10, "NPC 05"]
+  BANDITOR = [966, 42, 29, 10, "NPC 01"]
   CONSIGLI = [
     "La prima sfida xe nela Palestra Pacco, in Via Gabriele D'annunzio. Bepi dela Bora te speta dentro.",
     "Nives dele Bellezze Naturali la xe ai Giardinetti D'Europa: trovila e la tornerà in palestra.",
