@@ -101,6 +101,32 @@ module MuiaMondo
     "Te pensi de esser meio de mi? Vedemo se te ga fato esperienza!",
     "No ghe credo... Muja ga un novo sindaco!"]
 
+  # Banditor in Piazza Marconi: el te disi dove andar in base ale medaje
+  BANDITOR = [966, 42, 29, 10, "NPC 05"]
+  CONSIGLI = [
+    "La prima sfida xe nela Palestra Pacco, in Via Gabriele D'annunzio. Bepi dela Bora te speta dentro.",
+    "Nives dele Bellezze Naturali la xe ai Giardinetti D'Europa: trovila e la tornerà in palestra.",
+    "Marieta dela Lampo la xe al Vecio Squero, a cercar dove che ga saltà la corente.",
+    "Nane del Brivido el pesca in Punta Molo C. Colombo.",
+    "Gigi dei Mandrioi el se sconde al Castel de Muia, su per le scale del Mandracchio.",
+    "Toni dela Ongia el bevi el spritz in Piazza dela Repubblica.",
+    "Licia dela Trottola la xe in Via Roma, vizin al museo Carà.",
+    "Pina dei Bulli e Pupe la se alena al Mandracchio.",
+    "Te ga tute e oto le medaje! Va' al Castel de Muia: là te speta i Super 4 e el Sindaco."
+  ]
+
+  def self.banditor
+    pbMessage(_INTL("BANDITOR: Sentì, sentì! Novità de Muja!"))
+    if $game_variables[27] < 4
+      pbMessage(_INTL("BANDITOR: Ti te son quel novo? Prima va' parlar col sindaco in Comun e con Dejan."))
+    elsif batù?(SINDACO[0], LEGA_MAPA)
+      pbMessage(_INTL("BANDITOR: Viva el novo sindaco de Muja! Viva!"))
+    else
+      pbMessage(_INTL("BANDITOR: {1}", CONSIGLI[[$player.badge_count, 8].min]))
+      pbMessage(_INTL("BANDITOR: Se te ga i pokemon strachi, le vecie de Muja te li cura. Per comprar roba ghe xe el tabachin qua de fronte."))
+    end
+  end
+
   #-----------------------------------------------------------------------------
   # Creazion dei eventi
   #-----------------------------------------------------------------------------
@@ -135,6 +161,10 @@ module MuiaMondo
     ALENADORI.each do |id, m, x, y, tipo, *_resto|
       next if m != map_id
       metti(map, evento(id, x, y, grafica_alenador(tipo), "MuiaMondo.alenador(#{id})"))
+    end
+    if map_id == BANDITOR[1]
+      id, _m, x, y, grafica = BANDITOR
+      metti(map, evento(id, x, y, grafica, "MuiaMondo.banditor"))
     end
     if map_id == LEGA_MAPA
       LEGA.each do |id, x, y, tipo, *_resto|
