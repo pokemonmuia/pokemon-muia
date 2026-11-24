@@ -52,10 +52,10 @@ I primi quattro bloccano la partita, gli altri sono pulizia.
 
 | Priorità | Problema | Dove | Soluzione |
 | --- | --- | --- | --- |
-| Bloccante | Nessun evento dà Pokémon Ball e non c'è un negozio, quindi non si può catturare | Tutte le mappe di Muia | Market più 5 Ball regalate da Dejan |
+| ~~Bloccante~~ Risolto 24/11 | Nessun evento dà Pokémon Ball e non c'è un negozio, quindi non si può catturare | Tutte le mappe di Muia | 3 market nel plugin `Muia Mondo` (tabachin in piazza, Via Mazzarei, Via Singolo). Si parte con 3000 soldi |
 | Bloccante | Lugia può uscire nell'erba di Caliterna, al livello 35-55, con peso 30 | `PBS/encounters.txt`, sezione 081 | Nuova tabella con Pokémon comuni |
-| Bloccante | Curarsi è possibile solo perdendo o stando nel Team Cinghio | Bar del Mandracchio, evento 12 | Primo Centro Pokémon. Vantaggio simile per il Team Harry |
-| Bloccante | Finita l'ottava palestra non succede nulla | Interruttore 64 | Fase 5 del piano |
+| ~~Bloccante~~ Risolto 24/11 | Curarsi è possibile solo perdendo o stando nel Team Cinghio | Bar del Mandracchio, evento 12 | 6 vecie che curano (plugin `Muia Mondo`) |
+| ~~Bloccante~~ Risolto 24/11 | Finita l'ottava palestra non succede nulla | Interruttore 64 | Super 4 e Sindaco al Castel, poi Sala d'Onore (plugin `Muia Mondo`) |
 | Alta | L'Autista dice Santa Barbara, Molo T e Rio Ospo, ma porta alle mappe della demo. Due risposte sono ancora in inglese | Mandracchio, evento 11 | Tenerlo chiuso fino alla fase 3 |
 | Alta | In casa ci sono NPC della demo in inglese, teletrasporti verso le mappe di prova e un Celebi regalato | Mappa 3, eventi 6-15 | Rimuovere prima di dare il gioco ad altri |
 | Media | Si chiama Harry nei dialoghi e Henry negli sprite. La variabile 50 non ha nome | Mandracchio, Piazza Marconi | Scegliere un nome e nominare la variabile |
