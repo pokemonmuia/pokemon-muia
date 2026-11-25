@@ -259,6 +259,25 @@ module MuiaTest
       verifica(!$game_switches[82] && !$game_switches[83], "molo e castel verti con 4 bolli")
     end
 
+    passo("frazioni e telefonade") do
+      MuiaStoria.barriera_colina
+      vai(129, 16, 12, 8)
+      controla_eventi
+      foto("muggia_vecia")
+      MuiaStoria.sacrestan
+      MuiaStoria.panorama
+      vai(128, 20, 9, 6)
+      controla_eventi
+      foto("porto_san_rocco")
+      MuiaStoria.frana
+      (1..8).each do |n|
+        $player.badges.fill(false)
+        n.times { |i| $player.badges[i] = true }
+        MuiaStoria.telefonada
+      end
+      verifica($game_variables[32] == 8, "telefonade fate fin ala 8")
+    end
+
     passo("Lega e sindaco") do
       8.times { |i| $player.badges[i] = true }
       vai(114, 22, 14, 8)
