@@ -149,6 +149,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** **Pokemon selvadeghi dela 1a ala 4a generazion**: nel'erba e in acqua, 35 volte su 100 salta fora un pokemon a caso dela 1a-4a generazion (i più dificili da ciapar xe anca più rari, e se el livel xe alto i xe za evoludi), e **1 volta su 5000** un **leggendario**. Versione 1.33.
 - **25112026** **Versione web: se zoga anca in verticale** sul telefono: el zogo in alto e i tasti soto (croce, A, B, SELECT, START), come un Game Boy. No ghe xe più l'invito a girar el telefono; in orizzontale resta tuto come prima. Versione 1.34.
 - **25112026** **Intro nova**: no ghe xe più el sindaco (cussì no lo spoileremo, se lo vedi solo in Comun): te acoglie el vecio **Professor Rock**, 112 ani, dentiera e Pokédex a gettoni. El resto (omo, baba o fluido, el nome) xe come prima. Versione 1.35.
+- **25112026** **Scarpe da corsa subito**: dopo el giro con Dei ian in piazza riva la **mama** ("ieri al marcà ghe iera i sconti!") e la te dà le scarpe da corsa: tien premù B per corer. Chi xe za più avanti nela storia le ga in automatico. Versione 1.36.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

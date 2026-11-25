@@ -120,8 +120,35 @@ module MuiaStoria
     dì("DEI IAN", _INTL("Lassilo perder, Tubo xe fato cussì: el ga studià a Trieste e no el lo ga mai digerì."))
     dì("DEI IAN", _INTL("El Libreto te lo dà la Siora Ornella del Comun. Ma a 'st'ora la xe sicuro in BAR DE ZUPPO, qua in piazza, a far merenda."))
     dì("DEI IAN", _INTL("Mi resto qua in piazza. Se te ga dubi, vien a ciacolar!"))
+    mama_scarpe
     $game_variables[VAR_TRAMA] = 5
     aggiorna
+  end
+
+  #-----------------------------------------------------------------------------
+  # La mama riva in piazza coi scarponcini da corsa (dopo el giro con Dei ian)
+  #-----------------------------------------------------------------------------
+  def self.mama_scarpe
+    mama = ev(1011)
+    pbMessage(_INTL("???: Cocoloooo! Speta, speta!"))
+    if mama
+      x, y = casela_vizin
+      mama.moveto(x, y)
+      grafica(mama, "NPC 28", 2)
+      gira_verso_zogador(mama)
+      gira_zogador_verso(mama)
+      pbExclaim(mama)
+    end
+    dì("MAMA", _INTL("Fiol mio, ieri al marcà ghe iera i sconti! Varda cossa che te go ciapà: SCARPE DA CORSA!"))
+    dì("MAMA", _INTL("Metitele subito, che con quele pantofole no te vadi da nissuna parte. E no sta corer in cesa!"))
+    pbMEPlay("Item get") rescue nil
+    pbMessage(_INTL("{1} se ga messo le SCARPE DA CORSA!", $player.name))
+    $player.has_running_shoes = true
+    pbMessage(_INTL("Tien premù el tasto B (o X sula tastiera) mentre te camini per corer."))
+    dì("MAMA", _INTL("Bon, mi torno a casa in Cul de Nave. Se te servi qualcossa, la porta xe sempre verta. Ciao cocolo!"))
+    if mama
+      pbFadeOutIn { mama.erase }
+    end
   end
 
   #-----------------------------------------------------------------------------

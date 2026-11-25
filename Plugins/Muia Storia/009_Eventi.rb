@@ -15,6 +15,8 @@ module MuiaStoria
       end
       # Tubo (compar solo durante la scena)
       metti(map, evento(1010, 34, 9, [{}, { var: [VAR_TRAMA, 3], through: true }, { var: [VAR_TRAMA, 5] }]))
+      # La mama coi scarponcini (compar solo durante la scena)
+      metti(map, evento(1011, 20, 12, [{}, { var: [VAR_TRAMA, 3], through: true }, { var: [VAR_TRAMA, 5] }]))
     when MAPA_ZUPPO
       metti(map, evento(1020, 7, 4, [{ gfx: "NPC 24", dir: 2, cmd: "MuiaStoria.ornella" }], "Siora Ornella"))
     when MAPA_BLOCO

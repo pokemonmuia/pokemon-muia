@@ -59,6 +59,8 @@ module MuiaStoria
     $game_switches[SW_DELFIN]  = !sindaco_batù?
     $game_switches[SW_RIONE]   = !$game_switches[SW_RIONE_OK]
     $game_switches[89]         = medaje < 2   # SW_COLINA: strada per Muggia Vecia
+    # scarpe da corsa: chi xe za dopo la scena in piazza le ga (anca i salvataggi vechi)
+    $player.has_running_shoes = true if $player && trama >= 5
     if refresh
       $game_map.need_refresh = true if $game_map
       $map_factory&.maps&.each { |m| m.need_refresh = true }
