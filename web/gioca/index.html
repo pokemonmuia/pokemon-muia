@@ -337,14 +337,10 @@
       }
       /* In verticale (telefono): el zogo in alto, i tasti soto, come un Game Boy */
       @media (orientation: portrait) {
-        body.touch #nostalgist-canvas {
-          top: env(safe-area-inset-top) !important;
-          height: calc(100vw * 3 / 4) !important;
-        }
+        /* el canvas resta grando quanto la finestra (RetroArch el centra el
+           zogo), lo spostemo in su con lo script "verticale" più in basso */
         body.touch #controls {
-          top: calc(100vw * 3 / 4 + env(safe-area-inset-top));
-          background: linear-gradient(#1c2f4f, #0b1f3a);
-          border-top: 3px solid #2a4f86;
+          top: var(--alto-zogo, 75vw);
         }
         body.touch #dpad {
           left: 7vw;
@@ -621,6 +617,29 @@
       <div id="btn-start" class="pill" data-button="x">START</div>
     </div>
 
+    <script>
+      // Verticale sul telefono: el zogo (4:3) va in cima, i tasti soto su nero.
+      // El canvas resta grando come la finestra perché RetroArch el calcola la
+      // posizion del zogo sula finestra intiera: lo spostemo in su de quel che serve.
+      (() => {
+        const cv = document.getElementById("nostalgist-canvas");
+        const sistema = () => {
+          const vert = document.body.classList.contains("touch") && innerHeight > innerWidth;
+          const alto = Math.round((innerWidth * 3) / 4);
+          if (vert) {
+            const su = Math.round((innerHeight - alto) / 2);
+            cv.style.transform = "translateY(" + -su + "px)";
+            document.documentElement.style.setProperty("--alto-zogo", alto + "px");
+          } else {
+            cv.style.transform = "";
+          }
+        };
+        addEventListener("resize", sistema);
+        addEventListener("orientationchange", () => setTimeout(sistema, 300));
+        setInterval(sistema, 1000);
+        sistema();
+      })();
+    </script>
     <script>
       // Animazion de la schermata d'avvio, disegnada a pixel (320x180):
       // el Delfin Verde traversa el golfo da Trieste a Muia, coi Wingull.

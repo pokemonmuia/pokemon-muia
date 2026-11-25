@@ -150,6 +150,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** **Versione web: se zoga anca in verticale** sul telefono: el zogo in alto e i tasti soto (croce, A, B, SELECT, START), come un Game Boy. No ghe xe più l'invito a girar el telefono; in orizzontale resta tuto come prima. Versione 1.34.
 - **25112026** **Intro nova**: no ghe xe più el sindaco (cussì no lo spoileremo, se lo vedi solo in Comun): te acoglie el vecio **Professor Rock**, 112 ani, dentiera e Pokédex a gettoni. El resto (omo, baba o fluido, el nome) xe come prima. Versione 1.35.
 - **25112026** **Scarpe da corsa subito**: dopo el giro con Dei ian in piazza riva la **mama** ("ieri al marcà ghe iera i sconti!") e la te dà le scarpe da corsa: tien premù B per corer. Chi xe za più avanti nela storia le ga in automatico. Versione 1.36.
+- **25112026** Verticale sistemà: el zogo xe in cima al schermo e i tasti soto, su sfondo nero (prima el zogo restava in mezo e i tasti ghe stava sora). Versione 1.37.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
