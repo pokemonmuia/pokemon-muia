@@ -107,6 +107,13 @@ const setBar = (fraction: number, label: string) => {
   if (barLabel !== null) {
     barLabel.textContent = label;
   }
+  // el sfondo animado passa dala matina ala note col caricamento
+  const w = window as unknown as {
+    muiaProgresso?: number;
+    muiaSfondo?: { progresso(f: number): void };
+  };
+  w.muiaProgresso = f;
+  w.muiaSfondo?.progresso(f);
 };
 const hideBar = () => {
   if (barEl !== null) {
@@ -915,7 +922,7 @@ const markBooted = () => {
 
 // La schermata animada resta fin che el motor no xe partì, dopo la sparissi
 const nascondiSplash = () => {
-  for (const id of ["splash", "splash-caption"]) {
+  for (const id of ["splash", "sfondi", "splash-caption"]) {
     const el = document.getElementById(id);
     if (el === null) {
       continue;

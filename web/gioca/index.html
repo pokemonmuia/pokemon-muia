@@ -62,6 +62,18 @@
         opacity: 0;
         pointer-events: none;
       }
+      /* Sfondo animado de Muia vista dal'alto: matina che deventa note col caricamento */
+      #sfondi {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        overflow: hidden;
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+      }
+      #sfondi.via {
+        opacity: 0;
+      }
       #splash-caption {
         position: fixed;
         left: 0;
@@ -572,6 +584,7 @@
     ></canvas>
 
     <canvas id="splash" width="320" height="180"></canvas>
+    <div id="sfondi"></div>
     <div id="splash-caption">El Delfin Verde porta un foresto a Muia…</div>
 
     <div id="bar">
@@ -735,6 +748,28 @@
         let n = 0;
         const cap = document.getElementById("splash-caption");
         setInterval(() => { if (cap) { n = (n + 1) % frasi.length; cap.textContent = frasi[n]; } }, 4000);
+      })();
+    </script>
+    <!-- Sfondo animado (web/gioca/sfondi): se no el se carica, resta la schermata a pixel de sora -->
+    <script src="sfondi/muia-sfondi.js"></script>
+    <script>
+      (() => {
+        const box = document.getElementById("sfondi");
+        if (!box || !window.MuiaSfondi) return;
+        MuiaSfondi.avvia(box, { base: "sfondi/", scena: 4 })
+          .then((sf) => {
+            window.muiaSfondo = sf;
+            if (typeof window.muiaProgresso === "number") sf.progresso(window.muiaProgresso);
+            // quando el sfondo xe pronto, la schermata a pixel soto se pol fermar
+            setTimeout(() => {
+              const vecia = document.getElementById("splash");
+              if (vecia && !box.classList.contains("via")) vecia.classList.add("via");
+            }, 900);
+            new MutationObserver(() => {
+              if (box.classList.contains("via")) setTimeout(() => sf.ferma(), 900);
+            }).observe(box, { attributes: true, attributeFilter: ["class"] });
+          })
+          .catch(() => {});
       })();
     </script>
     <script type="module" src="/src/main.ts"></script>

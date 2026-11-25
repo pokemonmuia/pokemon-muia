@@ -152,6 +152,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** **Scarpe da corsa subito**: dopo el giro con Dei ian in piazza riva la **mama** ("ieri al marcà ghe iera i sconti!") e la te dà le scarpe da corsa: tien premù B per corer. Chi xe za più avanti nela storia le ga in automatico. Versione 1.36.
 - **25112026** Verticale sistemà: el zogo xe in cima al schermo e i tasti soto, su sfondo nero (prima el zogo restava in mezo e i tasti ghe stava sora). Versione 1.37.
 - **25112026** Sistemadi tre robe in piazza: la **mama** desso la riva da **in cima ala piazza** (Calle Parini) e la se ne va de là, cussì te vedi la strada per **Cul de Nave**; **Tubo** no ghe passa più sora al Banditor; e la **prima lota con Tubo** xe più giusta: un pokemon solo, el **starter contrario al tuo**, un livel sora (liv. 6). Dura ma se pol. Versione 1.38.
+- **25112026** **Versione web: sfondo animado nel caricamento**: intanto che el zogo se carica se vedi **Muia dal'alto** che se movi (nuvole con l'ombra, foschia, pescadori che va fora, gabiani) e che pian pian passa **dala matina ala note** seguendo la bara: a metà caricamento vien sera, se impiza le luci in cità e nel golfo se intravedi un **leggendario** che nuda soto l'acqua. Tuto in `web/gioca/sfondi/` (circa 420 KB); se qualcossa no va, resta la schermata a pixel de prima. Versione 1.39.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
