@@ -14,6 +14,9 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>Pokémon Muia</title>
+    <link rel="preload" as="image" href="sfondi/alto.webp" />
+    <link rel="preload" as="image" href="sfondi/alto-nuvole.png" />
+    <link rel="preload" as="image" href="sfondi/alto-maschere.png" />
     <style>
       html,
       body {
@@ -46,22 +49,6 @@
         z-index: 2;
         pointer-events: none;
       }
-      /* Schermata d'avvio animada (el Delfin Verde che riva a Muia) */
-      #splash {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        image-rendering: pixelated;
-        image-rendering: crisp-edges;
-        transition: opacity 0.8s ease;
-        background: #0b1f3a;
-      }
-      #splash.via {
-        opacity: 0;
-        pointer-events: none;
-      }
       /* Sfondo animado de Muia vista dal'alto: matina che deventa note col caricamento */
       #sfondi {
         position: fixed;
@@ -70,6 +57,7 @@
         overflow: hidden;
         pointer-events: none;
         transition: opacity 0.8s ease;
+        background: #9fb3c8;
       }
       #sfondi.via {
         opacity: 0;
@@ -583,7 +571,6 @@
       style="position: fixed; left: 0; top: 0; width: 100%; height: 100%"
     ></canvas>
 
-    <canvas id="splash" width="320" height="180"></canvas>
     <div id="sfondi"></div>
     <div id="splash-caption">Muia se svea…</div>
 
@@ -652,91 +639,8 @@
       })();
     </script>
     <script>
-      // Animazion de la schermata d'avvio, disegnada a pixel (320x180):
-      // el Delfin Verde traversa el golfo da Trieste a Muia, coi Wingull.
+      // Frasi che gira soto, intanto che se carica (gnente spoiler dela storia)
       (() => {
-        const cv = document.getElementById("splash");
-        if (!cv || !cv.getContext) return;
-        const g = cv.getContext("2d");
-        const W = 320, H = 180, MAR = 112;
-        const resize = () => {
-          // tien le proporzioni 16:9 e copri tuto lo schermo
-          const r = Math.max(innerWidth / W, innerHeight / H);
-          cv.style.width = W * r + "px";
-          cv.style.height = H * r + "px";
-          cv.style.left = (innerWidth - W * r) / 2 + "px";
-          cv.style.top = (innerHeight - H * r) / 2 + "px";
-        };
-        addEventListener("resize", resize);
-        resize();
-        const R = (x, y, w, h, c) => { g.fillStyle = c; g.fillRect(x | 0, y | 0, w | 0, h | 0); };
-        // stele e nuvole fisse
-        const stele = Array.from({ length: 40 }, (_, i) => [(i * 73) % W, (i * 37) % 60, i % 3]);
-        const nuvole = [[30, 30, 46], [150, 18, 60], [250, 40, 40]];
-        const case_ = [];
-        for (let i = 0; i < 16; i++) case_.push([190 + i * 8 + (i % 3), 10 + ((i * 7) % 12)]);
-        let t0 = performance.now();
-        const frame = (now) => {
-          if (cv.classList.contains("via") && getComputedStyle(cv).opacity === "0") return;
-          const t = (now - t0) / 1000;
-          // cielo all'alba
-          const cieli = ["#16325c", "#2a4f86", "#4f74a8", "#8a8fb4", "#e7a37c", "#f6c47a"];
-          cieli.forEach((c, i) => R(0, i * 19, W, 20, c));
-          stele.forEach(([x, y, k]) => { if ((t * 2 + k) % 3 > 0.6 && y < 40) R(x, y, 1, 1, "#ffffffaa"); });
-          // sol che leva
-          g.fillStyle = "#ffd36b"; g.beginPath(); g.arc(140, MAR - 2, 20, 0, Math.PI * 2); g.fill();
-          R(118, MAR - 6, 44, 2, "#f6c47a"); R(122, MAR - 12, 36, 2, "#f6c47a");
-          // nuvole
-          nuvole.forEach(([x, y, w], i) => {
-            const nx = ((x + t * (4 + i)) % (W + 80)) - 60;
-            R(nx, y, w, 6, "#ffffff55"); R(nx + 8, y - 4, w - 16, 4, "#ffffff44");
-          });
-          // Trieste in lontananza (sinistra)
-          for (let i = 0; i < 9; i++) R(4 + i * 9, MAR - 10 - ((i * 5) % 9), 7, 10 + ((i * 5) % 9), "#3b4f73");
-          R(0, MAR - 3, 92, 3, "#3b4f73");
-          // Muia (destra): colina, case, Duomo e Castel
-          g.fillStyle = "#2f5a3a";
-          g.beginPath(); g.moveTo(170, MAR); g.quadraticCurveTo(250, MAR - 70, 330, MAR - 40); g.lineTo(330, MAR); g.fill();
-          R(282, MAR - 66, 22, 16, "#b9a98a"); R(282, MAR - 70, 4, 4, "#b9a98a"); R(291, MAR - 70, 4, 4, "#b9a98a"); R(300, MAR - 70, 4, 4, "#b9a98a");
-          R(290, MAR - 60, 5, 7, "#5a4a3a");
-          case_.forEach(([x, h], i) => {
-            R(x, MAR - h - 6, 7, h + 6, i % 2 ? "#e8d8b8" : "#f2c9a0");
-            R(x - 1, MAR - h - 8, 9, 3, "#c4553a");
-            if ((i + (t | 0)) % 5 === 0) R(x + 2, MAR - h - 2, 2, 2, "#ffe98a");
-          });
-          R(236, MAR - 40, 8, 34, "#d9c7a5"); R(235, MAR - 44, 10, 4, "#c4553a"); R(238, MAR - 34, 4, 5, "#5a4a3a");
-          // mar
-          R(0, MAR, W, H - MAR, "#2a6db5");
-          for (let y = MAR + 4; y < H; y += 7) {
-            const off = (t * (12 + (y - MAR) / 4)) % 24;
-            for (let x = -24; x < W; x += 24) R(x + off + ((y / 7) % 2) * 12, y, 8, 1, "#6fb0e8");
-          }
-          // riflesso del sol
-          for (let y = MAR + 2; y < MAR + 30; y += 4) R(126 + Math.sin(t * 3 + y) * 3, y, 28 - (y - MAR) / 2, 1, "#ffe0a0aa");
-          // el Delfin Verde (catamaran bianco e verde) che va verso Muia
-          const giro = 22;
-          const p = (t % giro) / giro;
-          const bx = -60 + p * 300;
-          const by = MAR + 22 + Math.sin(t * 2.2) * 1.5;
-          R(bx, by + 8, 44, 3, "#0d3e75");
-          R(bx, by, 44, 8, "#ffffff"); R(bx + 4, by - 6, 30, 6, "#ffffff");
-          R(bx, by + 4, 44, 2, "#2e9d4a"); R(bx + 6, by - 4, 24, 2, "#1d2f45");
-          R(bx + 36, by - 10, 3, 4, "#2e9d4a");
-          // scia
-          for (let i = 1; i < 6; i++) R(bx - i * 9, by + 9 + (i % 2), 7, 1, "#cfe8ff");
-          // Wingull in volo
-          for (let k = 0; k < 3; k++) {
-            const wx = ((t * (18 + k * 6) + k * 110) % (W + 40)) - 20;
-            const wy = 40 + k * 14 + Math.sin(t * 3 + k) * 4;
-            const su = Math.sin(t * 10 + k) > 0;
-            R(wx, wy, 6, 2, "#ffffff");
-            R(wx - 4, wy + (su ? -2 : 1), 4, 1, "#ffffff"); R(wx + 6, wy + (su ? -2 : 1), 4, 1, "#ffffff");
-            R(wx + 5, wy, 2, 1, "#f2b84b");
-          }
-          requestAnimationFrame(frame);
-        };
-        requestAnimationFrame(frame);
-        // frasi che cambia sotto el titolo
         const frasi = [
           "Muia se svea…",
           "I gabiani xe za in giro sul Mandracchio…",
@@ -748,7 +652,7 @@
         setInterval(() => { if (cap) { n = (n + 1) % frasi.length; cap.textContent = frasi[n]; } }, 4000);
       })();
     </script>
-    <!-- Sfondo animado (web/gioca/sfondi): se no el se carica, resta la schermata a pixel de sora -->
+    <!-- Sfondo animado (web/gioca/sfondi): Muia vista dal'alto, dala matina ala note -->
     <script src="sfondi/muia-sfondi.js"></script>
     <script>
       (() => {
@@ -758,11 +662,6 @@
           .then((sf) => {
             window.muiaSfondo = sf;
             if (typeof window.muiaProgresso === "number") sf.progresso(window.muiaProgresso);
-            // quando el sfondo xe pronto, la schermata a pixel soto se pol fermar
-            setTimeout(() => {
-              const vecia = document.getElementById("splash");
-              if (vecia && !box.classList.contains("via")) vecia.classList.add("via");
-            }, 900);
             new MutationObserver(() => {
               if (box.classList.contains("via")) setTimeout(() => sf.ferma(), 900);
             }).observe(box, { attributes: true, attributeFilter: ["class"] });

@@ -922,7 +922,7 @@ const markBooted = () => {
 
 // La schermata animada resta fin che el motor no xe partì, dopo la sparissi
 const nascondiSplash = () => {
-  for (const id of ["splash", "sfondi", "splash-caption"]) {
+  for (const id of ["sfondi", "splash-caption"]) {
     const el = document.getElementById(id);
     if (el === null) {
       continue;
