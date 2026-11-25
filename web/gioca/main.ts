@@ -812,7 +812,7 @@ if (startButton !== null) {
   }
 }
 
-// Sul telefono: schermo intero e, dove si può, blocco in orizzontale
+// Sul telefono: schermo intero (se zoga sia in verticale che in orizzontale)
 if (isTouch) {
   try {
     const el = document.documentElement;
@@ -820,17 +820,6 @@ if (isTouch) {
       await el.requestFullscreen({ navigationUI: "hide" });
     }
   } catch (err) {
-    console.warn(err);
-  }
-  try {
-    const orientation = screen.orientation as ScreenOrientation & {
-      lock?: (o: string) => Promise<void>;
-    };
-    if (orientation.lock) {
-      await orientation.lock("landscape");
-    }
-  } catch (err) {
-    // iPhone e alcuni browser non lo permettono: resta l'invito a girare
     console.warn(err);
   }
 }

@@ -147,6 +147,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** I bisbigli dela folla in piazza xe in **azzurrin**, el resto dei dialoghi resta nero. Versione 1.32.
 - **25112026** **La leggenda del Campari**: la prima lota con Tubo in piazza desso xe fata apposta per esser QUASI impossibile (Growlithe liv. 7 e el starter che bati el tuo liv. 9, contro el tuo liv. 5). Nei bar (Bar de Zuppo, Tendarossa, Jimmy) un vecio conta che chi la vinci ga un **Campari pagà**: se te la ga vinta, el te mostra un **codice** (CAMPARI-xxxxx-xx) da far veder al bar, e el te regala 3 Caramele Rare.
 - **25112026** **Pokemon selvadeghi dela 1a ala 4a generazion**: nel'erba e in acqua, 35 volte su 100 salta fora un pokemon a caso dela 1a-4a generazion (i più dificili da ciapar xe anca più rari, e se el livel xe alto i xe za evoludi), e **1 volta su 5000** un **leggendario**. Versione 1.33.
+- **25112026** **Versione web: se zoga anca in verticale** sul telefono: el zogo in alto e i tasti soto (croce, A, B, SELECT, START), come un Game Boy. No ghe xe più l'invito a girar el telefono; in orizzontale resta tuto come prima. Versione 1.34.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

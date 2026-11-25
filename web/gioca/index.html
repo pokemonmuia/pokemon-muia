@@ -335,9 +335,51 @@
           transform: rotate(-90deg);
         }
       }
+      /* In verticale (telefono): el zogo in alto, i tasti soto, come un Game Boy */
       @media (orientation: portrait) {
-        body.touch #rotate {
-          display: flex;
+        body.touch #nostalgist-canvas {
+          top: env(safe-area-inset-top) !important;
+          height: calc(100vw * 3 / 4) !important;
+        }
+        body.touch #controls {
+          top: calc(100vw * 3 / 4 + env(safe-area-inset-top));
+          background: linear-gradient(#1c2f4f, #0b1f3a);
+          border-top: 3px solid #2a4f86;
+        }
+        body.touch #dpad {
+          left: 7vw;
+          bottom: auto;
+          top: 50%;
+          transform: translateY(-50%);
+          width: min(44vw, 190px);
+          height: min(44vw, 190px);
+        }
+        body.touch .round {
+          width: min(19vw, 84px);
+          height: min(19vw, 84px);
+          font-size: 26px;
+        }
+        body.touch #btn-a {
+          right: 6vw;
+          bottom: auto;
+          top: calc(50% - min(19vw, 84px) * 0.95);
+        }
+        body.touch #btn-b {
+          right: calc(6vw + min(19vw, 84px) * 1.15);
+          bottom: auto;
+          top: calc(50% - min(19vw, 84px) * 0.1);
+        }
+        body.touch .pill {
+          top: auto;
+          bottom: calc(22px + env(safe-area-inset-bottom));
+          font-size: 13px;
+          padding: 8px 18px;
+        }
+        body.touch #btn-select {
+          left: calc(50% - 112px);
+        }
+        body.touch #btn-start {
+          right: calc(50% - 112px);
         }
       }
 
@@ -563,11 +605,6 @@
         te cancelli i dati del sito o se te cambi telefono o computer.
       </div>
       <input id="save-file" type="file" accept=".json,application/json" hidden />
-    </div>
-
-    <div id="rotate" class="center">
-      <div class="phone"></div>
-      <div>Gira il telefono in orizzontale per giocare</div>
     </div>
 
     <div id="controls">
