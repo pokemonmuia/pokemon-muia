@@ -91,6 +91,7 @@ if (GAME_NAME !== null) {
 const barEl = document.getElementById("bar");
 const barFill = document.getElementById("bar-fill");
 const barLabel = document.getElementById("bar-label");
+const barIcon = document.getElementById("bar-icon");
 const setBar = (fraction: number, label: string) => {
   const f = Math.max(0, Math.min(1, fraction));
   if (barEl !== null) {
@@ -98,6 +99,10 @@ const setBar = (fraction: number, label: string) => {
   }
   if (barFill !== null) {
     barFill.style.width = (f * 100).toFixed(1) + "%";
+  }
+  // el Wingull vola drio la bara
+  if (barIcon !== null) {
+    barIcon.style.left = (f * 100).toFixed(1) + "%";
   }
   if (barLabel !== null) {
     barLabel.textContent = label;
@@ -916,6 +921,21 @@ const markBooted = () => {
   }
   setBar(1, "Pronto! 100%");
   setTimeout(hideBar, 1200);
+  nascondiSplash();
+};
+
+// La schermata animada resta fin che el motor no xe partì, dopo la sparissi
+const nascondiSplash = () => {
+  for (const id of ["splash", "splash-caption"]) {
+    const el = document.getElementById(id);
+    if (el === null) {
+      continue;
+    }
+    el.classList.add("via");
+    setTimeout(() => {
+      el.style.display = "none";
+    }, 900);
+  }
 };
 
 for (const method of ["log", "info", "warn", "error"] as const) {

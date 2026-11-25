@@ -46,34 +46,99 @@
         z-index: 2;
         pointer-events: none;
       }
+      /* Schermata d'avvio animada (el Delfin Verde che riva a Muia) */
+      #splash {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+        transition: opacity 0.8s ease;
+        background: #0b1f3a;
+      }
+      #splash.via {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #splash-caption {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: max(14px, env(safe-area-inset-top));
+        z-index: 2;
+        text-align: center;
+        font-size: clamp(12px, 2.6vw, 15px);
+        letter-spacing: 0.04em;
+        color: #fff;
+        text-shadow: 0 2px 0 #000, 0 0 8px rgba(0, 0, 0, 0.6);
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+      }
+      #splash-caption.via {
+        opacity: 0;
+      }
       #bar {
         display: none;
         position: fixed;
         left: 50%;
-        bottom: 14%;
+        bottom: 12%;
         transform: translateX(-50%);
-        width: min(360px, 70vw);
+        width: min(420px, 78vw);
         z-index: 3;
         pointer-events: none;
         text-align: center;
       }
       #bar-track {
-        height: 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.15);
-        overflow: hidden;
+        position: relative;
+        height: 16px;
+        border-radius: 4px;
+        background: #102540;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45);
+        overflow: visible;
       }
       #bar-fill {
         height: 100%;
         width: 0;
-        border-radius: 999px;
-        background: #e3350d;
+        border-radius: 1px;
+        background: repeating-linear-gradient(-45deg, #e3350d 0 10px, #ff6a3d 10px 20px);
+        background-size: 28px 28px;
+        animation: righe 0.8s linear infinite;
         transition: width 0.2s linear;
       }
+      @keyframes righe {
+        to {
+          background-position: 28px 0;
+        }
+      }
+      #bar-icon {
+        position: absolute;
+        left: 0;
+        bottom: 6px;
+        width: 64px;
+        height: 64px;
+        margin-left: -32px;
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABACAYAAADS1n9/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAADRElEQVR42u2brXbqQBSFD3ddwSMgeYQrkZF5BCQSWRmJRFYikUhkZGQkshKZR6ijYrJvO6dMZwJJA+vsz2Qlzc/MWXvvzEzoJN8thNjlz9gNIONCARiHAjAOBWAcCsA4FIBxKADjUADGoQCMQwEYhwIwDgVgHArAOBSAcSgA41AAxqEAjEMBGIcCMA4FYBwKwDgUgHEoAOP8HbsBz877YXq5dny6fJ/0cb9b75MKE8A4D5cAv+2Ae9tZlqWIiBxqd7xxu1Ie8su19uM6HNf9XW3cDc5VISIi1eE0aD2YAMaZpP5vYF/O7OyA6uRdP3YihJwPlm05q6oSEZHtduv9Hdet1ysREdnt9t7+fD5z28y/TtejrzowAYwTTQCt+JCyQUiZ+j6P4oBUUp2vyfNcrtUvyzLvPByva3deUWzbOhdePfabvNf+MwGME5wFQPFFAedVIvKpXGxDo1+NdgCcD5bLlYh8OgCO0g6QKh+7Zl5/3xrX7v2m8fqJdmMfaOdrtPOxjyThLID0SnAMMKvnF5HvTgWxd6BWcAydML/lgK6gLudzc7U9sbqlgv7rWRDgGID0QnQWAEUDKD9fuHfby8Y/v6vzQ2gHjO38VPRsIdY/XSckHcZeodmCnoXdWh8mgHGi3wKaxdlT1rQNjLd6dRERWa/dPpIhy/4lPTjkgNi779nR6x+637HkQCI003Yb+fYQgwlgnJu/BoaSAV+v2lfYN2IOQCLg+i/vvIv8wKONEf6/y113JVuWN12PlVHUS8++MAZ7kRLXdUoCJoBxBvs9wL0OAHrlUfO6cdvQCuRYyXA8Nt5+dXD12O38OiARMYaqKn+9o5EzzvPWH/RYAUmJ46lJwAQwTvLvAVLBPFg7oD66d5lOAu0AEJoHg65f44ZOgli/t/vr193artCKo14nYAKQH+ktAfpygF55BHoFctZ+FNTOhwNAqhPu7bde/1jMT16/h3q+ToKuK6hMAOPcnQBQIOarYCgHhBICvyfQYwaMMfS6RV+E+o/EGuq5sbqkPpcJYJzBEmBsB4BHd+DYMAGM09ss4FkdYB0mgHF6+xZAxz8nTADjUADGoQCMQwEYhwIwDgVgHArAOBSAcSgA43wA5y7W+jNvslgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDktMDJUMTg6MTU6MzkrMDA6MDCuw7rjAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE5LTAzLTA4VDIyOjAyOjU1KzAwOjAw6hU8TQAAAABJRU5ErkJggg==") 0 0 / 128px 64px no-repeat;
+        image-rendering: pixelated;
+        animation: ala 0.35s steps(1) infinite;
+        transition: left 0.2s linear;
+        filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.4));
+      }
+      @keyframes ala {
+        0% {
+          background-position: 0 0;
+        }
+        50% {
+          background-position: -64px 0;
+        }
+      }
       #bar-label {
-        margin-top: 10px;
+        margin-top: 12px;
         font-size: 14px;
-        opacity: 0.85;
+        font-weight: 700;
+        text-shadow: 0 2px 0 #000;
         font-variant-numeric: tabular-nums;
       }
       #status.error {
@@ -101,28 +166,94 @@
         font: inherit;
       }
       #start-button .title {
-        font-size: clamp(26px, 6vw, 44px);
-        font-weight: 800;
-        letter-spacing: 0.02em;
+        font-size: clamp(30px, 7vw, 54px);
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        color: #ffcb05;
+        -webkit-text-stroke: 2px #2a5ba8;
+        text-shadow: 0 4px 0 #2a5ba8, 0 8px 0 rgba(0, 0, 0, 0.35);
+        animation: galleggia 2.4s ease-in-out infinite;
+      }
+      #start-button .sub {
+        margin-top: -10px;
+        font-size: clamp(12px, 2.4vw, 15px);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-shadow: 0 2px 0 #000;
+        opacity: 0.9;
+      }
+      @keyframes galleggia {
+        50% {
+          transform: translateY(-6px);
+        }
       }
       #start-button .play {
+        position: relative;
         display: flex;
         align-items: center;
-        gap: 10px;
-        background: #e3350d;
+        gap: 12px;
+        background: linear-gradient(#ff5a33, #e3350d 55%, #c22a08);
+        border: 3px solid #fff;
         border-radius: 999px;
-        padding: 14px 32px;
-        font-size: 20px;
-        font-weight: 700;
-        box-shadow: 0 6px 0 #9c2408;
+        padding: 14px 36px 14px 18px;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        box-shadow: 0 6px 0 #7d1c05, 0 10px 18px rgba(0, 0, 0, 0.4);
+        animation: pulsa 1.6s ease-in-out infinite;
+      }
+      #start-button .play .ball {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 3px solid #222;
+        background: linear-gradient(#e3350d 0 45%, #222 45% 55%, #fff 55%);
+        box-sizing: border-box;
+        position: relative;
+      }
+      #start-button .play .ball::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        margin: -4px 0 0 -4px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid #222;
+        box-sizing: border-box;
+      }
+      #start-button:hover .play .ball,
+      #start-button:focus .play .ball {
+        animation: dondola 0.5s ease-in-out infinite;
+      }
+      @keyframes dondola {
+        25% {
+          transform: rotate(-18deg);
+        }
+        75% {
+          transform: rotate(18deg);
+        }
+      }
+      @keyframes pulsa {
+        50% {
+          transform: scale(1.04);
+        }
       }
       #start-button .play:active {
         transform: translateY(3px);
-        box-shadow: 0 3px 0 #9c2408;
+        box-shadow: 0 3px 0 #7d1c05;
+        animation: none;
       }
       #start-button .hint {
         font-size: 13px;
-        opacity: 0.7;
+        opacity: 0.85;
+        text-shadow: 0 1px 0 #000;
+        background: rgba(0, 0, 0, 0.35);
+        padding: 6px 12px;
+        border-radius: 8px;
         max-width: 420px;
         line-height: 1.5;
       }
@@ -149,9 +280,10 @@
       }
       #save-tools button {
         font: inherit;
+        font-weight: 600;
         color: #fff;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(10, 30, 60, 0.75);
+        border: 2px solid rgba(255, 255, 255, 0.6);
         border-radius: 999px;
         padding: 8px 16px;
         cursor: pointer;
@@ -165,7 +297,8 @@
       #save-tools .note {
         max-width: 460px;
         line-height: 1.45;
-        opacity: 0.6;
+        opacity: 0.8;
+        text-shadow: 0 1px 0 #000;
       }
       #save-msg {
         min-height: 1.4em;
@@ -400,15 +533,19 @@
       style="position: fixed; left: 0; top: 0; width: 100%; height: 100%"
     ></canvas>
 
+    <canvas id="splash" width="320" height="180"></canvas>
+    <div id="splash-caption">El Delfin Verde porta un foresto a Muia…</div>
+
     <div id="bar">
-      <div id="bar-track"><div id="bar-fill"></div></div>
+      <div id="bar-track"><div id="bar-fill"></div><div id="bar-icon"></div></div>
       <div id="bar-label">Preparazione…</div>
     </div>
     <div id="status" style="display: none"></div>
 
     <button id="start-button" class="center" type="button">
       <span class="title">Pokémon Muia</span>
-      <span class="play">▶ Gioca</span>
+      <span class="sub">El Foresto</span>
+      <span class="play"><span class="ball"></span>Gioca</span>
       <span class="hint only-desktop">
         Frecce per muoverti · Z o Spazio = A · X = B · Esc menu · D menu rapido · I tasti si cambiano in "Conza el zogo" → Tasti
       </span>
@@ -447,6 +584,103 @@
       <div id="btn-start" class="pill" data-button="x">START</div>
     </div>
 
+    <script>
+      // Animazion de la schermata d'avvio, disegnada a pixel (320x180):
+      // el Delfin Verde traversa el golfo da Trieste a Muia, coi Wingull.
+      (() => {
+        const cv = document.getElementById("splash");
+        if (!cv || !cv.getContext) return;
+        const g = cv.getContext("2d");
+        const W = 320, H = 180, MAR = 112;
+        const resize = () => {
+          // tien le proporzioni 16:9 e copri tuto lo schermo
+          const r = Math.max(innerWidth / W, innerHeight / H);
+          cv.style.width = W * r + "px";
+          cv.style.height = H * r + "px";
+          cv.style.left = (innerWidth - W * r) / 2 + "px";
+          cv.style.top = (innerHeight - H * r) / 2 + "px";
+        };
+        addEventListener("resize", resize);
+        resize();
+        const R = (x, y, w, h, c) => { g.fillStyle = c; g.fillRect(x | 0, y | 0, w | 0, h | 0); };
+        // stele e nuvole fisse
+        const stele = Array.from({ length: 40 }, (_, i) => [(i * 73) % W, (i * 37) % 60, i % 3]);
+        const nuvole = [[30, 30, 46], [150, 18, 60], [250, 40, 40]];
+        const case_ = [];
+        for (let i = 0; i < 16; i++) case_.push([190 + i * 8 + (i % 3), 10 + ((i * 7) % 12)]);
+        let t0 = performance.now();
+        const frame = (now) => {
+          if (cv.classList.contains("via") && getComputedStyle(cv).opacity === "0") return;
+          const t = (now - t0) / 1000;
+          // cielo all'alba
+          const cieli = ["#16325c", "#2a4f86", "#4f74a8", "#8a8fb4", "#e7a37c", "#f6c47a"];
+          cieli.forEach((c, i) => R(0, i * 19, W, 20, c));
+          stele.forEach(([x, y, k]) => { if ((t * 2 + k) % 3 > 0.6 && y < 40) R(x, y, 1, 1, "#ffffffaa"); });
+          // sol che leva
+          g.fillStyle = "#ffd36b"; g.beginPath(); g.arc(140, MAR - 2, 20, 0, Math.PI * 2); g.fill();
+          R(118, MAR - 6, 44, 2, "#f6c47a"); R(122, MAR - 12, 36, 2, "#f6c47a");
+          // nuvole
+          nuvole.forEach(([x, y, w], i) => {
+            const nx = ((x + t * (4 + i)) % (W + 80)) - 60;
+            R(nx, y, w, 6, "#ffffff55"); R(nx + 8, y - 4, w - 16, 4, "#ffffff44");
+          });
+          // Trieste in lontananza (sinistra)
+          for (let i = 0; i < 9; i++) R(4 + i * 9, MAR - 10 - ((i * 5) % 9), 7, 10 + ((i * 5) % 9), "#3b4f73");
+          R(0, MAR - 3, 92, 3, "#3b4f73");
+          // Muia (destra): colina, case, Duomo e Castel
+          g.fillStyle = "#2f5a3a";
+          g.beginPath(); g.moveTo(170, MAR); g.quadraticCurveTo(250, MAR - 70, 330, MAR - 40); g.lineTo(330, MAR); g.fill();
+          R(282, MAR - 66, 22, 16, "#b9a98a"); R(282, MAR - 70, 4, 4, "#b9a98a"); R(291, MAR - 70, 4, 4, "#b9a98a"); R(300, MAR - 70, 4, 4, "#b9a98a");
+          R(290, MAR - 60, 5, 7, "#5a4a3a");
+          case_.forEach(([x, h], i) => {
+            R(x, MAR - h - 6, 7, h + 6, i % 2 ? "#e8d8b8" : "#f2c9a0");
+            R(x - 1, MAR - h - 8, 9, 3, "#c4553a");
+            if ((i + (t | 0)) % 5 === 0) R(x + 2, MAR - h - 2, 2, 2, "#ffe98a");
+          });
+          R(236, MAR - 40, 8, 34, "#d9c7a5"); R(235, MAR - 44, 10, 4, "#c4553a"); R(238, MAR - 34, 4, 5, "#5a4a3a");
+          // mar
+          R(0, MAR, W, H - MAR, "#2a6db5");
+          for (let y = MAR + 4; y < H; y += 7) {
+            const off = (t * (12 + (y - MAR) / 4)) % 24;
+            for (let x = -24; x < W; x += 24) R(x + off + ((y / 7) % 2) * 12, y, 8, 1, "#6fb0e8");
+          }
+          // riflesso del sol
+          for (let y = MAR + 2; y < MAR + 30; y += 4) R(126 + Math.sin(t * 3 + y) * 3, y, 28 - (y - MAR) / 2, 1, "#ffe0a0aa");
+          // el Delfin Verde (catamaran bianco e verde) che va verso Muia
+          const giro = 22;
+          const p = (t % giro) / giro;
+          const bx = -60 + p * 300;
+          const by = MAR + 22 + Math.sin(t * 2.2) * 1.5;
+          R(bx, by + 8, 44, 3, "#0d3e75");
+          R(bx, by, 44, 8, "#ffffff"); R(bx + 4, by - 6, 30, 6, "#ffffff");
+          R(bx, by + 4, 44, 2, "#2e9d4a"); R(bx + 6, by - 4, 24, 2, "#1d2f45");
+          R(bx + 36, by - 10, 3, 4, "#2e9d4a");
+          // scia
+          for (let i = 1; i < 6; i++) R(bx - i * 9, by + 9 + (i % 2), 7, 1, "#cfe8ff");
+          // Wingull in volo
+          for (let k = 0; k < 3; k++) {
+            const wx = ((t * (18 + k * 6) + k * 110) % (W + 40)) - 20;
+            const wy = 40 + k * 14 + Math.sin(t * 3 + k) * 4;
+            const su = Math.sin(t * 10 + k) > 0;
+            R(wx, wy, 6, 2, "#ffffff");
+            R(wx - 4, wy + (su ? -2 : 1), 4, 1, "#ffffff"); R(wx + 6, wy + (su ? -2 : 1), 4, 1, "#ffffff");
+            R(wx + 5, wy, 2, 1, "#f2b84b");
+          }
+          requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+        // frasi che cambia sotto el titolo
+        const frasi = [
+          "El Delfin Verde porta un foresto a Muia…",
+          "Oto bolli del Carneval, i Super 4 e el sindaco Pochibori…",
+          "…e Tubo, che te ferma a ogni canton.",
+          "Daghe, mulo: Trieste te speta!"
+        ];
+        let n = 0;
+        const cap = document.getElementById("splash-caption");
+        setInterval(() => { if (cap) { n = (n + 1) % frasi.length; cap.textContent = frasi[n]; } }, 4000);
+      })();
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
