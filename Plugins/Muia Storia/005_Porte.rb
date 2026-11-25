@@ -253,7 +253,7 @@ module MuiaStoria
     _x, _y, _g, _d, frasi, regalo = dati[1][i]
     evento = pbMapInterpreter&.get_self
     gira_verso_zogador(evento) if evento
-    chiave_regalo = [CASE.keys.index(chiave) || 0, i]
+    chiave_regalo = [chiave, i]
     dato = ($game_variables[VAR_BAR].is_a?(Hash) ? $game_variables[VAR_BAR] : ($game_variables[VAR_BAR] = {}))
     dato[:regali] ||= {}
     if regalo && dato[:regali][chiave_regalo]

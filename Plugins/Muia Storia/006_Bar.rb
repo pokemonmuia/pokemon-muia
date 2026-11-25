@@ -204,8 +204,11 @@ module MuiaStoria
       dì("PROFESSOR DELE MACHINE", _INTL("Te manca qualche schei. Torna."))
       return
     end
+    if !pbReceiveItem(item)
+      dì("PROFESSOR DELE MACHINE", _INTL("No te ga posto in borsa. Torna quando te la svodi."))
+      return
+    end
     $player.money -= prezo
-    pbReceiveItem(item)
     dì("PROFESSOR DELE MACHINE", _INTL("Grazie! Speta che cambio la vetrina..."))
     d[banco] = nova_offerta_mt
   end

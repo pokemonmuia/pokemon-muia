@@ -135,6 +135,7 @@ module MuiaStoria
       pbFadeOutIn { evento.erase }
     else
       $game_variables[VAR_TUBO] = n   # la rivincita la prossima volta
+      evento.erase
     end
     aggiorna
   end

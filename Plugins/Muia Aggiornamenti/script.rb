@@ -158,7 +158,12 @@ SaveData.register_conversion(:muia_1_29_mape_tolte) do
       mf = save_data[:map_factory]
       id = mf&.map&.map_id
       if id && MuiaAggiornamenti::MAPE_TOLTE_1_29.include?(id)
-        save_data[:map_factory] = PokemonMapFactory.new(22)
+        # Mapa vuota: el zogo la prepara al caricamento (safesave)
+        gm = Game_Map.new
+        gm.map_id = 22
+        mf.instance_variable_set(:@maps, [gm])
+        mf.instance_variable_set(:@mapIndex, 0)
+        save_data[:global_metadata].safesave = true if save_data[:global_metadata]
         pl = save_data[:game_player]
         if pl
           pl.instance_variable_set(:@x, 59)
@@ -166,6 +171,10 @@ SaveData.register_conversion(:muia_1_29_mape_tolte) do
           pl.instance_variable_set(:@real_x, 59 * Game_Map::REAL_RES_X)
           pl.instance_variable_set(:@real_y, 12 * Game_Map::REAL_RES_Y)
         end
+      end
+      glob = save_data[:global_metadata]
+      if glob && MuiaAggiornamenti::MAPE_TOLTE_1_29.include?(glob.pokecenterMapId)
+        glob.pokecenterMapId = -1   # se torna a casa, come al inizio
       end
     rescue StandardError
       # se no riessi, el salvataggio resta come che el iera
