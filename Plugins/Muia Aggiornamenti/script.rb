@@ -141,3 +141,34 @@ SaveData.register_conversion(:muia_1_29_storia_nova) do
     end
   end
 end
+
+# 1.29: tolte le mape dela demo de Essentials (e l'Autista che ghe portava) e
+# le copie vece dele palestre. Chi gaveva salvà là, riparti dal Molo dei
+# Bersaglieri.
+module MuiaAggiornamenti
+  MAPE_TOLTE_1_29 = [2] + (5..21).to_a + (23..31).to_a + [33] + (34..41).to_a +
+                    (44..47).to_a + (49..75).to_a + (112..112).to_a + (116..122).to_a
+end
+
+SaveData.register_conversion(:muia_1_29_mape_tolte) do
+  game_version "1.29"
+  display_title "1.29: mape dela demo tolte"
+  to_all do |save_data|
+    begin
+      mf = save_data[:map_factory]
+      id = mf&.map&.map_id
+      if id && MuiaAggiornamenti::MAPE_TOLTE_1_29.include?(id)
+        save_data[:map_factory] = PokemonMapFactory.new(22)
+        pl = save_data[:game_player]
+        if pl
+          pl.instance_variable_set(:@x, 59)
+          pl.instance_variable_set(:@y, 12)
+          pl.instance_variable_set(:@real_x, 59 * Game_Map::REAL_RES_X)
+          pl.instance_variable_set(:@real_y, 12 * Game_Map::REAL_RES_Y)
+        end
+      end
+    rescue StandardError
+      # se no riessi, el salvataggio resta come che el iera
+    end
+  end
+end
