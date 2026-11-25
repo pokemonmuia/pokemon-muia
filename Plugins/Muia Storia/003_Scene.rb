@@ -16,6 +16,8 @@ module MuiaStoria
     [1006, 24, 11, "NPC 03", 6], [1007, 28, 11, "NPC 19", 4],
     [1008, 23, 10, "NPC 22", 6], [1009, 29, 10, "NPC 09", 4]
   ]
+  # Color azzurrin per i bisbigli (base 40,128,216 e ombra 176,208,240, in RGB15)
+  BISBIGLIO = "\\[6E057B56]"
   BISBIGLI = [
     ["SIORA", "Te ga visto? Xe quel novo!"],
     ["VECIO", "El foresto! El vien de Trieste, se vedi dale scarpe."],
@@ -40,9 +42,9 @@ module MuiaStoria
     BISBIGLI.each_with_index do |(chi, testo), i|
       e = folla[i % [folla.length, 1].max]
       gira_zogador_verso(e) if e
-      pbMessage(_INTL("{1} (bisbiglia): {2}", chi, testo))
+      pbMessage(BISBIGLIO + _INTL("{1} (bisbiglia): {2}", chi, testo))
     end
-    pbMessage(_INTL("Bzz bzz... foresto... bzz... Trieste... bzz bzz..."))
+    pbMessage(BISBIGLIO + _INTL("Bzz bzz... foresto... bzz... Trieste... bzz bzz..."))
     # Riva Dei ian
     if fulvio
       fulvio.moveto(19, 8)

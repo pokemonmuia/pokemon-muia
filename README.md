@@ -144,6 +144,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** **Versione web**: schermata d'avvio **animada** (el Delfin Verde che traversa el golfo verso Muia, coi Wingull), niente più nero; bara de caricamento nova con un **Wingull che svola drio la bara**, botoni più bei.
 - **25112026** **Prova automatica**: el workflow *Test notte* (branch `test-notte`) verzi el zogo in Chrome senza schermo, fa tuta la storia da solo col plugin `Strumenti/test/Muia Test` (che NO xe nel zogo vero) e salva log e foto nel branch `test-risultati`. Versione 1.29.
 - **25112026** Fulvio desso se ciama **Dei ian**. Tute le scrite dei dialoghi (anca la folla in piazza) xe nere: prima qualchedune vigniva fora bianche e no se leseva. Versione 1.30.
+- **25112026** I bisbigli dela folla in piazza xe in **azzurrin**, el resto dei dialoghi resta nero. Versione 1.32.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
