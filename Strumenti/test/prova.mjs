@@ -10,7 +10,14 @@ const LIMITE_MS = Number(process.env.LIMITE_MS || 25 * 60 * 1000);
 fs.mkdirSync(OUT, { recursive: true });
 
 const browser = await chromium.launch({
-  args: ["--autoplay-policy=no-user-gesture-required", "--use-gl=swiftshader", "--enable-unsafe-swiftshader"],
+  channel: process.env.CANALE || undefined,
+  headless: process.env.HEADLESS !== "0",
+  args: [
+    "--autoplay-policy=no-user-gesture-required",
+    "--ignore-gpu-blocklist",
+    "--enable-unsafe-swiftshader",
+    "--enable-features=SharedArrayBuffer",
+  ],
 });
 const page = await browser.newPage({ viewport: { width: 1024, height: 700 } });
 const righe = [];
@@ -34,6 +41,7 @@ try {
   await page.waitForSelector("#start-button", { state: "visible", timeout: 180000 });
   await page.screenshot({ path: `${OUT}/00_pagina.png` });
   await page.click("#start-button");
+  righe.push("ISOLATA " + (await page.evaluate(() => String(self.crossOriginIsolated))));
   let fatte = 0;
   let ultimaFoto = Date.now();
   while (!fine && Date.now() - inizio < LIMITE_MS) {
@@ -44,6 +52,9 @@ try {
       await page.screenshot({ path: `${OUT}/${String(fatte).padStart(2, "0")}_${foto[fatte - 1]}.png` });
     }
     if (Date.now() - ultimaFoto > 60000) {
+      try {
+        righe.push("BARRA " + (await page.evaluate(() => document.getElementById("bar-label")?.textContent || "")));
+      } catch {}
       ultimaFoto = Date.now();
       await page.screenshot({ path: `${OUT}/zz_${Math.round((Date.now() - inizio) / 1000)}s.png` });
       salva();

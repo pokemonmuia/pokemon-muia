@@ -87,7 +87,7 @@ jobs:
           npm init -y > /dev/null
           npm install playwright@1
           npx playwright install --with-deps chromium
-          OUT=/tmp/risultati node prova.mjs || true
+          OUT=/tmp/risultati HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
 
       - name: Salva i risultati nel branch test-risultati
         if: always()
