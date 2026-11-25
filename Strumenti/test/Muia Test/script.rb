@@ -125,7 +125,10 @@ module MuiaTest
       vai(42, 26, 10, 2)
       controla_eventi
       foto("piazza_folla")
+      st = MuiaStoria.strada(31, 0, 26, 9)
+      verifica(st, "strada dela mama dala cima dela piazza (#{st ? st.length : 'nil'} passi)")
       MuiaStoria.scena_piazza
+      verifica(MuiaStoria.ev(1011).nil? || MuiaStoria.ev(1011).y <= 1 || MuiaStoria.ev(1011).instance_variable_get(:@erased), "mama tornada in cima (verso Cul de Nave)")
       verifica($game_variables[27] == 5, "trama = 5 dopo la scena (xe #{$game_variables[27]})")
       verifica($game_variables[29] >= 1, "prima lota con Tubo fata")
       frames(10)

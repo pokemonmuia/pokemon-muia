@@ -140,7 +140,7 @@ module MuiaStoria
     inizio = System.uptime
     loop do
       break if eventi.none? { |e| e.move_route_forcing || e.moving? }
-      break if System.uptime - inizio > 8
+      break if System.uptime - inizio > 15
       pbWait(0.05)
     end
   end
@@ -148,6 +148,57 @@ module MuiaStoria
   def self.passi(evento, *comandi)
     return if !evento
     pbMoveRoute(evento, comandi.flatten)
+  end
+
+  # Strada (BFS sule caselle passabili dela mapa) da (x0,y0) a (x1,y1):
+  # torna la lista dei comandi PBMoveRoute, o nil se no ghe xe strada.
+  def self.strada(x0, y0, x1, y1, max = 400)
+    pasi = { 2 => [0, 1, PBMoveRoute::DOWN], 4 => [-1, 0, PBMoveRoute::LEFT],
+             6 => [1, 0, PBMoveRoute::RIGHT], 8 => [0, -1, PBMoveRoute::UP] }
+    prima = { [x0, y0] => nil }
+    coda = [[x0, y0]]
+    until coda.empty?
+      c = coda.shift
+      break if c == [x1, y1]
+      pasi.each do |d, (dx, dy, _m)|
+        n = [c[0] + dx, c[1] + dy]
+        next if prima.key?(n) || !$game_map.valid?(n[0], n[1])
+        next if !$game_map.passable?(c[0], c[1], d) || !$game_map.passable?(n[0], n[1], 10 - d)
+        next if ocupada?(n[0], n[1]) && n != [x1, y1]
+        prima[n] = [c, pasi[d][2]]
+        coda.push(n)
+      end
+      return nil if prima.length > max
+    end
+    return nil if !prima.key?([x1, y1])
+    comandi = []
+    c = [x1, y1]
+    while prima[c]
+      comandi.unshift(prima[c][1])
+      c = prima[c][0]
+    end
+    comandi
+  end
+
+  # Casela dove ghe xe el zogador o un personagio visibile (per no pestarli)
+  def self.ocupada?(x, y)
+    return true if $game_player.x == x && $game_player.y == y
+    $game_map.events.values.any? do |e|
+      e.x == x && e.y == y && !e.through && e.character_name.to_s != ""
+    end
+  end
+
+  # Fa caminar un evento fin a (x,y) passando per le strade (through, cussì
+  # no el se pianta su altri personagi). Se no ghe xe strada, el se teletrasporta.
+  def self.camina(evento, x, y)
+    return if !evento
+    cmd = strada(evento.x, evento.y, x, y)
+    if cmd.nil?
+      evento.moveto(x, y)
+      return
+    end
+    pbMoveRoute(evento, [PBMoveRoute::THROUGH_ON] + cmd + [PBMoveRoute::THROUGH_OFF])
+    aspetta(evento)
   end
 
   def self.gira_verso_zogador(evento)

@@ -87,8 +87,9 @@ module MuiaStoria
     pbSEPlay("Exclaim") rescue nil
     pbMessage(_INTL("???: FERMI TUTI! Polizia Locale!"))
     if tubo
+      # Riga 9 fin a x=28, po' zo: cussì no el pesta el Banditor in (29,10)
       passi(tubo, PBMoveRoute::LEFT, PBMoveRoute::LEFT, PBMoveRoute::LEFT,
-            PBMoveRoute::LEFT, PBMoveRoute::LEFT, PBMoveRoute::DOWN, PBMoveRoute::LEFT)
+            PBMoveRoute::LEFT, PBMoveRoute::LEFT, PBMoveRoute::LEFT, PBMoveRoute::DOWN)
       aspetta(tubo)
       gira_verso_zogador(tubo)
       gira_zogador_verso(tubo)
@@ -97,12 +98,12 @@ module MuiaStoria
     dì("TUBO", _INTL("Documenti! Fame veder... Ah, ma ti te son el foresto. De TRIESTE."))
     dì("TUBO", _INTL("Mi son Tubo, Polizia Locale de Muia. Qua comando mi. Dopo el sindaco. E dopo mia mama."))
     dì("TUBO", _INTL("Te go za visto: te gavevi la facia de un che no paga el bigliet del Delfin Verde."))
-    dì("TUBO", _INTL("Vedemo se te sa almeno tignir un pokemon in man. I mii xe alenai in caserma: nissun li ga mai batui!"))
+    dì("TUBO", _INTL("Vedemo se te sa almeno tignir un pokemon in man. El mio xe alenà in caserma: nissun lo ga mai batù!"))
     vinto = lota_tubo(0, true)
     gira_verso_zogador(tubo)
     if vinto
       $game_switches[SW_CAMPARI] = true
-      dì("TUBO", _INTL("C-cossa?! Nissun... NISSUN ga mai batù i mii pokemon dela caserma!"))
+      dì("TUBO", _INTL("C-cossa?! Nissun... NISSUN ga mai batù el mio pokemon dela caserma!"))
       dì("DEI IAN", _INTL("Mulo... ti te ga fato la storia. In piazza i ne parlerà per ani. Va' in bar a contarlo!"))
       dì("TUBO", _INTL("Fortuna del principiante! Ma no te monta la testa."))
     else
@@ -128,13 +129,18 @@ module MuiaStoria
   #-----------------------------------------------------------------------------
   # La mama riva in piazza coi scarponcini da corsa (dopo el giro con Dei ian)
   #-----------------------------------------------------------------------------
+  MAMA_INGRESSO = [31, 0]   # cima dela piazza, verso Calle Parini e Cul de Nave
+
   def self.mama_scarpe
     mama = ev(1011)
     pbMessage(_INTL("???: Cocoloooo! Speta, speta!"))
     if mama
-      x, y = casela_vizin
-      mama.moveto(x, y)
+      mama.moveto(*MAMA_INGRESSO)
       grafica(mama, "NPC 28", 2)
+      # La se ferma sora el zogador (la riva da su); se no se pol, vizin
+      x, y = $game_player.x, $game_player.y - 1
+      x, y = casela_vizin if !$game_map.passable?(x, y, 0) || ocupada?(x, y)
+      camina(mama, x, y)
       gira_verso_zogador(mama)
       gira_zogador_verso(mama)
       pbExclaim(mama)
@@ -145,9 +151,11 @@ module MuiaStoria
     pbMessage(_INTL("{1} se ga messo le SCARPE DA CORSA!", $player.name))
     $player.has_running_shoes = true
     pbMessage(_INTL("Tien premù el tasto B (o X sula tastiera) mentre te camini per corer."))
-    dì("MAMA", _INTL("Bon, mi torno a casa in Cul de Nave. Se te servi qualcossa, la porta xe sempre verta. Ciao cocolo!"))
+    dì("MAMA", _INTL("Bon, mi torno a casa in Cul de Nave. Se va su de qua, per Calle Parini: varda dove che vado, cussì te impari la strada!"))
+    dì("MAMA", _INTL("Se te servi qualcossa, la porta xe sempre verta. Ciao cocolo!"))
     if mama
-      pbFadeOutIn { mama.erase }
+      camina(mama, *MAMA_INGRESSO)
+      mama.erase
     end
   end
 

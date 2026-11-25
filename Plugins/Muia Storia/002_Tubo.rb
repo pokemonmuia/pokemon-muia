@@ -24,9 +24,9 @@ module MuiaStoria
   def self.squadra_tubo(n)
     st = TUBO_STARTER[$game_variables[VAR_STARTER]] || TUBO_STARTER[2]
     case n
-    # Prima lota in piazza: fata apposta per esser QUASI impossibile (vedi el
-    # Campari in 011_Campari.rb): el starter che bati el tuo e el can, più alti.
-    when 0 then [[:GROWLITHE, 7], [st[0], 9]]
+    # Prima lota in piazza: dura ma no impossibile (vedi el
+    # Campari in 011_Campari.rb): un solo pokemon, el starter che bati el tuo.
+    when 0 then [[st[0], 6]]   # solo el starter contrario, un livel sora el tuo (5)
     when 1 then [[:GROWLITHE, 0], [st[0], 1]]
     when 2 then [[:GROWLITHE, 0], [:MAGNEMITE, -1], [:MURKROW, -1], [st[1], 2]]
     when 3 then [[:GROWLITHE, 0], [:MAGNETON, 0], [:MURKROW, 0], [:MACHOKE, 0], [st[1], 2]]
