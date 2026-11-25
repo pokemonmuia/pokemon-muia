@@ -11,7 +11,7 @@
 #
 # Variabile 27 "Trama":
 #   0 inizio, 1 rivà in piazza, 2 la guida xe andada, 3 parlà col sindaco,
-#   4 folla e Deian in piazza, 5 prima lota con Tubo, 6 Libreto dela Siora
+#   4 folla e Dei ian in piazza, 5 prima lota con Tubo, 6 Libreto dela Siora
 #   Ornella, 7 passà el posto de bloco de Tubo in cima a Calle Parini.
 #===============================================================================
 module MuiaStoria

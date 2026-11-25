@@ -143,7 +143,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** **Pulizia**: tolte tute le mape dela demo de Essentials, l'**Autista** del Mandracchio che ghe portava e le 7 copie vece dele palestre (Map116-122). Chi gaveva salvà su una de quele mape riparti dal Molo. I salvataggi che gaveva za parlà con Dejan salta el prologo novo.
 - **25112026** **Versione web**: schermata d'avvio **animada** (el Delfin Verde che traversa el golfo verso Muia, coi Wingull), niente più nero; bara de caricamento nova con un **Wingull che svola drio la bara**, botoni più bei.
 - **25112026** **Prova automatica**: el workflow *Test notte* (branch `test-notte`) verzi el zogo in Chrome senza schermo, fa tuta la storia da solo col plugin `Strumenti/test/Muia Test` (che NO xe nel zogo vero) e salva log e foto nel branch `test-risultati`. Versione 1.29.
-- **25112026** Fulvio desso se ciama **Deian**. Tute le scrite dei dialoghi (anca la folla in piazza) xe nere: prima qualchedune vigniva fora bianche e no se leseva. Versione 1.30.
+- **25112026** Fulvio desso se ciama **Dei ian**. Tute le scrite dei dialoghi (anca la folla in piazza) xe nere: prima qualchedune vigniva fora bianche e no se leseva. Versione 1.30.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

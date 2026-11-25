@@ -1,13 +1,13 @@
 #===============================================================================
 # Muia - Storia: le scene
-#   - folla in Piazza Marconi apena te esci dal Comun, Deian e prima lota con Tubo
+#   - folla in Piazza Marconi apena te esci dal Comun, Dei ian e prima lota con Tubo
 #   - la Siora Ornella in Bar de Zuppo (el Libreto del Carneval)
 #   - el posto de bloco de Tubo in cima a Calle Parini
 #   - el Delfin Verde (finale)
 #   - la mama che te dà la mapa dopo el primo KO
 #===============================================================================
 module MuiaStoria
-  DEIAN = 2   # evento de Deian in Piazza Marconi (fato in RPG Maker)
+  EV_DEI_IAN = 2   # evento de Dei ian in Piazza Marconi (fato in RPG Maker)
 
   # Folla davanti al Comun: [ID, x, y, grafica, direzion]
   FOLLA = [
@@ -33,7 +33,7 @@ module MuiaStoria
   def self.scena_piazza
     return if trama != 3
     folla = FOLLA.map { |f| ev(f[0]) }.compact
-    fulvio = ev(DEIAN)
+    fulvio = ev(EV_DEI_IAN)
     pbWait(0.4)
     folla.each { |e| gira_verso_zogador(e) }
     pbExclaim(folla[0]) if folla[0]
@@ -43,17 +43,17 @@ module MuiaStoria
       pbMessage(_INTL("{1} (bisbiglia): {2}", chi, testo))
     end
     pbMessage(_INTL("Bzz bzz... foresto... bzz... Trieste... bzz bzz..."))
-    # Riva Deian
+    # Riva Dei ian
     if fulvio
       fulvio.moveto(19, 8)
       passi(fulvio, PBMoveRoute::RIGHT, PBMoveRoute::RIGHT, PBMoveRoute::RIGHT,
             PBMoveRoute::RIGHT, PBMoveRoute::RIGHT, PBMoveRoute::DOWN,
             PBMoveRoute::DOWN, PBMoveRoute::RIGHT, PBMoveRoute::TURN_RIGHT)
     end
-    dì("DEIAN", _INTL("Oh! OH! Cossa xe 'sto mercà?!"))
+    dì("DEI IAN", _INTL("Oh! OH! Cossa xe 'sto mercà?!"))
     aspetta(fulvio)
     gira_zogador_verso(fulvio)
-    dì("DEIAN", _INTL("Lassè respirar el mulo, che el xe pena sbarcà! Fora, fora, a casa vostra!"))
+    dì("DEI IAN", _INTL("Lassè respirar el mulo, che el xe pena sbarcà! Fora, fora, a casa vostra!"))
     # La folla se slontana
     FOLLA.each do |id, x, _y, _g, _d|
       e = ev(id)
@@ -64,17 +64,17 @@ module MuiaStoria
     aspetta(folla)
     FOLLA.each { |f| ev(f[0])&.erase }
     pbWait(0.3)
-    dì("DEIAN", _INTL("Scusili, a Muia no xe che rivi tanti foresti. Mi son Deian, piacer."))
-    dì("DEIAN", _INTL("Te son quel che el sindaco ga ciamà in Comun, vero? Lassa che te spiego come che funziona qua."))
-    dì("DEIAN", _INTL("Te vol tornar a Trieste? Eh, no xe cussì facile, mulon. El sindaco Pochibori ga firmà un'ordinanza."))
-    dì("DEIAN", _INTL("Nissun foresto ciapa el Delfin Verde fin che no el ga i OTO BOLLI dele compagnie del Carneval."))
-    dì("DEIAN", _INTL("Ogni compagnia ga el so capopalestra: te lo bati, e lu te timbra el bollo sul Libreto del Carneval."))
-    dì("DEIAN", _INTL("Dopo i oto bolli te toca i Super 4, su al Castel. E alla fine... el sindaco in persona."))
-    dì("DEIAN", _INTL("Se te li bati tuti, l'ordinanza la firmi ti. E el Delfin Verde te riporta a casa."))
-    dì("DEIAN", _INTL("Robe pratiche: se i tui pokemon xe strachi, ghe xe le VECIE de Muia che te li cura gratis. Una la xe qua in piazza."))
-    dì("DEIAN", _INTL("Per Poké Ball e pozioni ghe xe el TABACHIN, qua de fronte al Comun. I bori te li ciapi lotando: anca i pokemon selvadeghi te molla qualche moneda."))
-    dì("DEIAN", _INTL("La palestra xe al Pacco, in Via D'Annunzio, su in alto. Ma ocio: per la sfilata del Carneval Via Roma xe tuta transennada."))
-    dì("DEIAN", _INTL("Se passa solo dal posto de bloco in cima a Calle Parini, e là ghe xe..."))
+    dì("DEI IAN", _INTL("Scusili, a Muia no xe che rivi tanti foresti. Mi son Dei ian, piacer."))
+    dì("DEI IAN", _INTL("Te son quel che el sindaco ga ciamà in Comun, vero? Lassa che te spiego come che funziona qua."))
+    dì("DEI IAN", _INTL("Te vol tornar a Trieste? Eh, no xe cussì facile, mulon. El sindaco Pochibori ga firmà un'ordinanza."))
+    dì("DEI IAN", _INTL("Nissun foresto ciapa el Delfin Verde fin che no el ga i OTO BOLLI dele compagnie del Carneval."))
+    dì("DEI IAN", _INTL("Ogni compagnia ga el so capopalestra: te lo bati, e lu te timbra el bollo sul Libreto del Carneval."))
+    dì("DEI IAN", _INTL("Dopo i oto bolli te toca i Super 4, su al Castel. E alla fine... el sindaco in persona."))
+    dì("DEI IAN", _INTL("Se te li bati tuti, l'ordinanza la firmi ti. E el Delfin Verde te riporta a casa."))
+    dì("DEI IAN", _INTL("Robe pratiche: se i tui pokemon xe strachi, ghe xe le VECIE de Muia che te li cura gratis. Una la xe qua in piazza."))
+    dì("DEI IAN", _INTL("Per Poké Ball e pozioni ghe xe el TABACHIN, qua de fronte al Comun. I bori te li ciapi lotando: anca i pokemon selvadeghi te molla qualche moneda."))
+    dì("DEI IAN", _INTL("La palestra xe al Pacco, in Via D'Annunzio, su in alto. Ma ocio: per la sfilata del Carneval Via Roma xe tuta transennada."))
+    dì("DEI IAN", _INTL("Se passa solo dal posto de bloco in cima a Calle Parini, e là ghe xe..."))
     $game_variables[VAR_TRAMA] = 4
     # Riva Tubo
     tubo = ev(1010)
@@ -91,7 +91,7 @@ module MuiaStoria
       gira_verso_zogador(tubo)
       gira_zogador_verso(tubo)
     end
-    dì("DEIAN", _INTL("...ghe xe lu. Tubo."))
+    dì("DEI IAN", _INTL("...ghe xe lu. Tubo."))
     dì("TUBO", _INTL("Documenti! Fame veder... Ah, ma ti te son el foresto. De TRIESTE."))
     dì("TUBO", _INTL("Mi son Tubo, Polizia Locale de Muia. Qua comando mi. Dopo el sindaco. E dopo mia mama."))
     dì("TUBO", _INTL("Te go za visto: te gavevi la facia de un che no paga el bigliet del Delfin Verde."))
@@ -112,46 +112,46 @@ module MuiaStoria
       tubo.erase
     end
     gira_zogador_verso(fulvio)
-    dì("DEIAN", _INTL("Lassilo perder, Tubo xe fato cussì: el ga studià a Trieste e no el lo ga mai digerì."))
-    dì("DEIAN", _INTL("El Libreto te lo dà la Siora Ornella del Comun. Ma a 'st'ora la xe sicuro in BAR DE ZUPPO, qua in piazza, a far merenda."))
-    dì("DEIAN", _INTL("Mi resto qua in piazza. Se te ga dubi, vien a ciacolar!"))
+    dì("DEI IAN", _INTL("Lassilo perder, Tubo xe fato cussì: el ga studià a Trieste e no el lo ga mai digerì."))
+    dì("DEI IAN", _INTL("El Libreto te lo dà la Siora Ornella del Comun. Ma a 'st'ora la xe sicuro in BAR DE ZUPPO, qua in piazza, a far merenda."))
+    dì("DEI IAN", _INTL("Mi resto qua in piazza. Se te ga dubi, vien a ciacolar!"))
     $game_variables[VAR_TRAMA] = 5
     aggiorna
   end
 
   #-----------------------------------------------------------------------------
-  # Deian in piazza (ex Dejan): consigli in base a dove te son
+  # Dei ian in piazza (ex Dejan): consigli in base a dove te son
   #-----------------------------------------------------------------------------
   def self.fulvio
     t = trama
     if t < 3
-      dì("DEIAN", _INTL("Ciò, el sindaco te speta in Comun. No sta farlo spetar, che el se rabia."))
+      dì("DEI IAN", _INTL("Ciò, el sindaco te speta in Comun. No sta farlo spetar, che el se rabia."))
       return
     end
     if t < 6
-      dì("DEIAN", _INTL("Va' in Bar de Zuppo, qua in piazza: la Siora Ornella te darà el Libreto del Carneval."))
-      dì("DEIAN", _INTL("Ah, e la xe pignola: la vol che te gabi almeno DO pokemon. Le Poké Ball le vendi el tabachin.")) if $player.party.length < 2
+      dì("DEI IAN", _INTL("Va' in Bar de Zuppo, qua in piazza: la Siora Ornella te darà el Libreto del Carneval."))
+      dì("DEI IAN", _INTL("Ah, e la xe pignola: la vol che te gabi almeno DO pokemon. Le Poké Ball le vendi el tabachin.")) if $player.party.length < 2
     elsif t < 7
-      dì("DEIAN", _INTL("Col Libreto in scarsela va' al posto de bloco de Tubo, in cima a Calle Parini. Soto la Salita dele Mure."))
+      dì("DEI IAN", _INTL("Col Libreto in scarsela va' al posto de bloco de Tubo, in cima a Calle Parini. Soto la Salita dele Mure."))
     elsif medaje < 8
-      dì("DEIAN", _INTL("Te ga {1} bolli su oto. La palestra xe al Pacco, in Via D'Annunzio.", medaje))
-      dì("DEIAN", _INTL("Se el capopalestra no xe in palestra, el guardian te disi dove trovarlo. E el Banditor in piazza sa sempre tuto."))
+      dì("DEI IAN", _INTL("Te ga {1} bolli su oto. La palestra xe al Pacco, in Via D'Annunzio.", medaje))
+      dì("DEI IAN", _INTL("Se el capopalestra no xe in palestra, el guardian te disi dove trovarlo. E el Banditor in piazza sa sempre tuto."))
     elsif !sindaco_batù?
-      dì("DEIAN", _INTL("Oto bolli! Desso va' su al Castel: i Super 4 e el sindaco te speta. Mi fazo el tifo per ti!"))
+      dì("DEI IAN", _INTL("Oto bolli! Desso va' su al Castel: i Super 4 e el sindaco te speta. Mi fazo el tifo per ti!"))
     else
-      dì("DEIAN", _INTL("Sindaco! Ciò, ma te va via sul serio? El Delfin Verde xe in Molo dei Bersaglieri..."))
+      dì("DEI IAN", _INTL("Sindaco! Ciò, ma te va via sul serio? El Delfin Verde xe in Molo dei Bersaglieri..."))
       return
     end
     return if $game_switches[SW_FINAL]
-    if t >= 7 && !$game_self_switches[[MAPA_PIAZZA, DEIAN, "B"]]
-      dì("DEIAN", _INTL("Ah, e un'altra roba: no sta dirme che anche ti te va fin in Piazza Unità con l'auto?"))
+    if t >= 7 && !$game_self_switches[[MAPA_PIAZZA, EV_DEI_IAN, "B"]]
+      dì("DEI IAN", _INTL("Ah, e un'altra roba: no sta dirme che anche ti te va fin in Piazza Unità con l'auto?"))
       sc = pbMessage(_INTL("Alora?"), [_INTL("Ma cossa te scherzi?"), _INTL("Ovvio ah")], 0)
       if sc == 0
-        dì("DEIAN", _INTL("Bravo. Te parchegi in Piazzale Cagni, te ciapi la 9 e in diese minuti te son in Piazza Unità."))
+        dì("DEI IAN", _INTL("Bravo. Te parchegi in Piazzale Cagni, te ciapi la 9 e in diese minuti te son in Piazza Unità."))
       else
-        dì("DEIAN", _INTL("Mama mia. Un vero triestin. Va' pur, va', che te trovi parcheggio in Sacheta per Pasqua."))
+        dì("DEI IAN", _INTL("Mama mia. Un vero triestin. Va' pur, va', che te trovi parcheggio in Sacheta per Pasqua."))
       end
-      $game_self_switches[[MAPA_PIAZZA, DEIAN, "B"]] = true
+      $game_self_switches[[MAPA_PIAZZA, EV_DEI_IAN, "B"]] = true
     end
   end
 
@@ -241,8 +241,8 @@ module MuiaStoria
   def self.finale
     pbBGMFade(1.0) rescue nil
     pbMessage(_INTL("Su la passerela, una vose conossuda..."))
-    dì("DEIAN", _INTL("Speta! SPETA! Te va via cussì, senza saludar?"))
-    dì("DEIAN", _INTL("Te son rivà foresto e te va via sindaco. A Muia no se la desmentegherà più nissun."))
+    dì("DEI IAN", _INTL("Speta! SPETA! Te va via cussì, senza saludar?"))
+    dì("DEI IAN", _INTL("Te son rivà foresto e te va via sindaco. A Muia no se la desmentegherà più nissun."))
     dì("TUBO", _INTL("...E mi go perso con un triestin. Ma solo perché el mio can gaveva fame."))
     dì("TUBO", _INTL("Ciò... bon viagio, foresto. Cioè... sindaco. Va ben, foresto."))
     dì("SINDACO POCHIBORI", _INTL("Ricordite: el Delfin Verde va e vien. E a Muia un caffè per ti se trova sempre."))

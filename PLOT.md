@@ -6,14 +6,14 @@ Location = Molo dei Bersaglieri (Map022), davanti la passerela del Delfin Verde
 Plot = te son pena rivà a Muja col Delfin Verde. Te vien incontro un mulo del Comun che te disi che el sindaco te vol parlar subito, e el te compagna in Piazza Marconi (passagio svelto, con dissolvenza). In piazza el te mostra el Comun e el va via.
 ### SCENA 2. (FATTA)
 Location = Comun de Muja (Map004, la porta xe in Piazza Marconi)
-Plot = el sindaco Pochibori te disi "Te pensi de esser meio de mi?" e, qualsiasi roba te rispondi, "prima te ga de far esperienza". El te fa sceglier un pokemon sul tavolo e el te manda fora, dove te speta Deian. El te disi anca de l'ordinanza: nissun foresto ciapa el Delfin Verde senza i oto bolli.
-### SCENA 2b. (FATTA, rifata 25/11) - La folla e Deian
+Plot = el sindaco Pochibori te disi "Te pensi de esser meio de mi?" e, qualsiasi roba te rispondi, "prima te ga de far esperienza". El te fa sceglier un pokemon sul tavolo e el te manda fora, dove te speta Dei ian. El te disi anca de l'ordinanza: nissun foresto ciapa el Delfin Verde senza i oto bolli.
+### SCENA 2b. (FATTA, rifata 25/11) - La folla e Dei ian
 Location = Piazza Marconi (Map042), apena te esci dal Comun (var 27 = 3)
-Plot = otto muiesani te circonda e bisbiglia ("Te ga visto? Xe quel novo!", "El foresto! El vien de Trieste, se vedi dale scarpe"...). Riva DEIAN (ex Deian, ex Dejan, evento 2 dela mapa) che li manda via e te spiega: ordinanza del sindaco Pochibori, oto bolli dele compagnie, Super 4 al Castel, sindaco. E le robe pratiche: vecie che cura, tabachin, schei anca dai selvadeghi, palestra al Pacco. Var 27 = 4.
+Plot = otto muiesani te circonda e bisbiglia ("Te ga visto? Xe quel novo!", "El foresto! El vien de Trieste, se vedi dale scarpe"...). Riva DEI IAN (ex Dei ian, ex Dejan, evento 2 dela mapa) che li manda via e te spiega: ordinanza del sindaco Pochibori, oto bolli dele compagnie, Super 4 al Castel, sindaco. E le robe pratiche: vecie che cura, tabachin, schei anca dai selvadeghi, palestra al Pacco. Var 27 = 4.
 
 ### SCENA 2c. (FATTA) - Tubo
 Location = Piazza Marconi
-Plot = "FERMI TUTI! Polizia Locale!": TUBO, pulotto, studià a Trieste e mai digerì. Prima lota (se pol perder): Tubo ga el starter che bati el tuo. Dopo el te disi che senza el Libreto del Carneval al so posto de bloco no se passa. Deian te manda dala Siora Ornella in Bar de Zuppo. Var 27 = 5.
+Plot = "FERMI TUTI! Polizia Locale!": TUBO, pulotto, studià a Trieste e mai digerì. Prima lota (se pol perder): Tubo ga el starter che bati el tuo. Dopo el te disi che senza el Libreto del Carneval al so posto de bloco no se passa. Dei ian te manda dala Siora Ornella in Bar de Zuppo. Var 27 = 5.
 
 ### SCENA 3. (FATTA) - El Libreto del Carneval
 Location = Bar de Zuppo (Map080)
@@ -35,7 +35,7 @@ Le 8 sfide xe sempre nela Palestra del Pacco (Map115). Ogni capopalestra xe in g
 Location = Castel de Muia (Map114). In ordine: Nerina, Capitan Ugo, Nona Gigia e TUBO (el più forte, livei 56-58). Dopo, el sindaco Pochibori.
 
 ### FINALE (FATTA)
-Location = Molo dei Bersaglieri (Map022): el CONTROLOR del Delfin Verde. Prima el te ricorda l'ordinanza; dopo el sindaco te pol partir: saludi de Deian, Tubo e Pochibori, el viagio verso Trieste, "FIN". Se pol continuar a zogar e rivedar el finale.
+Location = Molo dei Bersaglieri (Map022): el CONTROLOR del Delfin Verde. Prima el te ricorda l'ordinanza; dopo el sindaco te pol partir: saludi de Dei ian, Tubo e Pochibori, el viagio verso Trieste, "FIN". Se pol continuar a zogar e rivedar el finale.
 
 ### ROBE DE CONTORNO
 - Mapa de Muia: la mama la dà la prima volta che te va KO (Map003).
