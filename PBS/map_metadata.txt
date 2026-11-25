@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [001]   # Intro
 Name = Intro
@@ -330,3 +330,10 @@ Name = INTERNO: Bar Jimmy / Casa granda
 [127]   # INTERNO: Bar (do tavole)
 MapPosition = 0,14,7
 Name = INTERNO: Bar (do tavole)
+#-------------------------------
+[128]   # Porto San Rocco
+Name = Porto San Rocco
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,20,8

@@ -9,7 +9,7 @@
 #===============================================================================
 module MuiaStoria
   TILE_PORTE = [1993, 2026, 2014, 2065]
-  MAPE_FORA  = (22..113).to_a + [114]
+  MAPE_FORA  = (22..113).to_a + [114, 128]
 
   # Interni: [mapa, x de entrada, y de entrada, x porta de uscida, y porta de uscida]
   INTERNI = {
@@ -121,6 +121,12 @@ module MuiaStoria
     nord_gamer: [126, [[9, 9, "trainer_SUPERNERD", 4, [
       "Te zoghi anche ti al 'Pokémon Muia' sul telefono? Dicono che ghe xe un fan game ambientà qua.",
       "Sì, va ben, ma chi xe che fa un zogo su Muia? Ahahah."]]]],
+    psr_yacht: [126, [[4, 3, "trainer_GENTLEMAN", 2, [
+      "Benvignù al Yacht Club de Porto San Rocco. Qua le barche costa più dele case.",
+      "Un foresto che vien a piedi? Che roba esotica! Ciol, xe una cana bona: in marina ghe xe pessi de lusso."], :GOODROD]]],
+    psr_turista: [125, [[2, 6, "trainer_LADY", 6, [
+      "Son vignuda in vacanza a Porto San Rocco. Me ga dito che xe 'Muia ma più elegante'.",
+      "Go magnà sardoni impanai per tre giorni. Son felice."]]]],
     castel_custode: [123, [[8, 6, "NPC 13", 2, [
       "Son el custode del Castel. Le ciavi? Le ga i Mandrioi. I fantasmi? Anca quei xe dei Mandrioi."]]]]
   }
@@ -141,7 +147,7 @@ module MuiaStoria
     [113, 29, 21] => :slucia_studioso, [113, 9, 33] => :slucia_ragazzo,
     [97, 7, 40] => :nord_infermiera, [98, 41, 8] => :nord_bambin, [104, 24, 21] => :nord_nono_guera,
     [106, 17, 8] => :nord_ciclista, [109, 17, 8] => :nord_fan_tubo, [107, 15, 5] => :nord_osmiza,
-    [105, 9, 8] => :nord_sposa, [107, 16, 17] => :nord_gamer, [114, 2, 10] => :castel_custode
+    [105, 9, 8] => :nord_sposa, [128, 8, 20] => :psr_yacht, [128, 28, 20] => :psr_turista, [107, 16, 17] => :nord_gamer, [114, 2, 10] => :castel_custode
   }
 
   FRASI_PORTE = [

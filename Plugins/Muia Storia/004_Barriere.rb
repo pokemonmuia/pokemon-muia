@@ -24,7 +24,9 @@ module MuiaStoria
     [88, 10, 19, nil, 573], [88, 11, 19, nil, 565], [88, 12, 19, "NPC 16", nil],
     [88, 13, 19, nil, 565], [88, 14, 19, nil, 573], [88, 15, 19, nil, 565],
     [88, 16, 19, "NPC 18", nil], [88, 17, 19, nil, 565], [88, 18, 19, nil, 573],
-    [88, 19, 19, nil, 565], [88, 20, 19, "NPC 20", nil], [88, 21, 19, nil, 565]
+    [88, 19, 19, nil, 565], [88, 20, 19, "NPC 20", nil], [88, 21, 19, nil, 565],
+    # strada per Porto San Rocco (fin del Circolo dela Vela)
+    [79, 44, 7, nil, 573], [79, 44, 8, "NPC 02", nil], [79, 44, 9, nil, 565], [79, 44, 10, nil, 573]
   ]
 
   FRASI_SPETADORI = [
@@ -59,6 +61,14 @@ module MuiaStoria
 
   # Le scale del Castel: corda in tre tochi sopra i eventi dele scale
   CASTEL = [[43, 44, 4, 568], [79, 0, 4, 569], [79, 1, 4, 570]]
+
+  # Fondo dela strada per Lazzareto (Porto San Rocco, mapa 128): frana
+  LAZZARETO = [[128, 39, 7, nil, 559], [128, 39, 8, "trainer_MANOVAL", nil], [128, 39, 9, nil, 559], [128, 39, 10, nil, 559]]
+
+  def self.frana
+    dì("MANOVAL", _INTL("FAZO BUSOOO! ...Ah, scusa. La strada per Lazzareto xe serada: xe vignuda zo una frana."))
+    dì("MANOVAL", _INTL("I dixi che la verzerà 'presto'. A Muia 'presto' vol dir tra el 2027 e la fine del mondo."))
+  end
 
   def self.corda_castel
     pbMessage(_INTL("Una corda sbara le scale del Castel. Xe tacà un cartel:"))
@@ -117,6 +127,10 @@ module MuiaStoria
     CASTEL.each_with_index do |(m, x, y, tile), i|
       next if m != map_id
       metti(map, evento(1181 + i, x, y, [{}, { sw: SW_CASTEL, tile: tile, cmd: "MuiaStoria.corda_castel" }]))
+    end
+    LAZZARETO.each_with_index do |(m, x, y, gfx, tile), i|
+      next if m != map_id
+      metti(map, evento(1191 + i, x, y, [{ gfx: gfx, tile: tile, dir: 6, cmd: "MuiaStoria.frana" }]))
     end
     if map_id == RIONE_MAPA
       RIONE.each do |id, x, y, gfx, capo|

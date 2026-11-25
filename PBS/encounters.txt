@@ -437,3 +437,32 @@ LandNight,12
     50,GASTLY,3,6
     50,ZUBAT,3,6
 #-------------------------------
+#-------------------------------
+[128] # Porto San Rocco
+Land,25
+    25,WINGULL,3,6
+    20,HOPPIP,3,6
+    15,SUNKERN,3,6
+    15,SKITTY,3,6
+    10,SPEAROW,3,6
+    10,ODDISH,3,6
+    5,PLUSLE,3,6
+Water,2
+    50,TENTACOOL,3,6
+    25,WINGULL,3,6
+    15,MANTYKE,3,6
+    10,STARYU,3,6
+OldRod
+    70,MAGIKARP,3,6
+    30,TENTACOOL,3,6
+GoodRod
+    35,MAGIKARP,3,6
+    25,STARYU,3,6
+    20,HORSEA,3,6
+    15,FINNEON,3,6
+    5,CHINCHOU,3,6
+SuperRod
+    40,STARYU,3,6
+    30,LUMINEON,3,6
+    20,SEADRA,3,6
+    10,LANTURN,3,6

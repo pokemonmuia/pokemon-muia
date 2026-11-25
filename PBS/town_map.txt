@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
 Name = Muia
@@ -39,7 +39,7 @@ Point = 16,7,Piazza Santa Lucia
 Point = 11,8,Caliterna,,81,30,10
 Point = 14,8,Mandracchio
 Point = 15,8,Castel de Muia
-Point = 20,8,Porto San Rocco,(strada serada)
+Point = 20,8,Porto San Rocco,La marina dei foresti con la barca
 Point = 14,9,Mandracchio
 Point = 28,9,Lazzareto,(strada serada)
 Point = 13,10,Molo C. Colombo

@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 # Caliterna (P) (82) - Viale XXV Aprile_1 (106)
 82,East,0,106,West,148
@@ -362,3 +362,6 @@
 #-------------------------------
 # Piazza Marconi (42) - Piazza Santa Lucia (113)
 42,East,0,113,West,15
+#-------------------------------
+# Circolo della Vela_2 (79) - Porto San Rocco (128)
+79,East,0,128,West,0

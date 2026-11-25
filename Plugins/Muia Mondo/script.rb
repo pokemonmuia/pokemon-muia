@@ -77,6 +77,13 @@ module MuiaMondo
     [960, 97, 20, 35, :COOLTRAINER_M, "Davide", [:SNORUNT, :SPHEAL, :MANKEY],
      "Te va al Pacco a sfidar le compagnie? Prima fa' un fià de alenamento con mi!",
      "Bel, te me ga fato sudar. Va', che Bepi te speta.", [7, 0]],
+    # --- Porto San Rocco (dopo el posto de bloco) ---
+    [969, 128, 10, 22, :SAILOR,    "Marinaio Dario", [:WINGULL, :TENTACOOL, :KRABBY],
+     "In marina se lavora, mulo, no se fa turismo! Ma una lota la fazo volentieri.",
+     "Torno a lustrar el yacht del paron.", [7, 0]],
+    [970, 128, 30, 3, :PICNICKER,  "Chiara",  [:HOPPIP, :SUNKERN, :SKITTY],
+     "Su la colina sora Porto San Rocco se vedi tuto el golfo. E anca i foresti che riva!",
+     "Bela lota. Ciapa el sol, che te son palido.", [7, 0]],
     # --- Dopo el primo bollo: Giardinetti (Nives) ---
     [948, 96,  6, 22, :AROMALADY,  "Sara",    [:ODDISH, :BELLSPROUT, :FOMANTIS],
      "Nives xe vignuda a bagnar le rose. Mi inveze bagno i foresti!",
