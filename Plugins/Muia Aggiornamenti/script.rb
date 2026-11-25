@@ -127,3 +127,17 @@ end
 #
 # Per adesso nissuna: i salvataggi de la 1.0.0 va ben cussì come i xe.
 #===============================================================================
+
+# 1.29: storia nova (folla in piazza, Libreto, posto de bloco de Tubo).
+# Chi che ga za parlà con Fulvio (ex Dejan) salta el novo prologo, cussì no
+# el resta bloccà de là dele transenne de Via Roma.
+SaveData.register_conversion(:muia_1_29_storia_nova) do
+  game_version "1.29"
+  display_title "1.29: storia nova"
+  to_all do |save_data|
+    variabili = save_data[:variables]
+    if variabili && variabili[27].is_a?(Integer) && variabili[27] >= 4
+      variabili[27] = 7
+    end
+  end
+end

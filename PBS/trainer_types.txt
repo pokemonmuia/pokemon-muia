@@ -495,3 +495,10 @@ Name = Muiesana
 Gender = Female
 BaseMoney = 60
 BattleBGM = Battle trainer
+#-------------------------------
+[TUBO]
+Name = Vigile
+Gender = Male
+BaseMoney = 60
+SkillLevel = 60
+BattleBGM = Battle Elite

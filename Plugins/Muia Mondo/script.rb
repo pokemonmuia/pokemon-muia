@@ -34,49 +34,88 @@ module MuiaMondo
     [923, 100, 16,  9, :grande,   "NPC 15", 2]    # Magazin Grande de Via Singolo
   ]
 
-  # [ID, mapa, x, y, tipo, nome, squadra [[specie, livel]...], frase prima, frase dopo]
+  # Alenadori de strada, piazzai secondo la storia.
+  # [ID, mapa, x, y, tipo, nome, specie, frase prima, frase dopo, [trama minima, medaje minime]]
+  # I livei NO i xe fissi: ogni pokemon xe tra 4 soto e 2 sora el to più forte
+  # (vedi LIVEL_SOTO/LIVEL_SORA), e se el livel xe alto el vien za evolù.
+  # Un alenador compar solo quando la storia xe rivada al punto giusto.
+  LIVEL_SOTO = 4
+  LIVEL_SORA = 2
   ALENADORI = [
-    # Caliterna: prima dela palestra 1 (Volante, 12-14)
-    [941, 81, 20,  8, :YOUNGSTER,  "Mattia",  [[:PIDGEY, 8], [:RATTATA, 9]],
-     "Ocio, mulo! Anche mi go le mie bestie, vara!", "Va ben, va ben... te son più bravo de mi."],
-    [942, 81, 45, 10, :LASS,       "Giulia",  [[:WINGULL, 10], [:PIKIPEK, 10]],
-     "In Caliterna tira sempre vento: i mii uccei xe abituadi!", "Mona mi a sfidarte..."],
-    # Calli: tra palestra 1 e 3
-    [943, 89, 10, 14, :BUGCATCHER, "Nicolò",  [[:CATERPIE, 11], [:WEEDLE, 11], [:VENIPEDE, 12]],
-     "Nele calli se trova le bestiole più bele!", "Le mie bestiole ga bisogno de riposar."],
-    [944, 89, 24, 14, :PICNICKER,  "Elisa",   [[:BUNEARY, 13], [:SKITTY, 13]],
-     "Te passi per la mia cale? Prima te ga de bater mi!", "Bon, passa pur."],
-    [945, 90, 12, 12, :CAMPER,     "Luca",    [[:GEODUDE, 13], [:ROLYCOLY, 14]],
-     "Calle Parini xe tuta sassi, come i mii pokemon!", "Me son sgretolà..."],
-    [946, 91, 10, 12, :HIKER,      "Franco",  [[:ROGGENROLA, 14], [:ONIX, 15]],
-     "Su e zo per 'ste cale go le gambe de fero!", "Mejo che torno in osmiza."],
-    [947, 93, 15,  7, :BLACKBELT,  "Stefano", [[:MACHOP, 15], [:MAKUHITA, 16]],
-     "La Salita dele Mura me la fazo tuti i giorni de corsa!", "Ahia... oggi no xe giornada."],
-    # Giardinetti: prima dela palestra 2 (Erba, 17-19)
-    [948, 96,  6, 22, :AROMALADY,  "Sara",    [[:ODDISH, 15], [:BELLSPROUT, 15], [:FOMANTIS, 16]],
-     "Senti che profumo i mii fiori!", "Che pecà, i fiori se ga sfiorì."],
-    [949, 96, 20,  6, :BUGCATCHER, "Tommaso", [[:BUTTERFREE, 16], [:COMBEE, 16], [:NINCADA, 17]],
-     "I Giardinetti xe pieni de bestie: le go ciapade tute!", "Torno a cercarghe nel'erba."],
-    # Vecio Squero: prima dela palestra 3 (Elettro, 22-24)
-    [950, 83, 10,  6, :SAILOR,     "Bruno",   [[:TENTACOOL, 19], [:KRABBY, 20], [:WINGULL, 20]],
-     "Al Squero se riparava le barche. Mi riparo i pokemon dopo che li bato!", "Me toca riparar la mia barca, desso."],
-    # Ricreatorio: prima dela palestra 4 (Ghiaccio, 27-29)
-    [951, 94, 11,  8, :COOLTRAINER_M, "Davide", [[:SNORUNT, 24], [:SPHEAL, 25], [:MANKEY, 25]],
-     "Al Ricreatorio se zoga, ma mi zogo sul serio!", "Bel, te me ga fato sudar."],
-    # Caliterna: prima dela palestra 5 (Spettro, 32-34)
-    [952, 81, 72, 15, :CHANNELER,  "Ondina",  [[:MISDREAVUS, 29], [:SHUPPET, 29], [:HAUNTER, 31]],
-     "Dopo mezanote in Caliterna se senti robe strane...", "I spiriti se ga calmà."],
-    # Piazza dela Repubblica: prima dela palestra 6 (Fogo, 37-39)
-    [953, 85, 10,  8, :BIKER,      "Rico",    [[:GROWLITHE, 33], [:PONYTA, 34], [:SANDSLASH, 34]],
-     "Rombo rombo! Me piasi el fogo!", "Me se ga spento el motor."],
-    # Via Roma: prima dela palestra 7 (Psico, 42-44)
-    [954, 86, 10,  8, :PSYCHIC_F,  "Licia Jr.", [[:KADABRA, 38], [:GIRAFARIG, 39], [:MEDITITE, 39]],
-     "Go za visto come che finirà... o forsi no.", "No lo gavevo previsto!"],
-    # Mandracchio: prima dela palestra 8 (Lota, 47-50)
-    [955, 76, 10,  7, :FISHERMAN,  "Bepi Pescador", [[:GYARADOS, 43], [:SEAKING, 44], [:CLOYSTER, 44]],
-     "Qua al Mandracchio pesco solo pokemon grossi!", "Oggi no ciapa gnente."],
-    [956, 76, 30,  7, :BLACKBELT,  "Nino",    [[:MACHOKE, 45], [:HITMONTOP, 45], [:PRIMEAPE, 46]],
-     "Pina me ga alenà: prima de ela te ga de passar de mi!", "Va', che Pina te speta."]
+    # --- Centro storico, dopo la prima lota con Tubo ---
+    [957, 76, 10, 7, :YOUNGSTER, "Mulo Kevin", [:RATTATA, :ZIGZAGOON],
+     "Ti te son el foresto? Mi son el mulo più forte del Mandracchio! ...Dopo Pina. E dopo mio fradel.",
+     "Bon, bon. Ma no sta dirghe a mio fradel.", [5, 0]],
+    [941, 81, 20,  8, :YOUNGSTER,  "Mattia", [:PIDGEY, :SPEAROW],
+     "I mii uccei vola sora Caliterna da quando i xe nati. Ti, inveze, te son pena sbarcà!",
+     "Va ben, va ben... te son più bravo de mi.", [5, 0]],
+    [942, 81, 45, 10, :LASS,       "Giulia",  [:WINGULL, :PIKIPEK],
+     "In Caliterna tira sempre vento: i mii uccei xe abituadi. E ti, foresto, te xe abituà ala bora?",
+     "Mona mi a sfidarte...", [5, 0]],
+    [943, 89, 10, 14, :BUGCATCHER, "Nicolò",  [:CATERPIE, :WEEDLE, :VENIPEDE],
+     "Nele cali se trova le bestiole più bele! Anca i foresti, ogni tanto.",
+     "Le mie bestiole ga bisogno de riposar.", [5, 0]],
+    [944, 89, 24, 14, :PICNICKER,  "Elisa",   [:BUNEARY, :SKITTY],
+     "Te passi per la mia cale? Qua i foresti paga el pedagio: una lota!",
+     "Bon, passa pur. Gratis, per stavolta.", [5, 0]],
+    [958, 87, 10, 13, :CAMPER,     "Ivan",    [:POOCHYENA, :HOOTHOOT],
+     "Cul de Nave xe el posto più bel de Muia. Per forza: ghe abito mi!",
+     "Te pol abitarghe anche ti, va ben. Ma solo de giorno.", [5, 0]],
+    # --- Dopo el posto de bloco de Tubo ---
+    [945, 90, 12, 12, :CAMPER,     "Luca",    [:GEODUDE, :ROLYCOLY],
+     "Calle Parini xe tuta sassi, come i mii pokemon! E come la testa de Tubo.",
+     "Me son sgretolà...", [7, 0]],
+    [946, 90, 21, 12, :HIKER,      "Franco",  [:ROGGENROLA, :ONIX],
+     "Su e zo per 'ste cale go le gambe de fero! Ti, foresto, te ga za el fià grosso?",
+     "Mejo che torno in osmiza.", [7, 0]],
+    [947, 93, 15,  7, :BLACKBELT,  "Stefano", [:MACHOP, :MAKUHITA],
+     "La Salita dele Mure me la fazo tuti i giorni de corsa! Desso che Tubo ga tolto el bloco, xe tuta mia.",
+     "Ahia... oggi no xe giornada.", [7, 0]],
+    [959, 92, 30,  8, :BIKER,      "Rico",    [:GRIMER, :KOFFING, :GROWLITHE],
+     "Via Roma xe verta! Finalmente posso tornar a far rumor col motorin!",
+     "Me se ga spento el motor.", [7, 0]],
+    [960, 97, 20, 35, :COOLTRAINER_M, "Davide", [:SNORUNT, :SPHEAL, :MANKEY],
+     "Te va al Pacco a sfidar le compagnie? Prima fa' un fià de alenamento con mi!",
+     "Bel, te me ga fato sudar. Va', che Bepi te speta.", [7, 0]],
+    # --- Dopo el primo bollo: Giardinetti (Nives) ---
+    [948, 96,  6, 22, :AROMALADY,  "Sara",    [:ODDISH, :BELLSPROUT, :FOMANTIS],
+     "Nives xe vignuda a bagnar le rose. Mi inveze bagno i foresti!",
+     "Che pecà, i fiori se ga sfiorì.", [7, 1]],
+    [949, 96, 20,  6, :BUGCATCHER, "Tommaso", [:BUTTERFREE, :COMBEE, :NINCADA],
+     "I Giardinetti xe pieni de bestie: le go ciapade tute! Manca solo un foresto.",
+     "Torno a cercarghe nel'erba.", [7, 1]],
+    # --- Dopo el secondo: Vecio Squero (Marieta) ---
+    [950, 83, 10,  6, :SAILOR,     "Bruno",   [:TENTACOOL, :KRABBY, :WINGULL],
+     "Al Squero se riparava le barche. Mi riparo i foresti dopo che li bato!",
+     "Me toca riparar la mia barca, desso.", [7, 2]],
+    # --- Dopo el terzo: Molo C. Colombo (Nane) ---
+    [967, 78, 20,  3, :FISHERMAN,  "Pescador Gino", [:MAGIKARP, :TENTACOOL, :HORSEA],
+     "Te ga passà i pescadori in cima al molo? Alora te ga i bolli giusti. Vedemo se te ga anche la cana!",
+     "Oggi no ciapa gnente. Gnanca le lote.", [7, 3]],
+    [968, 78, 40,  4, :SWIMMER_F,  "Ariana",  [:STARYU, :GOLDEEN, :WINGULL],
+     "Nodo dal molo C. Colombo fin a Trieste ogni estate. Per tornar ciapo el Delfin, come ti. Ah, no, ti no te pol!",
+     "Me ga vignù un crampo...", [7, 3]],
+    # --- Dopo el quarto: Castel (Gigi) ---
+    [952, 114, 25, 19, :CHANNELER, "Ondina",  [:MISDREAVUS, :SHUPPET, :GASTLY],
+     "Dopo mezanote al Castel se senti robe strane... Anche de giorno, a dir la verità.",
+     "I spiriti se ga calmà.", [7, 4]],
+    # --- Dopo el quinto e el sesto: Piazza dela Repubblica, Ricreatorio, Via Roma ---
+    [953, 85, 10,  8, :BIKER,      "Rico Senior", [:GROWLITHE, :PONYTA, :SANDSHREW],
+     "Rombo rombo! Toni dela Ongia el xe mio amigo de spritz. Prima de lu, te bevi mi!",
+     "Me se ga spento el motor.", [7, 5]],
+    [951, 94, 11,  8, :COOLTRAINER_F, "Martina", [:SNOVER, :SWINUB, :MANKEY],
+     "Al Ricreatorio se zoga, ma mi zogo sul serio! Anca coi foresti.",
+     "Bel, te me ga fato sudar.", [7, 5]],
+    [954, 86, 10,  8, :PSYCHIC_F,  "Licia Jr.", [:ABRA, :GIRAFARIG, :MEDITITE],
+     "Go za visto come che finirà... o forsi no. Ti te diventi sindaco? Le carte disi: 'mah'.",
+     "No lo gavevo previsto!", [7, 6]],
+    # --- Dopo el setimo: Mandracchio (Pina) ---
+    [955, 76, 30,  7, :FISHERMAN,  "Bepi Pescador", [:MAGIKARP, :SEAKING, :SHELLDER],
+     "Qua al Mandracchio pesco solo pokemon grossi! E stasera, un foresto.",
+     "Oggi no ciapa gnente.", [7, 7]],
+    [956, 76, 45, 10, :BLACKBELT,  "Nino",    [:MACHOP, :TYROGUE, :MANKEY],
+     "Pina me ga alenà: prima de ela te ga de passar de mi! Cento flessioni e una lota.",
+     "Va', che Pina te speta.", [7, 7]]
   ]
 
   # Lega del Castel: [ID, x, y, tipo, nome, squadra, frase prima, frase dopo]
@@ -85,19 +124,19 @@ module MuiaMondo
     [961, 21, 13, :ELITEFOUR_Lorelei, "Nerina dei Super 4",
      [[:LAPRAS, 52], [:DEWGONG, 52], [:SLOWBRO, 53], [:CLOYSTER, 53], [:JYNX, 54]],
      "Son la prima dei Super 4. El mar de Muja xe con mi!", "Te son forte. Va' avanti."],
-    [962, 24, 13, :ELITEFOUR_Bruno, "Marco dei Super 4",
-     [[:ONIX, 53], [:HITMONCHAN, 53], [:HITMONLEE, 54], [:GOLEM, 54], [:MACHAMP, 55]],
-     "Mi son la seconda muraglia del Castel!", "Le mie muscolature se ga arese."],
+    [962, 24, 13, :ELITEFOUR_Lance, "Capitan Ugo dei Super 4",
+     [[:GYARADOS, 53], [:DRAGONAIR, 53], [:AERODACTYL, 54], [:KINGDRA, 54], [:SALAMENCE, 55]],
+     "Go navigà sete mari e go visto sete draghi. Ti te sarà l'otavo?", "Te ga el cuor de un vero muiesan."],
     [963, 27, 13, :ELITEFOUR_Agatha, "Nona Gigia dei Super 4",
      [[:GENGAR, 54], [:MISMAGIUS, 54], [:DUSKNOIR, 55], [:CHANDELURE, 55], [:GENGAR, 56]],
      "Go visto passar sete sindaci, mulo. Desso vedemo ti.", "Ah, i zoveni de oggi..."],
-    [964, 31, 13, :ELITEFOUR_Lance, "Capitan Ugo dei Super 4",
-     [[:GYARADOS, 55], [:DRAGONAIR, 55], [:AERODACTYL, 56], [:SALAMENCE, 56], [:DRAGONITE, 57]],
-     "Son l'ultimo dei Super 4. Dopo de mi ghe xe solo el Sindaco.", "Te ga el cuor de un vero muiesan."]
+    [964, 31, 13, :TUBO, "Tubo dei Super 4", :tubo,
+     "Te lo gavevo dito che ghe iera uno che te conossevi ben! Ultimo dei Super 4: TUBO, Polizia Locale!",
+     "...Va ben. Te ga vinto. Va' dal sindaco. Ma prima... fame un autografo. Per mio cugin."]
   ]
-  SINDACO = [965, 22, 11, :CHAMPION, "el Sindaco",
+  SINDACO = [965, 22, 11, :CHAMPION, "el Sindaco Pochibori",
     [[:PIDGEOT, 58], [:ALAKAZAM, 58], [:RHYPERIOR, 58], [:ARCANINE, 59], [:STARMIE, 59], [:CHARIZARD, 60]],
-    "Te pensi de esser meio de mi? Vedemo se te ga fato esperienza!",
+    "Te ricordi? 'Te pensi de esser meio de mi?' Desso vedemo se te ga fato esperienza!",
     "No ghe credo... Muja ga un novo sindaco!"]
 
   # Banditor in Piazza Marconi: el te disi dove andar in base ale medaje
@@ -106,20 +145,22 @@ module MuiaMondo
     "La prima sfida xe nela Palestra Pacco, in Via Gabriele D'annunzio. Bepi dela Bora te speta dentro.",
     "Nives dele Bellezze Naturali la xe ai Giardinetti D'Europa: trovila e la tornerà in palestra.",
     "Marieta dela Lampo la xe al Vecio Squero, a cercar dove che ga saltà la corente.",
-    "Nane del Brivido el pesca in Punta Molo C. Colombo.",
-    "Gigi dei Mandrioi el se sconde al Castel de Muia, su per le scale del Mandracchio.",
+    "Nane del Brivido el pesca in Punta Molo C. Colombo: i pescadori desso te lassa passar.",
+    "Gigi dei Mandrioi el se sconde al Castel de Muia, su per le scale tra Mandracchio e Circolo dela Vela.",
     "Toni dela Ongia el bevi el spritz in Piazza dela Repubblica.",
     "Licia dela Trottola la xe in Via Roma, vizin al museo Carà.",
     "Pina dei Bulli e Pupe la se alena al Mandracchio.",
-    "Te ga tute e oto le medaje! Va' al Castel de Muia: là te speta i Super 4 e el Sindaco."
+    "Te ga tuti e oto i bolli! Va' al Castel de Muia: là te speta i Super 4 e el sindaco Pochibori."
   ]
 
   def self.banditor
     pbMessage(_INTL("BANDITOR: Sentì, sentì! Novità de Muja!"))
     if $game_variables[27] < 4
-      pbMessage(_INTL("BANDITOR: Ti te son quel novo? Prima va' parlar col sindaco in Comun e con Dejan."))
+      pbMessage(_INTL("BANDITOR: Ti te son quel novo? Prima va' parlar col sindaco in Comun e con Fulvio."))
+    elsif $game_variables[27] < 7
+      pbMessage(_INTL("BANDITOR: Per via dela sfilata Via Roma xe transennada. Siora Ornella del Comun xe in Bar de Zuppo, e Tubo fa el posto de bloco in cima a Calle Parini."))
     elsif batù?(SINDACO[0], LEGA_MAPA)
-      pbMessage(_INTL("BANDITOR: Viva el novo sindaco de Muja! Viva!"))
+      pbMessage(_INTL("BANDITOR: Viva el novo sindaco de Muja! Viva! E el Delfin Verde xe pronto in Molo dei Bersaglieri!"))
     else
       pbMessage(_INTL("BANDITOR: {1}", CONSIGLI[[$player.badge_count, 8].min]))
       pbMessage(_INTL("BANDITOR: Se te ga i pokemon strachi, le vecie de Muja te li cura. Per comprar roba ghe xe el tabachin qua de fronte."))
@@ -157,8 +198,9 @@ module MuiaMondo
       next if m != map_id
       metti(map, evento(id, x, y, grafica, "MuiaMondo.market(#{id})", dir))
     end
-    ALENADORI.each do |id, m, x, y, tipo, *_resto|
+    ALENADORI.each do |id, m, x, y, tipo, *_resto, cond|
       next if m != map_id
+      next if !alenador_visibile?(cond)
       metti(map, evento(id, x, y, grafica_alenador(tipo), "MuiaMondo.alenador(#{id})"))
     end
     if map_id == BANDITOR[1]
@@ -170,7 +212,7 @@ module MuiaMondo
         metti(map, evento(id, x, y, grafica_alenador(tipo), "MuiaMondo.lega(#{id})"))
       end
       id, x, y = SINDACO
-      metti(map, evento(id, x, y, "trainer_POLIDORI", "MuiaMondo.sindaco"))
+      metti(map, evento(id, x, y, "trainer_POLIDORI", "MuiaMondo.sindaco"))   # grafica del sindaco Pochibori
     end
   end
 
@@ -241,8 +283,7 @@ module MuiaMondo
     alenador = NPCTrainer.new(nome, tipo)
     squadra.each do |specie, livel|
       next if !GameData::Species.exists?(specie)
-      pkmn = Pokemon.new(specie, livel, alenador)
-      alenador.party.push(pkmn)
+      alenador.party.push(MuiaStoria.fa_pokemon(specie, livel, alenador))
     end
     alenador.lose_text = frase_dopo
     return alenador
@@ -261,11 +302,23 @@ module MuiaMondo
     return vinto
   end
 
+  def self.alenador_visibile?(cond)
+    return true if !cond.is_a?(Array)
+    trama = $game_variables[27] || 0
+    return trama >= cond[0] && $player.badge_count >= cond[1]
+  end
+
+  # Squadra de un alenador de strada: livei vizin al to pokemon più forte
+  def self.squadra_scalada(specie)
+    max = MuiaStoria.livel_max
+    return specie.map { |sp| [sp, max - LIVEL_SOTO + rand(LIVEL_SOTO + LIVEL_SORA + 1)] }
+  end
+
   def self.alenador(id)
     dati = ALENADORI.find { |a| a[0] == id }
     return if !dati
-    _id, _m, _x, _y, tipo, nome, squadra, prima, dopo = dati
-    lota(id, tipo, nome, squadra, prima, dopo)
+    _id, _m, _x, _y, tipo, nome, specie, prima, dopo = dati
+    lota(id, tipo, nome, squadra_scalada(specie), prima, dopo)
   end
 
   #-----------------------------------------------------------------------------
@@ -282,12 +335,16 @@ module MuiaMondo
     return if !dati
     _id, _x, _y, tipo, nome, squadra, prima, dopo = dati
     if !lega_verta?
-      pbMessage(_INTL("{1}: Torna quando te gavarà tute e oto le medaje dele compagnie del Carneval.", nome))
+      pbMessage(_INTL("{1}: Torna quando te gavarà tuti e oto i bolli dele compagnie del Carneval.", nome))
       return
     end
     indice = LEGA.index(dati)
     if indice > 0 && !batù?(LEGA[indice - 1][0], LEGA_MAPA)
       pbMessage(_INTL("{1}: Prima te ga de bater {2}.", nome, LEGA[indice - 1][4]))
+      return
+    end
+    if squadra == :tubo
+      MuiaStoria.lega_tubo(id, nome, prima, dopo)
       return
     end
     lota(id, tipo, nome, squadra, prima, dopo)
@@ -309,9 +366,11 @@ module MuiaMondo
     if TrainerBattle.start(alenador)
       segna_batù(id)
       pbMessage(_INTL("{1}: Va ben, va ben. Muja xe tua.", nome))
-      pbMessage(_INTL("Dejan: Te ghe la ga fata! Te son el novo sindaco de Muja!"))
+      pbMessage(_INTL("FULVIO: Te ghe la ga fata! Te son el novo sindaco de Muja!"))
+      pbMessage(_INTL("SINDACO POCHIBORI: Firma qua... e qua. L'ordinanza xe tua: el Delfin Verde te speta in Molo dei Bersaglieri."))
+      MuiaStoria.aggiorna rescue nil
       pbHallOfFameEntry
-      pbMessage(_INTL("FINE... per desso! Grazie de gaver zogà a Pokémon Muia."))
+      pbMessage(_INTL("Desso te pol tornar a Trieste col Delfin Verde... o restar a Muia quanto che te vol."))
     end
   end
 end
