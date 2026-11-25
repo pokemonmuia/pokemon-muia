@@ -19,7 +19,8 @@ module MuiaTest
   self.vinci = true
 
   def self.log(s)
-    echoln("MUIATEST #{s}")
+    $stdout.puts("MUIATEST #{s}")
+    $stdout.flush rescue nil
   end
 
   def self.passo(nome)

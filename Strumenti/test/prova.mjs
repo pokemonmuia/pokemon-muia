@@ -6,7 +6,7 @@ import fs from "node:fs";
 
 const URL = process.env.URL_GIOCO || "http://localhost:4173/?debug";
 const OUT = process.env.OUT || "risultati";
-const LIMITE_MS = Number(process.env.LIMITE_MS || 25 * 60 * 1000);
+const LIMITE_MS = Number(process.env.LIMITE_MS || 18 * 60 * 1000);
 fs.mkdirSync(OUT, { recursive: true });
 
 const browser = await chromium.launch({
