@@ -71,16 +71,16 @@ module MuiaStoria
      ["SINDACO POCHIBORI", "Desso Nives dele Bellezze Naturali la xe ai Giardinetti a bagnar le rose. E ocio: col secondo bollo se verzi anca la strada per Muggia Vecia, su in colina."]],
     [["SINDACO POCHIBORI", "Do bolli? Ciò, no xe che te me diventi simpatico, eh."],
      ["SINDACO POCHIBORI", "Marieta dela Lampo xe al Vecio Squero: ga saltà la corente. E go sentì che Tubo xe in giro col bloco dele multe..."]],
-    [["FULVIO", "Pronto, xe Fulvio! Tre bolli! In piazza no se parla d'altro. La siora del tabachin ga anca scomesso su de ti."],
-     ["FULVIO", "Nane del Brivido pesca in ponta al molo C. Colombo: i pescadori desso te lassa passar."]],
+    [["DEIAN", "Pronto, xe Deian! Tre bolli! In piazza no se parla d'altro. La siora del tabachin ga anca scomesso su de ti."],
+     ["DEIAN", "Nane del Brivido pesca in ponta al molo C. Colombo: i pescadori desso te lassa passar."]],
     [["SINDACO POCHIBORI", "Quatro bolli. Metà strada. A metà strada, de solito, i foresti torna indrio. Ti?"],
      ["SINDACO POCHIBORI", "Gigi dei Mandrioi se sconde al Castel. La corda sule scale i la ga tolta. E... salutime i fantasmi."]],
     [["SIORA ORNELLA", "Xe la Ornella del Comun. Go dovù zontar una pagina al tuo Libreto: i timbri no ghe stava più!"],
      ["SIORA ORNELLA", "Toni dela Ongia el xe in Piazza dela Repubblica a bever spritz. Come sempre. Va' prima che el ghe ne bevi un altro."]],
     [["SINDACO POCHIBORI", "Sie bolli... Go fato rifar la serada dela porta del Comun. Cussì, per sicureza."],
      ["SINDACO POCHIBORI", "Licia dela Trottola la xe in Via Roma. Ela sa za che te rivi: la lo ga visto nele carte. Mi inveze no lo gavevo previsto."]],
-    [["FULVIO", "Sete bolli! Mulo, te son una leggenda. Al bar i ga za fato el panin col to nome: el 'Foresto', con persuto e cren."],
-     ["FULVIO", "L'ultima xe Pina dei Bulli e Pupe, al Mandracchio. La fa cento flessioni prima de colazion. Ocio."]],
+    [["DEIAN", "Sete bolli! Mulo, te son una leggenda. Al bar i ga za fato el panin col to nome: el 'Foresto', con persuto e cren."],
+     ["DEIAN", "L'ultima xe Pina dei Bulli e Pupe, al Mandracchio. La fa cento flessioni prima de colazion. Ocio."]],
     [["SINDACO POCHIBORI", "...Oto bolli. Va ben. Te speto al Castel. I Super 4 xe pronti. Anca Tubo, che el se ga stirà la divisa."],
      ["SINDACO POCHIBORI", "E se te me bati... l'ordinanza la firmi ti. Ma no te me baterà. Credo. Spero."]]
   ]
@@ -95,9 +95,9 @@ module MuiaStoria
     if telefonada_da_far?
       pbWait(0.3)
       pbSEPlay("Battle recall") rescue nil
-      pbMessage(_INTL("\\c[8]Drin drin! Drin drin! Te sona el telefonin..."))
+      pbMessage(_INTL("Drin drin! Drin drin! Te sona el telefonin..."))
       TELEFONADE[medaje].each { |chi, testo| dì(chi, _INTL(testo)) }
-      pbMessage(_INTL("\\c[8]Clic."))
+      pbMessage(_INTL("Clic."))
       $game_variables[VAR_BOLLI_VISTI] = medaje
     end
     evento&.erase

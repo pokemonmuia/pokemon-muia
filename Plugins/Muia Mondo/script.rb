@@ -170,7 +170,7 @@ module MuiaMondo
   def self.banditor
     pbMessage(_INTL("BANDITOR: Sentì, sentì! Novità de Muja!"))
     if $game_variables[27] < 4
-      pbMessage(_INTL("BANDITOR: Ti te son quel novo? Prima va' parlar col sindaco in Comun e con Fulvio."))
+      pbMessage(_INTL("BANDITOR: Ti te son quel novo? Prima va' parlar col sindaco in Comun e con Deian."))
     elsif $game_variables[27] < 7
       pbMessage(_INTL("BANDITOR: Per via dela sfilata Via Roma xe transennada. Siora Ornella del Comun xe in Bar de Zuppo, e Tubo fa el posto de bloco in cima a Calle Parini."))
     elsif batù?(SINDACO[0], LEGA_MAPA)
@@ -380,7 +380,7 @@ module MuiaMondo
     if TrainerBattle.start(alenador)
       segna_batù(id)
       pbMessage(_INTL("{1}: Va ben, va ben. Muja xe tua.", nome))
-      pbMessage(_INTL("FULVIO: Te ghe la ga fata! Te son el novo sindaco de Muja!"))
+      pbMessage(_INTL("DEIAN: Te ghe la ga fata! Te son el novo sindaco de Muja!"))
       pbMessage(_INTL("SINDACO POCHIBORI: Firma qua... e qua. L'ordinanza xe tua: el Delfin Verde te speta in Molo dei Bersaglieri."))
       MuiaStoria.aggiorna rescue nil
       pbHallOfFameEntry
