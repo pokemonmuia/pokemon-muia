@@ -52,12 +52,12 @@ module MuiaStoria
       [4, 8, "trainer_HENRY", 2, :barista],
       [9, 3, "trainer_GENTLEMAN", 2, :mt],
       [11, 8, "trainer_GAMBLER", 4, :pkmn],
-      [1, 3, "NPC 04", 2, "Henry fa el miglior caffè de Muia. Cinghio disi el contrario. Mi bevo tuti e do, per sicureza."]]],
+      [1, 3, "NPC 17", 2, :campari]]],
     bar_jimmy: [126, [
       [4, 3, "trainer_TEAM_CINGHIO_M", 2, :barista],
       [8, 3, "trainer_BURGLAR", 2, :pkmn],
       [9, 9, "NPC 16", 4, :scambi],
-      [2, 9, "NPC 20", 6, "Jimmy... cioè Cinghio... cioè el bar xe de Cinghio ma el se ciama Jimmy. Xe complicà. Come Muia."]]],
+      [2, 9, "NPC 17", 6, :campari]]],
     bar_slucia: [127, [
       [4, 8, "NPC 14", 2, :barista],
       [9, 3, "trainer_RUINMANIAC", 2, :pkmn_rion],
@@ -66,7 +66,8 @@ module MuiaStoria
   }
 
   # Bar de Zuppo (mapa 80, za fata in RPG Maker): [ID, x, y, grafica, dir, ruolo]
-  ZUPPO = [[1201, 2, 9, "NPC 16", 6, :scambi], [1202, 7, 12, "trainer_GAMBLER", 4, :pkmn]]
+  ZUPPO = [[1201, 2, 9, "NPC 16", 6, :scambi], [1202, 7, 12, "trainer_GAMBLER", 4, :pkmn],
+           [1203, 3, 2, "NPC 17", 2, :campari]]
 
   #-----------------------------------------------------------------------------
   def self.dati_bar
@@ -100,6 +101,7 @@ module MuiaStoria
     when :mt        then vendi_mt(banco)
     when :scambi    then scambio(banco)
     when :barista   then barista(chiave)
+    when :campari   then vecio_campari
     else pbMessage(_INTL("{1}", _INTL(ruolo.to_s)))
     end
   end

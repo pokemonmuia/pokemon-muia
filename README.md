@@ -145,6 +145,8 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** **Prova automatica**: el workflow *Test notte* (branch `test-notte`) verzi el zogo in Chrome senza schermo, fa tuta la storia da solo col plugin `Strumenti/test/Muia Test` (che NO xe nel zogo vero) e salva log e foto nel branch `test-risultati`. Versione 1.29.
 - **25112026** Fulvio desso se ciama **Dei ian**. Tute le scrite dei dialoghi (anca la folla in piazza) xe nere: prima qualchedune vigniva fora bianche e no se leseva. Versione 1.30.
 - **25112026** I bisbigli dela folla in piazza xe in **azzurrin**, el resto dei dialoghi resta nero. Versione 1.32.
+- **25112026** **La leggenda del Campari**: la prima lota con Tubo in piazza desso xe fata apposta per esser QUASI impossibile (Growlithe liv. 7 e el starter che bati el tuo liv. 9, contro el tuo liv. 5). Nei bar (Bar de Zuppo, Tendarossa, Jimmy) un vecio conta che chi la vinci ga un **Campari pagà**: se te la ga vinta, el te mostra un **codice** (CAMPARI-xxxxx-xx) da far veder al bar, e el te regala 3 Caramele Rare.
+- **25112026** **Pokemon selvadeghi dela 1a ala 4a generazion**: nel'erba e in acqua, 35 volte su 100 salta fora un pokemon a caso dela 1a-4a generazion (i più dificili da ciapar xe anca più rari, e se el livel xe alto i xe za evoludi), e **1 volta su 5000** un **leggendario**. Versione 1.33.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

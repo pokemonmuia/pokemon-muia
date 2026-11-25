@@ -97,10 +97,13 @@ module MuiaStoria
     dì("TUBO", _INTL("Documenti! Fame veder... Ah, ma ti te son el foresto. De TRIESTE."))
     dì("TUBO", _INTL("Mi son Tubo, Polizia Locale de Muia. Qua comando mi. Dopo el sindaco. E dopo mia mama."))
     dì("TUBO", _INTL("Te go za visto: te gavevi la facia de un che no paga el bigliet del Delfin Verde."))
-    dì("TUBO", _INTL("Vedemo se te sa almeno tignir un pokemon in man. El mio xe pena uscì dal corso de adestramento!"))
+    dì("TUBO", _INTL("Vedemo se te sa almeno tignir un pokemon in man. I mii xe alenai in caserma: nissun li ga mai batui!"))
     vinto = lota_tubo(0, true)
     gira_verso_zogador(tubo)
     if vinto
+      $game_switches[SW_CAMPARI] = true
+      dì("TUBO", _INTL("C-cossa?! Nissun... NISSUN ga mai batù i mii pokemon dela caserma!"))
+      dì("DEI IAN", _INTL("Mulo... ti te ga fato la storia. In piazza i ne parlerà per ani. Va' in bar a contarlo!"))
       dì("TUBO", _INTL("Fortuna del principiante! Ma no te monta la testa."))
     else
       dì("TUBO", _INTL("Ahahah! Lo savevo! Torna a Trieste... ah no, no te pol. Ahahah!"))
