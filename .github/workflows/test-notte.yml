@@ -1,0 +1,102 @@
+# Prova automatica del zogo nel browser (branch test-notte).
+# Impacheta el zogo col plugin Muia Test (Strumenti/test), lo verzi in Chrome
+# senza schermo, e salva log e foto nel branch "test-risultati".
+name: Test notte
+on:
+  push:
+    branches: [test-notte]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PLAYER_REPO: white-axe/mkxp-z-libretro-emscripten
+  PLAYER_REF: 0b0a95277171dfdb2a261c8e50888bf48691ad6e
+  CORE_URL: https://white-axe.github.io/mkxp-z-libretro-emscripten/nostalgist-knight-blade-howling-of-kerberos
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: gioco
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PLAYER_REPO }}
+          ref: ${{ env.PLAYER_REF }}
+          path: player
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Impacheta el zogo de prova
+        run: |
+          pip3 install rpzip
+          cd gioco
+          cp -r "Strumenti/test/Muia Test" Plugins/
+          ruby Strumenti/compila_plugin.rb
+          python3 - <<'PY'
+          import json, re
+          s = open("mkxp.json", encoding="utf-8").read()
+          s = re.sub(r'(?m)^\s*//.*$', '', s)
+          s = re.sub(r',(\s*[}\]])', r'\1', s)
+          conf = json.loads(s)
+          conf["windowTitle"] = "Pokemon Muia"
+          json.dump(conf, open("mkxp.json", "w", encoding="utf-8"), indent=2)
+          PY
+          rpzip -r ../player/nostalgist/public/pokemon-muia.mkxpz \
+            Game.ini mkxp.json soundfont.sf2 version.txt \
+            Data Graphics Audio Fonts Plugins Movies
+
+      - name: Motore e pagina
+        run: |
+          cd player/nostalgist/public
+          curl -fL --retry 3 -o mkxp-z_libretro.js "$CORE_URL/mkxp-z_libretro.js"
+          curl -fL --retry 3 -o mkxp-z_libretro.wasm "$CORE_URL/mkxp-z_libretro.wasm"
+          cd ..
+          {
+            echo "VITE_CORE_JS_PATH=./mkxp-z_libretro.js"
+            echo "VITE_CORE_WASM_PATH=./mkxp-z_libretro.wasm"
+            echo "VITE_GAME_NAME=Pokémon Muia"
+            echo "VITE_GAME_PATH=./pokemon-muia.mkxpz"
+          } >> .env
+          cp ../../gioco/web/gioca/index.html index.html
+          cp ../../gioco/web/gioca/main.ts src/main.ts
+          cp ../../gioco/web/gioca/ponte.ts src/ponte.ts
+          npm install
+          node update-env.ts
+          for f in sw.js manifest.webmanifest icon-192.png icon-512.png icon-maskable-512.png apple-touch-icon.png; do
+            cp ../../gioco/web/gioca/$f public/$f
+          done
+          npx vite build
+          cp node_modules/coi-serviceworker/coi-serviceworker.min.js dist/
+
+      - name: Prova nel browser
+        run: |
+          cd player/nostalgist
+          npx vite preview --port 4173 --strictPort > /tmp/preview.log 2>&1 &
+          sleep 8
+          mkdir -p /tmp/prova && cp ../../gioco/Strumenti/test/prova.mjs /tmp/prova/
+          cd /tmp/prova
+          npm init -y > /dev/null
+          npm install playwright@1
+          npx playwright install --with-deps chromium
+          OUT=/tmp/risultati node prova.mjs || true
+
+      - name: Salva i risultati nel branch test-risultati
+        if: always()
+        run: |
+          mkdir -p /tmp/risultati
+          cd /tmp/risultati
+          git init -q
+          git checkout -q -b test-risultati
+          echo "${{ github.sha }}" > commit.txt
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898299+github-actions[bot]@users.noreply.github.com" commit -qm "Risultati prova ${{ github.sha }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" test-risultati

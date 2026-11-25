@@ -1,0 +1,61 @@
+// Prova automatica del zogo nel browser (usada dal workflow "Test notte").
+// Verzi la pagina /gioca/ con ?debug, preme "Gioca", raccoglie la console e
+// fa una foto ogni volta che el plugin Muia Test scrivi "MUIATEST FOTO nome".
+import { chromium } from "playwright";
+import fs from "node:fs";
+
+const URL = process.env.URL_GIOCO || "http://localhost:4173/?debug";
+const OUT = process.env.OUT || "risultati";
+const LIMITE_MS = Number(process.env.LIMITE_MS || 25 * 60 * 1000);
+fs.mkdirSync(OUT, { recursive: true });
+
+const browser = await chromium.launch({
+  args: ["--autoplay-policy=no-user-gesture-required", "--use-gl=swiftshader", "--enable-unsafe-swiftshader"],
+});
+const page = await browser.newPage({ viewport: { width: 1024, height: 700 } });
+const righe = [];
+let fine = false;
+const foto = [];
+page.on("console", (msg) => {
+  const t = msg.text();
+  righe.push(t);
+  const m = t.match(/MUIATEST FOTO (\S+)/);
+  if (m) foto.push(m[1]);
+  if (t.includes("MUIATEST FINE") || t.includes("MUIATEST ERRORE GRAVE")) fine = fine || t.includes("FINE");
+});
+page.on("pageerror", (e) => righe.push("PAGEERROR " + e.message));
+
+const salva = () => fs.writeFileSync(`${OUT}/console.txt`, righe.join("\n"));
+const inizio = Date.now();
+try {
+  await page.goto(URL, { waitUntil: "load" });
+  await page.waitForTimeout(5000);
+  // coi-serviceworker ricarica la pagina una volta
+  await page.waitForSelector("#start-button", { state: "visible", timeout: 180000 });
+  await page.screenshot({ path: `${OUT}/00_pagina.png` });
+  await page.click("#start-button");
+  let fatte = 0;
+  let ultimaFoto = Date.now();
+  while (!fine && Date.now() - inizio < LIMITE_MS) {
+    await page.waitForTimeout(500);
+    while (fatte < foto.length) {
+      await page.waitForTimeout(600);
+      fatte += 1;
+      await page.screenshot({ path: `${OUT}/${String(fatte).padStart(2, "0")}_${foto[fatte - 1]}.png` });
+    }
+    if (Date.now() - ultimaFoto > 60000) {
+      ultimaFoto = Date.now();
+      await page.screenshot({ path: `${OUT}/zz_${Math.round((Date.now() - inizio) / 1000)}s.png` });
+      salva();
+    }
+  }
+  await page.screenshot({ path: `${OUT}/99_fine.png` });
+} catch (e) {
+  righe.push("ERRORE PROVA " + e.message);
+  try { await page.screenshot({ path: `${OUT}/99_errore.png` }); } catch {}
+}
+salva();
+const muia = righe.filter((r) => r.includes("MUIATEST"));
+fs.writeFileSync(`${OUT}/muiatest.txt`, muia.join("\n"));
+console.log(muia.slice(-40).join("\n"));
+await browser.close();
