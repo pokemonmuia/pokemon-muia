@@ -58,6 +58,7 @@ module MuiaStoria
     $game_switches[SW_CASTEL]  = medaje < 4
     $game_switches[SW_DELFIN]  = !sindaco_batù?
     $game_switches[SW_RIONE]   = !$game_switches[SW_RIONE_OK]
+    $game_switches[89]         = medaje < 2   # SW_COLINA: strada per Muggia Vecia
     $game_map.need_refresh = true if refresh && $game_map
   end
 

@@ -91,6 +91,13 @@ module MuiaMondo
     [949, 96, 20,  6, :BUGCATCHER, "Tommaso", [:BUTTERFREE, :COMBEE, :NINCADA],
      "I Giardinetti xe pieni de bestie: le go ciapade tute! Manca solo un foresto.",
      "Torno a cercarghe nel'erba.", [7, 1]],
+    # --- Muggia Vecia (dopo el secondo bollo) ---
+    [971, 129,  5, 11, :HIKER,      "Escursionista Bruno", [:GEODUDE, :NIDORAN_M, :SANDSHREW],
+     "Son vignù su a piedi da Muia. Tre ore. Ma vuto meter la vista? E la lota dopo?",
+     "Desso me toca tornar zo. A piedi. Altre tre ore.", [7, 2]],
+    [972, 129, 24, 11, :BIRDKEEPER, "Ornitologa Lia", [:PIDGEOTTO, :STARLY, :HOOTHOOT],
+     "Qua su i uccei vola sora la basilica da mile ani. I mii, da tre settimane.",
+     "I mii uccei va a riposarse sul campanil.", [7, 2]],
     # --- Dopo el secondo: Vecio Squero (Marieta) ---
     [950, 83, 10,  6, :SAILOR,     "Bruno",   [:TENTACOOL, :KRABBY, :WINGULL],
      "Al Squero se riparava le barche. Mi riparo i foresti dopo che li bato!",

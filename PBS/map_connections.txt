@@ -365,3 +365,6 @@
 #-------------------------------
 # Circolo della Vela_2 (79) - Porto San Rocco (128)
 79,East,0,128,West,0
+#-------------------------------
+# Via Gabriele D'annunzio (110) - Muggia Vecia (129)
+110,North,0,129,South,0

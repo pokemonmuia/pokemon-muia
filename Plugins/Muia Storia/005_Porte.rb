@@ -9,7 +9,7 @@
 #===============================================================================
 module MuiaStoria
   TILE_PORTE = [1993, 2026, 2014, 2065]
-  MAPE_FORA  = (22..113).to_a + [114, 128]
+  MAPE_FORA  = (22..113).to_a + [114, 128, 129]
 
   # Interni: [mapa, x de entrada, y de entrada, x porta de uscida, y porta de uscida]
   INTERNI = {

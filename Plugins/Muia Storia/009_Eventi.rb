@@ -35,6 +35,7 @@ module MuiaStoria
     zonta_blochi(map_id, map)
     zonta_porte(map_id, map) if respond_to?(:zonta_porte)
     zonta_bar(map_id, map) if respond_to?(:zonta_bar)
+    zonta_frazioni(map_id, map) if respond_to?(:zonta_frazioni)
   end
 end
 

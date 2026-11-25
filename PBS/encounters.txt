@@ -466,3 +466,13 @@ SuperRod
     30,LUMINEON,3,6
     20,SEADRA,3,6
     10,LANTURN,3,6
+#-------------------------------
+[129] # Muggia Vecia
+Land,28
+    25,PIDGEY,3,6
+    20,SENTRET,3,6
+    15,NIDORAN_F,3,6
+    15,NIDORAN_M,3,6
+    10,STARLY,3,6
+    10,PINECO,3,6
+    5,BONSLY,3,6

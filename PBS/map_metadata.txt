@@ -337,3 +337,10 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,20,8
+#-------------------------------
+[129]   # Muggia Vecia
+Name = Muggia Vecia
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,22,2
