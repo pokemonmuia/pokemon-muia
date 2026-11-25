@@ -24,13 +24,19 @@ module MuiaStoria
   def self.squadra_tubo(n)
     st = TUBO_STARTER[$game_variables[VAR_STARTER]] || TUBO_STARTER[2]
     case n
-    # Prima lota in piazza: dura ma no impossibile (vedi el
+    # Prima lota in piazza: un contro un, QUASI impossibile (vedi el
     # Campari in 011_Campari.rb): un solo pokemon, el starter che bati el tuo.
-    when 0 then [[st[0], 6]]   # solo el starter contrario, un livel sora el tuo (5)
-    when 1 then [[:GROWLITHE, 0], [st[0], 1]]
-    when 2 then [[:GROWLITHE, 0], [:MAGNEMITE, -1], [:MURKROW, -1], [st[1], 2]]
-    when 3 then [[:GROWLITHE, 0], [:MAGNETON, 0], [:MURKROW, 0], [:MACHOKE, 0], [st[1], 2]]
-    when 4 then [[:ARCANINE, 1], [:MAGNETON, 0], [:HONCHKROW, 0], [:MACHOKE, 0], [:SNEASEL, 0], [st[2], 2]]
+    # Livei calcolai con 1,5 milioni de lote simulade (el tuo starter liv. 5):
+    #  Froakie vs Chikorita liv.6 ~1/60000 (al liv.5 no la ga ancora Foia Taiente: 1/4)
+    #  Torchic vs Froakie liv.5  ~1/25000
+    #  Chikorita vs Torchic liv.5 ~1/4000
+    # In zogo xe un fià più facile (l'IA no xe perfeta): circa una su qualche mila.
+    when 0 then [[st[0], ($game_variables[VAR_STARTER] == 1) ? 6 : 5]]
+    # Dopo: come un rival vero, la squadra cressi e la xe 1-2 livei sora el tuo più forte
+    when 1 then [[:GROWLITHE, 1], [st[0], 2]]
+    when 2 then [[:GROWLITHE, 1], [:MAGNEMITE, 1], [:MURKROW, 1], [st[1], 2]]
+    when 3 then [[:GROWLITHE, 1], [:MAGNETON, 1], [:MURKROW, 1], [:MACHOKE, 1], [st[1], 2]]
+    when 4 then [[:ARCANINE, 2], [:MAGNETON, 1], [:HONCHKROW, 1], [:MACHOKE, 1], [:SNEASEL, 1], [st[2], 2]]
     else        [[:ARCANINE, 56], [:MAGNEZONE, 56], [:HONCHKROW, 56], [:LUCARIO, 57], [:MACHAMP, 57], [st[2], 58]]
     end
   end
