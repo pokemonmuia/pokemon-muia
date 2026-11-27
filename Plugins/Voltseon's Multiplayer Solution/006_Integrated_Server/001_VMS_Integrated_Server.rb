@@ -196,12 +196,12 @@ module VMS
           end
           giocatore = cluster.players[data[VMS::PACKET_KEYS[:id]]]
           return if giocatore.nil?
-          stato_prima = giocatore.stato
           giocatore.update(data)
           giocatore.socket = socket if socket
-          # Muia: un cambio de stato (invito, risposta, scambio, lota) se
-          # inoltra subito, senza spetar el prossimo tick
-          cluster.update_players if giocatore.stato != stato_prima
+          # Muia 1.44: quel che xe cambià (un passo, un giro, un invito...) se
+          # inoltra SUBITO ai altri, senza spetar el prossimo tick (prima fin a
+          # 1/15 de secondo de ritardo in più a ogni messagio).
+          cluster.inoltra(giocatore)
         end
       end
 
@@ -239,6 +239,7 @@ module VMS
     class Cluster
       attr_reader :id, :players, :online_variables
       attr_accessor :variables_dirty
+      BATITO = 5   # Muia 1.44: "batiti" al secondo quando gnente cambia
 
       def initialize(id, server)
         @id = id
@@ -247,6 +248,28 @@ module VMS
         @online_variables = {}
         @variables_dirty = true
         @last_full = Time.at(0)
+        @ultimo_invio = Time.at(0)
+      end
+
+      # Muia 1.44: manda subito ai ALTRI zogadori quel che xe cambià de uno.
+      # Lu no lo riceve indrio (el sa za cossa el ga fato): el so ping vien
+      # dal batito.
+      def inoltra(giocatore)
+        if giocatore.changed.empty? && !@variables_dirty
+          giocatore.dirty = false   # solo el batito: gnente de novo da mandar
+          return
+        end
+        data = []
+        data.push([:online_variables, @online_variables]) if @variables_dirty
+        data.push(giocatore.to_hash(true, false)) if !giocatore.changed.empty?
+        binary = Zlib::Deflate.deflate(Marshal.dump(data), Zlib::BEST_SPEED)
+        @players.each_value do |p|
+          next if p.equal?(giocatore)
+          @server.send_binary(binary, p.address, p.port, p.socket)
+        end
+        giocatore.changed.clear
+        giocatore.dirty = false
+        @variables_dirty = false
       end
 
       def add_player(player)
@@ -289,6 +312,12 @@ module VMS
         # nel caso che un messagio se gabi perso.
         full = Time.now - @last_full >= 2
         @last_full = Time.now if full
+        # Muia 1.44: i cambi parte za subito (inoltra); qua resta solo el
+        # "batito" (chi xe ancora conetù, e el ping) BATITO volte al secondo,
+        # e tuto ogni 2 secondi. Meno messagi = el browser fadiga meno.
+        qualcosa = @variables_dirty || @players.each_value.any?(&:dirty)
+        return if !full && !qualcosa && Time.now - @ultimo_invio < 1.0 / BATITO
+        @ultimo_invio = Time.now
         data = []
         data.push([:online_variables, @online_variables]) if @variables_dirty || full
         @players.each_value { |p| data.push(p.to_hash(p.dirty, full)) }

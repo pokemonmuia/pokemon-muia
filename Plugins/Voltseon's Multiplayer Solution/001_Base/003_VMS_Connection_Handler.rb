@@ -36,6 +36,8 @@ module VMS
     end
     # Initialize variables
     $game_temp.vms[:cluster] = id
+    # Muia 1.44: memorie dei invii e dei passi della conession precedente
+    [:muia_inviati, :muia_ultima_pos, :muia_tuto_frame, :muia_passi, :muia_rtt_min].each { |k| $game_temp.vms[k] = nil }
     player_data = VMS.generate_player_data
     $game_temp.vms[:socket] = socket
     # Send connect message
@@ -96,17 +98,29 @@ module VMS
       # manda subito senza spetar el giro: ogni passo tra do zogadori ghe
       # meteva un giro de invio in più.
       stato_cambia = $game_temp.vms[:last_sent_state] != $game_temp.vms[:state]
-      if (tick == 0 || frame % (60 / tick) == 0 || stato_cambia) && $game_temp.vms[:last_send_frame] != frame
+      # Muia 1.44: anca un passo (casela nova), un giro o un cambio de mapa
+      # parte subito: prima el spetava el prossimo giro de invio.
+      posizion = [$game_map.map_id, $game_player.x, $game_player.y, $game_player.direction] rescue nil
+      passo = !posizion.nil? && $game_temp.vms[:muia_ultima_pos] != posizion
+      if (tick == 0 || frame % (60 / tick) == 0 || stato_cambia || passo) && $game_temp.vms[:last_send_frame] != frame
         $game_temp.vms[:last_send_frame] = frame
         $game_temp.vms[:last_sent_state] = $game_temp.vms[:state].dup rescue $game_temp.vms[:state]
+        $game_temp.vms[:muia_ultima_pos] = posizion
         send_data = VMS.generate_player_data
-        own_player = VMS.get_self
-        update_data = own_player.nil? ? send_data : send_data.reject do |key, value|
+        # Muia 1.44: se manda solo quel che xe cambià rispetto all'ultimo invio
+        # (prima rispetto alla copia che rimandava el server: adesso el server
+        # no la rimanda più a ogni messagio). Ogni secondo se manda tuto, nel
+        # caso che un messagio se gabi perso.
+        inviati = ($game_temp.vms[:muia_inviati] ||= {})
+        tuto = frame - ($game_temp.vms[:muia_tuto_frame] || -9999) >= 60 || frame < ($game_temp.vms[:muia_tuto_frame] || 0)
+        $game_temp.vms[:muia_tuto_frame] = frame if tuto
+        update_data = tuto ? send_data : send_data.reject do |key, value|
           sym = VMS::REVERSE_KEYS[key]
-          sym != :state && sym != :cluster_id && sym != :id && sym != :heartbeat &&
-          ((!value.is_a?(Array) && own_player.instance_variable_get("@#{sym}") == value) ||
-          (value.is_a?(Array) && VMS.array_compare(own_player.instance_variable_get("@#{sym}"), value)))
+          next false if [:state, :cluster_id, :id, :heartbeat].include?(sym)
+          next false unless inviati.key?(key)
+          value.is_a?(Array) ? VMS.array_compare(inviati[key], value) : inviati[key] == value
         end
+        send_data.each { |key, value| inviati[key] = (value.dup rescue value) }
         VMS.send_message(["update", update_data])
       end
       # Receive data
@@ -214,6 +228,13 @@ module VMS
         end
         # Update ping if this is the player
         $game_temp.vms[:ping_stamp] = pl[hb_key] if is_self
+        # Muia: andata e ritorno vero = el più svelto tra i "battiti" rimandai
+        # dal server (VMS::Perf lo scrive ogni 5 secondi e lo azzera)
+        if is_self && pl[hb_key].is_a?(Time)
+          rtt = Time.now - pl[hb_key]
+          minimo = $game_temp.vms[:muia_rtt_min]
+          $game_temp.vms[:muia_rtt_min] = rtt if rtt >= 0 && (minimo.nil? || rtt < minimo)
+        end
         # Check if packet is new
         new_packet = pl[hb_key] <= player.heartbeat - VMS::ADDED_DELAY
         next if !VMS::HANDLE_MORE_PACKETS && new_packet
@@ -319,6 +340,7 @@ module VMS
     data[VMS::PACKET_KEYS[:surf_base_coords]] = $game_temp.surf_base_coords || [nil, nil]
     data[VMS::PACKET_KEYS[:state]]            = $game_temp.vms[:state]
     data[VMS::PACKET_KEYS[:busy]]             = !VMS.interaction_possible?
+    data[VMS::PACKET_KEYS[:move_speed]]       = $game_player.move_speed
     return data
   end
 end

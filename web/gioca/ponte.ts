@@ -30,7 +30,7 @@ export interface OpzioniPonte {
   urlWebSocket: string;
   /** Indirizzo HTTP del server, par "svejarlo" se el dorme */
   urlSveglia: string;
-  /** Ogni quanti ms controlar i file (default 25) */
+  /** Ogni quanti ms controlar i file (default 12) */
   intervalloMs?: number;
   /** Secondi massimi par conetarse (default 150) */
   attesaMaxS?: number;
@@ -513,7 +513,7 @@ const esciDalGioco = () => {
 
 export const avviaPonte = (opz: OpzioniPonte) => {
   const log = opz.log ?? (() => {});
-  const intervallo = opz.intervalloMs ?? 25;
+  const intervallo = opz.intervalloMs ?? 12; // 1.44: prima 25
   const attesaMax = (opz.attesaMaxS ?? 150) * 1000;
   let cartella: CartellaOpfs | null = null;
   let sessione: Sessione | null = null;
@@ -849,7 +849,7 @@ export const avviaPonte = (opz: OpzioniPonte) => {
   };
 
   // A riposo (nissuna partìa online) se controla ogni mezo secondo, par no
-  // consumar batteria; durante la partìa ogni "intervallo" (25 ms).
+  // consumar batteria; durante la partìa ogni "intervallo" (12 ms).
   // Sul PC un poco più spesso, par saver subito se Esc verzi el menu o torna indrio
   const RIPOSO_MS = soloTouch() ? 500 : 150;
   let ultimoGiro = 0;

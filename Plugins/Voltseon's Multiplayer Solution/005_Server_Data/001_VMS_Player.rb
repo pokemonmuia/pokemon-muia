@@ -20,6 +20,8 @@ module VMS
     attr_accessor :surfing, :diving, :surf_base_coords
     # Custom information
     attr_accessor :state, :busy
+    # Muia: velocità del passo (3 camina, 4 corri, 5 bici)
+    attr_accessor :move_speed
 
     def initialize(id, address, port)
       # Used to check what values can be nil
@@ -58,6 +60,7 @@ module VMS
       # Custom information
       @state = [:idle, nil]
       @busy = false
+      @move_speed = 3
     end
 
     def update(data)

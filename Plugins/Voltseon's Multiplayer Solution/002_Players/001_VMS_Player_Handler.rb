@@ -385,10 +385,14 @@ module VMS
   # ricevuda. Prima se faceva solo quando rivava un messagio (10-30 volte al
   # secondo): l'omino feva mezza strada, se fermava e ripartiva.
   def self.smooth_players
-    return unless VMS::SMOOTH_MOVEMENT
     frame = Graphics.frame_count
     return if $game_temp.vms[:last_smooth_frame] == frame
     $game_temp.vms[:last_smooth_frame] = frame
+    if VMS::TILE_MOVEMENT
+      VMS.muia_aggiorna_caselle
+      return
+    end
+    return unless VMS::SMOOTH_MOVEMENT
     adesso = System.uptime
     moti = ($game_temp.vms[:muia_moti] ||= {})
     # Quanto recuperar in questo fotogramma, uguale anca se el zogo va a meno fps
@@ -432,6 +436,69 @@ module VMS
     nil
   end
 
+  # ---------------------------------------------------------------------------
+  # Muia 1.44: movimento a caselle (VMS::TILE_MOVEMENT)
+  # Quando riva la posizion de un zogador, le caselle tra l'ultima ricevuda e
+  # questa se zonta alla coda del so evento, che le camina coi passi veri
+  # (vedi Game_Character#muia_prossimo_passo in 001_VMS_Overrides.rb).
+  # Torna true se l'evento xe gestì a caselle.
+  # ---------------------------------------------------------------------------
+  def self.muia_caselle(player, event)
+    return false if event.nil? || player.x.nil? || player.y.nil?
+    passi = ($game_temp.vms[:muia_passi] ||= {})
+    st = passi[player.id]
+    dest = [player.x, player.y]
+    event.muia_velocita = player.move_speed
+    # Evento novo (primo arivo, mapa cambiada): subito al posto giusto
+    if st.nil? || !st[:evento].equal?(event)
+      event.muia_coda.clear
+      event.muia_metti(*dest)
+      event.direction = player.direction
+      passi[player.id] = { evento: event, ultima: dest }
+      return true
+    end
+    da = st[:ultima]
+    return true if da == dest
+    st[:ultima] = dest
+    dx = dest[0] - da[0]
+    dy = dest[1] - da[1]
+    coda = event.muia_coda
+    if dx.abs + dy.abs > VMS::TILE_MAX_STEPS || coda.size > VMS::TILE_MAX_STEPS
+      # Massa lontan o massa indrio: se salta là
+      coda.clear
+      event.muia_metti(*dest)
+      return true
+    end
+    # Prima l'asse che no xe quel della direzion finale, cussì l'ultimo
+    # passo xe girà come el zogador vero
+    x, y = da
+    ordine = [2, 8].include?(player.direction) ? [:x, :y] : [:y, :x]
+    ordine.each do |asse|
+      if asse == :x
+        dx.abs.times { x += (dx <=> 0); coda << [x, y] }
+      else
+        dy.abs.times { y += (dy <=> 0); coda << [x, y] }
+      end
+    end
+    return true
+  end
+
+  # A ogni fotogramma: chi xe fermo e ga caselle in coda taca a caminar;
+  # chi xe fermo senza coda se gira come el zogador vero.
+  def self.muia_aggiorna_caselle
+    VMS.get_players.each do |player|
+      next if player.rf_event.nil?
+      event = player.rf_event[:event]
+      next if event.nil? || event.erased?
+      event.through = VMS::THROUGH if event.through != VMS::THROUGH && !pbMapInterpreterRunning?
+      next if event.moving? || event.jumping?
+      next if event.muia_prossimo_passo
+      event.direction = player.direction if player.direction && event.direction != player.direction && !event.direction_fix
+    end
+  rescue
+    nil
+  end
+
   # Muia: da "da" se va de "passo" verso "a", senza mai superarlo
   def self.muia_verso(da, a, passo)
     return da if a == da || passo == 0
@@ -447,11 +514,16 @@ module VMS
     VMS.sync_animations(player) if player.is_new
     # No event
     return if player.rf_event.nil?
+    # Muia 1.44: a caselle, i passi li fa VMS.muia_caselle (posizion,
+    # direzion e animazion); qua se aggiorna solo el resto.
+    a_caselle = VMS::TILE_MOVEMENT && VMS.muia_caselle(player, player.rf_event[:event])
     # Update event
-    player.rf_event[:event].x = player.x
-    player.rf_event[:event].y = player.y
-    player.rf_event[:event].direction = player.direction
-    player.rf_event[:event].pattern = player.pattern
+    unless a_caselle
+      player.rf_event[:event].x = player.x
+      player.rf_event[:event].y = player.y
+      player.rf_event[:event].direction = player.direction
+      player.rf_event[:event].pattern = player.pattern
+    end
     player.rf_event[:event].character_name = player.graphic
     player.rf_event[:event].opacity = player.opacity
     player.rf_event[:event].step_anime = player.stop_animation
@@ -463,7 +535,7 @@ module VMS
     real_distance = Math.sqrt((player.rf_event[:event].real_x - player.real_x) ** 2 + (player.rf_event[:event].real_y - player.real_y) ** 2)
     # Muia: el smussamento vero el fa VMS.smooth_players a ogni fotogramma;
     # qua se salta solo quando el xe massa lontan (o senza smussamento).
-    if !VMS::SMOOTH_MOVEMENT || real_distance >= VMS::SNAP_DISTANCE
+    if !a_caselle && (!VMS::SMOOTH_MOVEMENT || real_distance >= VMS::SNAP_DISTANCE)
       player.rf_event[:event].real_x = player.real_x
       player.rf_event[:event].real_y = player.real_y
     end

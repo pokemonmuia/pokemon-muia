@@ -8,8 +8,8 @@
 #   invio/poll    ms medi par mandar un messagio / controlar la cartela (solo browser)
 #   dati          ms medi par preparar i dati del zogador
 #   msg_in        messagi ricevui dal server al secondo
-#   ping          ms tra quando el zogo manda la so posizion e quando el server
-#                 ghe la rimanda indrio (andata e ritorno, tuto compreso)
+#   ping          ms andata e ritorno col server, tuto compreso (el più svelto
+#                 dei ultimi 5 secondi: el server rimanda el "batito" 5 volte al secondo)
 # e ogni volta che el "stato" de un zogador cambia (par vedér dove se ferma
 # l'interazion tra do zogadori): "VMS stato: ...".
 # Se PERF_LOG xe false no fa gnente.
@@ -69,7 +69,9 @@ module VMS
       return if adesso - @inizio < 5
       secondi = adesso - @inizio
       fps = ((Graphics.frame_count - @frame0) / secondi).round(1)
-      ping = (VMS.ping * 1000).round rescue -1
+      rtt = $game_temp.vms[:muia_rtt_min]
+      ping = rtt.nil? ? "-" : (rtt * 1000).round
+      $game_temp.vms[:muia_rtt_min] = nil
       echoln "VMS perf: fps=#{fps} update=#{media_ms(:update)}ms invio=#{media_ms(:invio)}ms " \
              "poll=#{media_ms(:poll)}ms dati=#{media_ms(:dati)}ms " \
              "msg_in=#{(@conti[:msg_in] / secondi).round(1)}/s ping=#{ping}ms (#{VMS.web? ? 'browser' : 'pc'})"

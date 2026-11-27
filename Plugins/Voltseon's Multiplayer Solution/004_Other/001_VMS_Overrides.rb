@@ -173,6 +173,56 @@ class Game_Character
       (sy > 0) ? turn_up : turn_down
     end
   end
+
+  # ---------------------------------------------------------------------------
+  # Muia 1.44: i altri zogadori camina a caselle (VMS::TILE_MOVEMENT).
+  # muia_coda = le caselle che el zogador vero ga za fato e che qua el deve
+  # ancora caminar; muia_velocita = la so velocità (3 camina, 4 corri, 5 bici).
+  # I passi xe quei normali del zogo (stessa animazion dei NPC); quando un
+  # passo finisse, el prossimo parte nel stesso fotogramma, senza pause.
+  # Par tuti i altri personaggi muia_coda xe nil e no cambia gnente.
+  # ---------------------------------------------------------------------------
+  attr_accessor :muia_velocita
+
+  def muia_coda
+    @muia_coda ||= []
+  end
+
+  # Taca el prossimo passo della coda. Torna true se el ga fato qualcosa.
+  def muia_prossimo_passo
+    return false if @muia_coda.nil? || @muia_coda.empty?
+    nx, ny = @muia_coda.shift
+    if (nx - @x).abs + (ny - @y).abs != 1
+      muia_metti(nx, ny)   # no xe una casela vicina: se salta là
+      return true
+    end
+    @direction = (nx > @x) ? 6 : (nx < @x) ? 4 : (ny > @y) ? 2 : 8 unless @direction_fix
+    v = (@muia_velocita || 3).to_i
+    v += 1 if @muia_coda.size >= 2   # restà indrio: un fià più svelto par recuperar
+    v = [[v, 1].max, 6].min
+    self.move_speed = v if @move_speed != v
+    @move_initial_x = @x
+    @move_initial_y = @y
+    @x = nx
+    @y = ny
+    @move_timer = 0.0
+    return true
+  end
+
+  # Subito su una casela, senza caminar (lontan, mapa nova, primo arivo)
+  def muia_metti(nx, ny)
+    @x = nx
+    @y = ny
+    @real_x = nx * Game_Map::REAL_RES_X
+    @real_y = ny * Game_Map::REAL_RES_Y
+    @move_timer = nil
+  end
+
+  alias muia_vms_update_move update_move unless method_defined?(:muia_vms_update_move)
+  def update_move
+    muia_vms_update_move
+    muia_prossimo_passo if @muia_coda && !moving? && !jumping?
+  end
 end
 
 class Game_Event

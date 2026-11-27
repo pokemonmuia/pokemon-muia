@@ -82,6 +82,13 @@ module VMS
   MAX_PREDICTION = 0.15
   # How far away a player has to move before they are teleported to the server's position. (in pixels) (only used if SMOOTH_MOVEMENT is true)
   SNAP_DISTANCE = 192
+  # Muia 1.44: i altri zogadori camina a caselle, coi passi veri del zogo
+  # (animazion e velocità giuste), invece de inseguir la posizion in pixel.
+  # El ritardo resta, ma no se lo vedi: i se move liscio come i NPC.
+  # false = come prima (smussamento in pixel).
+  TILE_MOVEMENT = true
+  # Oltre quante caselle de distanza no se camina ma se salta subito al posto giusto
+  TILE_MAX_STEPS = 4
 
   # ===========
   # Menu
@@ -130,7 +137,8 @@ module VMS
     animation: 14, offset_x: 15, offset_y: 16, opacity: 17, stop_animation: 18,
     rf_event: 19, jump_offset: 20, jumping_on_spot: 21, surfing: 22, diving: 23,
     surf_base_coords: 24, state: 25, busy: 26, cluster_id: 27,
-    online_variables: 28, game_name: 29, game_version: 30
+    online_variables: 28, game_name: 29, game_version: 30,
+    move_speed: 31   # Muia: velocità del passo (camina, corri, bici)
   }
   REVERSE_KEYS = PACKET_KEYS.invert
 
