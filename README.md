@@ -158,6 +158,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **25112026** Versione web: via la vecia animazion a pixel del caricamento, desso se verzi subito con **Muia vista dal'alto** che passa dala matina ala note. Versione 1.42.
 - **26112026** El vecio del'intro desso se ciama **Professor Oak** (prima Professor Rock). Versione 1.43.
 - **27112026** **Multiplayer più svelto e liscio**: i altri zogadori desso camina a **caselle**, coi passi veri del zogo (stessa animazion dei NPC, camina, corri e bici ala velocità giusta) invece de inseguir la posizion: anca col ritardo de la rete i se move liscio. Ogni passo parte subito (prima se spetava el giro de invio), el server lo passa subito ai altri (prima fin a 70 ms de atesa) e i messagi xe la metà, cussì el browser fadiga meno. In `?debug` el *ping* desso xe l'andata e ritorno vero. Versione 1.44.
+- **27112026** Versione web: se el zogo no se verzi, desso se vedi el **motivo vero** del erore (prima solo "[object ErrorEvent]"). Versione 1.45.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

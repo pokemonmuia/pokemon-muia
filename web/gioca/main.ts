@@ -950,6 +950,9 @@ for (const method of ["log", "info", "warn", "error"] as const) {
         void riparaAvvio(text);
       } else if (/Game threw an exception|RuntimeError|Aborted\(|out of memory/i.test(text)) {
         showError(text.replace(/^.*\] ?/, "").slice(0, 160));
+      } else if (/worker sent an error/i.test(text)) {
+        // Emscripten lo scrive appena prima di rilanciare l'errore del worker
+        showError(text.replace(/^.*worker sent an error!? ?/i, "worker: ").slice(0, 200));
       }
     }
     original(...args);
@@ -979,16 +982,33 @@ const riparaAvvio = async (testo: string) => {
   location.reload();
 };
 
+// Testo leggibile di un errore. Quando si rompe un "worker" del motore,
+// Emscripten rilancia l'ErrorEvent stesso: Firefox mostra solo
+// "uncaught exception: [object ErrorEvent]" e il motivo vero si perde.
+const testoErrore = (x: unknown, riserva = ""): string => {
+  if (typeof ErrorEvent !== "undefined" && x instanceof ErrorEvent) {
+    const file = (x.filename || "").split("/").pop() || "worker";
+    return `worker: ${x.message || "errore senza messaggio"} (${file}:${x.lineno})`;
+  }
+  if (x instanceof Error) {
+    return `${x.name}: ${x.message}`;
+  }
+  return riserva !== "" ? riserva : String(x);
+};
 window.addEventListener("error", (ev) => {
   if (!booted && !String(ev.message).includes("ResizeObserver")) {
-    showError(String(ev.message || ev.error));
+    const testo = testoErrore(ev.error, String(ev.message || ev.error));
+    console.error("[muia] errore all'avvio:", testo, ev.error);
+    showError(testo);
   }
 });
 window.addEventListener("unhandledrejection", (ev) => {
   // Il motore chiede di tenere acceso lo schermo (Wake Lock): se il browser
   // dice di no non è un errore del gioco, quindi non lo mostro.
   if (!booted && !/wake ?lock/i.test(String(ev.reason))) {
-    showError(String(ev.reason));
+    const testo = testoErrore(ev.reason);
+    console.error("[muia] errore all'avvio:", testo, ev.reason);
+    showError(testo);
   }
 });
 // Se dopo 4 minuti non è arrivato nulla, lo dico invece di lasciare il nero
