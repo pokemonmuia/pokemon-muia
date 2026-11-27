@@ -400,7 +400,8 @@ module VMS
         VMS.mb_clear_local_state
         return
       end
-      $game_temp.vms[:state] = [:multibattle_selection, lobby_id, my_team, my_slot, new_party]
+      # Muia 1.46: la squadra va come testo (vedi VMS.muia_squadra_testo)
+      $game_temp.vms[:state] = [:multibattle_selection, lobby_id, my_team, my_slot, VMS.muia_squadra_testo(new_party)]
 
       # Wait for all 4 selections
       unless VMS.mb_await_all_selections(lobby_id)
@@ -507,13 +508,14 @@ module VMS
       if entry[:player_id] == $player.id
         st = $game_temp.vms[:state]
         return nil unless st.is_a?(Array) && st[0] == :multibattle_selection && st[4].is_a?(Array)
-        parties[global_idx] = st[4]
+        # Muia 1.46: anca la propria dal testo, cussì tuti e 4 dopra la stessa copia
+        parties[global_idx] = VMS.muia_squadra_oggetti(st[4])
       else
         player = VMS.mb_get_player_for_slot(lobby_id, pair[0], pair[1])
         return nil if player.nil?
         st = player.state
         return nil unless st.is_a?(Array) && st[0] == :multibattle_selection && st[4].is_a?(Array)
-        parties[global_idx] = st[4]
+        parties[global_idx] = VMS.muia_squadra_oggetti(st[4])
       end
     end
     return parties

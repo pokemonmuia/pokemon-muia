@@ -140,7 +140,7 @@ module MuiaStoria
       # La se ferma sora el zogador (la riva da su); se no se pol, vizin
       x, y = $game_player.x, $game_player.y - 1
       x, y = casela_vizin if !$game_map.passable?(x, y, 0) || ocupada?(x, y)
-      camina(mama, x, y)
+      camina(mama, x, y, corri: true)   # la riva de corsa: la ga pressa de darte le scarpe
       gira_verso_zogador(mama)
       gira_zogador_verso(mama)
       pbExclaim(mama)
@@ -154,7 +154,7 @@ module MuiaStoria
     dì("MAMA", _INTL("Bon, mi torno a casa in Cul de Nave. Se va su de qua, per Calle Parini: varda dove che vado, cussì te impari la strada!"))
     dì("MAMA", _INTL("Se te servi qualcossa, la porta xe sempre verta. Ciao cocolo!"))
     if mama
-      camina(mama, *MAMA_INGRESSO)
+      camina(mama, *MAMA_INGRESSO, corri: true)   # e la scampa via de corsa
       mama.erase
     end
   end

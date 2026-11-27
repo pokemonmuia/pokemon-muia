@@ -131,6 +131,22 @@ module VMS
     return pokemon
   end
 
+  # Muia 1.46: una squadra da mandar in un messagio. I oggetti Pokemon no se
+  # pol mandar cussì come i xe: el server de Render (server/muia_server.rb) no
+  # ga le classi del zogo e el butava via el messagio ("undefined class/module
+  # Pokemon"), e la lota online no partiva mai. Se manda el testo, come par la
+  # squadra nei dati del zogador.
+  def self.muia_squadra_testo(party)
+    return party unless party.is_a?(Array)
+    return party.map { |pkmn| pkmn.nil? || pkmn.is_a?(String) ? pkmn : VMS.hash_pokemon(pkmn) }
+  end
+
+  # Muia 1.46: el contrario de muia_squadra_testo (va ben anca coi oggetti)
+  def self.muia_squadra_oggetti(party)
+    return party unless party.is_a?(Array)
+    return party.map { |pkmn| pkmn.is_a?(String) ? VMS.dehash_pokemon(pkmn) : pkmn }
+  end
+
   # Usage: VMS.clean_up_basic_array(array #<Array>) (removes all non-basic types from the specified array)
   def self.clean_up_basic_array(array)
     if array.is_a?(Array)

@@ -40,14 +40,15 @@ module VMS
         end
       end
 
-      # Sync selection - send the party array directly (no serialization)
-      $game_temp.vms[:state] = [:battle_selection, player.id, new_party]
+      # Sync selection - Muia 1.46: la squadra va come testo (vedi
+      # VMS.muia_squadra_testo: i oggetti Pokemon el server no li pol lexer)
+      $game_temp.vms[:state] = [:battle_selection, player.id, VMS.muia_squadra_testo(new_party)]
       if !VMS.await_player_state(player, :battle_selection, _INTL("Speto che {1} el sielgi i Pokémon...", player.name), true, true)
         $game_temp.vms[:state] = [:idle, nil]
         return
       end
-      # Receive the party array directly (no deserialization needed)
-      filtered_opponent_party = player.state[2]
+      # Muia 1.46: la squadra del avversario riva come testo
+      filtered_opponent_party = VMS.muia_squadra_oggetti(player.state[2])
 
       # Validate opponent party
       if filtered_opponent_party.nil? || !filtered_opponent_party.is_a?(Array) || filtered_opponent_party.empty?

@@ -190,14 +190,21 @@ module MuiaStoria
 
   # Fa caminar un evento fin a (x,y) passando per le strade (through, cussì
   # no el se pianta su altri personagi). Se no ghe xe strada, el se teletrasporta.
-  def self.camina(evento, x, y)
+  # corri: true = de corsa (velocità 4, come el zogador con le scarpe da corsa),
+  # e sempre con l'animazion dei passi (senza, el personagio "svola").
+  def self.camina(evento, x, y, corri: false)
     return if !evento
     cmd = strada(evento.x, evento.y, x, y)
     if cmd.nil?
       evento.moveto(x, y)
       return
     end
-    pbMoveRoute(evento, [PBMoveRoute::THROUGH_ON] + cmd + [PBMoveRoute::THROUGH_OFF])
+    prima = [PBMoveRoute::THROUGH_ON]
+    if corri
+      prima += [PBMoveRoute::WALK_ANIME_ON, PBMoveRoute::STEP_ANIME_OFF,
+                PBMoveRoute::DIRECTION_FIX_OFF, PBMoveRoute::CHANGE_SPEED, 4]
+    end
+    pbMoveRoute(evento, prima + cmd + [PBMoveRoute::THROUGH_OFF])
     aspetta(evento)
   end
 
