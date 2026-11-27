@@ -79,7 +79,8 @@ module VMS
             next if pkmn_data.nil?
             # Check if it's a serialized string that needs dehashing
             if pkmn_data.is_a?(String)
-              deserialized_party.push(VMS.dehash_pokemon(pkmn_data))
+              pkmn = VMS.dehash_pokemon(pkmn_data)   # Muia 1.47: nil se no valido
+              deserialized_party.push(pkmn) if pkmn
             else
               # Already a Pokemon object
               deserialized_party.push(pkmn_data)

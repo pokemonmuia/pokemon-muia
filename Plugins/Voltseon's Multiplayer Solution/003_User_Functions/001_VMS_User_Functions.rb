@@ -126,9 +126,16 @@ module VMS
 
   # Usage: VMS.dehash_pokemon(hash #<Hash>) (returns a Pokémon from the specified hash)
   def self.dehash_pokemon(hash)
-    pokemon = VMS.decrypt(eval(hash))
+    # Muia 1.47: mai eval su testo che vien dala rete (vedi VMS.muia_leggi_testo).
+    # Un testo che no se pol lexer torna nil (el pokemon se salta), invece de
+    # far cascar la conession.
+    pokemon = VMS.decrypt(VMS.muia_leggi_testo(hash))
+    raise VMS::TestoNonValido, "no xe un pokemon" unless pokemon.is_a?(::Pokemon)
     pokemon.calc_stats
     return pokemon
+  rescue StandardError => e
+    VMS.log("Pokemon ricevù no valido, saltà: #{e.message}", true)
+    return nil
   end
 
   # Muia 1.46: una squadra da mandar in un messagio. I oggetti Pokemon no se
@@ -144,7 +151,7 @@ module VMS
   # Muia 1.46: el contrario de muia_squadra_testo (va ben anca coi oggetti)
   def self.muia_squadra_oggetti(party)
     return party unless party.is_a?(Array)
-    return party.map { |pkmn| pkmn.is_a?(String) ? VMS.dehash_pokemon(pkmn) : pkmn }
+    return party.map { |pkmn| pkmn.is_a?(String) ? VMS.dehash_pokemon(pkmn) : pkmn }.compact
   end
 
   # Usage: VMS.clean_up_basic_array(array #<Array>) (removes all non-basic types from the specified array)
