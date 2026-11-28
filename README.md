@@ -163,6 +163,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **27112026** **Multiplayer più sicuro**: le squadre che riva dai altri zogadori desso se lexe come dati e basta (prima el zogo le eseguiva come codice, e un zogador malintenzionà podeva far far al to zogo quel che el voleva). Sistemai anca i pokemon con una **letera in man**, che online no se podeva ricostruir. Versione 1.47.
 - **28112026** **Versione web più lisia sul telefono**: se el zogo partiva svelto (za salvà nel browser), el sfondo animado del caricamento podeva restar acceso soto el zogo e rubarghe forza (corsa e testi che rallentava); desso el se ferma sempre. Sul telefono la pagina controla i messagi del multiplayer ogni 25 ms invece de 12. Misurà col test automatico, anca con un telefono finto: 40 fotogrami al secondo su tute le mape (el massimo de RPG Maker XP). Versione 1.50.
 - **28112026** I **tasti dele lote** desso xe in muiesan anca nela grafica: **BIAVA / POKéMON / SACCOCCIA / SCAMPA** (prima FIGHT / BAG / RUN), coi stessi colori e la stessa scrita a pixel. Versione 1.51.
+- **28112026** La **mama** desso camina (e cori) movendo i pie come tuti: el so sprite gaveva 4 fotogrami tuti uguai. Sistemadi anca i altri personagi fermi (NPC 03, 10, 17, 20, 21, 22, 23, 27): quando i sta fermi i xe uguai a prima. Per farlo su altri sprite: `python3 Strumenti/camminata_sprite.py entrada.png uscida.png`. Versione 1.52.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù
