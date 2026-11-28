@@ -513,7 +513,9 @@ const esciDalGioco = () => {
 
 export const avviaPonte = (opz: OpzioniPonte) => {
   const log = opz.log ?? (() => {});
-  const intervallo = opz.intervalloMs ?? 12; // 1.44: prima 25
+  // 1.50: sul telefono 25 ms (con 12 la pagina lexeva la cartela 80 volte al
+  // secondo e la rubava tempo al zogo); sul PC resta 12.
+  const intervallo = opz.intervalloMs ?? (soloTouch() ? 25 : 12);
   const attesaMax = (opz.attesaMaxS ?? 150) * 1000;
   let cartella: CartellaOpfs | null = null;
   let sessione: Sessione | null = null;
