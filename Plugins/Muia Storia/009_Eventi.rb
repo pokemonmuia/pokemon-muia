@@ -20,9 +20,11 @@ module MuiaStoria
     when MAPA_ZUPPO
       metti(map, evento(1020, 7, 4, [{ gfx: "NPC 24", dir: 2, cmd: "MuiaStoria.ornella" }], "Siora Ornella"))
     when MAPA_BLOCO
-      metti(map, evento(1080, 53, 14, [{}, { sw: SW_SFILATA, gfx: TUBO_GRAFICA, dir: 2,
+      # Una casela dentro Via Roma_2 (riga 13): ala riga 14 el zogador riva da
+      # Calle Parini Alta, che xe n'altra mapa, e no se podeva parlarghe (1.53)
+      metti(map, evento(1080, 53, 13, [{}, { sw: SW_SFILATA, gfx: TUBO_GRAFICA, dir: 2,
                                              cmd: "MuiaStoria.posto_de_bloco" }], "Tubo (posto de bloco)"))
-      metti(map, evento(1081, 54, 14, [{}, { sw: SW_SFILATA, tile: 559, cmd: "MuiaStoria.posto_de_bloco" }]))
+      metti(map, evento(1081, 54, 13, [{}, { sw: SW_SFILATA, tile: 559, cmd: "MuiaStoria.posto_de_bloco" }]))
     when MAPA_MOLO
       metti(map, evento(1085, 64, 13, [{ gfx: "trainer_SAILOR", dir: 8, cmd: "MuiaStoria.controlor" }],
                         "Controlor del Delfin Verde"))

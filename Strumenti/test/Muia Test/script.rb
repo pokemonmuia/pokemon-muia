@@ -231,7 +231,17 @@ module MuiaTest
       foto("transenne_via_roma")
       vai(91, 1, 0, 8)
       foto("posto_de_bloco")
-      MuiaStoria.posto_de_bloco
+      # Come un zogador vero: un passo in su (dentro Via Roma_2) e "A" verso Tubo
+      vai(92, 53, 14, 8)
+      verifica($game_map.events[1080] && $game_map.events[1080].y == 13, "Tubo in (53,13) sula stessa mapa")
+      partì = $game_player.check_event_trigger_there([0])
+      verifica(partì, "parlando con Tubo parti el so evento")
+      # i test gira dentro Scene_Map#update: l'interprete lo femo andar a man
+      600.times do
+        break if !pbMapInterpreterRunning?
+        pbMapInterpreter.update
+        frames(1)
+      end
       verifica($game_variables[27] == 7, "trama = 7 dopo Tubo")
       verifica(!$game_switches[81], "transenne zo")
     end

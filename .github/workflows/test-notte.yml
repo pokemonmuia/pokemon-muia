@@ -91,9 +91,13 @@ jobs:
           npm init -y > /dev/null
           npm install playwright@1
           npx playwright install --with-deps chromium
-          OUT=/tmp/risultati HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
+          # (saltà in sta prova) OUT=/tmp/risultati HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
           # Seconda prova "telefono": verticale, touch, CPU 4 volte più lenta (solo le prime tape)
-          OUT=/tmp/risultati/telefono TELEFONO=1 TELEFONO_CPU=2 LIMITE_MS=600000 HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
+          # (saltà in sta prova) OUT=/tmp/risultati/telefono TELEFONO=1 SOLO_PERF=1 TELEFONO_CPU=2 LIMITE_MS=600000 HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
+          # Tuta la storia anca col telefono (senza rallentar), se el PC se pianta
+          OUT=/tmp/risultati/storia_tel TELEFONO=1 TELEFONO_CPU=1 HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
+          # El sito vero, apena publicà: parti el zogo in un browser novo?
+          # (saltà in sta prova) OUT=/tmp/risultati/sito URL_GIOCO=https://pokemonmuia.github.io/pokemon-muia/gioca/ LIMITE_MS=300000 HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
 
       - name: Salva i risultati nel branch test-risultati
         if: always()

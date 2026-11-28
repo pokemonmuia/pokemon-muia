@@ -31,6 +31,7 @@ if (TEL) {
 const righe = [];
 let fine = false;
 let perfFatte = 0;
+let ricaricà = false;
 const foto = [];
 page.on("console", (msg) => {
   const t = msg.text();
@@ -63,12 +64,22 @@ try {
   }, 90000);
   let fatte = 0;
   let ultimaFoto = Date.now();
-  while (!fine && !(TEL && perfFatte > 0) && Date.now() - inizio < LIMITE_MS) {
+  const SOLO_PERF = process.env.SOLO_PERF === "1";
+  while (!fine && !(SOLO_PERF && perfFatte > 0) && Date.now() - inizio < LIMITE_MS) {
     await page.waitForTimeout(500);
     while (fatte < foto.length) {
       await page.waitForTimeout(600);
       fatte += 1;
       await page.screenshot({ path: `${OUT}/${String(fatte).padStart(2, "0")}_${foto[fatte - 1]}.png` });
+    }
+    // El primo avvio in un browser novo a volte se pianta al 4% (anca in CI):
+    // dopo 6 minuti senza el zogo, se ricarica la pagina una volta.
+    if (!ricaricà && Date.now() - inizio > 360000 && !righe.some((r) => r.includes("MUIATEST"))) {
+      ricaricà = true;
+      righe.push("=== AVVIO PIANTÀ: ricarico la pagina ===");
+      await page.reload({ waitUntil: "load" });
+      await page.waitForSelector("#start-button", { state: "visible", timeout: 180000 });
+      await page.click("#start-button");
     }
     if (Date.now() - ultimaFoto > 60000) {
       try {
@@ -82,7 +93,7 @@ try {
   await page.screenshot({ path: `${OUT}/99_fine.png` });
   // Telefono: seconda volta (zogo za nel browser, el parti svelto), come quando
   // un zogador torna. Qua el sfondo del caricamento podeva restar acceso.
-  if (TEL) {
+  if (TEL && SOLO_PERF) {
     righe.push("=== SECONDO AVVIO (ricarica la pagina) ===");
     const t0 = Date.now();
     await page.reload({ waitUntil: "load" });
