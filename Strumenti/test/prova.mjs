@@ -19,15 +19,25 @@ const browser = await chromium.launch({
     "--enable-features=SharedArrayBuffer",
   ],
 });
-const page = await browser.newPage({ viewport: { width: 1024, height: 700 } });
+// TELEFONO=1: schermo verticale col touch e CPU rallentada (TELEFONO_CPU volte)
+const TEL = process.env.TELEFONO === "1";
+const page = await browser.newPage(TEL
+  ? { viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true }
+  : { viewport: { width: 1024, height: 700 } });
+if (TEL) {
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send("Emulation.setCPUThrottlingRate", { rate: Number(process.env.TELEFONO_CPU || 4) });
+}
 const righe = [];
 let fine = false;
+let perfFatte = 0;
 const foto = [];
 page.on("console", (msg) => {
   const t = msg.text();
   righe.push(t);
   const m = t.match(/MUIATEST FOTO (\S+)/);
   if (m) foto.push(m[1]);
+  if (TEL && t.includes("MUIATEST OK prestazioni")) perfFatte += 1;
   if (t.includes("MUIATEST FINE") || t.includes("MUIATEST ERRORE GRAVE")) fine = fine || t.includes("FINE");
 });
 page.on("pageerror", (e) => righe.push("PAGEERROR " + e.message));
@@ -42,9 +52,18 @@ try {
   await page.screenshot({ path: `${OUT}/00_pagina.png` });
   await page.click("#start-button");
   righe.push("ISOLATA " + (await page.evaluate(() => String(self.crossOriginIsolated))));
+  // Dopo un po': el sfondo del caricamento xe ancora vivo? (el dovaria esser fermà)
+  setTimeout(async () => {
+    try {
+      righe.push("SFONDO dopo 90s: " + (await page.evaluate(() => JSON.stringify({
+        canvas: document.querySelectorAll("#sfondi canvas").length,
+        display: (document.getElementById("sfondi") || {}).style?.display,
+      }))));
+    } catch {}
+  }, 90000);
   let fatte = 0;
   let ultimaFoto = Date.now();
-  while (!fine && Date.now() - inizio < LIMITE_MS) {
+  while (!fine && !(TEL && perfFatte > 0) && Date.now() - inizio < LIMITE_MS) {
     await page.waitForTimeout(500);
     while (fatte < foto.length) {
       await page.waitForTimeout(600);
@@ -61,6 +80,23 @@ try {
     }
   }
   await page.screenshot({ path: `${OUT}/99_fine.png` });
+  // Telefono: seconda volta (zogo za nel browser, el parti svelto), come quando
+  // un zogador torna. Qua el sfondo del caricamento podeva restar acceso.
+  if (TEL) {
+    righe.push("=== SECONDO AVVIO (ricarica la pagina) ===");
+    const t0 = Date.now();
+    await page.reload({ waitUntil: "load" });
+    await page.waitForSelector("#start-button", { state: "visible", timeout: 180000 });
+    await page.click("#start-button");
+    const prima = perfFatte;
+    while (perfFatte === prima && Date.now() - t0 < 300000) await page.waitForTimeout(1000);
+    righe.push("SECONDO AVVIO durà " + Math.round((Date.now() - t0) / 1000) + "s");
+    righe.push("SFONDO al secondo avvio: " + (await page.evaluate(() => JSON.stringify({
+      canvas: document.querySelectorAll("#sfondi canvas").length,
+      display: (document.getElementById("sfondi") || {}).style?.display,
+    }))));
+    await page.screenshot({ path: `${OUT}/99_secondo.png` });
+  }
 } catch (e) {
   righe.push("ERRORE PROVA " + e.message);
   try { await page.screenshot({ path: `${OUT}/99_errore.png` }); } catch {}

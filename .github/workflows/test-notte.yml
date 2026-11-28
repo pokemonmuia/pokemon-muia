@@ -4,7 +4,7 @@
 name: Test notte
 on:
   push:
-    branches: [test-notte]
+    branches: [test-notte, 'test-notte-*']
   workflow_dispatch:
 
 permissions:
@@ -74,6 +74,8 @@ jobs:
           for f in sw.js manifest.webmanifest icon-192.png icon-512.png icon-maskable-512.png apple-touch-icon.png; do
             cp ../../gioco/web/gioca/$f public/$f
           done
+          mkdir -p public/sfondi
+          cp ../../gioco/web/gioca/sfondi/* public/sfondi/
           npx vite build
           cp node_modules/coi-serviceworker/coi-serviceworker.min.js dist/
 
@@ -88,6 +90,8 @@ jobs:
           npm install playwright@1
           npx playwright install --with-deps chromium
           OUT=/tmp/risultati HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
+          # Seconda prova "telefono": verticale, touch, CPU 4 volte più lenta (solo le prime tape)
+          OUT=/tmp/risultati/telefono TELEFONO=1 TELEFONO_CPU=2 LIMITE_MS=600000 HEADLESS=0 CANALE=chrome xvfb-run -a -s "-screen 0 1280x800x24" node prova.mjs || true
 
       - name: Salva i risultati nel branch test-risultati
         if: always()
@@ -95,8 +99,8 @@ jobs:
           mkdir -p /tmp/risultati
           cd /tmp/risultati
           git init -q
-          git checkout -q -b test-risultati
+          git checkout -q -b test-risultati-${{ github.ref_name }}
           echo "${{ github.sha }}" > commit.txt
           git add -A
           git -c user.name="github-actions[bot]" -c user.email="41898299+github-actions[bot]@users.noreply.github.com" commit -qm "Risultati prova ${{ github.sha }}"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" test-risultati
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" test-risultati-${{ github.ref_name }}
