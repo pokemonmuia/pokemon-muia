@@ -161,6 +161,7 @@ Formato: data (GGMMAAAA) e cosa xe sta fatto, le robe più nove in fondo.
 - **27112026** Versione web: se el zogo no se verzi, desso se vedi el **motivo vero** del erore (prima solo "[object ErrorEvent]"). Versione 1.45.
 - **27112026** **Lote online**: desso le parti anca dal browser e dal telefono (dopo la sielta dei pokemon la lota no scominsiava mai: el server no saveva lexer la squadra). Vale anca par la lota a quatro. **Mama**: in piazza la riva **de corsa** coi passi veri (prima la pareva che la svolassi) e la scampa via de corsa. Versione 1.46.
 - **27112026** **Multiplayer più sicuro**: le squadre che riva dai altri zogadori desso se lexe come dati e basta (prima el zogo le eseguiva come codice, e un zogador malintenzionà podeva far far al to zogo quel che el voleva). Sistemai anca i pokemon con una **letera in man**, che online no se podeva ricostruir. Versione 1.47.
+- **28112026** **Versione web più lisia sul telefono**: se el zogo partiva svelto (za salvà nel browser), el sfondo animado del caricamento podeva restar acceso soto el zogo e rubarghe forza (corsa e testi che rallentava); desso el se ferma sempre. Sul telefono la pagina controla i messagi del multiplayer ogni 25 ms invece de 12. Misurà col test automatico, anca con un telefono finto: 40 fotogrami al secondo su tute le mape (el massimo de RPG Maker XP). Versione 1.50.
 
 # IDEE
 - **02032026** La centrale elettrica de Grignan con Zapdos dentro.ù

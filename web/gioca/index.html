@@ -662,6 +662,13 @@
           .then((sf) => {
             window.muiaSfondo = sf;
             if (typeof window.muiaProgresso === "number") sf.progresso(window.muiaProgresso);
+            // Se el zogo xe za partì (caricamento svelto, zogo za salvà nel
+            // browser) el sfondo se ferma subito: se no el continuaria a
+            // disegnar soto el zogo e el lo rallenta (sopratuto sul telefono).
+            if (box.classList.contains("via") || box.style.display === "none") {
+              sf.ferma();
+              return;
+            }
             new MutationObserver(() => {
               if (box.classList.contains("via")) setTimeout(() => sf.ferma(), 900);
             }).observe(box, { attributes: true, attributeFilter: ["class"] });

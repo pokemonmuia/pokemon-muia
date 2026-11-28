@@ -94,6 +94,74 @@ module MuiaTest
     log("  eventi nei muri: #{male.join(' ')}") if !male.empty?
   end
 
+  #-----------------------------------------------------------------------------
+  # Prestazioni: fps e ms per fotogramma su alcune mape, caminando
+  #-----------------------------------------------------------------------------
+  T = Hash.new(0.0)
+  def self.cronometra(k)
+    t0 = System.uptime
+    r = yield
+    T[k] += System.uptime - t0
+    r
+  end
+
+  def self.casela_libera(cx, cy)
+    (0..20).each do |r|
+      (-r..r).each do |dx|
+        (-r..r).each do |dy|
+          x, y = cx + dx, cy + dy
+          next if !$game_map.valid?(x, y)
+          return [x, y] if $game_map.passable?(x, y, 0) && $game_map.passable?(x + 1, y, 0)
+        end
+      end
+    end
+    [cx, cy]
+  end
+
+  def self.misura_mapa(map_id, x = nil, y = nil, secondi = 6)
+    vai(map_id, x || 1, y || 1)
+    if x.nil?
+      x, y = casela_libera($game_map.width / 2, $game_map.height / 2)
+      $game_player.moveto(x, y)
+      $game_player.center(x, y) rescue nil
+      frames(2)
+    end
+    T.clear
+    vis = $game_map.events.values.count { |e| e.character_name.to_s != "" || e.tile_id.to_i > 0 }
+    par = $game_map.events.values.count { |e| e.trigger == 4 || e.trigger == 3 }
+    mov = $game_map.events.values.count { |e| e.instance_variable_get(:@move_type).to_i != 0 }
+    dir = :right
+    f0 = Graphics.frame_count
+    t0 = System.uptime
+    n = 0
+    while System.uptime - t0 < secondi
+      if !$game_player.moving?
+        ok = dir == :right ? $game_player.passable?($game_player.x, $game_player.y, 6) : $game_player.passable?($game_player.x, $game_player.y, 4)
+        dir = (dir == :right ? :left : :right) if !ok
+        dir == :right ? $game_player.move_right : $game_player.move_left
+      end
+      cronometra(:grafica) { Graphics.update }
+      cronometra(:input) { Input.update }
+      cronometra(:mapa) { pbUpdateSceneMap }
+      n += 1
+    end
+    sec = System.uptime - t0
+    fps = ((Graphics.frame_count - f0) / sec).round(1)
+    ms = ->(k) { (T[k] / [n, 1].max * 1000).round(2) }
+    log("PERF mapa #{map_id} #{$game_map.width}x#{$game_map.height} eventi=#{$game_map.events.size} visibili=#{vis} paraleli=#{par} che se movi=#{mov} " \
+        "fps=#{fps} | ms/frame: grafica=#{ms.(:grafica)} mapa=#{ms.(:mapa)} (eventi=#{ms.(:eventi)} sprite=#{ms.(:sprite)}) input=#{ms.(:input)} passi=#{($game_player.x)}")
+  end
+
+  def self.prestazioni
+    passo("prestazioni (fps)") do
+      misura_mapa(3)
+      misura_mapa(42, 26, 10)
+      misura_mapa(22, 59, 12)
+      [79, 113, 86, 92, 110].each { |m| misura_mapa(m) }
+      misura_mapa(42, 26, 10)
+    end
+  end
+
   def self.tutto
     log("INIZIO versione #{Settings::GAME_VERSION}")
     log("plugin: #{PluginManager.plugins.join(', ')}") rescue nil
@@ -101,6 +169,7 @@ module MuiaTest
     pbAddPokemonSilent(:FROAKIE, 5)
     $game_variables[7] = 1
     $player.money = 3000
+    prestazioni
 
     passo("tute le mape: creazion eventi") do
       mape = load_data("Data/MapInfos.rxdata")
@@ -410,4 +479,13 @@ class Scene_Map
     end
     muiatest_update
   end
+end
+
+class Game_Map
+  alias muiatest_perf_update update
+  def update(*a); MuiaTest.cronometra(:eventi) { muiatest_perf_update(*a) }; end
+end
+class Spriteset_Map
+  alias muiatest_perf_update update
+  def update(*a); MuiaTest.cronometra(:sprite) { muiatest_perf_update(*a) }; end
 end

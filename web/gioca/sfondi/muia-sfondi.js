@@ -479,6 +479,8 @@
     let vivo = true, t0 = performance.now(), cambio = 0, inizioScena = t0;
     function frame(now) {
       if (!vivo) return;
+      // sicurezza: se el sfondo xe sta nascosto (el zogo xe partì), se ferma
+      if (el.style.display === "none") { api.ferma(); return; }
       const t = Math.max(0, now - t0) / 1000 + 3;
       const s = SCENE[idx];
       // la notte arriva verso metà caricamento (o, senza progresso, dopo ~20 s), sfumando piano
