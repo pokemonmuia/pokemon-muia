@@ -1,0 +1,22 @@
+Failed to load resource: the server responded with a status of 404 (Not Found)
+ISOLATA true
+[INFO] Setting real canvas size: 1024 x 700
+[OPFS] Mount OPFS at /nostalgist/persistent
+BARRA Avvio del gioco… 4%
+SFONDO dopo 90s: {"canvas":3,"display":""}
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
+BARRA Avvio del gioco… 4%
