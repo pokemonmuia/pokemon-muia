@@ -1,0 +1,72 @@
+[libretro INFO] [mkxp-z stdout] MUIATEST zogo novo avvià
+[libretro INFO] [mkxp-z stdout] MUIATEST INIZIO versione 1.52
+[libretro INFO] [mkxp-z stdout] MUIATEST plugin: rainefallUtils, Voltseon's Multiplayer Solution, Muia Livelli Selvatici, Muia Tasti, Muia Aggiornamenti, Muia Web, Muia Intro, Muia Mondo, Muia Storia, Muia Test
+[libretro INFO] [mkxp-z stdout] MUIATEST == prestazioni (fps)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 3 (1,1) eventi=5
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 3 31x15 eventi=5 visibili=1 paraleli=0 che se movi=0 fps=39.9 | ms/frame: grafica=25.03 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=9
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,10) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 42 58x26 eventi=38 visibili=11 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.97 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=23
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 22 (59,12) eventi=2
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 22 90x20 eventi=2 visibili=2 paraleli=1 che se movi=0 fps=39.9 | ms/frame: grafica=25.03 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=82
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 79 (1,1) eventi=14
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 79 45x60 eventi=14 visibili=6 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.96 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=22
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (1,1) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 113 36x41 eventi=45 visibili=6 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.96 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=18
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86 (1,1) eventi=32
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 86 38x15 eventi=32 visibili=27 paraleli=0 che se movi=0 fps=39.7 | ms/frame: grafica=25.17 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=30
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 92 (1,1) eventi=11
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 92 55x15 eventi=11 visibili=7 paraleli=0 che se movi=1 fps=39.9 | ms/frame: grafica=25.04 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=27
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 110 (1,1) eventi=5
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 110 33x53 eventi=5 visibili=4 paraleli=0 che se movi=0 fps=40.0 | ms/frame: grafica=25.0 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=15
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,10) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 42 58x26 eventi=38 visibili=11 paraleli=0 che se movi=0 fps=39.9 | ms/frame: grafica=25.03 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=20
+[libretro INFO] [mkxp-z stdout] MUIATEST OK prestazioni (fps)
+[libretro INFO] [mkxp-z stdout] MUIATEST == tute le mape: creazion eventi
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 22: 2 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 32: 7 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42: 38 eventi (22 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 43: 6 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 76: 21 eventi (7 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 77: 2 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 78: 5 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 79: 14 eventi (12 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 80: 7 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 81: 10 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 84: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 85: 7 eventi (2 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86: 32 eventi (29 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 87: 9 eventi (7 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 88: 12 eventi (12 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89: 22 eventi (22 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 90: 3 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 91: 5 eventi (2 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 92: 11 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 93: 6 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 95: 3 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 96: 6 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 97: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 98: 4 eventi (2 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 99: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 100: 9 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 101: 4 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 102: 2 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 104: 11 eventi (11 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 105: 12 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 106: 4 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 107: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 108: 10 eventi (10 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 109: 6 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 110: 5 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113: 45 eventi (45 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 114: 25 eventi (15 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 123: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 124: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 125: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 126: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 127: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 128: 10 eventi (10 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 129: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST OK tute le mape: creazion eventi
+[libretro INFO] [mkxp-z stdout] MUIATEST == scena in piazza (trama 3)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,10) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO piazza_folla

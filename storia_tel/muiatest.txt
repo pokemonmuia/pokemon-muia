@@ -1,0 +1,846 @@
+[libretro INFO] [mkxp-z stdout] MUIATEST zogo novo avvià
+[libretro INFO] [mkxp-z stdout] MUIATEST INIZIO versione 1.52
+[libretro INFO] [mkxp-z stdout] MUIATEST plugin: rainefallUtils, Voltseon's Multiplayer Solution, Muia Livelli Selvatici, Muia Tasti, Muia Aggiornamenti, Muia Web, Muia Intro, Muia Mondo, Muia Storia, Muia Test
+[libretro INFO] [mkxp-z stdout] MUIATEST == prestazioni (fps)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 3 (1,1) eventi=5
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 3 31x15 eventi=5 visibili=1 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.97 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=9
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,10) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 42 58x26 eventi=38 visibili=11 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.96 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=23
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 22 (59,12) eventi=2
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 22 90x20 eventi=2 visibili=2 paraleli=1 che se movi=0 fps=40.1 | ms/frame: grafica=24.96 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=59
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 79 (1,1) eventi=14
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 79 45x60 eventi=14 visibili=6 paraleli=0 che se movi=0 fps=39.9 | ms/frame: grafica=25.07 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=39
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (1,1) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 113 36x41 eventi=45 visibili=6 paraleli=0 che se movi=0 fps=40.0 | ms/frame: grafica=25.03 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=22
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86 (1,1) eventi=32
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 86 38x15 eventi=32 visibili=27 paraleli=0 che se movi=0 fps=39.7 | ms/frame: grafica=25.17 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=31
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 92 (1,1) eventi=11
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 92 55x15 eventi=11 visibili=7 paraleli=0 che se movi=1 fps=40.1 | ms/frame: grafica=24.96 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=28
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 110 (1,1) eventi=5
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 110 33x53 eventi=5 visibili=4 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.96 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=16
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,10) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST PERF mapa 42 58x26 eventi=38 visibili=11 paraleli=0 che se movi=0 fps=40.1 | ms/frame: grafica=24.97 mapa=0.0 (eventi=0.0 sprite=0.0) input=0.0 passi=21
+[libretro INFO] [mkxp-z stdout] MUIATEST OK prestazioni (fps)
+[libretro INFO] [mkxp-z stdout] MUIATEST == tute le mape: creazion eventi
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 22: 2 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 32: 7 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42: 38 eventi (22 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 43: 6 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 76: 21 eventi (7 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 77: 2 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 78: 5 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 79: 14 eventi (12 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 80: 7 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 81: 10 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 84: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 85: 7 eventi (2 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86: 32 eventi (29 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 87: 9 eventi (7 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 88: 12 eventi (12 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89: 22 eventi (22 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 90: 3 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 91: 5 eventi (2 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 92: 11 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 93: 6 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 95: 3 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 96: 6 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 97: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 98: 4 eventi (2 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 99: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 100: 9 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 101: 4 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 102: 2 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 104: 11 eventi (11 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 105: 12 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 106: 4 eventi (3 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 107: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 108: 10 eventi (10 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 109: 6 eventi (6 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 110: 5 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113: 45 eventi (45 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 114: 25 eventi (15 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 123: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 124: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 125: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 126: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 127: 1 eventi (1 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 128: 10 eventi (10 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 129: 4 eventi (4 dei plugin)
+[libretro INFO] [mkxp-z stdout] MUIATEST OK tute le mape: creazion eventi
+[libretro INFO] [mkxp-z stdout] MUIATEST == scena in piazza (trama 3)
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,10) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO piazza_folla
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: strada dela mama dala cima dela piazza (14 passi)
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]SIORA (bisbiglia): Te ga visto? Xe quel novo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]VECIO (bisbiglia): El foresto! El vien de Trieste, se vedi dale scarpe.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]MULA (bisbiglia): Dicono che el ga parlà col sindaco Pochibori in persona...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]SIORA (bisbiglia): Ocio ai portafoi, che quei de Trieste...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]MULO (bisbiglia): Ma el parla muiesan o triestin?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]VECIO (bisbiglia): Ai mii tempi i foresti i restava in Piazza Unità!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]MULA (bisbiglia): El xe rivà col Delfin Verde. El ga ancora el muso verde anca lu!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]SIORA (bisbiglia): Speremo che no el resti a dormir...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: \[6E057B56]Bzz bzz... foresto... bzz... Trieste... bzz bzz...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Oh! OH! Cossa xe 'sto mercà?!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Lassè respirar el mulo, che el xe pena sbarcà! Fora, fora, a casa vostra!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Scusili, a Muia no xe che rivi tanti foresti. Mi son Dei ian, piacer.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Te son quel che el sindaco ga ciamà in Comun, vero? Lassa che te spiego come che funziona qua.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Te vol tornar a Trieste? Eh, no xe cussì facile, mulon. El sindaco Pochibori ga firmà un'ordinanza.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Nissun foresto ciapa el Delfin Verde fin che no el ga i OTO BOLLI dele compagnie del Carneval.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Ogni compagnia ga el so capopalestra: te lo bati, e lu te timbra el bollo sul Libreto del Carneval.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Dopo i oto bolli te toca i Super 4, su al Castel. E alla fine... el sindaco in persona.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Se te li bati tuti, l'ordinanza la firmi ti. E el Delfin Verde te riporta a casa.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Robe pratiche: se i tui pokemon xe strachi, ghe xe le VECIE de Muia che te li cura gratis. Una la xe qua in piazza.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Per Poké Ball e pozioni ghe xe el TABACHIN, qua de fronte al Comun. I bori te li ciapi lotando: anca i pokemon selvadeghi te molla qualche moneda.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: La palestra xe al Pacco, in Via D'Annunzio, su in alto. Ma ocio: per la sfilata del Carneval Via Roma xe tuta transennada.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Se passa solo dal posto de bloco in cima a Calle Parini, e là ghe xe...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: ???: FERMI TUTI! Polizia Locale!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: ...ghe xe lu. Tubo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Documenti! Fame veder... Ah, ma ti te son el foresto. De TRIESTE.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Mi son Tubo, Polizia Locale de Muia. Qua comando mi. Dopo el sindaco. E dopo mia mama.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Te go za visto: te gavevi la facia de un che no paga el bigliet del Delfin Verde.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Vedemo se te sa almeno tignir un pokemon in man. El mio xe alenà in caserma: nissun lo ga mai batù!
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con TUBO Tubo: CHIKORITA6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: C-cossa?! Nissun... NISSUN ga mai batù el mio pokemon dela caserma!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Mulo... ti te ga fato la storia. In piazza i ne parlerà per ani. Va' in bar a contarlo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Fortuna del principiante! Ma no te monta la testa.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Senza el LIBRETO DEL CARNEVAL timbrà dal Comun, al mio posto de bloco no te passi. Gnanca morto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Lassilo perder, Tubo xe fato cussì: el ga studià a Trieste e no el lo ga mai digerì.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: El Libreto te lo dà la Siora Ornella del Comun. Ma a 'st'ora la xe sicuro in BAR DE ZUPPO, qua in piazza, a far merenda.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Mi resto qua in piazza. Se te ga dubi, vien a ciacolar!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: ???: Cocoloooo! Speta, speta!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Fiol mio, ieri al marcà ghe iera i sconti! Varda cossa che te go ciapà: SCARPE DA CORSA!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Metitele subito, che con quele pantofole no te vadi da nissuna parte. E no sta corer in cesa!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prova se ga messo le SCARPE DA CORSA!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Tien premù el tasto B (o X sula tastiera) mentre te camini per corer.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Bon, mi torno a casa in Cul de Nave. Se va su de qua, per Calle Parini: varda dove che vado, cussì te impari la strada!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Se te servi qualcossa, la porta xe sempre verta. Ciao cocolo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: mama tornada in cima (verso Cul de Nave)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: trama = 5 dopo la scena (xe 5)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: prima lota con Tubo fata
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO piazza_dopo
+[libretro INFO] [mkxp-z stdout] MUIATEST OK scena in piazza (trama 3)
+[libretro INFO] [mkxp-z stdout] MUIATEST == Fulvio a ogni tapa
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Va' in Bar de Zuppo, qua in piazza: la Siora Ornella te darà el Libreto del Carneval.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Ah, e la xe pignola: la vol che te gabi almeno DO pokemon. Le Poké Ball le vendi el tabachin.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Va' in Bar de Zuppo, qua in piazza: la Siora Ornella te darà el Libreto del Carneval.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Ah, e la xe pignola: la vol che te gabi almeno DO pokemon. Le Poké Ball le vendi el tabachin.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Col Libreto in scarsela va' al posto de bloco de Tubo, in cima a Calle Parini. Soto la Salita dele Mure.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Te ga 0 bolli su oto. La palestra xe al Pacco, in Via D'Annunzio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Se el capopalestra no xe in palestra, el guardian te disi dove trovarlo. E el Banditor in piazza sa sempre tuto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Ah, e un'altra roba: no sta dirme che anche ti te va fin in Piazza Unità con l'auto?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Alora?
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Ma cossa te scherzi?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Bravo. Te parchegi in Piazzale Cagni, te ciapi la 9 e in diese minuti te son in Piazza Unità.
+[libretro INFO] [mkxp-z stdout] MUIATEST OK Fulvio a ogni tapa
+[libretro INFO] [mkxp-z stdout] MUIATEST == Ornella: un pokemon solo, pò do
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 80 (0,12) eventi=7
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO bar_zuppo
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Mh? Un foresto in Bar de Zuppo? Ah, te son quel del sindaco.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: El Libreto del Carneval? Eh, caro, l'ufficio verzi lunedì, mercoledì e venerdì dale 9 ale 9 e un quarto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: ...Ma va ben, go el timbro in borseta. Però el regolamento disi che un alenador ga de gaver ALMENO DO POKEMON.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Ti te ghe ne ga uno solo. Va' a ciaparghene un altro nell'erba e torna. Mi intanto fazo merenda.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Le Poké Ball le vendi el tabachin de fronte al Comun.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: con un pokemon solo no la dà el libreto
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Mh? Un foresto in Bar de Zuppo? Ah, te son quel del sindaco.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: El Libreto del Carneval? Eh, caro, l'ufficio verzi lunedì, mercoledì e venerdì dale 9 ale 9 e un quarto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: ...Ma va ben, go el timbro in borseta. Però el regolamento disi che un alenador ga de gaver ALMENO DO POKEMON.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Bon, do pokemon. Regolare. Timbro... firma... e controfirma.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prova ga ricevù el LIBRETO DEL CARNEVAL!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Qua dentro i capipalestra te timbra i bolli. Oto bolli, e el Delfin Verde te riporta a Trieste.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Desso va' da Tubo in cima a Calle Parini e mostrighe el Libreto. E salutimelo... anzi no.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: con do pokemon trama = 6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: El Libreto te lo go za dà. Te ga 0 bolli su oto. Avanti cussì, mulo!
+[libretro INFO] [mkxp-z stdout] MUIATEST OK Ornella: un pokemon solo, pò do
+[libretro INFO] [mkxp-z stdout] MUIATEST == transenne e posto de bloco
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86 (20,13) eventi=32
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: transenne su
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO transenne_via_roma
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 91 (1,0) eventi=5
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO posto_de_bloco
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 92 (53,14) eventi=11
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: Tubo in (53,13) sula stessa mapa
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO: trama = 7 dopo Tubo
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO: transenne zo
+[libretro INFO] [mkxp-z stdout] MUIATEST OK transenne e posto de bloco
+[libretro INFO] [mkxp-z stdout] MUIATEST == muli de Santa Lucia
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 90 (25,12) eventi=3
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MULO DEL RION: Santa Lucia xe roba nostra. I foresti passa solo se i bati el capo, in cale de mezo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: CAPO DEL RION: Ciò, foresto. In Santa Lucia ghe xe el bar più bon de Muia e i pokemon più rari.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: CAPO DEL RION: Ma i muli del rion no lassa passar chi che no ga fegato. Te ga fegato?
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te sfidi el capo del rion?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con ROCKER Capo del rion: ZIGZAGOON2 POOCHYENA3 SCRAGGY4
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: CAPO DEL RION: Bon. Muli, lassè passar el foresto! El xe dei nostri, desso.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: muli batui
+[libretro INFO] [mkxp-z stdout] MUIATEST OK muli de Santa Lucia
+[libretro INFO] [mkxp-z stdout] MUIATEST == porte serade
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (12,15) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te bati. "CHI XE?!" "Un foresto!" "NO GAVEMO BISOGNO!"
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te soni el campanel. Un can taca a bauar. Pò do. Pò tre. Meio andar.
+[libretro INFO] [mkxp-z stdout] MUIATEST OK porte serade
+[libretro INFO] [mkxp-z stdout] MUIATEST == tute le case e i bar
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (26,3) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 127 (6,9)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: bar_tendarossa: dentro mapa 127
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: HENRY: Benvignù in Tendarossa! Un caffè? Un spritz? Per i pokemon go le bibite.
+[libretro INFO] [mkxp-z stdout] MUIATEST   negozio: FRESHWATER,SODAPOP,LEMONADE,MOOMOOMILK
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN03 (Onda Granda).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 6,000 Poké$. Te ga 500,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN03 Onda Granda!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN03 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Togepi de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 6,000 Poké$. Te ga 494,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon TOGEPI lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VECIO DEL BAR: SPETA. Ti te son... quel che ga batù TUBO ala prima lota?! Ma alora la leggenda xe vera!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VECIO DEL BAR: Un Campari per el foresto! Anzi, do! Mostra 'sto codice al bar e i te lo ofri:
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Codice: CAMPARI-30601-92 (Prova)
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VECIO DEL BAR: E intanto ciol questo, de parte dela compagnia del bar.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 3 Caramelle Rare!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Caramelle Rare inyour Bag's <icon=bagPocket2>Medicine pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO interno_bar_tendarossa
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 42 (26,3)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: bar_tendarossa: tornà fora in mapa 42
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (18,3) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: bar_jimmy: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: BARISTA: Da Jimmy se beve ben e se spendi poco. Cioè, se spendi. Cossa te dago?
+[libretro INFO] [mkxp-z stdout] MUIATEST   negozio: FRESHWATER,SODAPOP,LEMONADE,MOOMOOMILK
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Porygon de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 7,000 Poké$. Te ga 488,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon PORYGON lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SCAMBISTA: Ciò, mi colecciono pokemon de Muia. Me manca un Zubat.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SCAMBISTA: Se te me lo dà, te dago el mio Noibat. Lo go portà da lontan!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te fa el scambio?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SCAMBISTA: Va ben, la prossima volta.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VECIO DEL BAR: SPETA. Ti te son... quel che ga batù TUBO ala prima lota?! Ma alora la leggenda xe vera!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VECIO DEL BAR: Un Campari per el foresto! Anzi, do! Mostra 'sto codice al bar e i te lo ofri:
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Codice: CAMPARI-30601-92 (Prova)
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 42 (18,3)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: bar_jimmy: tornà fora in mapa 42
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (49,6) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: piazza_sindacheto: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Mi son el vice-sindaco. Cioè, el vice del vice. Insoma, fazo le fotocopie.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Pochibori xe un bon omo, ma el ga una passion per le ordinanze. L'ultima: proibì fis-ciar dopo le diese.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol 'sta roba, me la ga lassada un triestin l'ano passà. Anca lu el xe ancora qua.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 3 Pozioni!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Pozioni inyour Bag's <icon=bagPocket2>Medicine pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 42 (49,6)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: piazza_sindacheto: tornà fora in mapa 42
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 42 (55,19) eventi=38
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: piazza_nona: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ah, el foresto! Vien, vien, sentite. Te vol un toco de presnitz?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Mio marì el iera de Trieste. Sessanta ani a Muia e i lo ciamava ancora 'el foresto'.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ma no sta preocuparte: dopo i primi cinquanta ani i te ciapa in simpatia.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Baccacedro!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Baccacedro inyour Bag's <icon=bagPocket5>Bacche pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO interno_piazza_nona
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 42 (55,19)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: piazza_nona: tornà fora in mapa 42
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (2,10) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_bortolo: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Son el nono Bortolo, giardinier de Muia da quando che Tito iera ancora in fasse.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te vedi quei alberi che sbara le cali? Con un pokemon che sa TAJAR te li tiri zo in un fià.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol, xe la MN del Tajo. Ma ocio: el Tajo funziona fora dela bataia solo se te ga almeno un bollo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN01 Tajo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN01 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (2,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_bortolo: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (11,10) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_gemelle: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Mi e mia sorela gavemo fato una scomessa: chi trova prima un Pokémon raro nel'erba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ela xe andada in Caliterna. Mi son restada a casa. Vinzo mi: el raro xe el divan.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: ...Ela ga bara. Go visto un Hoothoot de note in Calle Parini, e lu xe rarissimo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (11,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_gemelle: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (17,10) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_pescador: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Se te vol pescar a Muia te ga de gaver pazienza. E una canna.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol, xe la mia canna vecia. In mar ghe xe sempre qualcossa che abbocca... de solito un Magikarp.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Amo Vecchio!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Amo Vecchio inyour Bag's <icon=bagPocket8>Strumenti base pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (17,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_pescador: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (26,10) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_studente: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Studio a Trieste, al Politecnico. Ogni matina el Delfin Verde, ogni sera el Delfin Verde.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te disi che el sindaco no te lassa partir? Ah, ma xe per quel che el Delfin xe sempre in ritardo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol, me avanza dele Poké Ball dela gita al Carso.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 5 Poké Ball!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Poké Ball inyour Bag's <icon=bagPocket3>Poké Ball pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (26,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_studente: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (5,14) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_balon: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ti te zoghi a balon? Mi son el bomber dela Muiesana. Cioè, iero. Desso son el bomber del divan.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Un consilio: i pokemon de tipo Lota xe come i difensori dela Muiesana: no i passa nissun.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (5,14)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_balon: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (16,14) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_televisor: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SSST! Xe el meteo de Tele Quattro: bora a cento all'ora. Normale.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Quando tira bora i pokemon volanti xe più rabiosi. Anca mia suocera.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (16,14)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_televisor: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (25,14) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_cuoca: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Sto fazendo la jota. Fasoi, crauti, patate e... el segreto dela nona: pazienza.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te son magro come un fil de ferro! Ciol, almeno 'sta pozion, che xe istesso nutriente.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 2 Superpozioni!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Superpozioni inyour Bag's <icon=bagPocket2>Medicine pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (25,14)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_cuoca: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (9,19) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_artista: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Pituro solo el Mandracchio. Da trent'ani. Sempre el stesso.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ogni tanto ghe meto un Wingull diverso, per non annoiarme.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (9,19)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_artista: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (22,19) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_mama_muli: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: I mii fioi xe in Ricreatorio, mi finalmente go un fià de pase.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ti te son el foresto? Brava gente quei de Trieste... basta che i resti de là.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 89 (22,19)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_mama_muli: tornà fora in mapa 89
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 87 (11,10) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_marinaio: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Go navigà per tuti i mari del mondo. El più bel? Quel de Muia. Anca perché el xe vizin a casa.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Se te vol andar in fondo al molo C. Colombo, te serve rispeto dei pescadori: tre bolli almeno.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol, 'ste corde le ga sempre in scarsela un bon marinaio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 2 Funi di Fuga!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Funi di Fuga inyour Bag's <icon=bagPocket8>Strumenti base pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 87 (11,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_marinaio: tornà fora in mapa 87
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 87 (8,19) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_vecio_carneval: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Go sfilà con la Bora nel '72. Gavevimo un caro con un mulin de vento vero!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: El vento lo ga portà fin a Capodistria. El caro, no mi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 87 (8,19)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_vecio_carneval: tornà fora in mapa 87
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 90 (24,12) eventi=3
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_balon: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ti te zoghi a balon? Mi son el bomber dela Muiesana. Cioè, iero. Desso son el bomber del divan.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Un consilio: i pokemon de tipo Lota xe come i difensori dela Muiesana: no i passa nissun.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 90 (24,12)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_balon: tornà fora in mapa 90
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 93 (18,11) eventi=6
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_televisor: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SSST! Xe el meteo de Tele Quattro: bora a cento all'ora. Normale.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Quando tira bora i pokemon volanti xe più rabiosi. Anca mia suocera.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 93 (18,11)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: cale_televisor: tornà fora in mapa 93
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 32 (6,12) eventi=7
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: dante_professor: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Studio i pokemon de Muia. Teoria: i Rattata de Muia xe più grandi de quei de Trieste.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Conferma: xe vero. Magna meio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 3 Repellenti!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Repellenti inyour Bag's <icon=bagPocket1>Strumenti pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 32 (6,12)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: dante_professor: tornà fora in mapa 32
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 84 (7,12) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: dante_coppia: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Semo sposai da poco. Gavemo fato el viagio de nozze a Porto San Rocco.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Iera tanto bel che no semo più tornai. Cioè, semo a cinquecento metri.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 84 (7,12)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: dante_coppia: tornà fora in mapa 84
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 76 (10,2) eventi=22
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: mandracchio_cinese: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Benvignù! Qua vendo de tuto: ombrele, lampadine, cover del telefono, e... lanterne cinesi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Una me ga scampà in Mandracchio. Se te la vedi in fondo al mar, lassila là: xe arte.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 76 (10,2)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: mandracchio_cinese: tornà fora in mapa 76
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 76 (23,2) eventi=22
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: mandracchio_nuotador: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Fazo el clanfo dal molo ogni giorno, anca a genaio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: El segreto? No pensarghe. E un bicer de grappa dopo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto bottiglia di Acqua Fresca!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the bottiglia di Acqua Fresca inyour Bag's <icon=bagPocket2>Medicine pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 76 (23,2)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: mandracchio_nuotador: tornà fora in mapa 76
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 79 (11,7) eventi=14
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: vela_skipper: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Al Circolo dela Vela semo tuti skipper. Barche no ghe ne gavemo, ma skipper sì.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: La Barcolana? Ghe go partecipà vinti volte. Rivà ultimo vinti volte. Record!
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 79 (11,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: vela_skipper: tornà fora in mapa 79
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 79 (28,19) eventi=14
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: vela_mula: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Tuti me disi che son la più brava a nodar de Muia.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol 'sta perla, la go trovada soto el Circolo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Perla!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Perla inyour Bag's <icon=bagPocket1>Strumenti pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 79 (28,19)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: vela_mula: tornà fora in mapa 79
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (11,12) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 127 (6,9)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: bar_slucia: dentro mapa 127
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA DEL BAR: Cossa te porto, cocolo? Qua in rion i prezi xe onesti. Quasi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   negozio: FRESHWATER,SODAPOP,LEMONADE,MOOMOOMILK
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Porygon de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 7,000 Poké$. Te ga 481,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon PORYGON lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN01 (Tajo).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 1,500 Poké$. Te ga 474,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN01 Tajo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN01 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: In rion i pokemon rari riva de note, coi pescadori. No sta domandar de dove.
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO interno_bar_slucia
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 113 (11,12)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: bar_slucia: tornà fora in mapa 113
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (2,12) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_capo_casa: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te ga batù i muli del rion? Alora te son de Santa Lucia anche ti, onorario.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Qua in rion ghe xe el bar più rifornì de Muia. Ocio ai prezi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 3 Mega Ball!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Mega Ball inyour Bag's <icon=bagPocket3>Poké Ball pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 113 (2,12)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_capo_casa: tornà fora in mapa 113
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (14,12) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_vecia_gati: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Go tredici gati e un Meowth. El Meowth xe el più educà.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Lu me porta anca i schei, de note. No so de dove. Meio no domandar.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Pepita!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Pepita inyour Bag's <icon=bagPocket1>Strumenti pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 113 (14,12)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_vecia_gati: tornà fora in mapa 113
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (29,22) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_studioso: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Santa Lucia, Muia Vecia, el Castel... qua ogni sasso ga sete secoli.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Dicono che soto el Castel ghe sia un passagio segreto fin al mar. Mi no lo go mai trovà. Ancora.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 113 (29,22)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_studioso: tornà fora in mapa 113
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 113 (9,34) eventi=45
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_ragazzo: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te sa che a Trieste i ga el tram de Opicina? Noi gavemo el Delfin Verde. Vincemo noi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Cioè, gavevimo. Desso el xe fermo per l'ordinanza. Pareggio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 113 (9,34)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: slucia_ragazzo: tornà fora in mapa 113
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 97 (7,41) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_infermiera: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Lavoro al Distretto. Te ga i pokemon strachi? Mi curo solo i umani, ma te dago 'sta roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: E ricordite: le vecie de Muia cura meio de mi. E gratis.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 2 Cure Totali!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Cure Totali inyour Bag's <icon=bagPocket2>Medicine pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 97 (7,41)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_infermiera: tornà fora in mapa 97
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 98 (41,9) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_bambin: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Da grande voio far el capopalestra. O el gelatier. O tuti e do: la palestra del gelato!
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 98 (41,9)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_bambin: tornà fora in mapa 98
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 104 (24,22) eventi=11
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_nono_guera: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Mi go visto Muia cambiar tante volte. Prima Austria, pò Italia, pò la zona B...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ma el caffè in Piazza Marconi xe sempre stado el stesso. Bon e caro.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 104 (24,22)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_nono_guera: tornà fora in mapa 104
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 106 (17,9) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_ciclista: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Fazo Muia-Lazzareto in bici ogni matina. Andata in salita, ritorno in salita. No so come.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ciol, xe energia pura. Per i pokemon, eh. No sta magnarla ti.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: ...Ma no, no te lo dago ancora. Torna quando te ga 3 bolli.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 106 (17,9)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_ciclista: tornà fora in mapa 106
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 109 (17,9) eventi=6
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_fan_tubo: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Tubo? El xe mio cugin. In fameia lo ciamemo 'el Tubetto'.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Da picio el voleva far el sindaco. Pò el ga fato el concorso per vigile. Pò el ga fato el vigile e basta.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: No sta dirghe che te lo go dito. Ciol, per el silenzio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto 2 Attacchi X!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Attacchi X inyour Bag's <icon=bagPocket7>Strumenti lotta pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 109 (17,9)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_fan_tubo: tornà fora in mapa 109
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 107 (15,6) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 124 (6,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_osmiza: dentro mapa 124
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Sabo verzo l'osmiza su in colina. Vin, ovi duri e persuto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te vedi la frasca su la strada? Alora xe verto. No te la vedi? Alora la ga portada via la bora.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto porzione di Avanzi!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the porzione di Avanzi inyour Bag's <icon=bagPocket1>Strumenti pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 107 (15,6)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_osmiza: tornà fora in mapa 107
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 105 (9,9) eventi=12
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_sposa: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Me sposo in Duomo sabo. El sposo xe de Trieste. Mia mama ancora no la ga digerida.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 105 (9,9)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_sposa: tornà fora in mapa 105
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 128 (8,21) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: psr_yacht: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Benvignù al Yacht Club de Porto San Rocco. Qua le barche costa più dele case.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Un foresto che vien a piedi? Che roba esotica! Ciol, xe una cana bona: in marina ghe xe pessi de lusso.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Amo Buono!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Amo Buono inyour Bag's <icon=bagPocket8>Strumenti base pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 128 (8,21)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: psr_yacht: tornà fora in mapa 128
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 128 (28,21) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 125 (4,7)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: psr_turista: dentro mapa 125
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Son vignuda in vacanza a Porto San Rocco. Me ga dito che xe 'Muia ma più elegante'.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Go magnà sardoni impanai per tre giorni. Son felice.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 128 (28,21)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: psr_turista: tornà fora in mapa 128
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 107 (16,18) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 126 (5,10)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_gamer: dentro mapa 126
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te zoghi anche ti al 'Pokémon Muia' sul telefono? Dicono che ghe xe un fan game ambientà qua.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Sì, va ben, ma chi xe che fa un zogo su Muia? Ahahah.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 107 (16,18)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: nord_gamer: tornà fora in mapa 107
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 114 (2,11) eventi=25
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 123 (3,8)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: castel_custode: dentro mapa 123
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Son el custode del Castel. Le ciavi? Le ga i Mandrioi. I fantasmi? Anca quei xe dei Mandrioi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   trasferì in mapa 114 (2,11)
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: castel_custode: tornà fora in mapa 114
+[libretro INFO] [mkxp-z stdout] MUIATEST   squadra: FROAKIE5 PIDGEY4 TOGEPI5 PORYGON5 PORYGON5 schei=472500
+[libretro INFO] [mkxp-z stdout] MUIATEST OK tute le case e i bar
+[libretro INFO] [mkxp-z stdout] MUIATEST == bar: compra 6 volte (le offerte cambia)
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Buneary de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 1,500 Poké$. Te ga 900,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon BUNEARY lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN03 (Onda Granda).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 6,000 Poké$. Te ga 898,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN03 Onda Granda!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN03 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Tauros de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 6,000 Poké$. Te ga 892,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon TAUROS lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN02 (Svolo).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 6,000 Poké$. Te ga 886,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN02 Svolo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN02 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Bagon de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 10,000 Poké$. Te ga 880,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon BAGON lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN02 (Svolo).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 6,000 Poké$. Te ga 870,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN02 Svolo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN02 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Larvitar de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 10,000 Poké$. Te ga 864,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon LARVITAR lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN06 (Dorada).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 2,000 Poké$. Te ga 854,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN06 Dorada!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN06 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Lapras de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 9,000 Poké$. Te ga 852,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon LAPRAS lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN03 (Onda Granda).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 6,000 Poké$. Te ga 843,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN03 Onda Granda!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN03 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Ciò, foresto! Go un Skarmory de livel 5. Bel, sano, mai fato una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te lo dago per 6,500 Poké$. Te ga 837,500 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   ricevù pokemon SKARMORY lv5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: VENDITOR: Afar fato! Speta che vado in magazin... eco, desso go un'altra roba.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Bondì! Oggi go in vendita una MN: MN01 (Tajo).
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Le MN te servi anche fora dele lote: tajar alberi, svolar, nodar...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Prezo: 1,500 Poké$. Te ga 831,000 Poké$.
+[libretro INFO] [mkxp-z stdout] MUIATEST   scelta: Compro
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto MN01 Tajo!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the MN01 inyour Bag's <icon=bagPocket4>MT e MN pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PROFESSOR DELE MACHINE: Grazie! Speta che cambio la vetrina...
+[libretro INFO] [mkxp-z stdout] MUIATEST   ultime offerte: [:DRATINI, 10000, -4] [:HM02, 6000]
+[libretro INFO] [mkxp-z stdout] MUIATEST OK bar: compra 6 volte (le offerte cambia)
+[libretro INFO] [mkxp-z stdout] MUIATEST == schei dai selvadeghi
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Soto el pel del pokemon ghe iera 36 Poké$!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te trovi 61 Poké$ par tera. Muia xe generosa!
+[libretro INFO] [mkxp-z stdout] MUIATEST   guadagnà 97
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: schei guadagnai
+[libretro INFO] [mkxp-z stdout] MUIATEST OK schei dai selvadeghi
+[libretro INFO] [mkxp-z stdout] MUIATEST == alenadori de strada
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 76 (1,1) eventi=22
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Mulo Kevin: Ti te son el foresto? Mi son el mulo più forte del Mandracchio! ...Dopo Pina. E dopo mio fradel.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Mulo Kevin?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con YOUNGSTER Mulo Kevin: RATTATA2 ZIGZAGOON3
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 81 (1,1) eventi=12
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Mattia: I mii uccei vola sora Caliterna da quando i xe nati. Ti, inveze, te son pena sbarcà!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Mattia?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con YOUNGSTER Mattia: PIDGEY7 SPEAROW6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Giulia: In Caliterna tira sempre vento: i mii uccei xe abituadi. E ti, foresto, te xe abituà ala bora?
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Giulia?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con LASS Giulia: WINGULL5 PIKIPEK2
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 89 (1,1) eventi=24
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Nicolò: Nele cali se trova le bestiole più bele! Anca i foresti, ogni tanto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Nicolò?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BUGCATCHER Nicolò: CATERPIE4 WEEDLE5 VENIPEDE5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Elisa: Te passi per la mia cale? Qua i foresti paga el pedagio: una lota!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Elisa?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con PICNICKER Elisa: BUNEARY5 SKITTY6
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 87 (1,1) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ivan: Cul de Nave xe el posto più bel de Muia. Per forza: ghe abito mi!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Ivan?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con CAMPER Ivan: POOCHYENA6 HOOTHOOT6
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 90 (1,1) eventi=3
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Luca: Calle Parini xe tuta sassi, come i mii pokemon! E come la testa de Tubo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Luca?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con CAMPER Luca: GEODUDE3 ROLYCOLY3
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Franco: Su e zo per 'ste cale go le gambe de fero! Ti, foresto, te ga za el fià grosso?
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Franco?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con HIKER Franco: ROGGENROLA6 ONIX3
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 93 (1,1) eventi=6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Stefano: La Salita dele Mure me la fazo tuti i giorni de corsa! Desso che Tubo ga tolto el bloco, xe tuta mia.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Stefano?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BLACKBELT Stefano: MACHOP3 MAKUHITA3
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 92 (1,1) eventi=11
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Rico: Via Roma xe verta! Finalmente posso tornar a far rumor col motorin!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Rico?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BIKER Rico: GRIMER4 KOFFING5 GROWLITHE3
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 97 (1,1) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Davide: Te va al Pacco a sfidar le compagnie? Prima fa' un fià de alenamento con mi!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Davide?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con COOLTRAINER_M Davide: SNORUNT2 SPHEAL7 MANKEY2
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 128 (1,1) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Marinaio Dario: In marina se lavora, mulo, no se fa turismo! Ma una lota la fazo volentieri.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Marinaio Dario?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con SAILOR Marinaio Dario: WINGULL2 TENTACOOL2 KRABBY2
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Chiara: Su la colina sora Porto San Rocco se vedi tuto el golfo. E anca i foresti che riva!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Chiara?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con PICNICKER Chiara: HOPPIP2 SUNKERN4 SKITTY5
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 96 (1,1) eventi=6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Sara: Nives xe vignuda a bagnar le rose. Mi inveze bagno i foresti!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Sara?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con AROMALADY Sara: ODDISH6 BELLSPROUT2 FOMANTIS6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Tommaso: I Giardinetti xe pieni de bestie: le go ciapade tute! Manca solo un foresto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Tommaso?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BUGCATCHER Tommaso: BUTTERFREE3 COMBEE4 NINCADA5
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 129 (1,1) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Escursionista Bruno: Son vignù su a piedi da Muia. Tre ore. Ma vuto meter la vista? E la lota dopo?
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Escursionista Bruno?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con HIKER Escursionista Bruno: GEODUDE4 SANDSHREW4
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ornitologa Lia: Qua su i uccei vola sora la basilica da mile ani. I mii, da tre settimane.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Ornitologa Lia?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BIRDKEEPER Ornitologa Lia: PIDGEOTTO7 STARLY5 HOOTHOOT5
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 83 (1,1) eventi=3
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Bruno: Al Squero se riparava le barche. Mi riparo i foresti dopo che li bato!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Bruno?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con SAILOR Bruno: TENTACOOL2 KRABBY6 WINGULL6
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 78 (1,1) eventi=5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Pescador Gino: Te ga passà i pescadori in cima al molo? Alora te ga i bolli giusti. Vedemo se te ga anche la cana!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Pescador Gino?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con FISHERMAN Pescador Gino: MAGIKARP2 TENTACOOL2 HORSEA5
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ariana: Nodo dal molo C. Colombo fin a Trieste ogni estate. Per tornar ciapo el Delfin, come ti. Ah, no, ti no te pol!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Ariana?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con SWIMMER_F Ariana: STARYU7 GOLDEEN2 WINGULL2
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 114 (1,1) eventi=25
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Ondina: Dopo mezanote al Castel se senti robe strane... Anche de giorno, a dir la verità.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Ondina?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con CHANNELER Ondina: MISDREAVUS3 SHUPPET2 GASTLY3
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 85 (1,1) eventi=7
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Rico Senior: Rombo rombo! Toni dela Ongia el xe mio amigo de spritz. Prima de lu, te bevi mi!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Rico Senior?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BIKER Rico Senior: GROWLITHE3 PONYTA3 SANDSHREW6
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 94 (1,1) eventi=25
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Martina: Al Ricreatorio se zoga, ma mi zogo sul serio! Anca coi foresti.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Martina?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con COOLTRAINER_F Martina: SNOVER2 SWINUB2 MANKEY2
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86 (1,1) eventi=32
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Licia Jr.: Go za visto come che finirà... o forsi no. Ti te diventi sindaco? Le carte disi: 'mah'.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Licia Jr.?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con PSYCHIC_F Licia Jr.: ABRA7 GIRAFARIG4 MEDITITE2
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 76 (1,1) eventi=22
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Bepi Pescador: Qua al Mandracchio pesco solo pokemon grossi! E stasera, un foresto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Bepi Pescador?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con FISHERMAN Bepi Pescador: MAGIKARP4 SEAKING4 SHELLDER4
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Nino: Pina me ga alenà: prima de ela te ga de passar de mi! Cento flessioni e una lota.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Nino?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con BLACKBELT Nino: MACHOP5 TYROGUE2 MANKEY2
+[libretro INFO] [mkxp-z stdout] MUIATEST OK alenadori de strada
+[libretro INFO] [mkxp-z stdout] MUIATEST == imboscade de Tubo
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 83 (10,20) eventi=3
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO evento imboscada in mapa 83
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO: imboscada mapa 83: lote Tubo 1 -> 1
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 114 (20,25) eventi=25
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO evento imboscada in mapa 114
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO: imboscada mapa 114: lote Tubo 1 -> 1
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 86 (20,10) eventi=32
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO evento imboscada in mapa 86
+[libretro INFO] [mkxp-z stdout] MUIATEST   NO: imboscada mapa 86: lote Tubo 1 -> 1
+[libretro INFO] [mkxp-z stdout] MUIATEST OK imboscade de Tubo
+[libretro INFO] [mkxp-z stdout] MUIATEST == molo e castel
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: molo serà con 2 bolli
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PESCADOR: Ferma là! Oggi el molo xe nostro: gara de pesca dele compagnie.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PESCADOR: Te pol passar solo se te ga almeno TRE bolli, come Nane del Brivido. Te ghe ne ga 2.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Una corda sbara le scale del Castel. Xe tacà un cartel:
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: "CASTEL SERÀ PER FANTASMI. Firmà: compagnia MANDRIOI. Se passa con QUATRO bolli."
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te ga 2 bolli.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: molo e castel verti con 4 bolli
+[libretro INFO] [mkxp-z stdout] MUIATEST OK molo e castel
+[libretro INFO] [mkxp-z stdout] MUIATEST == frazioni e telefonade
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: STRADA PER MUGGIA VECIA - SERADA.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: "Ordinanza del sindaco Pochibori: i foresti con manco de DO bolli se perdi in colina. Se verzi col secondo bollo."
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 129 (16,12) eventi=4
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO muggia_vecia
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SACRESTAN: Benvignù a Muggia Vecia. Qua ghe iera la Muia vecia, sul monte, prima che i la distrudi nel Medioevo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SACRESTAN: De tuto el paese xe restada solo la basilica de Santa Maria Assunta. La ga più de mile ani, mulo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SACRESTAN: I muiesani xe andai zo al mar e i ga fato la Muia de desso. Ma el cuor, dicono, el xe restà qua su.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SACRESTAN: Ciol, xe una campanela vecia dela basilica. I pokemon che la porta se vol più ben.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Calmanella!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Calmanella inyour Bag's <icon=bagPocket1>Strumenti pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: PUNTO PANORAMICO: de qua se vedi tuto el golfo. Muia soto, el Castel, el Delfin Verde... e in fondo Trieste, picia picia.
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 128 (20,9) eventi=10
+[libretro INFO] [mkxp-z stdout] MUIATEST   eventi nei muri: 1191@39,7 1193@39,9 1194@39,10
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO porto_san_rocco
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MANOVAL: FAZO BUSOOO! ...Ah, scusa. La strada per Lazzareto xe serada: xe vignuda zo una frana.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MANOVAL: I dixi che la verzerà 'presto'. A Muia 'presto' vol dir tra el 2027 e la fine del mondo.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Pronto? Xe el sindaco. Go savù che te ga batù Bepi dela Bora. Fortuna, sicuro.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Desso Nives dele Bellezze Naturali la xe ai Giardinetti a bagnar le rose. E ocio: col secondo bollo se verzi anca la strada per Muggia Vecia,
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Do bolli? Ciò, no xe che te me diventi simpatico, eh.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Marieta dela Lampo xe al Vecio Squero: ga saltà la corente. E go sentì che Tubo xe in giro col bloco dele multe...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Pronto, xe Dei ian! Tre bolli! In piazza no se parla d'altro. La siora del tabachin ga anca scomesso su de ti.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Nane del Brivido pesca in ponta al molo C. Colombo: i pescadori desso te lassa passar.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Quatro bolli. Metà strada. A metà strada, de solito, i foresti torna indrio. Ti?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Gigi dei Mandrioi se sconde al Castel. La corda sule scale i la ga tolta. E... salutime i fantasmi.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Xe la Ornella del Comun. Go dovù zontar una pagina al tuo Libreto: i timbri no ghe stava più!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SIORA ORNELLA: Toni dela Ongia el xe in Piazza dela Repubblica a bever spritz. Come sempre. Va' prima che el ghe ne bevi un altro.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Sie bolli... Go fato rifar la serada dela porta del Comun. Cussì, per sicureza.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Licia dela Trottola la xe in Via Roma. Ela sa za che te rivi: la lo ga visto nele carte. Mi inveze no lo gavevo previsto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Sete bolli! Mulo, te son una leggenda. Al bar i ga za fato el panin col to nome: el 'Foresto', con persuto e cren.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: L'ultima xe Pina dei Bulli e Pupe, al Mandracchio. La fa cento flessioni prima de colazion. Ocio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Drin drin! Drin drin! Te sona el telefonin...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: ...Oto bolli. Va ben. Te speto al Castel. I Super 4 xe pronti. Anca Tubo, che el se ga stirà la divisa.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: E se te me bati... l'ordinanza la firmi ti. Ma no te me baterà. Credo. Spero.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Clic.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: telefonade fate fin ala 8
+[libretro INFO] [mkxp-z stdout] MUIATEST OK frazioni e telefonade
+[libretro INFO] [mkxp-z stdout] MUIATEST == Lega e sindaco
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 114 (22,14) eventi=25
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO castel_lega
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Nerina dei Super 4: Son la prima dei Super 4. El mar de Muja xe con mi!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Nerina dei Super 4?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con ELITEFOUR_Lorelei Nerina dei Super 4: LAPRAS52 DEWGONG52 SLOWBRO53 CLOYSTER53 JYNX54
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Capitan Ugo dei Super 4: Go navigà sete mari e go visto sete draghi. Ti te sarà l'otavo?
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Capitan Ugo dei Super 4?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con ELITEFOUR_Lance Capitan Ugo dei Super 4: GYARADOS53 DRAGONAIR53 AERODACTYL54 KINGDRA54 SALAMENCE55
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Nona Gigia dei Super 4: Go visto passar sete sindaci, mulo. Desso vedemo ti.
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Nona Gigia dei Super 4?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con ELITEFOUR_Agatha Nona Gigia dei Super 4: GENGAR54 MISMAGIUS54 DUSKNOIR55 CHANDELURE55 GENGAR56
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Tubo dei Super 4: Te lo gavevo dito che ghe iera uno che te conossevi ben! Ultimo dei Super 4: TUBO, Polizia Locale!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te vol lotar con Tubo dei Super 4?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con TUBO Tubo: ARCANINE56 MAGNEZONE56 HONCHKROW56 LUCARIO57 MACHAMP57 MEGANIUM58
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: el Sindaco Pochibori: Te ricordi? 'Te pensi de esser meio de mi?' Desso vedemo se te ga fato esperienza!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te son pronto per la lota finale?
+[libretro INFO] [mkxp-z stdout] MUIATEST   LOTA con CHAMPION el Sindaco Pochibori: PIDGEOT58 ALAKAZAM58 RHYPERIOR58 ARCANINE59 STARMIE59 CHARIZARD60
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: el Sindaco Pochibori: Va ben, va ben. Muja xe tua.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Te ghe la ga fata! Te son el novo sindaco de Muja!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Firma qua... e qua. L'ordinanza xe tua: el Delfin Verde te speta in Molo dei Bersaglieri.
+[libretro INFO] [mkxp-z stdout] MUIATEST   Sala d'Onore
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Desso te pol tornar a Trieste col Delfin Verde... o restar a Muia quanto che te vol.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: sindaco batù
+[libretro INFO] [mkxp-z stdout] MUIATEST OK Lega e sindaco
+[libretro INFO] [mkxp-z stdout] MUIATEST == Delfin Verde e finale
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 22 (64,12) eventi=2
+[libretro INFO] [mkxp-z stdout] MUIATEST FOTO molo_delfin
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: CONTROLOR: Siòr... sindaco?! Ma Lei xe el foresto! Cioè, l'ex foresto!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: CONTROLOR: L'ordinanza la ga firmada Lei: el Delfin Verde xe pronto. Trieste ve speta!
+[libretro INFO] [mkxp-z stdout] MUIATEST   domanda: Te monti sul Delfin Verde per tornar a Trieste?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Su la passerela, una vose conossuda...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Speta! SPETA! Te va via cussì, senza saludar?
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: DEI IAN: Te son rivà foresto e te va via sindaco. A Muia no se la desmentegherà più nissun.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: ...E mi go perso con un triestin. Ma solo perché el mio can gaveva fame.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: TUBO: Ciò... bon viagio, foresto. Cioè... sindaco. Va ben, foresto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: Ricordite: el Delfin Verde va e vien. E a Muia un caffè per ti se trova sempre.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: SINDACO POCHIBORI: ...Ma paghilo, eh.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: El Delfin Verde se stacca dal molo. Muia se fa picia picia, col Castel in alto e el Duomo in piazza.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Dopo mezora de onde, el Molo Audace, Piazza Unità, i Topolini...
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Te son a casa. Ma qualcossa te disi che a Muia te tornerà presto.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: POKÉMON MUIA
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Grazie de gaver zogà! Muia te speta ancora: el Delfin Verde te riporta indrio.
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: finale visto
+[libretro INFO] [mkxp-z stdout] MUIATEST OK Delfin Verde e finale
+[libretro INFO] [mkxp-z stdout] MUIATEST == mama e mapa
+[libretro INFO] [mkxp-z stdout] MUIATEST   mapa 3 (7,5) eventi=6
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Oh, povero cocolo, te son tornà a casa tuto pesto!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Te ga girà per Muia senza saver dove che te ndavi, vero? Te son proprio fio de to pare.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: Ciol, questa xe la MAPA DE MUIA. Cussì no te te perdi più tra le cali.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: Hai ottenuto Mappa Città!
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: You put the Mappa Città inyour Bag's <icon=bagPocket8>Strumenti base pocket.
+[libretro INFO] [mkxp-z stdout] MUIATEST   msg: MAMA: La trovi nela borsa, tra le robe importanti. E magna qualcossa, che te son tuto ossi!
+[libretro INFO] [mkxp-z stdout] MUIATEST   si: mapa in borsa
+[libretro INFO] [mkxp-z stdout] MUIATEST   regione mapa: Muia
+[libretro INFO] [mkxp-z stdout] MUIATEST OK mama e mapa
+[libretro INFO] [mkxp-z stdout] MUIATEST messagi mostrai: 376
+[libretro INFO] [mkxp-z stdout] MUIATEST FINE ok=18 errori=5
